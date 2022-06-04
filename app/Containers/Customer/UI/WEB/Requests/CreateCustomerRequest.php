@@ -58,7 +58,7 @@ class CreateCustomerRequest extends Request
           'password' => 'required|min:6|max:40',
           'password_confirm' => 'same:password',
           'fullname'     => 'nullable|min:2|max:50',
-          'phone'    => [ 'required', 'regex:/^(02|03|04|05|06|07|09|08|01[2|6|8|9])+([0-9]{8})$/', 'unique:customer,phone' ],
+          'phone'    => 'required|unique:customer,phone',
         //   'customer_group_ids' => 'required',
         //   'customer_group_ids.*' => 'numeric'
         ];
@@ -77,8 +77,6 @@ class CreateCustomerRequest extends Request
           'password_confirm.same' => 'Nhập lại mật khẩu không đúng',
           'fullname.min' => 'Tên phải có ít nhất 2 kí tự',
           'fullname.max' => 'Tên có nhiều nhất 50 kí tự',
-          'phone.required' => 'Số điện thoại là trường bắt buộc',
-          'phone.regex' => 'Số điện thoại không đúng định dạng',
           'phone.unique' => 'Phone đã được sử dụng',
       ];
     }

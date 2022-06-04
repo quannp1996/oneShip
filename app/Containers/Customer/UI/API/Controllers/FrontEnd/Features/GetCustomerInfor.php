@@ -22,6 +22,6 @@ trait GetCustomerInfor
         return $this->transform($this->user, CustomerPrivateProfileTransformer::class,[],  [
             'message' => 'Success',
             'status' => true
-        ], 'data',new ArraySerializer());
+        ], 'data');
     }
 }

@@ -26,17 +26,13 @@ class SaveProfileCustomerAction extends Action
             $customer->password = bcrypt($request->password_new) ?? $customer->password;
         }
         $customer->gender = $request->gender ?? $customer->gender;
-        $customer->date_of_birth = !empty($request->date_of_birth)?Carbon::createFromTimestamp(FunctionLib::getTimestampFromVNDate($request->date_of_birth)):null;
-        // dd( $customer);
-        // if ($customer->phone == '' && $request->phone != '' && $customer->type_check != 2) {
-        //     $customer->phone = $request->phone;
-        //     if ($request->has('type_check')) {
-        //         $customer->type_check = 2;
-        //     }
-        // }
-        if ($customer->phone == '' && $request->phone != '') {
-                $customer->phone = $request->phone;
+        $customer->date_of_birth = Carbon::createFromTimestamp(FunctionLib::getTimestampFromVNDate($request->date_of_birth)) ?? $customer->date_of_birth;
+        if ($customer->phone == '' && $request->phone != '' && $customer->type_check != 2) {
+            $customer->phone = $request->phone;
+            if ($request->has('type_check')) {
+                $customer->type_check = 2;
             }
+        }
         // process image
         if ($request->hasFile('image')) {
             $image = $request->file('image');

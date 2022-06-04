@@ -3,7 +3,7 @@ Route::group(
   [
       'prefix' => 'owner',
       'namespace' => '\App\Containers\Customer\UI\WEB\Controllers\Admin',
-      'domain' => config('app.admin_subdomain').'.' . parse_url(config('app.url'))['host'],
+      'domain' => 'admin.' . parse_url(config('app.url'))['host'],
       'middleware' => [
           'auth:admin',
       ],

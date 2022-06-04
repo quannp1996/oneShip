@@ -13,13 +13,18 @@ namespace App\Containers\Customer\Actions\FrontEnd\WishList;
 
 use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\Customer\Tasks\WishList\CreateWishListTask;
 
 class CreatedWishListAction extends Action
 {
     public function run($data)
     {
-        $object =app(CreateWishListTask::class)->run($data);
+        $object = Apiato::call(
+            'Customer@WishList\CreateWishListTask',
+            [
+                $data
+            ]
+        );
+
         return $object;
     }
 }

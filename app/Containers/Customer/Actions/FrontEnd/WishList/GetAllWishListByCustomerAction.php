@@ -13,7 +13,6 @@ namespace App\Containers\Customer\Actions\FrontEnd\WishList;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Actions\Action;
-use App\Containers\Customer\Tasks\WishList\GetAllWishListByCustomerTask;
 
 class GetAllWishListByCustomerAction extends Action
 {
@@ -21,8 +20,16 @@ class GetAllWishListByCustomerAction extends Action
 
     public function run(int $customerId,string $type,array $with=[], int $limit = 8): ?iterable
     {
-      
-        $object =app(GetAllWishListByCustomerTask::class)->with($with)->run($customerId,$type,$limit);
+        $object = Apiato::call(
+            'Customer@WishList\GetAllWishListByCustomerTask',
+            [
+                $customerId,$type,$limit
+            ],
+            [
+                ['withRelationships'=>[$with]]
+            ]
+        
+        );
 
         return $object;
     }

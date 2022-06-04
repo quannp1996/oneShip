@@ -26,4 +26,8 @@ class FilterCustomerBySeachableTask extends Task
     // public function with(array $with=[]) {
     //   $this->repository->pushCriteria(new WithCriteria($with));
     // }
+
+    public function selectFields(array $column=['*']) {
+      $this->repository->pushCriteria(new SelectFieldsCriteria($column));
+    }
 } // End class

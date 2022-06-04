@@ -23,25 +23,17 @@ class UpdateRoleAction extends Action
     public function run(DataTransporter $data): Role
     {
         $level = is_null($data->level) ? 0 : $data->level ;
-
         $bool = Apiato::call('Authorization@UpdateRoleTask',
             [$data->id, $data->description, $data->display_name, $level]
         );
+        if(!$bool) return null;
 
-        if($bool) {
-            $role = Apiato::call('Authorization@FindRoleTask',[$data->id]);
-            // convert to array in case single ID was passed
-            $permissionIds = (array)$data->permissions_ids;
+        $role = Apiato::call('Authorization@FindRoleTask',[$data->id]);
 
-            $permissions = array_map(function ($permissionId) {
-                return Apiato::call('Authorization@FindPermissionTask', [$permissionId]);
-            }, $permissionIds);
-    
-            $role = $role->syncPermissions($permissions);
-        }else {
-            $role = null;
-        }
-
-        return $role;
+        $permissionIds = (array)$data->permissions_ids;
+        $permissions = array_map(function ($permissionId) {
+            return Apiato::call('Authorization@FindPermissionTask', [$permissionId]);
+        }, $permissionIds);
+        return $role->syncPermissions($permissions);
     }
 }

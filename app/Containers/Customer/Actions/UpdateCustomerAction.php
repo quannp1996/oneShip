@@ -11,7 +11,7 @@ class UpdateCustomerAction extends Action
 {
     public function run(DataTransporter $transporter)
     {
-      if (!empty($transporter->password)) {
+      if ($transporter->password) {
         $transporter->password = bcrypt($transporter->password);
         $transporter->password_encode = bcrypt($transporter->password);
       }

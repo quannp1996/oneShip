@@ -115,13 +115,4 @@ $router->put('/customers-groups/{id}', [
 ]);
 
 
-$router->get('/customers/{id}/logReferral', [
-  'as'   => 'admin.customers.log_referral',
-  'uses' => 'CustomerController@logReferral',
-  'middleware' => [
-    'auth:admin'
-  ]
-]);
-
-
 

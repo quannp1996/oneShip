@@ -28,7 +28,7 @@ class GetAllWishListByCustomerTask extends Task
     public function run(int $customerId,  string $type,int $limit): ?iterable
     {
         try {
-            $returnData = $this->repository->where('customer_id', $customerId)->where('type', $type)->orderBy('created_at','desc');
+            $returnData = $this->repository->where('customer_id', $customerId)->where('type', $type);
 
             return $returnData->paginate($limit);
         } catch (Exception $exception) {

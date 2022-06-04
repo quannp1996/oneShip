@@ -59,7 +59,7 @@ class UpdateCustomerRequest extends Request
             'password' => 'nullable|min:6|max:40',
             'password_confirm' => 'same:password',
             'fullname'     => 'nullable|min:2|max:50',
-            'phone'    => [ 'required', 'regex:/^(02|03|04|05|06|07|09|08|01[2|6|8|9])+([0-9]{8})$/', 'unique:customer,phone,'.request('id') ],
+            'phone'    => 'required|unique:customer,phone,'.request('id'),
         ];
     }
     public function messages() {
@@ -74,7 +74,6 @@ class UpdateCustomerRequest extends Request
         'fullname.min' => 'Tên phải có ít nhất 2 kí tự',
         'fullname.max' => 'Tên có nhiều nhất 50 kí tự',
         'phone.required' => 'Số điện thoại là trường bắt buộc',
-        'phone.regex' => 'Số điện thoại không đúng định dạng',
         'phone.unique' => 'Phone đã được sử dụng',
       ];
     }

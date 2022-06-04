@@ -28,10 +28,7 @@ class FindRoleTask extends Task
      */
     public function run($roleNameOrId): Role
     {
-        $query = is_numeric($roleNameOrId) ? ['id' => $roleNameOrId] : ['name' => $roleNameOrId];
-
-        $role = $this->repository->findWhere($query)->first();
-
+        $role = $this->repository->find($roleNameOrId);
         return $role;
     }
 

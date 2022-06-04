@@ -24,12 +24,12 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="#address_book" data-toggle="tab" role="tab"
                                     aria-controls="nhom_quyen">
-                                    Sổ địa chỉ
+                                    Address book
                                 </a>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="nav-item">
                                 <a class="nav-link" href="#nhom_quyen" data-toggle="tab" role="tab"
@@ -128,41 +128,10 @@
                                 </div>
                             </div><!-- /.End thong tin chung -->
 
-                            <div class="tab-pane" id="address_book" role="tabpanel">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Họ Tên</th>
-                                                <th scope="col">Địa Chỉ</th>
-                                                <th scope="col">Số Điện Thoại</th>
-                                                <th scope="col" class="text-center">Địa chỉ mặc định</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse (@$customer->addresses as $address)
-                                                <tr>
-                                                    <td scope="col">{{ @$address->name }}</td>
-                                                    <td scope="col">
-                                                        {{ @$address->address }}
-                                                        <p class="mb-0">Thành phố: <strong>{{ @$address->province->name }}</strong></p>
-                                                        <p class="mb-0">Quận/ huyện: <strong>{{ @$address->district->name }}</strong></p>
-                                                        <p class="mb-0">Xã/ phường: <strong>{{ @$address->ward->name }}</strong></p>
-                                                    </td>
-                                                    <td scope="col">{{ @$address->phone }}</td>
-                                                    <td scope="col" class="text-center">
-                                                        <i class="fa {{ $address->is_default ? 'fa-check-circle text-success' : 'fa-times-circle text-danger' }}"></i>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="4">Chưa có thông tin</td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="tab-pane active" id="address_book" role="tabpanel">
+
                             </div>
+
                             <div class="tab-pane" id="nhom_quyen" role="tabpanel">
                                 <div class="card-body accordion collapse {{ isset($editMode) && $editMode ? 'hide' : 'show' }}"
                                     id="accorRoles">

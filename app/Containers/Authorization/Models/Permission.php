@@ -17,8 +17,8 @@ class Permission extends SpatiePermission
     use HashIdTrait;
     use HasResourceKeyTrait;
     protected $guard_name = 'admin';
-
-
+    protected $appends = ['id'];
+    
     /**
      * The attributes that are mass assignable.
      *

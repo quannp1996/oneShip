@@ -3,10 +3,8 @@
 namespace App\Containers\Customer\UI\WEB\Controllers;
 
 use Apiato\Core\Foundation\Facades\Apiato;
-use Apiato\Core\Foundation\FunctionLib;
-use App\Containers\Customer\Actions\GetAllCustomersAction;
-use App\Containers\Customer\Enums\CustomerStatus;
-use App\Containers\Customer\Models\Customer;
+use Apiato\Core\Foundation\Facades\FunctionLib;
+use Apiato\Core\Foundation\FunctionLib as FoundationFunctionLib;
 use App\Containers\Customer\UI\WEB\Requests\CreateCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\DeleteCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\EditCustomerRequest;
@@ -27,7 +25,7 @@ class CustomerController extends AdminController
   use ApiResTrait;
   public function __construct()
   {
-    if (FunctionLib::isDontUseShareData(['edit', 'store', 'update', 'delete', 'create'])) {
+    if (FoundationFunctionLib::isDontUseShareData(['edit', 'store', 'update', 'delete', 'create'])) {
       $this->dontUseShareData = true;
     }
 
@@ -45,22 +43,15 @@ class CustomerController extends AdminController
 
     $transporter = new DataTransporter($request);
 
-    $data = app(GetAllCustomersAction::class)
-      ->counting([
-        ['status' => 1, 'email' => 'an@gmail.com'],
-        ['status' => 2, 'email' => 'an@gmail.com'],
-        ['status' => 3],
-        ['status' => -1],
-      ])
-      ->run(
-        $transporter,
-        true,
-        ['groups:id,title,display_name'],
-        ['id', 'email', 'phone', 'fullname', 'status', 'created_at']
-      );
+    $customers = Apiato::call('Customer@GetAllCustomersAction', [
+      $transporter,
+      true,
+      ['groups:id,title,display_name'],
+      ['id', 'email', 'phone', 'fullname', 'created_at']
+    ]);
 
     if ($request->ajax()) {
-      return $this->sendResponse($data);
+      return $this->sendResponse($customers);
     }
 
     $roles = Apiato::call('Authorization@GetAllRolesAction', [new DataTransporter([]), 0, true, ['customers']]);
@@ -68,11 +59,10 @@ class CustomerController extends AdminController
       ['id', 'title', 'display_name']
     ]);
     return view('customer::index', [
-      'data' => $data,
-      'search_data' => $request,
+      'customers' => $customers,
+      'input' => $request->all(),
       'roles' => $roles,
-      'groups' => $groups,
-      'status' => CustomerStatus::TEXT,
+      'groups' => $groups
     ]);
   }
 
@@ -142,7 +132,8 @@ class CustomerController extends AdminController
     $roles = Apiato::call('Authorization@GetAllRolesAction', [new DataTransporter([]), 0, true, ['customers']]);
     $all_perms = Apiato::call('Authorization@GetAllPermToGroupAction', [['customers']]);
     $groups = Apiato::call('Customer@GetAllCustomerGroupsAction', []);
-    $customer = Apiato::call('Customer@FindCustomerByIdAction', [$transporter->id, ['groups', 'addresses', 'addresses.province', 'addresses.district', 'addresses.ward']]);
+    $customer = Apiato::call('Customer@FindCustomerByIdAction', [$transporter->id, ['groups']]);
+
     return view('customer::edit', [
       'roles' => $roles,
       'all_perms' => $all_perms,
@@ -155,9 +146,6 @@ class CustomerController extends AdminController
   {
     \DB::beginTransaction();
     try {
-      if (empty($request->password)) {
-        $request = $request->except(['password', 'password_confirm']);
-      }
       $transporter = new DataTransporter($request);
 
       $customer = Apiato::call('Customer@UpdateCustomerAction', [$transporter]);
@@ -206,37 +194,5 @@ class CustomerController extends AdminController
       ]
     ]);
     return $this->sendResponse($customers);
-  }
-
-  public function logReferral(EditCustomerRequest $request)
-  {
-    $transporter = $request->toTransporter();
-    $input = $request->all();
-    // dd( $input);
-    $type = !empty($transporter->type) ? $transporter->type : 'don_hang';
-    $input['type'] = $type;
-    $transporter->limit = 10;
-    $customer = Apiato::call('Customer@FindCustomerByIdAction', [$transporter->id]);
-    if ($type == 'don_hang') {
-      $logs = Apiato::call('Customer@GetLogOrderReferralByCustomerAction', [
-        $transporter,
-        ['order']
-      ]);
-    } else {
-
-      $transporter->ref_code = $customer->ref_code;
-      $logs = Apiato::call('Customer@GetLogReferralByCustomerAction', [
-        $transporter,
-        ['customerReferraled', 'customerReferral']
-      ]);
-      // dd( $logs);
-    }
-    // dd($request->type);
-    return view('customer::log_referral', [
-      'input' => $input,
-      'logs' => $logs,
-      'customer' => $customer,
-      'customer_id' => $input['id']
-    ]);
   }
 } // End class

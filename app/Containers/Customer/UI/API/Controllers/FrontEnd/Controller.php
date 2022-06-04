@@ -19,8 +19,7 @@ use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\EditCustomerInf
 use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\GetCustomerInfor;
 use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\AddWishList;
 use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\GetAllWishList;
-use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\GetHistorySearch;
-use App\Containers\Customer\UI\API\Controllers\FrontEnd\Features\SaveCustomerRef;
+
 
 class Controller extends BaseApiFrontController
 {
@@ -30,7 +29,5 @@ class Controller extends BaseApiFrontController
         NewAddress,
         UpdateAddress,
         AddWishList,
-        GetAllWishList,
-        GetHistorySearch,
-        SaveCustomerRef;
+        GetAllWishList;
 }

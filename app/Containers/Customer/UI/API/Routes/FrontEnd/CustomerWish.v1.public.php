@@ -28,6 +28,4 @@ function () use ($router) {
         'as' => 'api_get_wish_list',
         'uses'       => 'FrontEnd\Controller@getAllWishList'
     ]);
-
-    
 });

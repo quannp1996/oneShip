@@ -20,6 +20,7 @@ trait NewAddress
 {
     public function newAddress(NewAddressRequest $request)
     {
+        // dd($this->user->id);
         $result = app(CusSaveAddressBookAction::class)->run(0,$this->user->id,$request->all());
         
         $addressBook = app(CusGetAllAddBookAction::class)->withRelationships()->run($this->user->id);

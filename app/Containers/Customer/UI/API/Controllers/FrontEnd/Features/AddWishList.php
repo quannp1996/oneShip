@@ -33,6 +33,8 @@ trait AddWishList
             $wishList=app(CreatedWishListAction::class)->run($data);
             $is_add=true;
         }
+        
+        
         return response()->json(['success'=>true,'message'=>'Bạn đã thêm sản phẩm yêu thích thành công','is_add'=>$is_add]);
     }
 }

@@ -56,7 +56,7 @@ class NewAddressRequest extends Request
         return [
             // 'pickingAddress' => ['required',new NewAddressRule()]
             'name' => ['required'],
-            'phone' => ['required','numeric','regex:/(84|0[3|5|7|8|9])+([0-9]{8})\b/'],
+            'phone' => ['required','numeric','regex:/^(0)[0-9]{9}$/'],
             'province_id' => ['required','numeric','exists:'.City::getTableName().',id'],
             'district_id' => ['required','numeric','exists:'.District::getTableName().',id'],
             'ward_id' => ['required','numeric','exists:'.Ward::getTableName().',id'],
@@ -85,7 +85,7 @@ class NewAddressRequest extends Request
 
             'is_on_working_time.required' => __('site.chonthoidiemgiao'),
 
-            'is_default.required' => __('site.diadiemmacdinh'),
+            // 'is_default.required' => __('site.chonthoidiemgiao'),
 
             'address.required' => __('site.haynhapdiachi'),
         ];

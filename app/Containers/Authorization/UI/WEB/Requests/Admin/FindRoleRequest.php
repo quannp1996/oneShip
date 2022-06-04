@@ -46,7 +46,6 @@ class FindRoleRequest extends Request
     public function rules()
     {
         return [
-            // 'id' => 'required|exists:roles,id'
         ];
     }
 

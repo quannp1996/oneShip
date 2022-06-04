@@ -4,7 +4,6 @@ namespace App\Containers\Customer\Data\Criterias;
 
 use Apiato\Core\Foundation\Facades\FunctionLib;
 use App\Ship\Parents\Criterias\Criteria;
-use Carbon\Carbon;
 use Prettus\Repository\Contracts\RepositoryInterface as PrettusRepositoryInterface;
 
 class FilterCustomerCriteria extends Criteria
@@ -48,15 +47,6 @@ class FilterCustomerCriteria extends Criteria
       $createdAt = FunctionLib::getCarbonFromVNDate($this->transporter->started_at);
       $model = $model->whereDate('created_at', $createdAt);
     }
-
-    if (isset($this->transporter->time_from) && !empty($this->transporter->time_from)) {
-      // $timestamp = \Carbon\Carbon::parse($filters['time_from'])->timestamp;
-      $model = $model->where('created_at' ,'>=',Carbon::createFromTimestamp(FunctionLib::getTimestampFromVNDate($this->transporter->time_from)));
-    }
-    if (isset($this->transporter->time_to) && !empty($this->transporter->time_to)) {
-      $model = $model->where('created_at' ,'<=',Carbon::createFromTimestamp(FunctionLib::getTimestampFromVNDate($this->transporter->time_to, true)));
-    }
-
     if ($this->transporter->roles_ids) {
       $model = $model->whereHas('roles', function ($q) {
         $q->whereIn('id', $this->transporter->roles_ids);

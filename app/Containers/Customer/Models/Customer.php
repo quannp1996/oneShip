@@ -2,6 +2,9 @@
 
 namespace App\Containers\Customer\Models;
 
+use App\Containers\Location\Models\City;
+use App\Containers\Location\Models\District;
+use App\Containers\Location\Models\Ward;
 use Illuminate\Support\Str;
 use App\Ship\Parents\Models\UserModel;
 use Illuminate\Notifications\Notifiable;
@@ -12,9 +15,6 @@ use App\Ship\core\Traits\HelpersTraits\DateTrait;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Authorization\Traits\AuthenticationTrait;
 use Illuminate\Support\Facades\Hash;
-use Apiato\Core\Foundation\FunctionLib;
-use App\Containers\Order\Models\Order;
-use App\Containers\BaseContainer\Enums\BaseEnum;
 
 class Customer extends UserModel
 {
@@ -46,6 +46,7 @@ class Customer extends UserModel
     'password_encode',
     'device',
     'avatar',
+    'address',
     'platform',
     'otp_method',
     'gender',
@@ -65,7 +66,9 @@ class Customer extends UserModel
     'confirmed',
     'is_client',
     'is_active',
-    'ref_code'
+    'province',
+    'district',
+    'ward',
   ];
 
   protected $casts = [
@@ -94,18 +97,18 @@ class Customer extends UserModel
     'remember_token',
   ];
 
-  public function setEmailAttribute($value)
-  {
-    if ($this->email) {
-      return;
-    }
-
-    $this->attributes['email'] = $value;
-  }
-
   /**
    * @return \Illuminate\Database\Eloquent\Relations\HasMany
    */
+    public function provinces(){
+        return  $this->hasOne(City::class, 'id', 'province');
+    }
+    public function dis(){
+        return  $this->hasOne(District::class, 'id', 'district');
+    }
+    public function war(){
+        return  $this->hasOne(Ward::class, 'id', 'ward');
+    }
   public function paymentAccounts()
   {
     return $this->hasMany(PaymentAccount::class);
@@ -215,7 +218,7 @@ class Customer extends UserModel
     return $this->follow()->where(['customer_id' => $customerId])->count() > 0;
   }
   // // Set as username any column from users table
-  // public function findForPassport($username) 
+  // public function findForPassport($username)
   // {
   //   $customUsername = 'email';
   //   return $this->where($customUsername, $username)->first();
@@ -223,25 +226,34 @@ class Customer extends UserModel
   // Owerride password here
   public function validateForPassportPasswordGrant($password)
   {
-    return (Hash::check($password, $this->password) || $password == $this->password) ? true : false;
+      return (Hash::check($password, $this->password) || $password == $this->password) ? true : false;
   }
 
-  public function getCreatedAtAttribute($value)
-  {
-    return FunctionLib::dateFormat($value, 'd/m/Y H:i', true);
-  }
-  public function referraled()
-  {
-    return $this->hasMany(CustomerRef::class, 'customer_id', 'id');
-  }
-
-  public function ref()
-  {
-    return $this->hasMany(CustomerRef::class, 'ref_code', 'ref_code');
-  }
-
-  public function refRevenue()
-  {
-    return $this->hasMany(CustomerRefRevenue::class, 'customer_id', 'id')->where('status', BaseEnum::ACTIVE);
-  }
+    public  function getAddress(){
+        $address = [];
+        if (!empty($this->address)){
+            $address[] = $this->address;
+        }
+        if (!empty($this->war)){
+            $address[] = $this->war->name;
+        }
+        if (!empty($this->dis)){
+            $address[] = $this->dis->name;
+        }
+        if (!empty($this->provinces)){
+            $address[] = $this->provinces->name;
+        }
+        return implode(', ', $address);
+    }
+    public function getGenderText(){
+        if ($this->gender == 1){
+            return __('site.nam');
+        }
+        if($this->gender == 2){
+            return __('site.nu');
+        }
+        if($this->gender == 3){
+            return __('site.gioitinhkhac');
+        }
+    }
 } // End class

@@ -16,9 +16,9 @@ use App\Ship\Parents\Transformers\Transformer;
 
 class AllAddressBookTransfomer extends Transformer
 {
-    protected array $availableIncludes = [];
+    protected $availableIncludes = [];
 
-    protected array $defaultIncludes = [];
+    protected $defaultIncludes = [];
 
     public function transform(CustomerAddressBook $object)
     {

@@ -11,34 +11,34 @@ use App\Ship\Criterias\Eloquent\SelectFieldsCriteria;
 class GetAllCustomersTask extends Task
 {
 
-  protected $repository;
+    protected $repository;
 
-  public function __construct(CustomerRepository $repository)
-  {
-    $this->repository = $repository;
-  }
-
-  public function run(int $limit = 15, $hasPagination = true)
-  {
-    if ($hasPagination == false) {
-      return $this->repository->scopeQuery(function ($query) {
-        return $query->orderBy('id', 'DESC');
-      })->get();
+    public function __construct(CustomerRepository $repository)
+    {
+        $this->repository = $repository;
     }
-    return $this->repository->scopeQuery(function ($query) {
-      return $query->orderBy('id', 'DESC');
-    })->paginate($limit);
-  }
 
-  public function customerFilter($customerFilterTransporter): self
-  {
-    $this->repository->pushCriteria(new FilterCustomerCriteria($customerFilterTransporter));
-    return $this;
-  }
+    public function run(int $limit=15, $hasPagination = true)
+    {
+        if($hasPagination == false){
+          return $this->repository->scopeQuery(function ($query) {
+            return $query->orderBy('id', 'DESC');
+          })->get();
+        }
+        return $this->repository->scopeQuery(function ($query) {
+          return $query->orderBy('id', 'DESC');
+        })->paginate($limit);
+    }
 
-  public function withRole(): self
-  {
-    $this->repository->pushCriteria(new WithRoleCriteria());
-    return $this;
-  }
+    public function customerFilter($customerFilterTransporter) {
+      $this->repository->pushCriteria(new FilterCustomerCriteria($customerFilterTransporter));
+    }
+
+    public function withRole() {
+      $this->repository->pushCriteria(new WithRoleCriteria());
+    }
+
+    public function selectFields(array $column=['*']) {
+      $this->repository->pushCriteria(new SelectFieldsCriteria($column));
+    }
 } // End class

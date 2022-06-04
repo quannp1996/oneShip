@@ -13,13 +13,18 @@ namespace App\Containers\Customer\Actions\FrontEnd\WishList;
 
 use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
-use App\Containers\Customer\Tasks\WishList\DeleteWishListTask;
 
 class DeleteWishListAction extends Action
 {
     public function run($product_id)
     {
-        $object = app(DeleteWishListTask::class)->run($product_id);
+        $object = Apiato::call(
+            'Customer@WishList\DeleteWishListTask',
+            [
+                $product_id
+            ]
+        );
+
         return $object;
     }
 }

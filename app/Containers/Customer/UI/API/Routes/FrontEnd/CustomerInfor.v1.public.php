@@ -10,6 +10,7 @@
  */
 
 use Apiato\Core\Foundation\Facades\Apiato;
+use Illuminate\Support\Facades\Route;
 
 Route::group(
 [
@@ -22,6 +23,21 @@ function () use ($router) {
     $router->any('/editCustomerInfor', [
         'as' => 'api_edit_customer_infor',
         'uses'       => 'FrontEnd\Controller@editCustomerInfor'
+    ]);
+
+    $router->any('/me/updateCustomerInfor', [
+        'as' => 'api_update_customer_infor',
+        'uses'       => 'FrontEnd\Controller@updateCustomerInfor'
+    ]);
+
+    $router->any('/me/updatePassword', [
+        'as' => 'api_update_customer_password',
+        'uses'       => 'FrontEnd\Controller@updatePassword'
+    ]);
+
+    $router->post('/me/updateAvatar', [
+        'as' => 'api_update_customer_avatar',
+        'uses'       => 'FrontEnd\Controller@updateAvatar'
     ]);
 
     $router->any('/me', [
@@ -43,4 +59,5 @@ function () use ($router) {
         'as' => 'api_update_customer_address_book',
         'uses'       => 'FrontEnd\Controller@updateAddress'
     ]);
+
 });

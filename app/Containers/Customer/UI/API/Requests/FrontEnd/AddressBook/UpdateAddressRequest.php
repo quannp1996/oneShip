@@ -5,7 +5,7 @@
  * @ Author: Oops!Memory - OopsMemory.com
  * @ Create Time: 2021-08-24 13:46:00
  * @ Modified by: Oops!Memory - OopsMemory.com
- * @ Modified time: 2021-11-15 15:07:30
+ * @ Modified time: 2021-09-19 23:02:26
  * @ Description: Happy Coding!
  */
 
@@ -59,7 +59,7 @@ class UpdateAddressRequest extends Request
             // 'pickingAddress' => ['required',new NewAddressRule()]
             'id' => ['required','exists:'.CustomerAddressBook::getTableName().',id,status,'.CustomerAddressBookStatus::ACTIVE],
             'name' => ['required'],
-            'phone' => ['required','numeric','regex:/(84|0[3|5|7|8|9])+([0-9]{8})\b/'],
+            'phone' => ['required','numeric','regex:/^(0)[0-9]{9}$/'],
             'province_id' => ['required','numeric','exists:'.City::getTableName().',id'],
             'district_id' => ['required','numeric','exists:'.District::getTableName().',id'],
             'ward_id' => ['required','numeric','exists:'.Ward::getTableName().',id'],

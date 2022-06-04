@@ -20,6 +20,7 @@ class MainServiceProvider extends MainProvider
      * @var array
      */
     public $serviceProviders = [
+        EventServiceProvider::class,
         // InternalServiceProviderExample::class,
         // ...
     ];

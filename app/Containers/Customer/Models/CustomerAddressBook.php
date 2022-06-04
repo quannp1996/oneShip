@@ -12,7 +12,7 @@ class CustomerAddressBook extends Model
     protected $table = 'customer_address_book';
 
     protected $fillable = [
-        'customer_id', 'name', 'phone', 'address', 'province_id', 'district_id', 'ward_id', 'is_default','is_on_working_time','eshop_shipping_id'
+        'customer_id', 'name', 'phone', 'address', 'province_id', 'district_id', 'ward_id', 'is_default','is_on_working_time'
     ];
 
     protected $attributes = [];

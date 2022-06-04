@@ -22,6 +22,10 @@ class GetAllCustomerGroupsTask extends Task
         return $this->repository->orderBy('sort', 'ASC')->all();
     }
 
+    public function selectFields(array $column=['*']) {
+      $this->repository->pushCriteria(new SelectFieldsCriteria($column));
+    }
+
     public function visibleStatus() {
       $this->repository->pushCriteria(new VisibleStatusCriteria());
     }
