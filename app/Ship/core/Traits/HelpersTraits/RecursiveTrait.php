@@ -8,18 +8,14 @@ trait RecursiveTrait
 
   public function buildTree(array $elements, $parentId = 0): array
   {
-    $branch = array();
-
+    $branch = [];
     foreach ($elements as $element) {
       if ($element['pid'] == $parentId) {
         $children = $this->buildTree($elements, $element['id']);
-        if ($children) {
-          $element['children'] = $children;
-        }
+        if ($children) $element['children'] = $children;
         $branch[] = $element;
       }
     }
-
     return $branch;
   }
 
@@ -37,7 +33,7 @@ trait RecursiveTrait
   {
     $str = "";
     foreach ($menus as $key => $menuItem) {
-      $name = $menuItem['desc_lang']['name'];
+      $name = @$menuItem['desc_lang']['name'];
       $link = @$menuItem['desc_lang']['link'];
       $menuId = $menuItem['id'];
 
@@ -64,7 +60,8 @@ trait RecursiveTrait
     return $str;
   }
 
-  public function buildNestableSidebar(array $menus = [], string $keyStr = 'menu') {
+  public function buildNestableSidebar(array $menus = [], string $keyStr = 'menu')
+  {
     $str = "";
     foreach ($menus as $key => $menuItem) {
       $name = @$menuItem['desc_lang']['name'];
@@ -83,36 +80,37 @@ trait RecursiveTrait
     return $str;
   }
 
-  public function buildSelectTree($arr=[], $pid = 0, $tag='option', $str='', $selectedParentId=0, $selectedCurrentId=0) {
+  public function buildSelectTree($arr = [], $pid = 0, $tag = 'option', $str = '', $selectedParentId = 0, $selectedCurrentId = 0)
+  {
     if (!empty($arr)) {
-      foreach ( $arr as $k => $v ) {
-        if ( ($v['parent_id'] ?? $v['pid']) == $pid) {
-            $name = $str . ( $v['desc_lang']['name'] ?? $v['title'] );
+      foreach ($arr as $k => $v) {
+        if (($v['parent_id'] ?? $v['pid']) == $pid) {
+          $name = $str . ($v['desc_lang']['name'] ?? $v['title']);
 
-            $item = " <$tag value='{$v['id']}' ";
-                // Seletced category_id, check kiểu biến
-                if (is_array($selectedCurrentId)) {
-                    if ( in_array($v['id'], $selectedCurrentId) ) {
-                        $item .= " selected ";
-                    }
-                }else {
-                    if ($v['id'] == $selectedCurrentId) {
-                        $item .= " selected ";
-                    }
-                }
+          $item = " <$tag value='{$v['id']}' ";
+          // Seletced category_id, check kiểu biến
+          if (is_array($selectedCurrentId)) {
+            if (in_array($v['id'], $selectedCurrentId)) {
+              $item .= " selected ";
+            }
+          } else {
+            if ($v['id'] == $selectedCurrentId) {
+              $item .= " selected ";
+            }
+          }
 
 
-            $item .= ">{$name}</$tag>";
+          $item .= ">{$name}</$tag>";
 
-            $this->selectTree .= $item;
-            unset($arr[$k]);
-            $this->buildSelectTree($arr, $v['id'], $tag, sprintf('%s %s >', $str, $name), $selectedParentId, $selectedCurrentId);
+          $this->selectTree .= $item;
+          unset($arr[$k]);
+          $this->buildSelectTree($arr, $v['id'], $tag, sprintf('%s %s >', $str, $name), $selectedParentId, $selectedCurrentId);
         }
       }
 
       return trim($this->selectTree);
     }
 
-    return "<$tag value=''>".__('menu::menu.no_data')."</$tag>";
+    return "<$tag value=''>" . __('menu::menu.no_data') . "</$tag>";
   }
 } // End class

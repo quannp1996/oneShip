@@ -25,11 +25,9 @@ class UpdateMenuTask extends Task
             if (empty($dataUpdate['no_follow'])) {
               $dataUpdate['no_follow'] = 0;
             }
-
             if (empty($dataUpdate['newtab'])) {
               $dataUpdate['newtab'] = 0;
             }
-
             $menu = $this->repository->update($dataUpdate, $id);
             return $menu;
         }
