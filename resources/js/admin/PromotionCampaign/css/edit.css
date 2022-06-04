@@ -1,0 +1,66 @@
+.time {
+    font-size: 13px;
+    color: #999;
+}
+
+.bottom {
+    margin-top: 13px;
+    line-height: 12px;
+}
+
+.button {
+    padding: 0;
+    float: right;
+}
+
+.image {
+    width: 100%;
+    display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.search {
+    margin-bottom: 10px;
+    /* float: right */
+    width: 50%;
+}
+
+.el-icon-error {
+    font-size: 14px;
+    /* float: center; */
+    margin-bottom: 5px;
+    margin-left: 40%;
+    margin-top: 10px;
+}
+.el-autocomplete-suggestion li{
+    white-space: normal;
+}
+.text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+ }
+ .el-tabs__new-tab{
+     display: none;
+ }
+ .mag-le-5px{
+   margin-left: 5px;
+   margin-bottom: 5px;
+ }
+.timebtn{
+  float: left;
+}
+.el-autocomplete .el-input{
+    width: 100%;
+}

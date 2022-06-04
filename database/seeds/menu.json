@@ -1,0 +1,57 @@
+[
+	{
+		"status": "1",
+		"sort_order": null,
+		"link": "admin_contact_home_page",
+		"extra_link": null,
+		"type": "0",
+		"pid": "0",
+		"icon": null,
+		"updated_at": "2022-05-24T15:52:35.435000Z",
+		"created_at": "2022-05-24T15:52:35.435000Z"
+	},
+	{
+		"status": "1",
+		"sort_order": null,
+		"link": "admin_field_home_page",
+		"extra_link": null,
+		"type": "0",
+		"pid": "0",
+		"icon": null,
+		"updated_at": "2022-05-24T15:53:39.277000Z",
+		"created_at": "2022-05-24T15:53:39.277000Z"
+	},
+	{
+		"status": "1",
+		"sort_order": null,
+		"link": "admin_settings_edit_page",
+		"extra_link": null,
+		"type": "0",
+		"pid": "0",
+		"icon": null,
+		"updated_at": "2022-05-24T15:55:02.482000Z",
+		"created_at": "2022-05-24T15:55:02.482000Z"
+	},
+	{
+		"status": "1",
+		"sort_order": null,
+		"link": "admin_banner_home_page",
+		"extra_link": null,
+		"type": "0",
+		"pid": "0",
+		"icon": null,
+		"updated_at": "2022-05-24T15:59:16.751000Z",
+		"created_at": "2022-05-24T15:59:16.751000Z"
+	},
+	{
+		"status": "1",
+		"sort_order": null,
+		"link": null,
+		"extra_link": "/page/edit/628f81979d9562ca7a04a4a8",
+		"type": "0",
+		"pid": "0",
+		"icon": null,
+		"updated_at": "2022-05-26T14:58:49.708000Z",
+		"created_at": "2022-05-26T14:58:49.708000Z"
+	}
+]

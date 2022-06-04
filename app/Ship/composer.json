@@ -1,0 +1,13 @@
+{
+  "require": {
+  },
+  "require-dev": {
+    "barryvdh/laravel-ide-helper": "*"
+  },
+  "autoload": {
+    "files": [
+        "Helpers/RouteHelper.php",
+        "Helpers/bladeHelpers.php"
+    ]
+  }
+}

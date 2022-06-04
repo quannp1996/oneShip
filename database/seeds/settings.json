@@ -1,0 +1,56 @@
+[
+	{
+		"id" : 1,
+		"key" : "website",
+		"value" : "{\"site_name\":\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N CENTURY STONE\",\"keywords\":\"Century Stone\",\"description\":\"C\\u00d4NG TY C\\u1ed4 PH\\u1ea6N CENTURY STONE\",\"address\":\"L\\u00f4 CN17-21, C\\u1ee5m c\\u00f4ng nghi\\u1ec7p B\\u00e3i Ba, x\\u00e3 \\u0110\\u00f4ng Th\\u00e0nh, huy\\u1ec7n Thanh Ba, t\\u1ec9nh Ph\\u00fa Th\\u1ecd, Vi\\u1ec7t Nam\",\"image_seo\":\"website-seo-img-1650468860.png\",\"logo\":\"website-logo-img-1652545563.png\",\"favicon\":\"website-favicon-img-1651205383.png\",\"mobile_active\":0,\"down_for_constructions\":0,\"go_production\":0,\"logo_footer\":\"website-logo-footer-img-1652548092.png\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 2,
+		"key" : "contact",
+		"value" : "{\"email\":\"npquan1995@gmail.com\",\"fb_page_id\":\"https:\\/\\/www.facebook.com\",\"order_confirm_link\":null,\"hotline\":\"386 22 839\",\"tel\":\"1800.6800\",\"map_iframe\":\"<iframe\\r\\n            src=\\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d29798.59912891604!2d105.7901718395508!3d20.999655300000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac9788960205%3A0xe4f831d0c56eb989!2zQ8O0bmcgdHkgQ-G7lSBwaOG6p24gVkNDb3Jw!5e0!3m2!1svi!2s!4v1649239142696!5m2!1svi!2s\\\"\\r\\n            width=\\\"100%\\\" height=\\\"800\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" loading=\\\"lazy\\\"\\r\\n            referrerpolicy=\\\"no-referrer-when-downgrade\\\"><\\/iframe>\",\"bottom_infor\":null,\"other_website\":\"www.namphat.com\",\"hotline_product\":\"0243 734 9520\",\"map_url\":\"https:\\/\\/goo.gl\\/maps\\/o7xb5q8pwCVeAJs4A\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 4,
+		"key" : "activity",
+		"value" : "{\"fee_base\":{\"shiping_fee\":\"30000\",\"vat\":\"10\"}}",
+		"language_id" : 1
+	},
+	{
+		"id" : 5,
+		"key" : "social",
+		"value" : "{\"facebook_app_id\":\"223317249923380\",\"facebook_name\":\"https:\\/\\/www.facebook.com\\/groups\\/127386585936157\",\"facebook\":\"https:\\/\\/www.facebook.com\",\"google\":\"https:\\/\\/google.com\",\"instagram\":\"https:\\/\\/instagram.com\",\"youtube\":\"https:\\/\\/youtube.com\",\"linkedin\":null,\"twitter\":\"https:\\/\\/twitter.com\",\"zalo\":\"https:\\/\\/zalo.me\\/pc\",\"messages\":\"https:\\/\\/www.facebook.com\\/messages\\/t\\/22222222\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 6,
+		"key" : "other",
+		"value" : "{\"version\":\"13\",\"script_head\":null,\"script_body\":null}",
+		"language_id" : 1
+	},
+	{
+		"id" : 7,
+		"key" : "intergrated",
+		"value" : "{\"mail_driver\":\"smtp\",\"mail_host\":\"smtp.gmail.com\",\"mail_port\":\"587\",\"mail_username\":\"npquan1995@gmail.com\",\"mail_password\":\"cikoczslozkxohqk\",\"mail_encryption\":\"tls\",\"mail_from_address\":\"noithatnamphat@gmail.com\",\"mail_from_name\":\"N\\u1ed9i Th\\u1ea5t Nam Ph\\u00e1t\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 8,
+		"key" : "website1",
+		"value" : "{\"site_name\":\"C\\u00f4ng ty c\\u1ed5 ph\\u1ea7n trang tr\\u00ed n\\u1ed9i th\\u1ea5t nam ph\\u00e1t\",\"keywords\":\"Nam Ph\\u00e1t\",\"description\":\"C\\u00f4ng ty c\\u1ed5 ph\\u1ea7n trang tr\\u00ed n\\u1ed9i th\\u1ea5t nam ph\\u00e1t\",\"address\":\"S\\u1ed1 155 T\\u00f4 Hi\\u1ebfn Th\\u00e0nh, Ph\\u01b0\\u1eddng 13, Qu\\u1eadn 10, TP. H\\u1ed3 Ch\\u00ed Minh\",\"terms_and_policies\":\"\\/vi\\/trang\\/dieu-kien-su-dung-va-chinh-sach-cua-nam-phat\\/47\",\"payment_policy\":\"\\/vi\\/trang\\/chinh-sach-thanh-toan-va-dieu-khoan-dich-vu\\/53\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 9,
+		"key" : "website2",
+		"value" : "{\"site_name\":\"Nam Phat Interior Decoration Joint Stock Company\",\"keywords\":\"Nam Phat\",\"description\":\"Nam Phat Interior Decoration Joint Stock Company\",\"address\":\"No. 155 To Hien Thanh, Ward 13, District 10, City. Ho Chi Minh\",\"terms_and_policies\":\"\\/en\\/trang\\/terms-of-use-and-policies-of-nam-phat\\/47\",\"payment_policy\":\"\\/en\\/trang\\/payment-policy-and-terms-of-service\\/53\"}",
+		"language_id" : 1
+	},
+	{
+		"id" : 10,
+		"key" : "website3",
+		"value" : "{\"site_name\":\"\\u4e16\\u7eaa\\u77f3\\u80a1\\u4efd\\u516c\\u53f8\",\"keywords\":\"Century Stone\",\"description\":\"\\u4e16\\u7eaa\\u77f3\\u80a1\\u4efd\\u516c\\u53f8\",\"address\":\"\\u8d8a\\u5357\\u5bcc\\u5bff\\u7701\\u6e05\\u5df4\\u533a\\u4e1c\\u6e05\\u516c\\u793e\\u767d\\u5df4\\u5de5\\u4e1a\\u56ed\\u533a CN17-21 \\u5730\\u6bb5\"}",
+		"language_id" : 1
+	}
+]
