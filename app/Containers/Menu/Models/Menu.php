@@ -12,7 +12,6 @@ use Exception;
 
 class Menu extends Model
 {
-    use SoftDeletes;
     use LangTrait, HasManyKeyBy;
 
     protected $table = 'menu';

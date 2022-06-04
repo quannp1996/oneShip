@@ -6,7 +6,7 @@
             <a href="{{ route('admin_'.$key.'_edit', $menuId) }}" title="Sửa"><i class="fa fa-pencil"></i></a>
             <a href="javascript:void(0)"
                 class="ml-2" title="Xóa"
-                onclick="return removeMenu(this, {{ $menuId }})">
+                onclick="return removeMenu(this, '{{ $menuId }}')">
                 <i class="fa fa-trash"></i>
             </a>
         </span>
