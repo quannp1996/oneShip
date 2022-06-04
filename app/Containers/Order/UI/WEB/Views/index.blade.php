@@ -19,7 +19,6 @@
         <div class="col-sm-12 position-relative">
             <div class="card card-accent-primary">
                 <div class="card-header d-flex py-0">
-                    {{-- <button class="btn btn-link">{{ __('Quản trị đơn hàng') }}</button> --}}
                     <ul class="nav nav-tabs nav-underline nav-underline-primary card-header-tabs"
                         style="border-bottom: unset;border-color:unset;">
                         <li class="nav-item">
