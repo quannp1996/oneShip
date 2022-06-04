@@ -2,6 +2,7 @@
 /public/hot
 /storage
 .env
+.product-dev.env
 .eslintrc.js
 .local.env
 .env.backup
