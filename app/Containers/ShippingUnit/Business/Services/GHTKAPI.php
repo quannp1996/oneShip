@@ -6,6 +6,10 @@ use App\Containers\ShippingUnit\Models\ShippingUnit;
 
 class GHTKAPI  extends ShippingUnitAbstract
 {
+    protected $api = 'https://services.giaohangtietkiem.vn';
+    protected $devApi = ' https://services.ghtklab.com';
+    protected $token = null;
+    
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
@@ -13,7 +17,7 @@ class GHTKAPI  extends ShippingUnitAbstract
 
     public function send()
     {
-        dd('send GHTK');
+        return $this->callApi();
     }
 
     public function cancel()
