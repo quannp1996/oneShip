@@ -2,9 +2,9 @@
 
 /**
  * @ Created by: VSCode
- * @ Author: Oops!Memory - OopsMemory.com
+ * @ Author: QuanNP - npquan1995@gmai.com
  * @ Create Time: 2021-07-25 23:33:21
- * @ Modified by: Oops!Memory - OopsMemory.com
+ * @ Modified by: QuanNP - npquan1995@gmai.com
  * @ Modified time: 2021-08-01 01:31:06
  * @ Description: Happy Coding!
  */

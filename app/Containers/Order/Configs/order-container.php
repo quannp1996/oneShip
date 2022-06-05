@@ -53,5 +53,4 @@ return [
     'print_order' => 'In thông tin đơn hàng',
     'webhooking_ghtk' => 'Webhook GHTK'
   ],
-  
 ];

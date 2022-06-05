@@ -2,6 +2,7 @@
 
 namespace App\Containers\Order\UI\WEB\Requests;
 
+use App\Containers\ShippingUnit\Enums\EnumShipping;
 use App\Ship\Parents\Requests\Request;
 use Illuminate\Support\Arr;
 
@@ -70,8 +71,8 @@ class GetAllOrdersRequest extends Request
 
     protected function prepareForValidation()
     {
-      $this->merge([
-        'order_id' => trim($this->order_id)
-      ]);
+        $this->merge([
+            'order_id' => trim($this->order_id),
+        ]);
     }
 }

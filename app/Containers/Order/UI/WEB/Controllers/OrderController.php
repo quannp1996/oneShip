@@ -19,6 +19,7 @@ use App\Containers\Order\UI\WEB\Requests\UpdateOrderRequest;
 use App\Containers\Order\UI\WEB\Requests\GetAllOrdersRequest;
 use App\Containers\Order\UI\WEB\Requests\FindOrderByIdRequest;
 use App\Containers\Settings\Enums\PaymentStatus;
+use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -44,7 +45,7 @@ class OrderController extends AdminController
    *
    * @param GetAllOrdersRequest $request
    */
-  public function index(GetAllOrdersRequest $request)
+  public function index(GetAllOrdersRequest $request, ShippingUnitInterface $shippingUnitInterface)
   {
     $filters = $request->all();
     app(CreateBreadcrumbAction::class)->run('list', $this->title, 'admin.orders.index');

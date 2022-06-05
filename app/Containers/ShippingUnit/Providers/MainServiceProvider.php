@@ -2,6 +2,11 @@
 
 namespace App\Containers\ShippingUnit\Providers;
 
+use App\Containers\Order\UI\WEB\Requests\GetAllOrdersRequest;
+use App\Containers\ShippingUnit\Enums\EnumShipping;
+use App\Containers\ShippingUnit\Business\Services\GHTKAPI;
+use App\Containers\ShippingUnit\Business\Services\NinjaVanAPI;
+use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
 use App\Ship\Parents\Providers\MainProvider;
 
 /**
@@ -17,18 +22,14 @@ class MainServiceProvider extends MainProvider
      *
      * @var array
      */
-    public $serviceProviders = [
-        // InternalServiceProviderExample::class,
-    ];
+    public $serviceProviders = [];
 
     /**
      * Container Aliases
      *
      * @var  array
      */
-    public $aliases = [
-        // 'Foo' => Bar::class,
-    ];
+    public $aliases = [];
 
     /**
      * Register anything in the container.
@@ -36,8 +37,14 @@ class MainServiceProvider extends MainProvider
     public function register()
     {
         parent::register();
-
-        // $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        // ...
+        $this->app->bind(ShippingUnitInterface::class, function(){
+            switch(request('shipping_api', '')){
+                case EnumShipping::GHTK:
+                default:
+                    return new GHTKAPI();
+                case EnumShipping::NINJAVAN:
+                    return new NinjaVanAPI();
+            }
+        });
     }
 }

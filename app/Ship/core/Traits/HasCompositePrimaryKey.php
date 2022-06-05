@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * Filename: HasCompositePrimaryKey.php
- * User: Oops!Memory - OopsMemory.com
+ * User: QuanNP - npquan1995@gmai.com
  * Date: 8/6/20
  * Time: 16:07
  */
