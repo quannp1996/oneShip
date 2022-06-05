@@ -9,10 +9,7 @@ use App\Containers\ShippingUnit\Models\ShippingUnit;
 class ShippingFactory
 {
 
-    protected function __construct()
-    {
-        
-    }
+    protected function __construct(){}
 
     static function getInstance(string $type, ShippingUnit $shippingUnit): ShippingUnitAbstract
     {

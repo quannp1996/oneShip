@@ -6,7 +6,6 @@ use App\Containers\ShippingUnit\Models\ShippingUnit;
 
 class GHTKAPI  extends ShippingUnitAbstract
 {
-    
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
@@ -27,7 +26,7 @@ class GHTKAPI  extends ShippingUnitAbstract
 
     public function estimate()
     {
-        
+        dd('estimate GHTK');
     }
     
 }
