@@ -1,15 +1,15 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business\Services;
 
-use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
+use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 
-class GHTKAPI  extends ShippingApi implements ShippingUnitInterface
+class GHTKAPI  extends ShippingUnitAbstract
 {
     
-    public function __construct()
+    public function __construct(ShippingUnit $shippingUnit)
     {
-        parent::__construct(new ShippingUnit([]));
+        $this->shipping = $shippingUnit;
     }
 
     public function send()
@@ -29,5 +29,6 @@ class GHTKAPI  extends ShippingApi implements ShippingUnitInterface
     {
         
     }
+    
 }
 ?>

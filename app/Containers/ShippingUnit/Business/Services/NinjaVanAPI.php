@@ -1,9 +1,9 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business\Services;
 
-use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
+use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 
-class NinjaVanAPI implements ShippingUnitInterface
+class NinjaVanAPI extends ShippingUnitAbstract
 {
  
     public function send()
