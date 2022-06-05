@@ -23,7 +23,7 @@ class GetAllShippingUnitsRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => '',
+        'permissions' => 'manage-shippingunit',
         'roles'       => '',
     ];
 

@@ -3,15 +3,15 @@
 namespace App\Containers\ShippingUnit\Actions;
 
 use App\Ship\Parents\Actions\Action;
-use App\Ship\Parents\Requests\Request;
-use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\ShippingUnit\Tasks\GetAllShippingUnitsTask;
 
 class GetAllShippingUnitsAction extends Action
 {
-    public function run(Request $request)
+    public function run(array $condition = [])
     {
-        $shippingunits = Apiato::call('ShippingUnit@GetAllShippingUnitsTask', [], ['addRequestCriteria']);
-
+        $shippingunits = app(GetAllShippingUnitsTask::class)->filter($condition)->run();
         return $shippingunits;
     }
+
+
 }

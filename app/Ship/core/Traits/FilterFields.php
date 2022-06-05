@@ -12,9 +12,11 @@ use Carbon\Carbon;
 trait FilterFields
 {
     public function filter(array $condition = []){
-        foreach ($this->equalFields as $key) {
-            if (!empty($condition[$key])) {
-                $this->repository->pushCriteria(new ThisEqualThatCriteria($key, $condition[$key]));
+        if(!empty($this->equalFields)){
+            foreach ($this->equalFields as $key) {
+                if (!empty($condition[$key])) {
+                    $this->repository->pushCriteria(new ThisEqualThatCriteria($key, $condition[$key]));
+                }
             }
         }
         if(!empty($condition['title'])){

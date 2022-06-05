@@ -17,4 +17,9 @@ final class EnumShipping extends BaseEnum
 {
     const GHTK = 'ghtk';
     const NINJAVAN = 'ninjavan';
+
+    const LISTTYPE = [
+        self::GHTK => 'Giao hàng tiết kiệm',
+        self::NINJAVAN => 'NinjaVan'
+    ];
 }

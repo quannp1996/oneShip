@@ -2,7 +2,7 @@
 
 namespace App\Containers\ShippingUnit\Models;
 
-use App\Ship\Parents\Models\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 
 class ShippingUnit extends Model
 {

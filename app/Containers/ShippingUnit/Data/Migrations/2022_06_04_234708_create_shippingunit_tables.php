@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateShippingunitTables extends Migration
 {
@@ -12,12 +13,12 @@ class CreateShippingunitTables extends Migration
     public function up()
     {
         Schema::create('shippingunits', function (Blueprint $table) {
-
             $table->increments('id');
-
+            $table->string('image');
+            $table->tinyInteger('is_dev');
+            $table->tinyInteger('status');
+            $table->text('extra_settings');
             $table->timestamps();
-            //$table->softDeletes();
-
         });
     }
 

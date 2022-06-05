@@ -5,7 +5,7 @@
                 <div class="form-group">
                     <label for="image">Ảnh Sưu tập</label>
                     <input type="file" id="images" name="images[]" multiple class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}">
-                    @if ($data && $data->images)
+                    @if (!empty($data) && $data->images)
                         <div class="mt-2">
                             @foreach (json_decode($data->images) AS $image)
                                 <div class="pull-right">

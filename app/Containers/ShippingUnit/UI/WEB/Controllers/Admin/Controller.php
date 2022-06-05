@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\ShippingUnit\UI\WEB\Controllers;
+namespace App\Containers\ShippingUnit\UI\WEB\Controllers\Admin;
 
 use App\Containers\ShippingUnit\UI\WEB\Requests\CreateShippingUnitRequest;
 use App\Containers\ShippingUnit\UI\WEB\Requests\DeleteShippingUnitRequest;
@@ -9,26 +9,38 @@ use App\Containers\ShippingUnit\UI\WEB\Requests\FindShippingUnitByIdRequest;
 use App\Containers\ShippingUnit\UI\WEB\Requests\UpdateShippingUnitRequest;
 use App\Containers\ShippingUnit\UI\WEB\Requests\StoreShippingUnitRequest;
 use App\Containers\ShippingUnit\UI\WEB\Requests\EditShippingUnitRequest;
-use App\Ship\Parents\Controllers\WebController;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\BaseContainer\Actions\CreateBreadcrumbAction;
+use App\Containers\ShippingUnit\Actions\GetAllShippingUnitsAction;
+use App\Containers\ShippingUnit\Enums\EnumShipping;
+use App\Ship\Parents\Controllers\AdminController;
 
 /**
  * Class Controller
  *
  * @package App\Containers\ShippingUnit\UI\WEB\Controllers
  */
-class Controller extends WebController
+class Controller extends AdminController
 {
+    public function __construct()
+    {
+        $this->title = 'Đơn vị vận chuyển';
+        view()->share('list_type', EnumShipping::LISTTYPE);
+        parent::__construct();
+    }
     /**
      * Show all entities
      *
      * @param GetAllShippingUnitsRequest $request
      */
-    public function index(GetAllShippingUnitsRequest $request)
+    public function index(GetAllShippingUnitsRequest $request, GetAllShippingUnitsAction $getAllShippingUnitsAction)
     {
-        $shippingunits = Apiato::call('ShippingUnit@GetAllShippingUnitsAction', [$request]);
-
-        // ..
+        app(CreateBreadcrumbAction::class)->run('lists', $this->title);
+        $shippingUnits = $getAllShippingUnitsAction->run($request->all());
+        return view('shippingunit::admin.index', [
+            'shippingUnits' => $shippingUnits,
+            'searchData' => $request
+        ]);
     }
 
     /**
@@ -39,8 +51,6 @@ class Controller extends WebController
     public function show(FindShippingUnitByIdRequest $request)
     {
         $shippingunit = Apiato::call('ShippingUnit@FindShippingUnitByIdAction', [$request]);
-
-        // ..
     }
 
     /**
@@ -50,7 +60,8 @@ class Controller extends WebController
      */
     public function create(CreateShippingUnitRequest $request)
     {
-        // ..
+        app(CreateBreadcrumbAction::class)->run('add', $this->title, 'admin_shipping_unit_index');
+        return view('shippingunit::admin.edit');
     }
 
     /**
