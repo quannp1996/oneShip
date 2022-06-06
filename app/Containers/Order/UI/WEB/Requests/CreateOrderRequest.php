@@ -23,8 +23,8 @@ class CreateOrderRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => '',
-        'roles'       => '',
+        'permissions' => 'manage-order',
+        'roles'       => 'admin',
     ];
 
     /**

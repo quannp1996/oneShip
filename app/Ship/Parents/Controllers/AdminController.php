@@ -157,10 +157,9 @@ abstract class AdminController extends AbstractWebController
             $object = Apiato::call($this->actions[$this->editMode ? 'update' : 'create'], [$tranporter]);
             if ($object) {
                 $this->afterSave($request);
-
                 $url = $this->editMode ? route($this->routes['edit'] ?? $this->routes['update'], [$object->id]) : route($this->routes['list']);
                 $msg = $this->editMode ? 'Cập nhật bản ghi thành công!' : 'Thêm mới bản ghi thành công!';
-                return redirect()->to($url)->with('status', $msg);
+                return redirect($url)->with('status', $msg);
             }
         } catch (Exception $e) {
             return redirect()->back()->withInput()->withErrors(['error:' => 'Đã xảy ra lỗi! Vui lòng thử lại! ' . $e->getMessage()]);

@@ -34,7 +34,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group col-sm-3">
+            {{-- <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
                                 class="fa fa-list"></i></span></div>
@@ -44,7 +44,7 @@
                         <option value="0" {{ $eidStatus == '0' ? 'selected' : '' }}>Không</option>
                     </select>
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
@@ -77,7 +77,6 @@
         </div>
 
         <div class="row">
-
             <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
@@ -106,10 +105,10 @@
     </div>
     <div class="card-footer">
         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
-        <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary"><i
-                class="fa fa-refresh"></i> Reset</a>
-        {{-- <a class="btn btn-sm btn-primary" style='color:white' href="{{ route('admin_product_add') }}"><i
-                class="fa fa-plus"></i>Thêm mới</a> --}}
+        <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-refresh"></i>
+            Reset</a>
+        <a class="btn btn-sm btn-primary" style='color:white' href="">
+            <i class="fa fa-plus"></i>Thêm mới</a>
     </div>
 </div>
 {!! Form::close() !!}

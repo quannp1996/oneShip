@@ -14,6 +14,9 @@ use App\Containers\ShippingUnit\Actions\GetAllShippingUnitsAction;
 use App\Containers\ShippingUnit\Enums\EnumShipping;
 use App\Ship\Parents\Controllers\AdminController;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\ShippingUnit\Actions\CreateShippingUnitAction;
+use App\Containers\ShippingUnit\Actions\FindShippingUnitByIdAction;
+use App\Containers\ShippingUnit\Actions\UpdateShippingUnitAction;
 
 /**
  * Class Controller
@@ -26,6 +29,17 @@ class Controller extends AdminController
     {
         $this->title = 'Đơn vị vận chuyển';
         view()->share('list_type', EnumShipping::LISTTYPE);
+        $this->actions = [
+            'update' => UpdateShippingUnitAction::class,
+            'create' => CreateShippingUnitAction::class
+        ];
+        $this->routes = [
+            'edit' => 'admin_shipping_unit_index',
+            'list' => 'admin_shipping_unit_index',
+            'update' => 'admin_shipping_unit_edit'
+        ];
+        $this->imageField = 'image';
+        $this->imageKey = 'shipping';
         parent::__construct();
     }
     /**
@@ -71,7 +85,8 @@ class Controller extends AdminController
      */
     public function store(StoreShippingUnitRequest $request)
     {
-        $shippingunit = Apiato::call('ShippingUnit@CreateShippingUnitAction', [$request]);
+        $this->editMode = false;
+        return $this->save($request);
     }
 
     /**
@@ -79,11 +94,12 @@ class Controller extends AdminController
      *
      * @param EditShippingUnitRequest $request
      */
-    public function edit(EditShippingUnitRequest $request)
+    public function edit(EditShippingUnitRequest $request, FindShippingUnitByIdAction $findShippingUnitByIdAction)
     {
-        $shippingunit = Apiato::call('ShippingUnit@GetShippingUnitByIdAction', [$request]);
-
-        // ..
+        $shippingunit = $findShippingUnitByIdAction->run($request->id);
+        return view('shippingunit::admin.edit', [
+            'data' => $shippingunit
+        ]);
     }
 
     /**
@@ -93,9 +109,8 @@ class Controller extends AdminController
      */
     public function update(UpdateShippingUnitRequest $request)
     {
-        $shippingunit = Apiato::call('ShippingUnit@UpdateShippingUnitAction', [$request]);
-
-        // ..
+        $this->editMode = true;
+        return $this->save($request);
     }
 
     /**
@@ -106,7 +121,16 @@ class Controller extends AdminController
     public function delete(DeleteShippingUnitRequest $request)
     {
          $result = Apiato::call('ShippingUnit@DeleteShippingUnitAction', [$request]);
+    }
 
-         // ..
+    public function beforeSave($request, &$tranporter)
+    {
+        $extra_data = $request->extra_data;
+        $security = [];
+        foreach($extra_data AS $data) {
+            $security[$data['key']] = $data['value'];
+        }
+        $tranporter['security'] = json_encode($security);
+        parent::beforeSave($request, $tranporter);
     }
 }

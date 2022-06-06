@@ -8,10 +8,9 @@ use Apiato\Core\Foundation\Facades\Apiato;
 
 class FindShippingUnitByIdAction extends Action
 {
-    public function run(Request $request)
+    public function run($id)
     {
-        $shippingunit = Apiato::call('ShippingUnit@FindShippingUnitByIdTask', [$request->id]);
-
+        $shippingunit = Apiato::call('ShippingUnit@FindShippingUnitByIdTask', [$id]);
         return $shippingunit;
     }
 }

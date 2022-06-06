@@ -46,7 +46,13 @@
                                 Tên
                             </th>
                             <th>
+                                Đối tác vận chuyển
+                            </th>
+                            <th>
                                 Trạng thái
+                            </th>
+                            <th>
+                                Hành động
                             </th>
                         </tr>
                         @if (isset($input['is_filter']))
@@ -66,7 +72,27 @@
                         @endif
                     </thead>
                     <tbody>
-                        @forelse ($shippingUnits as $customer)
+                        @forelse ($shippingUnits as $shipping)
+                            <tr>
+                                <td>
+                                    {{ $shipping->title }}
+                                </td>
+                                <td>
+                                    {{ $shipping->getTypeName() }}
+                                </td>
+                                <td>
+                                    @if ($shipping->status == 1)
+                                        <i class="fa fa-eye" class="text-success"></i>
+                                    @else
+                                        <i class="fa fa-eye-slash" class="text-danger"></i>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin_shipping_unit_edit', ['id' => $shipping->id]) }}">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         @empty
                             <tr class="table-warning">
                                 <td colspan="8">

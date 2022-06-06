@@ -43,7 +43,7 @@ class UpdateShippingUnitRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        // 'id',
+        'id',
     ];
 
     /**

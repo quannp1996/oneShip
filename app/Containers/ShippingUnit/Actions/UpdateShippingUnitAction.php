@@ -3,19 +3,18 @@
 namespace App\Containers\ShippingUnit\Actions;
 
 use App\Ship\Parents\Actions\Action;
-use App\Ship\Parents\Requests\Request;
 use Apiato\Core\Foundation\Facades\Apiato;
 
 class UpdateShippingUnitAction extends Action
 {
-    public function run(Request $request)
+    public function run(array $shippingData = [])
     {
-        $data = $request->sanitizeInput([
-            // add your request data here
-        ]);
-
-        $shippingunit = Apiato::call('ShippingUnit@UpdateShippingUnitTask', [$request->id, $data]);
-
+        $data = array_filter($shippingData, function($item){
+            return in_array($item, [
+                'dev_mode', 'status', 'title', 'type', 'security', 'image'
+            ]);
+        }, ARRAY_FILTER_USE_KEY);
+        $shippingunit = Apiato::call('ShippingUnit@UpdateShippingUnitTask', [$shippingData['id'], $data]);
         return $shippingunit;
     }
 }

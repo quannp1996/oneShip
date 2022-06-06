@@ -27,7 +27,6 @@
                                 Tất cả đơn
                             </a>
                         </li>
-
                         @foreach ($ordersType as $k => $v)
                             <i class="fa fa-angle-right mt-2 pt-1" aria-hidden="true"></i>
 

@@ -25,7 +25,7 @@ class GetAllOrdersRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => '',
+        'permissions' => 'manage-order',
         'roles'       => '',
     ];
 

@@ -4,6 +4,7 @@ namespace App\Containers\ShippingUnit\Tasks;
 
 use Apiato\Core\Traits\FilterFields;
 use App\Containers\ShippingUnit\Data\Repositories\ShippingUnitRepository;
+use App\Ship\Criterias\Eloquent\ThisLikeThatCriteria;
 use App\Ship\Parents\Tasks\Task;
 
 class GetAllShippingUnitsTask extends Task
@@ -23,6 +24,9 @@ class GetAllShippingUnitsTask extends Task
 
     public function filter(array $condition = []): self
     {
+        if($condition['title']){
+            $this->repository->pushCriteria(new ThisLikeThatCriteria('title', '%'.$condition['title'].'%'));
+        }
         return $this;
     }
 }

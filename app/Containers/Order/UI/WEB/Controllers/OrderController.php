@@ -45,11 +45,10 @@ class OrderController extends AdminController
    *
    * @param GetAllOrdersRequest $request
    */
-  public function index(GetAllOrdersRequest $request, ShippingUnitInterface $shippingUnitInterface)
+  public function index(GetAllOrdersRequest $request)
   {
     $filters = $request->all();
     app(CreateBreadcrumbAction::class)->run('list', $this->title, 'admin.orders.index');
-
     $orders = app(GetAllOrdersAction::class)->skipCache()->run(
       $filters,
       [
@@ -143,7 +142,7 @@ class OrderController extends AdminController
    */
   public function create(CreateOrderRequest $request)
   {
-    // ..
+      
   }
 
   /**

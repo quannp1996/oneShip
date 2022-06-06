@@ -3,7 +3,6 @@
         <i class="fa fa-filter"></i> Bộ lọc
     </a>
 </li>
-
 <!-- Modal -->
 <div class="modal fade" id="modalOrderFilter" role="dialog" aria-labelledby="modalOrderFilterTitle"
     aria-hidden="true">
