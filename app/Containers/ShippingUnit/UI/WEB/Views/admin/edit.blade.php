@@ -75,7 +75,7 @@
                                 </tr>
                             </thead>
                             <tbody id="items">
-                                @forelse (@$data->toSecurityJson() ?? [] as $key => $item)
+                                @forelse (!empty($data) ? @$data->toSecurityJson() : [] as $key => $item)
                                     <tr id="item_{{ $loop->index }}">
                                         <th>
                                             <input type="text" class="form-control" value="{{ $key }}" name="extra_data[{{ $loop->index }}][key]">

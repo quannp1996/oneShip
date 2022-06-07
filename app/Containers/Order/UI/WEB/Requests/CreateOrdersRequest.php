@@ -2,22 +2,20 @@
 
 namespace App\Containers\Order\UI\WEB\Requests;
 
-use App\Ship\core\Traits\HelpersTraits\SecurityTrait;
 use App\Ship\Parents\Requests\Request;
-use App\Ship\Transporters\DataTransporter;
 
 /**
- * Class StoreOrderRequest.
+ * Class CreateOrdersRequest.
  */
-class StoreOrderRequest extends Request
+class CreateOrdersRequest extends Request
 {
-    use SecurityTrait;
+
     /**
      * The assigned Transporter for this Request
      *
      * @var string
      */
-    protected $transporter = DataTransporter::class;
+    protected $transporter = \App\Containers\Order\Data\Transporters\GetAllOrdersTransporter::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -45,7 +43,7 @@ class StoreOrderRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'orderId',
+        // 'id',
     ];
 
     /**
@@ -54,7 +52,8 @@ class StoreOrderRequest extends Request
     public function rules()
     {
         return [
-            
+            // 'id' => 'required',
+            // '{user-input}' => 'required|max:255',
         ];
     }
 
@@ -66,16 +65,5 @@ class StoreOrderRequest extends Request
         return $this->check([
             'hasAccess',
         ]);
-    }
-
-    protected function prepareForValidation()
-    {
-      $this->merge([
-        'title' => $this->cleanXSS($this->title),
-        'message' => $this->cleanXSS($this->message),
-        'color' => $this->color,
-        'order_id' => $this->orderId,
-        'user_id' => auth()->id()
-      ]);
     }
 }

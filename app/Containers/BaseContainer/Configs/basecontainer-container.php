@@ -38,11 +38,8 @@ return [
             'admin/js/init/plugin-setup.js',
             'admin/js/init/submit-setup.js',
             'admin/js/customize.js',
-            'admin/js/customer.js',
-            'admin/js/customer-group.js',
-            'admin/js/order.js',
-            'admin/js/iframe.js',
-            config('app.env') == 'local' ? 'template/js/vue_dev.js' : 'template/js/vue.js',
+            // 'admin/js/iframe.js',
+            config('app.env') == 'local' ? 'admin/js/vue_dev.js' : 'admin/js/vue.js',
         ],
         'media' => [
             'admin/node_modules/font-awesome/css/font-awesome.min.css',

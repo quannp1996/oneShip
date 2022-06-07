@@ -29,7 +29,6 @@
                         </li>
                         @foreach ($ordersType as $k => $v)
                             <i class="fa fa-angle-right mt-2 pt-1" aria-hidden="true"></i>
-
                             <li class="nav-item">
                                 <a class="nav-link {{ $k == @$search_data->status ? 'active' : '' }}"
                                     href="{{ route('admin.orders.index', ['status' => $k, 'text' => $v]) }}">
@@ -46,7 +45,6 @@
                                 </a>
                             </li>
                         @endforeach
-                        {{-- @include('order::inc.filter') --}}
                     </ul>
                 </div>
                 <table class="table table-bordered table-hover mb-0">

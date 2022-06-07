@@ -1,11 +1,25 @@
 <?php
-$router->group(['prefix' => 'orders'], function () use ($router) {
+
+$router->group([
+  'prefix' => 'orders',
+  'domain' => config('app.admin_url'),
+  'middleware' => [
+    'auth:admin',
+  ],
+], function () use ($router) {
   $router->get('/', [
     'as' => 'admin.orders.index',
     'uses'  => 'OrderController@index',
-    'middleware' => [
-      'auth:admin',
-    ],
+  ]);
+
+  $router->get('/create', [
+    'as' => 'admin.order.add',
+    'uses' => 'OrderController@create',
+  ]);
+
+  $router->post('/store', [
+    'as' => 'admin.order.store',
+    'uses' => 'OrderController@store',
   ]);
 
   $router->get('logs/{id}', [

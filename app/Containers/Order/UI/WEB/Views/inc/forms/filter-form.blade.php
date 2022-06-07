@@ -34,17 +34,6 @@
                     </select>
                 </div>
             </div>
-            {{-- <div class="form-group col-sm-3">
-                <div class="input-group">
-                    <div class="input-group-prepend"><span class=" input-group-text"><i
-                                class="fa fa-list"></i></span></div>
-                    <select name="eid_status" class="form-control">
-                        <option value="" {{ $eidStatus == '' ? 'selected' : '' }}>---Có EID hay không---</option>
-                        <option value="1" {{ $eidStatus == 1 ? 'selected' : '' }}>Có</option>
-                        <option value="0" {{ $eidStatus == '0' ? 'selected' : '' }}>Không</option>
-                    </select>
-                </div>
-            </div> --}}
             <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
@@ -59,7 +48,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
@@ -67,16 +55,12 @@
                     <select name="user_id" id="user-handle" class="form-control select2" style="width: 100%;">
                         <option value="">---Nhân sự xử lý---</option>
                     </select>
-
                     @if ($users->isNotEmpty())
                         <input type="hidden" id="user-hanleName"
                             value="{{ $users->first()->email }} ({{ $users->first()->name }})">
                     @endif
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="form-group col-sm-3">
                 <div class="input-group">
                     <div class="input-group-prepend"><span class=" input-group-text"><i
@@ -107,7 +91,7 @@
         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Tìm kiếm</button>
         <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-primary"><i class="fa fa-refresh"></i>
             Reset</a>
-        <a class="btn btn-sm btn-primary" style='color:white' href="">
+        <a class="btn btn-sm btn-primary" style='color:white' href="{{ route('admin.order.add') }}">
             <i class="fa fa-plus"></i>Thêm mới</a>
     </div>
 </div>

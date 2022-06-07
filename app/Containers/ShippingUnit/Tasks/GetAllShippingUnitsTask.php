@@ -24,9 +24,7 @@ class GetAllShippingUnitsTask extends Task
 
     public function filter(array $condition = []): self
     {
-        if($condition['title']){
-            $this->repository->pushCriteria(new ThisLikeThatCriteria('title', '%'.$condition['title'].'%'));
-        }
+        if(!empty($condition['title'])) $this->repository->pushCriteria(new ThisLikeThatCriteria('title', '%'.$condition['title'].'%'));
         return $this;
     }
 }

@@ -36,7 +36,7 @@ class OrderController extends AdminController
     if (in_array($method, ['edit', 'show', 'update', 'delete'])) {
       $this->dontUseShareData = true;
     }
-
+    view()->share('ordersType', OrderStatus::TEXT);
     parent::__construct();
   }
 
@@ -60,7 +60,6 @@ class OrderController extends AdminController
         'deliveryType.desc:delivery_type_id,name',
         'orderItems'
       ],
-
       [
         'id',
         'customer_id',
@@ -142,7 +141,8 @@ class OrderController extends AdminController
    */
   public function create(CreateOrderRequest $request)
   {
-      
+    $this->editMode = false;
+    return view('order::add');
   }
 
   /**
@@ -152,6 +152,7 @@ class OrderController extends AdminController
    */
   public function store(StoreOrderRequest $request)
   {
+    dd($request->all());
     $data = $request->sanitizeInput([
       // add your request data here
     ]);

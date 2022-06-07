@@ -7,3 +7,8 @@
     height: 15px;
     z-index: 9;
 }
+
+.divDisable{
+    pointer-events: none;
+    opacity: 0.6;
+}
