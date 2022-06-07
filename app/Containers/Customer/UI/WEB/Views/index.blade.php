@@ -55,8 +55,6 @@
                                         aria-hidden="true"></i>
                                 </a>
                             </th>
-                            {{-- <th>Vai trò</th> --}}
-                            {{-- <th>Nhóm KH</th> --}}
                             <th>
                                 Ngày tạo
                                 <a href="javascript:void(0)"

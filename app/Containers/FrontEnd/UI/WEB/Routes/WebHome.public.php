@@ -10,11 +10,16 @@ Route::group(
             'htmloptimized',
             'Maintenance',
             'WebLocaleRedirect',
-            'auth:customer'
+            'auth:web'
         ],
-        'namespace' => 'Desktop\Home',
+        'namespace' => 'Dashboard',
     ],
     function ($router) {
-        
+        $router->get('/', [
+            'as' => 'web_dashboard_index',
+            'uses' => function(){
+                dd('asdsa');
+            }
+        ]);
     }
 );

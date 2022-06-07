@@ -21,7 +21,6 @@ class Customer extends UserModel
 
   use AuthorizationTrait;
   use AuthenticationTrait;
-  use DateTrait;
   use Notifiable;
   /**
    * The database table used by the model.

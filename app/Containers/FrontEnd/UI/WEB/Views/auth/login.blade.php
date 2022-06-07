@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="login-page">
-
         <div class="left">
             <img src="{{ asset('template/images/login-bg.png') }}" alt="" class="img-fluid left-bg">
             <img src="{{ asset('template/images/login-title.png') }}" alt="" class="img-fluid left-title">
@@ -111,11 +110,23 @@
         };
 
         function facebookLogin() {
-            FB.login(function(response) {
+            FB.login(response => {
                 if (response.authResponse) {
-                    console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me', function(response) {
-                        console.log('Good to see you, ' + response.name + '.');
+                    FB.api('/me', async (response) => {
+                        await fetch('{{ route('api_authentication_login') }}', {
+                            method: 'POST',
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                                // 'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: JSON.stringify({
+                                _token: '{{ csrf_token() }}',
+                                social_id: response.id,
+                                social_name: response.name,
+                                social_provider: 'facebook'
+                            })
+                        })
                     });
                 } else {
                     console.log('User cancelled login or did not fully authorize.');

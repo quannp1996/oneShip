@@ -3,18 +3,8 @@
   <td>{{ $item['fullname'] }}</td>
   <td>{{ $item['email'] }}</td>
   <td>{{ $item['phone'] }}</td>
-  {{-- <td>
-    @if (isset($item['roles']))
-      @foreach ($item['roles'] as $role)
-        <span>{{ $role['display_name'] }}</span>
-        @if (!$loop->last)
-          ,
-        @endif
-      @endforeach
-    @endif
-  </td> --}}
   @if(1 == 0)
-  <td>
+  {{-- <td>
     @if (isset($item['groups']))
       @php($countGroup = count($item['groups']))
       @if ($countGroup == 1)
@@ -44,7 +34,7 @@
 
       @endif
     @endif
-  </td>
+  </td> --}}
   @endif
   <td>{{ $item['created_at'] }}</td>
   <td>

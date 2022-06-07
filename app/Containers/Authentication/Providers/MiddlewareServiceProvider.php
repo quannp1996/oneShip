@@ -44,7 +44,6 @@ class MiddlewareServiceProvider extends MiddlewareProvider
         // apiato User Authentication middleware for Web Pages
         'auth:web' => WebAuthentication::class,
         'auth:admin' => RedirectIfAuthenticated::class,
-
         // ..
     ];
 
