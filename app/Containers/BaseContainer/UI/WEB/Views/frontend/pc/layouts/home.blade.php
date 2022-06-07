@@ -14,10 +14,9 @@
         <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
         @yield('seo')
     </head>
-    <body class="home">
+    <body>
         {!! $settings['other']['script_body'] !!}
         @yield('content')
-        <x-footer-component :menus="$menus"></x-footer-component>
     </body>
     @stack('js_bot_all')
 </html>

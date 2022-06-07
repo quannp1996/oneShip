@@ -38,8 +38,6 @@ class BaseFrontEndController extends WebController
     {
         $this->currentLang = app(GetCurrentLangAction::class)->run();
 
-        $this->frontBreadcrumb(__('site.trangchu'), route('web.home.index'));
-
         $menus = app(GetMenusByTypeAction::class)->run(
             [
                 config('menu-container.type_key.top_website'),
