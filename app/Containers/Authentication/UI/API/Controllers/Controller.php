@@ -92,7 +92,6 @@ class Controller extends ApiController
             array_merge($request->all(), [
                 'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
                 'client_password' => Config::get('authentication-container.clients.web.admin.secret'),
-                // use the refresh token sent in request data, if not exist try to get it from the cookie
                 'refresh_token'   => $request->refresh_token ?: $request->cookie('refreshToken'),
             ])
         );
@@ -118,11 +117,20 @@ class Controller extends ApiController
                 'status' => 2
             ]);
             $user = app(StoreNewCustomerAction::class)->run($data);
-            if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-            auth('customer')->login($user, true);
-            return $this->sendResponse([
-                'success' => true,
-            ]);
         }
+
+        if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
+        
+        // $dataLogin = array_merge($request->all(), [
+        //     'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
+        //     'client_password' => Config::get('authentication-container.clients.web.admin.secret')
+        // ]);
+        // $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
+        
+        if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
+        auth('customer')->login($user, true);
+        return $this->sendResponse([
+            'success' => true,
+        ]);
     }
 }

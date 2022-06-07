@@ -11,7 +11,7 @@ class ProxyApiLoginAction extends Action
     public function run(array $data): array
     {
         $loginCustomAttribute = Apiato::call('Authentication@ExtractLoginCustomAttributeTask', [$data]);
-
+        
         $requestData = [
             'username'      => $loginCustomAttribute['username'],
             'password'      => $data['password'],
@@ -22,20 +22,16 @@ class ProxyApiLoginAction extends Action
         ];
 
         $responseContent = Apiato::call('Authentication@CallOAuthServerTask', [$requestData]);
-        // dd($responseContent);
-        // check if user email is confirmed only if that feature is enabled.
+
         Apiato::call('Authentication@CheckIfAdminIsConfirmedTask', [],
             [['loginWithCredentials' => [
                 $requestData['username'], $requestData['password'], $loginCustomAttribute['loginAttribute']]]
             ]);
 
         $refreshCookie = Apiato::call('Authentication@MakeRefreshCookieTask', [$responseContent['refresh_token']]);
-        // $accessTokenCookie = Apiato::call('Authentication@MakeAccessTokenCookieTask', [$responseContent['access_token']]);
-// dd($accessTokenCookie);
         return [
             'response_content' => $responseContent,
             'refresh_cookie'   => $refreshCookie,
-            // 'access_token_cookie' => $accessTokenCookie
         ];
     }
 }
