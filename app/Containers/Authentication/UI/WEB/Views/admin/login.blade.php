@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <button class="btn btn-primary px-4" id="btn-login"
-                                                    type="submit">{{__('site.dangnhap')}}</button>
+                                                    type="submit">Đăng nhập</button>
                                         </div>
                                     </div>
                                 </form>

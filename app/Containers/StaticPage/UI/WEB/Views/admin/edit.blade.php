@@ -33,34 +33,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#general"><i class="fa fa-empire"></i> Chung</a>
                             </li>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="#data"><i class="fa fa-deviantart"></i> Thông tin chi tiết</a>
-                            </li> --}}
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#item"><i class="fa fa-deviantart"></i> Item</a>
-                            </li>
-
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="#title"><i class="fa fa-deviantart"></i> Tiêu đề phụ</a>
-                             </li>--}}
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#image"><i class="fa fa-image"></i> Hình ảnh</a>
-                            </li>
                         </ul>
-
                         <div class="tab-content p-0">
                             @include('staticpage::admin.edit_tabs.general')
-
-                            {{-- @include('staticpage::admin.edit_tabs.data') --}}
-
-                            @include('staticpage::admin.edit_tabs.item')
-
-{{--                            @include('staticpage::admin.edit_tabs.title')--}}
-
-                            @include('staticpage::admin.edit_tabs.image')
                         </div>
                     </div>
                 </div>
@@ -69,8 +44,7 @@
             <div class="mb-3">
                 <button type="submit" class="btn btn-sm btn-primary" id="subMitForm"><i class="fa fa-dot-circle-o"></i> Cập nhật
                 </button>
-
-                <a class="btn btn-sm btn-danger" href="{{ route('admin_banner_home_page') }}"><i class="fa fa-ban"></i>
+                <a class="btn btn-sm btn-danger" href="{{ route('admin_staticpage_home_page') }}"><i class="fa fa-ban"></i>
                     Hủy bỏ</a>
             </div>
             {!! Form::close() !!}

@@ -42,12 +42,11 @@ class UpdateRoleTask extends Task
      * @return interger
      * @throws UpdateResourceFailedException
      */
-    public function run(int $id, string $description = null, string $displayName = null, int $level = 0): int
+    public function run($id, string $description = null, string $displayName = null, int $level = 0): int
     {
         app()['cache']->forget('spatie.permission.cache');
-
         try {
-            $role = $this->repository->where('id',$id)->update([
+            $role = $this->repository->find($id)->update([
                 'description'  => $description,
                 'display_name' => $displayName,
                 'guard_name'   => 'admin',
@@ -56,7 +55,6 @@ class UpdateRoleTask extends Task
         } catch (Exception $exception) {
             throw new UpdateResourceFailedException();
         }
-
         return $role;
     }
 

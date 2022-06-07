@@ -91,52 +91,17 @@
                                     <td>{{ $item->display_name }}</td>
                                     <td align="center">{{ $item->level }}</td>
                                     <td>{{ $item->description }}</td>
-                                    {{-- <td>
-                            @if ($item->id == 1)
-                                <b class="text-danger">--- ALL ---</b>
-                            @elseif(!empty($item->permit))
-                                <a data-toggle="collapse" href="#role{{ $item->id }}" role="button" aria-expanded="false" aria-controls="role{{ $item->id }}">
-                                    Chi tiết quyền</a>
-                                <div class="collapse" id="role{{ $item->id }}">
-                                    <div class="card card-body">
-                                    @php($item->permit = json_decode($item->permit, 1))
-                                    @foreach ($item->permit as $k => $val)
-                                        @php($val = implode(' - ', $val))
-                                        <p><b>{{ $k }}:</b> <span class="text-success">{{ $val }}</span></p>
-                                    @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                        </td> --}}
                                     <td align="center">{{ $item->created_at->format('d/m/Y') }}</td>
                                     <td align="center">
-                                        {{-- @if ($item->id != 1 && \Auth::user()->checkMyRank($item->rank)) --}}
                                         <a href="{{ route('admin_authorization_edit_role', $item->getHashedKey()) }}"
                                            class="text-primary"><i class="fa fa-pencil"></i></a>
-                                        {{-- @endif --}}
                                     </td>
                                     <td align="center">
-                                        {{-- @if ($item->id != 1 && \Auth::user()->checkMyRank($item->rank)) --}}
                                         <a href="javascript:void(0)"
                                            data-href="{{ route('admin_authorization_delete_role', $item->getHashedKey()) }}"
                                            class="text-danger" onclick="admin.delete_this(this)"><i
                                                     class="fa fa-trash-o"></i></a>
-                                        {{-- @endif --}}
                                     </td>
-                                    {{-- @if (\Lib::can($permission, 'edit'))
-                            <td align="center">
-                                @if ($item->id != 1 && \Auth::user()->checkMyRank($item->rank))
-                                    <a href="{{ route('admin.'.$key.'.edit', $item->id) }}" class="text-primary"><i class="icon-pencil icons"></i></a>
-                                @endif
-                            </td>
-                        @endif
-                        @if (\Lib::can($permission, 'delete'))
-                            <td align="center">
-                                @if ($item->id != 1 && \Auth::user()->checkMyRank($item->rank))
-                                    <a href="{{ route('admin.'.$key.'.delete', $item->id) }}"  class="text-danger" onclick="return confirm('Bạn muốn xóa ?')"><i class="icon-trash icons"></i></a>
-                                @endif
-                            </td>
-                        @endif --}}
                                 </tr>
                             @endforeach
                             </tbody>

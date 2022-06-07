@@ -41,10 +41,8 @@ return [
             'admin/js/customer.js',
             'admin/js/customer-group.js',
             'admin/js/order.js',
-            'admin/js/comment.js',
-            'admin/js/discount.js',
-            'admin/js/discount-list.js',
             'admin/js/iframe.js',
+            config('app.env') == 'local' ? 'template/js/vue_dev.js' : 'template/js/vue.js',
         ],
         'media' => [
             'admin/node_modules/font-awesome/css/font-awesome.min.css',

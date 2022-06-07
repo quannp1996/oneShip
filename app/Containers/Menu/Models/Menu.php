@@ -5,14 +5,12 @@ namespace App\Containers\Menu\Models;
 use Apiato\Core\Traits\HasManyKeyBy;
 use App\Ship\core\Traits\HelpersTraits\LangTrait;
 use Jenssegers\Mongodb\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Exception;
 
 class Menu extends Model
 {
-    use SoftDeletes;
     use LangTrait, HasManyKeyBy;
 
     protected $table = 'menu';
@@ -96,13 +94,11 @@ class Menu extends Model
 
     public function isActiveMenu()
     {
-        // web.thu-vien.index - https://thu-vien.dh-phuong-dong.local : currentRouteName + current ko có / ở cuối
         if (!empty($this->menu_link) && $this->menu_link !== '#') {
             if ($this->menu_link === Route::currentRouteName() || $this->menu_link === URL::current()) {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -113,4 +109,16 @@ class Menu extends Model
         }
         return '';
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($model) {
+            $model->status = (int) $model->status;
+            $model->sort_order = (int) $model->sort_order;
+            $model->type = (int) $model->type;
+        });
+    }
+
 } // End class

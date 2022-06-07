@@ -1,0 +1,8 @@
+{
+  "name": "bigcore/customer",
+  "description": "BigCore Container for apiato.",
+  "type": "bigcore-container",
+  "require": {
+
+  }
+}

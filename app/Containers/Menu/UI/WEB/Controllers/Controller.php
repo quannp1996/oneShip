@@ -2,9 +2,7 @@
 
 namespace App\Containers\Menu\UI\WEB\Controllers;
 
-use Apiato\Core\Foundation\FunctionLib;
 use Apiato\Core\Foundation\Facades\Apiato;
-use Apiato\Core\Foundation\StringLib;
 use App\Ship\Parents\Controllers\AdminController;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Ship\core\Traits\HelpersTraits\RecursiveTrait;
@@ -16,6 +14,7 @@ use App\Containers\Menu\UI\WEB\Requests\UpdateMenuRequest;
 use App\Containers\Menu\UI\WEB\Requests\GetAllMenusRequest;
 use App\Containers\Menu\UI\WEB\Requests\FindMenuByIdRequest;
 use App\Containers\Menu\UI\WEB\Requests\UpdatePositionMenuRequest;
+use Exception;
 
 /**
  * Class Controller
@@ -42,13 +41,12 @@ class Controller extends AdminController
     public function index(GetAllMenusRequest $request)
     {
         Apiato::call('BaseContainer@CreateBreadcrumbAction', ['list', $this->title, 'admin_menu_index']);
-
-        $menus = Apiato::call('Menu@GetAllMenusAction', [ ['desc_lang']]);
+        $menus = Apiato::call('Menu@GetAllMenusAction', [['desc_lang']]);
         $menusData = $this->buildTree($menus);
         $menusData = $this->groupByType($menusData);
         return view('menu::index', [
             'menusData' => $menusData,
-            'menusType' => config('menu-container.types.'.$this->currentLang),
+            'menusType' => config('menu-container.types.' . $this->currentLang),
             'controller' => $this,
         ]);
     }
@@ -79,7 +77,7 @@ class Controller extends AdminController
             'menuTypes' => config(sprintf('menu-container.types.%s', $this->currentLang)),
             'menuTree' => $menuTree,
             'menuStatus' => config('menu-container.status'),
-            'routeCollection' =>\Route::getRoutes()
+            'routeCollection' => \Route::getRoutes()
         ]);
     }
 
@@ -109,13 +107,12 @@ class Controller extends AdminController
         $menu = Apiato::call('Menu@FindMenuByIdAction', [$request, ['all_desc_lang']]);
         $menuSidebar = Apiato::call('Menu@GetMenusByTypeAction', [$menu->type]);
         $menuTree = $this->buildSelectTree($menuSidebar->toArray(), 0, 'option', '', 0, $menu->pid);
-// dd(\Route::getRoutes());
         return view('menu::edit', [
             'menu' => $menu,
             'menuTypes' => config(sprintf('menu-container.types.%s', $this->currentLang)),
             'menuTree' => $menuTree,
             'menuStatus' => config('menu-container.status'),
-            'routeCollection' =>\Route::getRoutes()
+            'routeCollection' => \Route::getRoutes()
         ]);
     }
 
@@ -156,7 +153,8 @@ class Controller extends AdminController
         return $this->sendResponse($result, __('menu::menu.update_position'));
     }
 
-    public function getMenusByType(int $typeId) {
+    public function getMenusByType(int $typeId)
+    {
         $menus = Apiato::call('Menu@GetMenusByTypeAction', [$typeId]);
         $menuTree = $this->buildSelectTree($menus->toArray());
         return $this->sendResponse($menuTree);

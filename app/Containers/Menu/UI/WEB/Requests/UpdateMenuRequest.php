@@ -52,7 +52,7 @@ class UpdateMenuRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required|numeric',
+            'id' => 'required',
             'menu_desc.*.name' => 'required',
         ];
     }

@@ -18,6 +18,7 @@ class Role extends SpatieRole
     use HasResourceKeyTrait;
     protected $guard_name = 'admin';
 
+    protected $appends = ['id'];
 
     /**
      * The attributes that are mass assignable.

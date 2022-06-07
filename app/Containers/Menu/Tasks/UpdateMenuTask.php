@@ -21,15 +21,13 @@ class UpdateMenuTask extends Task
     {
         try {
             $dataUpdate = Arr::except($data, ['menu_desc', '_token']);
-            $dataUpdate['pid'] = (int)@$dataUpdate['pid'];
+            $dataUpdate['pid'] = @$dataUpdate['pid'] ?? 0;
             if (empty($dataUpdate['no_follow'])) {
               $dataUpdate['no_follow'] = 0;
             }
-
             if (empty($dataUpdate['newtab'])) {
               $dataUpdate['newtab'] = 0;
             }
-
             $menu = $this->repository->update($dataUpdate, $id);
             return $menu;
         }

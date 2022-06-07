@@ -37,7 +37,6 @@ class MenuRepository extends Repository
         if (!$this->allowedCache('getSidebarMenuTree') || $this->isSkippedCache()) {
             return $this->hanldeTreeSidebar($type, $with);
         }
-
         $key = $this->getCacheKey('getSidebarMenuTree', func_get_args());
         $keyArray = explode('-', $key);
         $originalKey = Arr::first($keyArray);
@@ -54,13 +53,13 @@ class MenuRepository extends Repository
 
     public function hanldeTreeSidebar($type, $with) {
         $menus = $this->with($with)
-            ->scopeQuery(function ($query) {
-                return $query->orderBy('sort_order', 'ASC');
-            })
-            ->findWhere([
-                ['type', '=', (string) $type],
-                ['status', '=', (string) config('menu-container.status.visible')]
-            ]);
+        ->scopeQuery(function ($query) {
+            return $query->orderBy('sort_order', 'ASC');
+        })
+        ->findWhere([
+            ['type', '=', $type],
+            ['status', '=', config('menu-container.status.visible')]
+        ]);
         $menusArray = $menus->toArray();
         $treeData = $this->buildTree($menusArray);
         $treeSideBar = $this->buildNestableSidebar($treeData);
