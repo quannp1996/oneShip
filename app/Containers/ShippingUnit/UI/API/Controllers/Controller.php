@@ -10,6 +10,7 @@ use App\Containers\ShippingUnit\UI\API\Requests\UpdateShippingUnitRequest;
 use App\Containers\ShippingUnit\UI\API\Transformers\ShippingUnitTransformer;
 use App\Ship\Parents\Controllers\ApiController;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\ShippingUnit\Actions\GetAllShippingUnitsAction;
 
 /**
  * Class Controller
@@ -44,10 +45,9 @@ class Controller extends ApiController
      * @param GetAllShippingUnitsRequest $request
      * @return array
      */
-    public function getAllShippingUnits(GetAllShippingUnitsRequest $request)
+    public function getAllShippingUnits(GetAllShippingUnitsRequest $request, GetAllShippingUnitsAction $getAllShippingUnitsAction)
     {
-        $shippingunits = Apiato::call('ShippingUnit@GetAllShippingUnitsAction', [$request]);
-
+        $shippingunits = $getAllShippingUnitsAction->run($request->all());
         return $this->transform($shippingunits, ShippingUnitTransformer::class);
     }
 

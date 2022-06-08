@@ -8,6 +8,7 @@ use Apiato\Core\Foundation\Facades\FunctionLib;
 use App\Containers\BaseContainer\Actions\CreateBreadcrumbAction;
 use App\Containers\Order\Actions\CreateOrderAction;
 use App\Containers\Order\Actions\GetAllOrdersAction;
+use App\Containers\Order\Enums\EnumShipPicking;
 use App\Containers\Order\Enums\OrderStatus;
 use App\Ship\Parents\Controllers\WebController;
 use App\Ship\Parents\Controllers\AdminController;
@@ -37,6 +38,7 @@ class OrderController extends AdminController
       $this->dontUseShareData = true;
     }
     view()->share('ordersType', OrderStatus::TEXT);
+    view()->share('pickUp', EnumShipPicking::LIST);
     parent::__construct();
   }
 

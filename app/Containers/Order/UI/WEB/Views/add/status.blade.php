@@ -8,7 +8,8 @@
             @foreach ($ordersType as $key => $item)
                 <div class="col-4">
                     <div class="form-check">
-                        <input class="form-check-input" v-model="status" value="{{ $key }}" type="radio" name="status" id="radioStatus{{ $key }}">
+                        <input class="form-check-input" v-model="status" value="{{ $key }}" type="radio"
+                            name="status" id="radioStatus{{ $key }}">
                         <label class="form-check-label" for="radioStatus{{ $key }}">
                             {{ $item }}
                         </label>
@@ -21,7 +22,7 @@
 <div class="card border-secondary">
     <div class="card-header text-primary">
         <i class="fa fa-truck"></i>
-        Vận chuyển
+        Thông tin Vận chuyển
     </div>
     <div class="card-body">
         <div class="card">
@@ -29,15 +30,38 @@
                 Đơn vị vận chuyển
             </div>
             <div class="card-body">
-
+                <div class="list-group" v-if="shippings && shippings.length">
+                    <div v-for="shipping in shippings">
+                        <input type="radio" :value="shipping.id" name="shipping" v-model="shippingData.shipping"
+                            value="Value1" checked id="Radio1" />
+                        <label class="list-group-item" for="Radio1">
+                            <img width="50px" :src="shipping.image" alt="">
+                            @{{ shipping.title }}
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card">
             <div class="card-header">
-                Trạng thái vận chuyển
+                Cài đặt vận chuyển
             </div>
             <div class="card-body">
-
+                <div class="form-group">
+                    <label for="cod">Khoản tiền thu hộ của đơn hàng COD:</label>
+                    <div class="input-group col-6 m-0 p-0">
+                        <input type="text" name="shipping_cod" v-model="shippingData.cod" class="form-control">
+                        <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
+                    </div>
+                </div>
+                {{-- <div class="form-group mt-2">
+                    <label for="shippingType">Hình thức lấy hàng: </label>
+                    <select name="shipping_type" id="shippingType" class="form-control col-6 m-0 p-0 select2">
+                        @foreach ($pickUp as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                        @endforeach
+                    </select>
+                </div> --}}
             </div>
         </div>
     </div>

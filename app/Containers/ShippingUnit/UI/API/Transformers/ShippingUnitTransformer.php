@@ -10,14 +10,14 @@ class ShippingUnitTransformer extends Transformer
     /**
      * @var  array
      */
-    protected $defaultIncludes = [
+    protected array $defaultIncludes = [
 
     ];
 
     /**
      * @var  array
      */
-    protected $availableIncludes = [
+    protected array $availableIncludes = [
 
     ];
 
@@ -29,16 +29,15 @@ class ShippingUnitTransformer extends Transformer
     public function transform(ShippingUnit $entity)
     {
         $response = [
-            'object' => 'ShippingUnit',
-            'id' => $entity->getHashedKey(),
+            'id' => $entity->id,
+            'image' => $entity->getImageUrl(),
+            'title' => $entity->title,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
-
         ];
 
         $response = $this->ifAdmin([
             'real_id'    => $entity->id,
-            // 'deleted_at' => $entity->deleted_at,
         ], $response);
 
         return $response;

@@ -47,7 +47,7 @@
                             <label for="image">Ảnh</label>
                             <input type="file" name="image" id="image" class="form-control">
                             @if (@$data->image)
-                                <img src="{{ ImageUrl::getImageUrl($data->image, 'shipping', '') }}" alt="">
+                                <img class="mt-3" width="150px" src="{{ $data->getImageUrl() }}" alt="">
                             @endif
                         </div>
                     </div>

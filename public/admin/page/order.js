@@ -4,6 +4,7 @@ const orderApp = new Vue({
         api: window.apiURL,
         user: null,
         users: [],
+        shippings: [],
         status: '',
         sender: {
             fullname: '',
@@ -51,25 +52,38 @@ const orderApp = new Vue({
         listReceiver: [],
         filter: {
             user: '',
+        },
+        shippingData: {
+            shipping: 0,
+            cod: 0
         }
     },
     mounted: async function(){
         this.loadUser();
+        this.loadShipping();
     },
     methods: {
-        addNewPackge: function(){
-            this.packages.push({});
-        },
-        removePackage: function(key){
-            console.log(key);
-            this.packages = this.packages.splice(1, key);
-        },
         loadUser: async function() {
             $.get(this.api.users, {
                 keyword: this.filter.user
             }).then(json => {
                 this.users = json.data.users
             })
+        },
+
+        loadShipping: async function()
+        {
+            $.get(this.api.shipping).then(json => {
+                this.shippings = json.data;
+            });
+        },
+
+        addNewPackge: function(){
+            this.packages.push({});
+        },
+
+        removePackage: function(key){
+            this.packages = this.packages.splice(1, key);
         },
         
         selectUser: function(user)

@@ -23,7 +23,4 @@
 $router->get('shippingunits', [
     'as' => 'api_shippingunit_get_all_shipping_units',
     'uses'  => 'Controller@getAllShippingUnits',
-    'middleware' => [
-      'auth:api',
-    ],
 ]);

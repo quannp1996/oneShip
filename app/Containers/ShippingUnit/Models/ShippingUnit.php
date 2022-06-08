@@ -2,6 +2,7 @@
 
 namespace App\Containers\ShippingUnit\Models;
 
+use Apiato\Core\Foundation\ImageURL;
 use App\Containers\ShippingUnit\Enums\EnumShipping;
 use Jenssegers\Mongodb\Eloquent\Model;
 
@@ -33,6 +34,10 @@ class ShippingUnit extends Model
      */
     protected $resourceKey = 'shippingunits';
 
+    public function getResourceKey()
+    {
+        return $this->resourceKey;
+    }
     public function toSecurityJson()
     {
         return json_decode($this->security, true);
@@ -41,6 +46,12 @@ class ShippingUnit extends Model
     public function getTypeName()
     {
         return EnumShipping::LISTTYPE[$this->type];
+    }
+
+    public function getImageUrl()
+    {
+        if($this->image) return ImageURL::getImageUrl($this->image, 'shipping', '');
+        return null;
     }
 
     protected static function boot()

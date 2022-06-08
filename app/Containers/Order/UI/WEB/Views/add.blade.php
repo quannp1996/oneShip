@@ -95,7 +95,8 @@
 @push('js_bot_all')
     <script>
         var apiURL = {
-            users: '{{ route('api_customers_list') }}'
+            users: '{{ route('api_customers_list') }}',
+            shipping: '{{ route('api_shippingunit_get_all_shipping_units') }}'
         };
     </script>
     {!! FunctionLib::addMedia('/js/provinces.js') !!}
