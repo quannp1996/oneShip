@@ -1,0 +1,21 @@
+[
+	{
+		"language_id": 0,
+		"link": null,
+		"name": "Banner 2",
+		"short_description": "<p class=\"ladi-paragraph\"><span style=\"font-size: 16px;\">Ch&uacute;ng t&ocirc;i sẽ gửi email t&agrave;i khoản sử dụng OneClub<span style=\"color: #e03e2d;\"> <span style=\"color: #f1c40f;\">trong v&ograve;ng 6 tiếng tiếp theo</span></span> v&agrave; sẽ th&ocirc;ng b&aacute;o tới bạn bằng cuộc gọi tự động</span></p>\r\n<p class=\"ladi-paragraph\"><span style=\"font-size: 16px;\">Khi nhận được email h&atilde;y tiến h&agrave;nh bấm<span style=\"color: #f1c40f;\">&nbsp;<strong>x&aacute;c thực</strong></span>&nbsp;t&agrave;i khoản để bắt đầu sử dụng OneClub.</span></p>",
+		"image": "banner-1653914199.png",
+		"item": "[]",
+		"updated_at": "2022-05-30T12:43:46.550000Z"
+	},
+	{
+		"_id": "628d01b11600d555ad03d834",
+		"language_id": 0,
+		"link": null,
+		"name": "Banner",
+		"short_description": "<p>Giảm 3 lần thời gian vận h&agrave;nh</p>\r\n<p>Tăng 2 lần hiệu suất l&agrave;m việc</p>\r\n<p>Tiết kiệm chi ph&iacute; giao h&agrave;ng</p>",
+		"image": "banner-1653408176.jpg",
+		"item": "[]",
+		"updated_at": "2022-05-26T13:09:43.515000Z"
+	}
+]

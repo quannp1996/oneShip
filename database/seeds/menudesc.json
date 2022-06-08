@@ -1,0 +1,52 @@
+[
+	{
+		"language_id": "0",
+		"name": "Liên Hệ",
+		"description": "Liên Hệ",
+		"meta_title": "Liên Hệ",
+		"meta_description": "Liên Hệ",
+		"meta_keyword": "Liên Hệ",
+		"updated_at": "2022-05-24T15:52:35.505000Z",
+		"created_at": "2022-05-24T15:52:35.505000Z"
+	},
+	{
+		"language_id": "0",
+		"name": "Trường mở rộng",
+		"description": "Trường mở rộng",
+		"meta_title": "Trường mở rộng",
+		"meta_description": "Trường mở rộng",
+		"meta_keyword": "Trường mở rộng",
+		"updated_at": "2022-05-24T15:53:39.335000Z",
+		"created_at": "2022-05-24T15:53:39.335000Z"
+	},
+	{
+		"language_id": "0",
+		"name": "Cấu hình",
+		"description": "Cấu hình",
+		"meta_title": "Cấu hình",
+		"meta_description": "Cấu hình",
+		"meta_keyword": "Cấu hình",
+		"updated_at": "2022-05-24T15:55:02.540000Z",
+		"created_at": "2022-05-24T15:55:02.540000Z"
+	},
+	{
+		"language_id": "0",
+		"name": "Banner",
+		"description": "Banner",
+		"meta_title": "Banner",
+		"meta_description": "Banner",
+		"meta_keyword": "Banner",
+		"updated_at": "2022-05-24T15:59:16.825000Z",
+		"created_at": "2022-05-24T15:59:16.825000Z"
+	},
+	{
+		"language_id": "0",
+		"name": "Landing Page OneClub",
+		"description": "Landing Page OneClub",
+		"meta_title": "Landing Page OneClub",
+		"meta_description": "Landing Page OneClub",
+		"meta_keyword": "Landing Page OneClub",
+		"updated_at": "2022-05-26T14:58:49.780000Z",
+		"created_at": "2022-05-26T14:58:49.780000Z"
+	}
+]

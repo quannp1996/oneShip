@@ -1,0 +1,5 @@
+*, :after, :before {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+/*# sourceMappingURL=global.css.map */
