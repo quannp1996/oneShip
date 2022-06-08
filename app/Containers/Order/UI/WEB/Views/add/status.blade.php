@@ -54,14 +54,6 @@
                         <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
                     </div>
                 </div>
-                {{-- <div class="form-group mt-2">
-                    <label for="shippingType">Hình thức lấy hàng: </label>
-                    <select name="shipping_type" id="shippingType" class="form-control col-6 m-0 p-0 select2">
-                        @foreach ($pickUp as $key => $item)
-                            <option value="{{ $key }}">{{ $item }}</option>
-                        @endforeach
-                    </select>
-                </div> --}}
             </div>
         </div>
     </div>
