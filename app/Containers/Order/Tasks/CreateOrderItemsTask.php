@@ -45,7 +45,7 @@ class CreateOrderItemsTask extends Task
         return $this;
     }
 
-    public function setOrderId(int $orderId): self
+    public function setOrderId($orderId): self
     {
         $this->orderId = $orderId;
         return $this;
@@ -74,7 +74,7 @@ class CreateOrderItemsTask extends Task
                 }
             }
         }
-        
+
         return $dataCreate;
     }
 

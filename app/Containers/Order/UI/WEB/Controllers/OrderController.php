@@ -118,7 +118,7 @@ class OrderController extends AdminController
     $order = Apiato::call('Order@FindOrderByIdAction', [
       $request->id,
       [
-        'orderItems' => function($q) {
+        'orderItems' => function ($q) {
           $q->orderBy('id');
         },
         'user:id,name,email',
@@ -152,13 +152,19 @@ class OrderController extends AdminController
    */
   public function store(StoreOrderRequest $request, CreateOrderAction $createOrderAction)
   {
-    $data = $request->sanitizeInput([
+    try {
+      $data = $request->sanitizeInput([
         'userID', 'sender', 'receiver', 'package'
-    ]);
-    $order = $createOrderAction->run($data);
-    return $this->sendResponse([
-      'order' => $order
-    ]);
+      ]);
+      $order = $createOrderAction->setData($data)->setItems($data['package']['items'])->run();
+      return $this->sendResponse([
+        'order' => $order
+      ]);
+    } catch (\Exception $e) {
+      return $this->sendResponse([
+        'order' => $order
+      ]);
+    }
   }
 
   /**

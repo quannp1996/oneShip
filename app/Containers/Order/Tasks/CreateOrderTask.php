@@ -35,7 +35,7 @@ class CreateOrderTask extends Task
 
             $object = $this->repository->create($data);
 
-            $code = $this->makeCodeOrder($data['payment_type'], $object->id);
+            $code = $this->makeCodeOrder(@$data['payment_type'], $object->id);
 
             $data = [
                 'code' => $code,

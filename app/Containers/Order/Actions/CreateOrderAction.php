@@ -11,8 +11,8 @@ use App\Containers\Bizfly\Actions\Loyalty\SubPointLoyaltyAction;
 
 class CreateOrderAction extends Action
 {
-    protected $items = [],$data;
-    
+    protected $items = [], $data = [];
+
     public function run(): Order
     {
         $order = app(CreateOrderTask::class)->setData($this->data)->run();

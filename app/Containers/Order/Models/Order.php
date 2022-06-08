@@ -30,7 +30,6 @@ class Order extends Model
         OrderDeliveryTrait,
         OrderStatusTrait,
         OrderScopeTrait,
-        DateTrait,
         OrderLocationTrait,
         OrderCustomerTrait;
 
