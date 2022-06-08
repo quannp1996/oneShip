@@ -31,10 +31,10 @@
             </div>
             <div class="card-body">
                 <div class="list-group" v-if="shippings && shippings.length">
-                    <div v-for="shipping in shippings">
+                    <div v-for="(shipping, index) in shippings">
                         <input type="radio" :value="shipping.id" name="shipping" v-model="shippingData.shipping"
-                            value="Value1" checked id="Radio1" />
-                        <label class="list-group-item" for="Radio1">
+                            value="Value1" checked :id="'Radio'+ index"/>
+                        <label class="list-group-item" :for="'Radio'+ index">
                             <img width="50px" :src="shipping.image" alt="">
                             @{{ shipping.title }}
                         </label>

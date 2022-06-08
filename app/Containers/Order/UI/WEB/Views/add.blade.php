@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div :class="user ? 'col-5' : 'col-5 divDisable'">
                                 @include('order::add.status')
                             </div>
                         </div>
