@@ -15,7 +15,34 @@ $secondary: #02c8c6;
 .text-theme {
   color : $theme ;
 }
+.text-415066{
+    color: #415066;
+}
 
+// text- size
+.text-12 {
+    font-size: 12px;
+}
+.text-24 {
+    font-size: 24px;
+}
+
+// line-height
+.lh-32 {
+    line-height: 32px;
+}
+
+// padding
+.pt-10 {
+    padding-top: 10px;
+}
+
+
+// col
+.col-20 {
+    flex : 0 0 20%;
+    max-width: 20%;
+}
 
 .modal-scroll {
   height: 80vh;
