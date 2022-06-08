@@ -8,7 +8,7 @@
             @foreach ($ordersType as $key => $item)
                 <div class="col-4">
                     <div class="form-check">
-                        <input class="form-check-input" value="{{ $key }}" type="radio" name="status" id="radioStatus{{ $key }}">
+                        <input class="form-check-input" v-model="status" value="{{ $key }}" type="radio" name="status" id="radioStatus{{ $key }}">
                         <label class="form-check-label" for="radioStatus{{ $key }}">
                             {{ $item }}
                         </label>

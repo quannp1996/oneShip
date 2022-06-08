@@ -19,19 +19,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item, index) in package">
+                    <tr v-for="(item, index) in packages">
                         <th>
-                            <input type="text" :name="'package[item]['+ index +'][product_code]'" class="form-control">
+                            <input type="text" v-model="item.code" :name="'package[item][' + index + '][product_code]'"
+                                class="form-control">
                         </th>
                         <td>
-                            <input type="text" :name="'package[item]['+ index +'][product_name]'"  class="form-control">
+                            <input type="text" v-model="item.product" :name="'package[item][' + index + '][product_name]'"
+                                class="form-control">
                         </td>
                         <td>
-                            <input type="text" :name="'package[item]['+ index +'][product_quanlity]'" class="form-control">
+                            <input type="text" v-model="item.quanlity"
+                                :name="'package[item][' + index + '][product_quanlity]'" class="form-control">
                         </td>
                         <td>
                             <div class="input-group">
-                                <input type="text" :name="'package[item]['+ index +'][price]'" class="form-control">
+                                <input v-model="item.price" type="text" :name="'package[item][' + index + '][price]'"
+                                    class="form-control">
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="basic-addon2">VNĐ</span>
                                 </div>
@@ -59,21 +63,28 @@
             </table>
             <div class="row">
                 <div class="col-4">
-                    <div class="form-group">
+                    <div class="input-group">
                         <label for="packageWeight">Trọng lượng kiện hàng</label>
-                        <input type="text" class="form-control" name="package[weight]" id="packageWeight">
+                            <div class="input-group">
+                            <input type="text" class="form-control" v-model="package.weight">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">Kg</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="packageRefcode">Số tham chiếu</label>
-                        <input type="text" class="form-control" name="package[ref_code]" id="packageRefcode">
+                        <input type="text" v-model="package.ref_code" class="form-control" name="package[ref_code]"
+                            id="packageRefcode">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="packageNote">Ghi chú</label>
-                        <input type="text" class="form-control" name="package[note]" id="packageNote">
+                        <input type="text" v-model="package.note" class="form-control" name="package[note]"
+                            id="packageNote">
                     </div>
                 </div>
             </div>

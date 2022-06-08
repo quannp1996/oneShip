@@ -20,7 +20,7 @@ use App\Ship\Transporters\DataTransporter;
 /**
  * Class Controller.
  *
- * @author Ha Ly Manh  <lymanhha@gmail.com>
+ * @author Quan NP  <npquan1995@gmail.com>
  */
 class Controller extends ApiController
 {

@@ -74,25 +74,17 @@ class CreateOrderItemsTask extends Task
                 }
             }
         }
-
-        // dd($dataCreate);
-
+        
         return $dataCreate;
     }
 
     private function returnItem($item, $parentId = 0) {
         return [
             'order_id' => $this->orderId,
-            'product_id' => $item['id'],
             'variant_parent_id' => $parentId,
-            'name' => $item['name'],
-            'price' => $parentId > 0 ? 0 : $item['price'],
-            'quantity' => $item['quantity'],
-            'img' => '',
-            'note' => '',
-            'opts' => $this->convertOptions($item['options']),
-            'special_offers' => $this->convertSpecialOffers($item['specialOffers']),
-            'variant_id' => $item['variantId'],
+            'product' => @$item['product'],
+            'quanlity' => @$item['quanlity'],
+            'price' => @$item['price'],
             'created_at' => Carbon::now(),
         ];
     }

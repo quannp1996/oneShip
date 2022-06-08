@@ -1,19 +1,15 @@
 <?php
 
-/**
- * @ Created by: VSCode
- * @ Author: QuanNP - npquan1995@gmai.com
- * @ Create Time: 2021-08-24 13:46:00
- * @ Modified by: QuanNP - npquan1995@gmai.com
- * @ Modified time: 2021-09-08 22:35:40
- * @ Description: Happy Coding!
- */
-
-namespace App\Containers\Customer\UI\API\Requests\FrontEnd;
+namespace App\Containers\Customer\UI\API\Requests;
 
 use App\Ship\Parents\Requests\Request;
 
-class GetAllWishListRequest extends Request
+/**
+ * Class DeleteUserRequest.
+ *
+ * @author Quan NP  <npquan1995@gmail.com>
+ */
+class APIGetAllCustomerRequest extends Request
 {
 
     /**
@@ -32,7 +28,7 @@ class GetAllWishListRequest extends Request
      * @var  array
      */
     protected $decode = [
-        
+        'id',
     ];
 
     /**
@@ -42,7 +38,7 @@ class GetAllWishListRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        
+        'id',
     ];
 
     /**
@@ -50,9 +46,7 @@ class GetAllWishListRequest extends Request
      */
     public function rules()
     {
-        return [
-            
-        ];
+        return [];
     }
 
     /**
@@ -61,6 +55,5 @@ class GetAllWishListRequest extends Request
     public function authorize()
     {
         return true;
-        // return auth()->guard(config('auth.guard_for.frontend'))->check();
     }
 }

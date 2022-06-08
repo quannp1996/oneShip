@@ -11,7 +11,7 @@ use App\Containers\User\Tests\ApiTestCase;
  * @group user
  * @group api
  *
- * @author  Ha Ly Manh  <lymanhha@gmail.com>
+ * @author  Quan NP  <npquan1995@gmail.com>
  */
 class GetAllAdminsTest extends ApiTestCase
 {

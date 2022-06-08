@@ -9,7 +9,7 @@ use App\Ship\Parents\Transformers\Transformer;
 /**
  * Class UserTransformer.
  *
- * @author Ha Ly Manh  <lymanhha@gmail.com>
+ * @author Quan NP  <npquan1995@gmail.com>
  */
 class UserTransformer extends Transformer
 {

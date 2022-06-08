@@ -12,41 +12,47 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverFullname required">Họ tên</label>
-                        <input type="text" class="form-control" name="receiver[fullname]" id="receiverFullname">
+                        <input type="text" class="form-control" v-model="receiver.fullname" name="receiver[fullname]" id="receiverFullname">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverPhone required">Số điện thoại</label>
-                        <input type="text" class="form-control" name="receiver[phone]" id="receiverPhone">
+                        <input type="text" class="form-control" v-model="receiver.phone" name="receiver[phone]" id="receiverPhone">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverEmail">Email</label>
-                        <input type="text" class="form-control" name="receiver[email]" id="senderEmail">
+                        <input type="text" class="form-control" v-model="receiver.email" name="receiver[email]" id="senderEmail">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <label for="asdas required">Tỉnh/ Thành phố</label>
-                        <select class="form-control select2customer" name="asdsa" id="asdas">
+                        <label for="receiverCity required">Tỉnh/ Thành phố</label>
+                        <select class="form-control select2customer" @change="changeCity('receiver')" v-model="receiver.city" name="receiver[city]" id="receiverCity">
+                            <option value="0">-- Chọn ---</option>
+                            <option :value="city.id" v-for="city in cities" v-text="city.name"></option>
                         </select>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverDistrict required">Quận/ Huyện</label>
-                        <select class="form-control select2customer" name="receiver[district]" id="receiverDistrict">
+                        <select class="form-control select2customer" @change="changeDistrict('receiver')" v-model="receiver.district" name="receiver[district]" id="receiverDistrict">
+                            <option value="0">-- Chọn ---</option>
+                            <option :value="district.id" v-for="district in districts.receiver" v-text="district.name"></option>
                         </select>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverWard required">Thôn/ Xóm</label>
-                        <select class="form-control select2customer" name="receiver[ward]" id="receiverWard">
+                        <select class="form-control select2customer" name="receiver[ward]" v-model="receiver.ward" id="receiverWard">
+                            <option value="0">-- Chọn ---</option>
+                            <option :value="ward.id" v-for="ward in wards.receiver" v-text="ward.name"></option>
                         </select>
                     </div>
                 </div>
@@ -55,19 +61,19 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverZipcode">Mã zip code</label>
-                        <input type="text" name="receiver[zipcode]" class="form-control" id="receiverZipcode">
+                        <input type="text" name="receiver[zipcode]" v-model="receiver.zipcode" class="form-control" id="receiverZipcode">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverAddress1 required">Địa chỉ 1</label>
-                        <input type="text" name="receiver[address1]" class="form-control" id="receiverAddress1">
+                        <input type="text" name="receiver[address1]" v-model="receiver.address1" class="form-control" id="receiverAddress1">
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-group">
                         <label for="receiverAddress2">Địa chỉ 2</label>
-                        <input type="text" name="receiver[address2]" class="form-control" id="receiverAddress2">
+                        <input type="text" name="receiver[address2]" v-model="receiver.address2" class="form-control" id="receiverAddress2">
                     </div>
                 </div>
             </div>

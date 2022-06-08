@@ -150,16 +150,15 @@ class OrderController extends AdminController
    *
    * @param StoreOrderRequest $request
    */
-  public function store(StoreOrderRequest $request)
+  public function store(StoreOrderRequest $request, CreateOrderAction $createOrderAction)
   {
-    dd($request->all());
     $data = $request->sanitizeInput([
-      // add your request data here
+        'userID', 'sender', 'receiver', 'package'
     ]);
-
-    $order = app(CreateOrderAction::class)->run($data);
-
-    // ..
+    $order = $createOrderAction->run($data);
+    return $this->sendResponse([
+      'order' => $order
+    ]);
   }
 
   /**

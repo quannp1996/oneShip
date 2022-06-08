@@ -7,7 +7,7 @@ use App\Ship\Parents\Requests\Request;
 /**
  * Class CreateAdminRequest.
  *
- * @author Ha Ly Manh  <lymanhha@gmail.com>
+ * @author Quan NP  <npquan1995@gmail.com>
  */
 class CreateAdminRequest extends Request
 {

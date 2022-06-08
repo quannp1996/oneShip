@@ -61,33 +61,12 @@ class CreateOrderTask extends Task
     {
         $mapData = [
             'customer_id' => isset($data['customer_id']) ? $data['customer_id'] : 0,
-            'fullname' => isset($data['fullname']) ? $data['fullname'] : '',
-            'email' => isset($data["email"]) ? $data["email"] : '',
-            'phone' => isset($data['phone']) ? $data['phone'] : '',
-            'note' => isset($data['note']) ? $data['note'] : '',
-            'status' => isset($data['status']) ? $data['status'] : OrderStatus::NEW_ORDER,
-            'total_price' => isset($data['total_price']) ? $data['total_price'] : 0,
-            'total_gross' => isset($data['total_gross']) ? $data['total_gross'] : 0,
-            'refund_value' => isset($data['refund_value']) ? $data['refund_value'] : 0,
-            'total_discount_value' => isset($data['total_discount_value']) ? $data['total_discount_value'] : 0,
-            'fee_shipping' => isset($data['fee_shipping']) ? $data['fee_shipping'] : 0,
-            'point_value' => isset($data['point_value']) ? $data['point_value'] : 0,
-            'point_rate' => isset($data['point_rate']) ? $data['point_rate'] : 0,
-            'extra_fee' => isset($data['extra_fee']) ? $data['extra_fee'] : 0,
-            'payment_type' => isset($data['payment_type']) ? $data['payment_type'] : 0,
-            'payment_name' => isset($data['payment_name']) ? $data['payment_name'] : '',
-            'delivery_type' => isset($data['delivery_type']) ? $data['delivery_type'] : 0,
-            'order_from' => isset($data['order_from']) ? $data['order_from'] : 'web',
-            'province_id' => isset($data['province_id']) ? $data['province_id'] : 0,
-            'district_id' => isset($data['district_id']) ? $data['district_id'] : 0,
-            'ward_id' => isset($data['ward_id']) ? $data['ward_id'] : 0,
-            'eshop_shipping_id' => isset($data['eshop_shipping_id']) ? $data['eshop_shipping_id'] : '',
-            'address' => isset($data['address']) ? $data['address'] : '',
-            'address_id' => isset($data['address_id']) ? $data['address_id'] : 0,
-            'coupon_value' => isset($data['coupon_value']) ? $data['coupon_value'] : 0,
-            'coupon_code' => isset($data['coupon_code']) ? $data['coupon_code'] : '',
+            'sender' => !empty($data['sender']) ? json_encode($data['sender']) : json_encode([]),
+            'receiver' => !empty($data['receiver']) ? json_encode($data['receiver']) : json_encode([]),
+            'package_weight' => !empty($data['package']['weight']) ? $data['package']['weight'] : 0,
+            'package_refcode' => !empty($data['package']['ref_code']) ? $data['package']['ref_code'] : 0,
+            'package_note' => !empty($data['package']['note']) ? $data['package']['note'] : '',
             'created_at' => Carbon::now(),
-            // 'type' => 'contact',
         ];
 
         return $mapData;
@@ -98,7 +77,6 @@ class CreateOrderTask extends Task
         if (strlen($id) > 5) {
             $id = substr($id, 0, - (strlen($id) - 5));
         }
-
         $permitted_chars = '0123456789ABCEFGHJKLMNOPQYISTWZ';
         $input_length = strlen($permitted_chars);
         $random_string = '';
