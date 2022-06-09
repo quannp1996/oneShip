@@ -189,6 +189,9 @@
     .admin-main-container {
         margin: 20px auto;
         width: 1000px;
+        &.xl {
+            width: 1200px;
+        }
     }
 }
 .admin-alert {
@@ -265,6 +268,85 @@
         padding-right: 5px;
     }
 }
+
+.admin-table {
+    table {
+        border-collapse: separate;
+        border-radius: 6px 6px 0 0;
+        border-spacing: 0;
+        text-align: left;
+        width: 100%;
+    }
+    .admin-table-container {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        table>thead>tr:first-child th:first-child {
+            border-top-left-radius: 6px;
+        }
+    }
+    .admin-table-thead {
+        font-weight: 500;
+        height: 56px;
+        padding: 12px;
+        & > tr > th {
+            background: #f5f8fc;
+            border-bottom: 1px solid #eef1f7;
+            color: #00112f;
+            font-weight: 500;
+            position: relative;
+            text-align: left;
+            transition: background .3s ease;
+        }
+        .admin-table-cell {
+            background-color: #f5f8fc;
+            border-color: #eef1f7;
+            color: #00112f;
+            padding: 0 12px;
+        }
+    }
+    .variable-cell {
+        display: flex;
+        align-items: center;
+        word-break: break-all;
+    }
+    .custom-row {
+        .variable-cell {
+            border-bottom: 1px solid #e6edf5;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 12px;
+            position: relative;
+            transition: background .3s;
+        }
+        &:last-child {
+            .variable-cell {
+                border-bottom: 0;
+            }
+        }
+    }
+    .admin-tag {
+        background: #fafafa;
+        border: 1px solid #cedceb;
+        border-radius: 4px;
+        display: inline-block;
+        font-size: 14px;
+        font-size: 12px;
+        height: auto;
+        line-height: 20px;
+        list-style: none;
+        margin: 0 8px 0 0;
+        opacity: 1;
+        padding: 0 7px;
+        transition: all .3s;
+        white-space: nowrap;
+        &.admin-tag-success {
+            background: #f0fff7;
+            border-color: #aee6cc;
+            border-radius: 12px;
+            color: #415066;
+        }
+    }
+}
 .btn-themes {
     background-image: none;
     background: #fff;
@@ -287,6 +369,14 @@
     -webkit-user-select: none;
     user-select: none;
     white-space: nowrap;
+    .icon-svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 6px;
+        svg {
+            color : #fff ;
+        }
+    }
     &:hover {
         background: #fff;
         border-color: #24d4cb;
