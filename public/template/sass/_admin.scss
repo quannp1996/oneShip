@@ -41,6 +41,7 @@
         }
     }
     input[type=radio]:checked + label span.icon-radio {
+        border-color: #02c8c6;
         &::after {
             opacity: 1;
             transform: scale(.5);
@@ -278,10 +279,11 @@
         width: 100%;
     }
     .admin-table-container {
-        border-top-left-radius: 6px;
-        border-top-right-radius: 6px;
+        border: 1px solid #e6edf5;
+        border-radius: 4px;
+        overflow: hidden;
         table>thead>tr:first-child th:first-child {
-            border-top-left-radius: 6px;
+            border-top-left-radius: 4px;
         }
     }
     .admin-table-thead {
@@ -323,6 +325,11 @@
                 border-bottom: 0;
             }
         }
+        &:hover {
+            .variable-cell {
+                background: #f5f8fc;
+            }
+        }
     }
     .admin-tag {
         background: #fafafa;
@@ -345,6 +352,10 @@
             border-radius: 12px;
             color: #415066;
         }
+    }
+    .btnWrapper-table {
+        display: flex;
+        align-items: center;
     }
 }
 .btn-themes {
@@ -412,6 +423,47 @@
         font-size: 14px;
         line-height: 20px;
         margin: 10px 0;
+    }
+}
+.admin-nav-tabs {
+    border-bottom: 1px solid #e6edf5;
+    .nav-link {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        color: #748399;
+        padding: 19px 0;
+        position: relative;
+        &::before {
+            content : '';
+            background: #02c8c6;
+            pointer-events: none;
+            position: absolute;
+            transition: width .3s,left .3s,right .3s;
+            bottom: 19px;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            display: inline-block;
+        }
+        &.active{
+            color: #00112f;
+            text-shadow: none;
+            font-weight: 600;
+            &::before {
+                width: 100%;
+            }
+        }
+        &:hover{
+            &::before {
+                width: 100%;
+            }
+        }
+    }
+    .nav-item {
+        & + .nav-item {
+            margin: 0 0 0 32px;
+        }
     }
 }
 .right-created-order {
@@ -576,6 +628,7 @@
             line-height: 1;
             height: auto;
             position: absolute;
+            left : -8px;
             top: 10px;
             font-size: 14px;
             min-width: 14px;
