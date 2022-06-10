@@ -24,6 +24,12 @@
                     <a class="nav-link active" data-toggle="tab" href="#website" role="tab" aria-controls="website"
                        aria-expanded="true"><i class="icon-globe"></i> Website</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#transport" role="tab" aria-controls="transport"
+                       aria-expanded="false"><i class="icon-settings"></i>Vận chuyển</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
                        aria-expanded="false"><i class="icon-phone"></i> Liên hệ</a>
@@ -48,6 +54,7 @@
 
                 @include('settings::admin.settings.components.other')
 
+                @include('settings::admin.settings.components.transport')
             </div>
 
             <div class="mb-3">

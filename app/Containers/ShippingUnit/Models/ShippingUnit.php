@@ -63,4 +63,9 @@ class ShippingUnit extends Model
             $model->dev_mode = (int) $model->dev_mode;
         });
     }
+
+    public function isDevMode(): bool
+    {
+        return (int) !!$this->dev_mode;
+    }
 }
