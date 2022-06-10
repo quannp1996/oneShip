@@ -91,7 +91,7 @@
                         <span class="">
                             Bạn vẫn chưa có tài khoản ?
                         </span>
-                        <a href="javascript:;" class="text-theme ml-1"> Đăng ký </a>
+                        <a href="{{ route('web_register_index') }}" class="text-theme ml-1"> Đăng ký </a>
                     </div>
                 </div>
             </div>
@@ -118,7 +118,6 @@
                             credentials: 'same-origin',
                             headers: {
                                 'Content-Type': 'application/json'
-                                // 'Content-Type': 'application/x-www-form-urlencoded',
                             },
                             body: JSON.stringify({
                                 _token: '{{ csrf_token() }}',

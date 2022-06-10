@@ -10,16 +10,13 @@ Route::group(
             'htmloptimized',
             'Maintenance',
             'WebLocaleRedirect',
-            'auth:web'
         ],
         'namespace' => 'Dashboard',
     ],
     function ($router) {
         $router->get('/', [
             'as' => 'web_dashboard_index',
-            'uses' => function(){
-                dd('asdsa');
-            }
+            'uses' => 'Controller@dashboard'
         ]);
     }
 );

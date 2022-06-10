@@ -17,7 +17,7 @@ use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Containers\Settings\Actions\GetAllSettingsAction;
 
 
-class BaseFrontEndController extends WebController
+class NeedAuthController extends BaseFrontEndController
 {
     use ApiResTrait;
 
@@ -25,10 +25,7 @@ class BaseFrontEndController extends WebController
 
     public function __construct()
     {
-        view()->share('currentLang', 'vn');
-        $this->settings = app(GetAllSettingsAction::class)->run('Array', true);
-        View::share([
-            'settings' => $this->settings,
-        ]);
+        parent::__construct();
+        $this->middleware('auth:customer');
     }
 }
