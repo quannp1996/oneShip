@@ -156,7 +156,7 @@ class OrderController extends AdminController
   {
     try {
       $data = $request->sanitizeInput([
-        'userID', 'sender', 'receiver', 'package'
+        'userID', 'sender', 'receiver', 'package', 'shipping', 'shipping_cod', 'shipping_type'
       ]);
       $order = $createOrderAction->setData($data)->setItems($data['package']['items'])->run();
       return $this->sendResponse([

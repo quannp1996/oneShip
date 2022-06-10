@@ -32,9 +32,9 @@
             <div class="card-body">
                 <div class="list-group" v-if="shippings && shippings.length">
                     <div v-for="shipping in shippings">
-                        <input type="radio" :value="shipping.id" name="shipping" v-model="shippingData.shipping"
-                            value="Value1" checked id="Radio1" />
-                        <label class="list-group-item" for="Radio1">
+                        <input type="radio" :value="shipping.id" v-model="shippingData.shipping_type" name="shipping" v-model="shippingData.shipping"
+                            value="Value1" :id="'Radio' + shipping.id" />
+                        <label class="list-group-item" :for="'Radio' + shipping.id">
                             <img width="50px" :src="shipping.image" alt="">
                             @{{ shipping.title }}
                         </label>
@@ -54,14 +54,14 @@
                         <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
                     </div>
                 </div>
-                {{-- <div class="form-group mt-2">
+                <div class="form-group mt-2">
                     <label for="shippingType">Hình thức lấy hàng: </label>
-                    <select name="shipping_type" id="shippingType" class="form-control col-6 m-0 p-0 select2">
+                    <select name="shipping_type" id="shippingType" class="form-control">
                         @foreach ($pickUp as $key => $item)
                             <option value="{{ $key }}">{{ $item }}</option>
                         @endforeach
                     </select>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>

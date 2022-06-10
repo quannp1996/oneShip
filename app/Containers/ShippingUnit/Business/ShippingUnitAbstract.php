@@ -57,5 +57,6 @@ abstract class ShippingUnitAbstract
     abstract public function cancel();
     abstract public function hook();
     abstract public function estimate();
+    abstract public function caculateShipping(): int;
 }
 ?>

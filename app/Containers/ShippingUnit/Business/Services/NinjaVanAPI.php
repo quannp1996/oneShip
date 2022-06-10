@@ -24,5 +24,10 @@ class NinjaVanAPI extends ShippingUnitAbstract
     {
         
     }
+    
+    public function caculateShipping(): int
+    {
+        return 0;
+    }
 }
 ?>

@@ -64,3 +64,11 @@
   .list-group input[type="radio"]:checked + .list-group-item:before {
     color: inherit;
   }
+
+  .pointer-div{
+    cursor: pointer;
+  }
+
+  select.form-control{
+    border-radius: 0px;
+  }

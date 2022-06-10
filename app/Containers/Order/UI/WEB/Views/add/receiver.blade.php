@@ -5,6 +5,10 @@
             <i class="fa fa-truck"></i>
             Địa chỉ người nhận
         </p>
+        <p class="btn btn-link m-0 float-right">
+            <i class="fa fa-plus"></i>
+            Sử dụng danh sách địa chỉ
+        </p>
     </div>
     <div id="addressReceiver" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
         <div class="card-body">
