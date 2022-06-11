@@ -51,8 +51,6 @@ class OrderController extends AdminController
    */
   public function index(GetAllOrdersRequest $request)
   {
-    // $shipingInstance = ShippingFactory::getInstance(ShippingUnit::find('62a0b696862aa3ba0508b63e'));
-    // dd($shipingInstance->caculateShipping());
     $filters = $request->all();
     app(CreateBreadcrumbAction::class)->run('list', $this->title, 'admin.orders.index');
     $orders = app(GetAllOrdersAction::class)->skipCache()->run(

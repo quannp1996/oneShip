@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Cache;
 
 class NinjaVanAPI extends ShippingUnitAbstract
 {
-    public $sandBoxUrl = 'https://api-sandbox.ninjavan.co/vi';
-    public $liveURL = 'https://api.ninjavan.co/vi';
+    const TOKENKEY = 'ninjavan_token_key';
+    public $sandBoxUrl = 'https://api-sandbox.ninjavan.co/vn';
+    public $liveURL = 'https://api.ninjavan.co/vn';
     protected $ninjavan_token_key;
     public function __construct(ShippingUnit $shippingUnit)
     {
@@ -35,9 +36,9 @@ class NinjaVanAPI extends ShippingUnitAbstract
         dd('hook NinjaVan');
     }
 
-    public function estimate()
+    public function estimate(): float
     {
-        
+        return 0;
     }
     
     public function caculateShipping(): int
@@ -52,8 +53,12 @@ class NinjaVanAPI extends ShippingUnitAbstract
                 $this->shipping->toSecurityJson(),
                 ['grant_type' => 'client_credentials']
             ), 
-                'https://api-sandbox.ninjavan.co/vn/2.0/oauth/access_token'
+                $this->activeUrl.'/2.0/oauth/access_token'
             );
+            if(!empty($result['access_token'])){
+                Cache::put(self::TOKENKEY, $result['access_token']);
+                $this->ninjavan_token_key = $result['access_token'];
+            }
         }
         return true;
     }

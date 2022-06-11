@@ -2,6 +2,7 @@
 namespace App\Containers\ShippingUnit\Business;
 
 use App\Containers\ShippingUnit\Models\ShippingUnit;
+use Exception;
 
 abstract class ShippingUnitAbstract
 {
@@ -13,30 +14,36 @@ abstract class ShippingUnitAbstract
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
-        $this->devMode = $this->shipping->isDevMode();
+        // $this->devMode = $this->shipping->isDevMode();
+        $this->devMode = false;
     } 
 
     abstract public function send();
     abstract public function cancel();
     abstract public function hook();
-    abstract public function estimate();
+    abstract public function estimate(): float;
     abstract public function caculateShipping(): int;
     
     public function callApi(array $callData = [], string $url)
     {
         try{
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($callData));
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
+            
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $url,
+                CURLOPT_POST => true,
+                CURLOPT_HTTPHEADER => [
+                    'Content-Type: application/json',
+                ],
+                CURLOPT_POSTFIELDS => json_encode($callData)
             ));
-            $result = curl_exec($ch);
-            curl_close($ch);
-            dd($result);
-            return $result;
+            $resp = curl_exec($curl);
+            curl_close($curl);
+
+            
+            return json_decode($resp, true);
         }catch(\Exception $e){
-            dd($e->getMessage());
         }
     }
 }
