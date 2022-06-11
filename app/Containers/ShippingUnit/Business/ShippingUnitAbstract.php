@@ -21,7 +21,7 @@ abstract class ShippingUnitAbstract
     abstract public function send();
     abstract public function cancel();
     abstract public function hook();
-    abstract public function estimate();
+    abstract public function estimate(): float;
     abstract public function caculateShipping(): int;
     
     public function callApi(array $callData = [], string $url)
