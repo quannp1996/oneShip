@@ -33,5 +33,9 @@ class GHTKAPI  extends ShippingUnitAbstract
         dd('estimate GHTK');
     }
     
+    public function caculateShipping(): int
+    {
+        return 0;
+    }
 }
 ?>

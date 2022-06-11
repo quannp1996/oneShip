@@ -7,55 +7,37 @@ abstract class ShippingUnitAbstract
 {
     public $shipping;
     public $devMode = false;
-
+    public $sandBoxUrl;
+    public $liveURL;
     
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
+        $this->devMode = $this->shipping->isDevMode();
     } 
-
-    public function callApi()
-    {
-        $ch = curl_init();
-        
-        curl_setopt($ch, CURLOPT_URL, '');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, []);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-        ));
-
-        $result = curl_exec($ch);
-
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if (curl_error($ch)) {
-            return json_encode([
-                'success' => false,
-                'message' => 'created payment link failed',
-                'url' => ''
-            ]);
-        }
-        if ($status != 200) {
-            curl_close($ch);
-            return json_encode([
-                'success' => false,
-                'message' => 'created payment link failed',
-                'url' => ''
-            ]);
-        }
-
-        curl_close($ch);
-
-        return $result;
-    }
 
     abstract public function send();
     abstract public function cancel();
     abstract public function hook();
     abstract public function estimate();
+    abstract public function caculateShipping(): int;
+    
+    public function callApi(array $callData = [], string $url)
+    {
+        try{
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($callData));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+            ));
+            $result = curl_exec($ch);
+            curl_close($ch);
+            dd($result);
+            return $result;
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
+    }
 }
 ?>

@@ -55,7 +55,8 @@ const orderApp = new Vue({
         },
         shippingData: {
             shipping: 0,
-            cod: 0
+            cod: 0,
+            shipping_type: 0
         }
     },
     mounted: async function(){
@@ -124,6 +125,8 @@ const orderApp = new Vue({
                 customer_id: this.user.id,
                 sender: this.sender,
                 receiver: this.receiver,
+                shipping: this.shippingData.shipping,
+                shipping_type: this.shippingData.shipping_type,
                 package: {
                     ... this.package,
                     items: {

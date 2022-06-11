@@ -5,6 +5,10 @@
             <i class="fa fa-send-o"></i>
             Địa chỉ người gửi
         </p>
+        <p class="btn btn-link m-0 float-right">
+            <i class="fa fa-plus"></i>
+            Sử dụng danh sách địa chỉ
+        </p>
     </div>
     <div id="addressSender" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">

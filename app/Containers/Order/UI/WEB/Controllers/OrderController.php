@@ -20,7 +20,9 @@ use App\Containers\Order\UI\WEB\Requests\UpdateOrderRequest;
 use App\Containers\Order\UI\WEB\Requests\GetAllOrdersRequest;
 use App\Containers\Order\UI\WEB\Requests\FindOrderByIdRequest;
 use App\Containers\Settings\Enums\PaymentStatus;
+use App\Containers\ShippingUnit\Business\ShippingFactory;
 use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
+use App\Containers\ShippingUnit\Models\ShippingUnit;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -49,6 +51,8 @@ class OrderController extends AdminController
    */
   public function index(GetAllOrdersRequest $request)
   {
+    $shipingInstance = ShippingFactory::getInstance(ShippingUnit::find('62a0b696862aa3ba0508b63e'));
+    dd($shipingInstance->caculateShipping());
     $filters = $request->all();
     app(CreateBreadcrumbAction::class)->run('list', $this->title, 'admin.orders.index');
     $orders = app(GetAllOrdersAction::class)->skipCache()->run(
@@ -156,7 +160,7 @@ class OrderController extends AdminController
   {
     try {
       $data = $request->sanitizeInput([
-        'userID', 'sender', 'receiver', 'package'
+        'userID', 'sender', 'receiver', 'package', 'shipping', 'shipping_cod', 'shipping_type'
       ]);
       $order = $createOrderAction->setData($data)->setItems($data['package']['items'])->run();
       return $this->sendResponse([
