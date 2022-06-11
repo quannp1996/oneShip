@@ -2,10 +2,11 @@
 
 namespace App\Containers\ShippingUnit\UI\API\Transformers;
 
+use App\Containers\ShippingUnit\Models\ShippingConst;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use App\Ship\Parents\Transformers\Transformer;
 
-class ShippingUnitTransformer extends Transformer
+class ShippingConstTransformer extends Transformer
 {
     /**
      * @var  array
@@ -26,16 +27,15 @@ class ShippingUnitTransformer extends Transformer
      *
      * @return array
      */
-    public function transform(ShippingUnit $entity)
+    public function transform(ShippingConst $entity)
     {
         $response = [
             'id' => $entity->id,
-            'image' => $entity->getImageUrl(),
+            'items' => $entity->items,
             'title' => $entity->title,
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
         ];
-
         return $response;
     }
 }

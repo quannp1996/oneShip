@@ -1,6 +1,7 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business;
 
+use App\Containers\Customer\Models\Customer;
 use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use Exception;
@@ -11,7 +12,8 @@ abstract class ShippingUnitAbstract
     public $devMode = false;
     public $sandBoxUrl;
     public $liveURL;
-    
+    public $customer;
+
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
@@ -46,6 +48,12 @@ abstract class ShippingUnitAbstract
             return json_decode($resp, true);
         }catch(\Exception $e){
         }
+    }
+
+    public function setCustomer(Customer $customer): self
+    {
+        $this->customer = $customer;
+        return $this;
     }
 }
 ?>

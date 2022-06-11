@@ -6,10 +6,13 @@ use Apiato\Core\Foundation\ImageURL;
 use App\Containers\ShippingUnit\Enums\EnumShipping;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class ShippingUnit extends Model
+class ShippingConst extends Model
 {
+
+    protected $tables = 'shippingconst';
+    protected $appends = ['id'];
     protected $fillable = [
-        'dev_mode', 'status', 'title', 'type', 'security', 'image'
+        'title', 'items', 'shippingUnitID', 'is_default'
     ];
 
     protected $attributes = [
@@ -59,8 +62,7 @@ class ShippingUnit extends Model
         parent::boot();
 
         self::creating(function($model) {
-            $model->status = (int) $model->status;
-            $model->dev_mode = (int) $model->dev_mode;
+            $model->is_default = (int) $model->is_default;
         });
     }
 
@@ -69,13 +71,12 @@ class ShippingUnit extends Model
         return (int) !!$this->dev_mode;
     }
 
-    public function consts(){
-        return $this->hasMany(ShippingConst::class, 'shippingUnitID', 'id');
-    }
-
-    public function jsonConst()
+    public function getItems()
     {
-        if(!$this->relationLoaded('consts')) return '{}';
-        return json_encode($this->consts->toArray());
+        try{
+            return json_decode($this->items, true);
+        }catch(\Exception $e){
+            return [];
+        }
     }
 }

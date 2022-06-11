@@ -41,6 +41,21 @@ Route::group(
             'as' => 'admin_shipping_unit_delete',
             'uses' => 'Controller@delete',
         ]);
+
+        $router->post('/shipping_const/delete/{id}', [
+            'as' => 'admin_shipping_const_delete',
+            'uses' => 'Controller@deleteShippingCost',
+        ]);
+
+        $router->post('/shipping_const/save', [
+            'as' => 'admin_shipping_const_store',
+            'uses' => 'Controller@saveShippingConst'
+        ]);
+
+        $router->post('/shipping_const/update/{id}', [
+        'as' => 'admin_shipping_const_update',
+        'uses' => 'Controller@updateShippingConst'
+        ]);
     }
 )
 ?>

@@ -15,8 +15,11 @@ use App\Containers\ShippingUnit\Enums\EnumShipping;
 use App\Ship\Parents\Controllers\AdminController;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\ShippingUnit\Actions\CreateShippingUnitAction;
+use App\Containers\ShippingUnit\Actions\DeleteShippingConstAction;
 use App\Containers\ShippingUnit\Actions\FindShippingUnitByIdAction;
 use App\Containers\ShippingUnit\Actions\UpdateShippingUnitAction;
+use App\Containers\ShippingUnit\UI\WEB\Controllers\Admin\Features\ShippingConst;
+use App\Containers\ShippingUnit\UI\WEB\Requests\DeleteShippingConstRequest;
 
 /**
  * Class Controller
@@ -25,6 +28,8 @@ use App\Containers\ShippingUnit\Actions\UpdateShippingUnitAction;
  */
 class Controller extends AdminController
 {
+    use ShippingConst;
+
     public function __construct()
     {
         $this->title = 'Đơn vị vận chuyển';
@@ -132,5 +137,14 @@ class Controller extends AdminController
         }
         $tranporter['security'] = json_encode($security);
         parent::beforeSave($request, $tranporter);
+    }
+
+    
+    public function deleteShippingCost(DeleteShippingConstRequest $request, DeleteShippingConstAction $deleteShippingConstAction)
+    {
+        $deleteShippingConstAction->run($request->id);
+        return $this->sendResponse([
+            'success' => true
+        ]);
     }
 }
