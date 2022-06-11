@@ -1,6 +1,7 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business;
 
+use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use Exception;
 
@@ -18,7 +19,7 @@ abstract class ShippingUnitAbstract
         $this->devMode = false;
     } 
 
-    abstract public function send();
+    abstract public function send(Order $order);
     abstract public function cancel();
     abstract public function hook();
     abstract public function estimate(): float;
