@@ -1,6 +1,7 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business\Services;
 
+use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use Illuminate\Support\Facades\Cache;
@@ -11,10 +12,11 @@ class NinjaVanAPI extends ShippingUnitAbstract
     public $sandBoxUrl = 'https://api-sandbox.ninjavan.co/vn';
     public $liveURL = 'https://api.ninjavan.co/vn';
     protected $ninjavan_token_key;
+
     public function __construct(ShippingUnit $shippingUnit)
     {
         parent::__construct($shippingUnit);
-        $this->activeUrl = $this->devMode ? $this->sandBoxUrl : $this->liveURL;
+        $this->liveURL = $this->devMode ? $this->sandBoxUrl : $this->liveURL;
         if(!Cache::get('ninjavan_token_key')){
             $this->login();
         }else{
@@ -22,7 +24,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
         }
     }   
 
-    public function send()
+    public function send(Order $order)
     {
         dd('send NinjaVan');
     }
@@ -31,7 +33,9 @@ class NinjaVanAPI extends ShippingUnitAbstract
     {
         dd('cancel NinjaVan');
     }
-    public function hook(){
+    
+    public function hook()
+    {
 
         dd('hook NinjaVan');
     }
@@ -53,7 +57,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
                 $this->shipping->toSecurityJson(),
                 ['grant_type' => 'client_credentials']
             ), 
-                $this->activeUrl.'/2.0/oauth/access_token'
+                $this->liveURL.'/2.0/oauth/access_token'
             );
             if(!empty($result['access_token'])){
                 Cache::put(self::TOKENKEY, $result['access_token']);
