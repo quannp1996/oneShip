@@ -22,7 +22,10 @@ class GetAllWardRequest extends Request
      *
      * @var  array
      */
-    protected $access = [];
+    protected $access = [
+        'permissions' => 'manage-location',
+        'roles'       => '',
+    ];
 
     /**
      * Id's that needs decoding before applying the validation rules.

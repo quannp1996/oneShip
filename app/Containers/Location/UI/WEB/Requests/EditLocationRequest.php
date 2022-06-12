@@ -23,7 +23,7 @@ class EditLocationRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => '',
+        'permissions' => 'manage-location',
         'roles'       => '',
     ];
 

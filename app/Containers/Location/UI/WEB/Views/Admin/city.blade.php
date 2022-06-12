@@ -114,12 +114,12 @@
                                                                     placeholder="{{ __('location::admin.city.city_placeholder') }}">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label
-                                                                    for="code">{{ __('location::admin.city.code') }}</label>
-                                                                <input type="text" class="form-control rounded-0" id="code"
-                                                                    autocomplete="false" value="{{ $city->code }}"
-                                                                    name="code"
-                                                                    placeholder="{{ __('location::admin.city.code_placeholder') }}">
+                                                                <label for="code">Vùng Miền</label>
+                                                                <select name="vungmien" id="vungmien" class="form-control rounded-0">
+                                                                    <option value="1" {{ $city->vungmien == 1 ? 'selected' : '' }}>Miền Bắc</option>
+                                                                    <option value="2" {{ $city->vungmien == 2 ? 'selected' : '' }}>Miền Trung</option>
+                                                                    <option value="3" {{ $city->vungmien == 3 ? 'selected' : '' }}>Miền Nam</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -172,9 +172,7 @@
                                 placeholder="{{ __('location::admin.city.city_placeholder') }}">
                         </div>
                         <div class="form-group">
-                            <label for="code">{{ __('location::admin.city.code') }}</label>
-                            <input type="text" class="form-control rounded-0" id="code" autocomplete="false" name="code"
-                                placeholder="{{ __('location::admin.city.code_placeholder') }}">
+                            <label for="code">Vùng Miền</label>
                         </div>
                     </div>
                     <div class="modal-footer">

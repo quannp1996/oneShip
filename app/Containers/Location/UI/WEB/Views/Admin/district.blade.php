@@ -30,11 +30,11 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Tìm
                             kiếm</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                        {{-- <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                             data-target="#addDistrictForm">
                             <i class="fa fa-plus"></i>
                             Thêm Quận / Huyện
-                        </button>
+                        </button> --}}
                     </div>
                 </div>
             </form>
@@ -47,7 +47,6 @@
                         <thead>
                             <tr>
                                 <th style="width: 40px" class="text-center">
-                                    {{-- <input type="checkbox" id="checkAll" value="" name="checkAll"/> --}}
                                 </th>
                                 <th>
                                     {{ __('location::admin.district.name') }}
@@ -63,7 +62,6 @@
                         @forelse (@$districts ?? [] as $district)
                             <tr>
                                 <td>
-                                    {{-- <input type="checkbox" id="item_check_{{ $district->id }}" value="{{ $district->id }}" name="itemCheck[]"/> --}}
                                     {{ $district->id }}
                                 </td>
                                 <td>
@@ -129,11 +127,21 @@
                                                                         {{ __('location::admin.district.first_option') }}
                                                                     </option>
                                                                     @foreach ($cities as $city)
-                                                                        <option value="{{ $city->id }}"
-                                                                            {{ $city->id == $district->province_id ? 'selected' : '' }}>
+                                                                        <option value="{{ $city->code }}"
+                                                                            {{ $city->code == $district->province_id ? 'selected' : '' }}>
                                                                             {{ $city->name }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="code">Nội thành</label>
+                                                                <label
+                                                                    class="c-switch c-switch-label c-switch-primary m-0 align-middle"><input
+                                                                        type="hidden" name="noithanh" value="0"> <input
+                                                                        type="checkbox" id="switchViewType" name="noithanh"
+                                                                        value="1" {{ (int) $district->noithanh == 1 ? 'checked' : '' }} class="c-switch-input">
+                                                                    <span data-checked="On" data-unchecked="Off"
+                                                                        class="c-switch-slider"></span></label>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -167,7 +175,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addDistrictForm" tabindex="-1" role="dialog" aria-labelledby="addDistrictTitle"
+    {{-- <div class="modal fade" id="addDistrictForm" tabindex="-1" role="dialog" aria-labelledby="addDistrictTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -204,5 +212,5 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

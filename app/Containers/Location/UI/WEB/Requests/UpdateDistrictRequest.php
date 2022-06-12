@@ -23,7 +23,8 @@ class UpdateDistrictRequest extends Request
      * @var  array
      */
     protected $access = [
-        'permissions' => 'manage-district',
+        'permissions' => 'manage-location',
+        'roles'       => '',
     ];
 
     /**

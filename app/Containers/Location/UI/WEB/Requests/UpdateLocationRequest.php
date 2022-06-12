@@ -23,8 +23,8 @@ class UpdateLocationRequest extends Request
      * @var  array
      */
     protected $access = [
-        'roles'       => 'admin',
-        'permissions' => 'update-location',
+        'permissions' => 'manage-location',
+        'roles'       => '',
     ];
 
     /**

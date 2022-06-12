@@ -11,6 +11,7 @@ class District extends Model
     protected $fillable = [
         'name',
         'code',
+        'noithanh',
         'province_id',
     ];
 
@@ -38,5 +39,14 @@ class District extends Model
 
     public function city(){
         return $this->hasOne(City::class, 'code', 'province_id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::updating(function($model) {
+            $model->noithanh = (int) $model->noithanh;
+        });
     }
 }

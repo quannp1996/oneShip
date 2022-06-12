@@ -16,13 +16,15 @@ class GetAllLocationsRequest extends Request
      * @var string
      */
     // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
-
     /**
      * Define which Roles and/or Permissions has access to this request.
      *
      * @var  array
      */
-    protected $access = [];
+    protected $access = [
+        'permissions' => 'manage-location',
+        'roles'       => '',
+    ];
 
     /**
      * Id's that needs decoding before applying the validation rules.

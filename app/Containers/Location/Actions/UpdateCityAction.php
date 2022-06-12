@@ -12,7 +12,7 @@ class UpdateCityAction extends Action
     {
         $data = $request->sanitizeInput([
             'name',
-            'code'
+            'vungmien'
         ]);
         $location = Apiato::call('Location@UpdateCityTask', [$request->id, $data]);
 

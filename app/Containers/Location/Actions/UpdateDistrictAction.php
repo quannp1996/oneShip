@@ -12,8 +12,10 @@ class UpdateDistrictAction extends Action
     {
         $data = $request->sanitizeInput([
             'name',
-            'province_id'
+            'province_id',
+            'noithanh'
         ]);
+        
         $location = Apiato::call('Location@UpdateDistrictTask', [$request->id, $data]);
 
         $this->clearCache();
