@@ -9,9 +9,6 @@ class ImportCity implements ToModel
 {
     public function model(array $row)
     {
-        return new City([
-            'code' => $row[0],
-            'name' => $row[1],
-        ]);
+        return null;
     }
 }

@@ -13,15 +13,6 @@
             </div>
         </div>
         <div class="clearfix mb-2"></div>
-        <form action="{{ route('location.import.ward') }}" enctype="multipart/form-data" method="POST">
-            <div class="card">
-                <div class="card-content">
-                    @csrf
-                    <input type="file" name="file" id="file">
-                    <button class="btn btn-success">Nhập Liệu</button>
-                </div>
-            </div>
-        </form> 
         <form action="{{ route('location.ward_list') }}" method="GET">
             <div class="card card-accent-primary">
                 <div class="card-body">

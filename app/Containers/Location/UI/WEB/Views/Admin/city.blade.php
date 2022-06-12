@@ -13,15 +13,6 @@
                 </div>
             </div>
             <div class="clearfix mb-2"></div>
-            <form action="{{ route('location.import.city') }}" enctype="multipart/form-data" method="POST">
-                <div class="card">
-                    <div class="card-content">
-                        @csrf
-                        <input type="file" name="file" id="file">
-                        <button class="btn btn-success">Nhập Liệu</button>
-                    </div>
-                </div>
-            </form>
             <form action="{{ route('location.city_list') }}" method="GET">
                 <div class="card card-accent-primary">
                     <div class="card-body">
@@ -135,7 +126,7 @@
                                                             <button type="button" class="btn btn-secondary rounded-0"
                                                                 data-dismiss="modal">{{ __('Đóng') }}</button>
                                                             <button type="submit"
-                                                                class="btn btn-success rounded-0">{{ __('basecontainer::admin.modal.edit') }}</button>
+                                                                class="btn btn-success rounded-0">{{ __('Lưu') }}</button>
                                                         </div>
                                                         <input type="hidden" name="id" value="{{ $city->id }}" />
                                                     </form>
