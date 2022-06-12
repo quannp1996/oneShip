@@ -558,6 +558,51 @@
         }
     }
 }
+.dropdown-hover {
+    position: relative;
+    z-index: 10;
+    .dropdown-trigger-content {
+        position : absolute ;
+        bottom: 0;
+        left : 0 ; 
+        top: 100%;
+        width: 100%;
+        height: 75px;
+        margin-top: 0;
+        background-clip: padding-box;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+        list-style-type: none;
+        outline: none;
+        padding: 8px 0;
+        text-align: left;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: all .3s cubic-bezier(.78,.14,.15,.86);
+        .item {
+            clear: both;
+            color: #415066;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 22px;
+            margin: 0;
+            padding: 5px 12px;
+            transition: all .3s;
+            a {
+                color: #415066;
+            }
+        }
+    }
+    &:hover {
+        .dropdown-trigger-content { 
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+}
 .sidebar {
     width: 240px;
     background: #fff;
@@ -585,7 +630,7 @@
         font-size: 14px;
         background: #fff;
         position: relative;
-        & > .sidebar-menu-item {
+        & > .sidebar-menu-item .sidebar-menu-title-content {
             height: 40px;
             line-height: 40px;
             margin-bottom: 8px;
@@ -596,9 +641,33 @@
             width: 100%;
             display: flex;
             transition: border-color .3s,background .3s,padding .1s cubic-bezier(.215,.61,.355,1);
-           
+            &.has-sub {
+                flex-wrap: wrap;
+                .sidebar-menu-item .sidebar-menu-title-content{
+                    padding-left: 54px !important;
+                    width: 100%;
+                    display: inline-block;
+                }
+                .sidebar-menu {
+                    border-right: 0;
+                }
+                &.opened {
+                    & > .sidebar-menu-title-content { 
+                        .sidebar-svg ,
+                        a {
+                            color: #15bbb9!important ; 
+                        }
+                    }
+                }
+            }
+            .sidebar-sub-menu {
+                display: none;
+                &.opened {
+                    display: block;
+                }
+            }
             &.active , 
-            &:hover { 
+            .sidebar-menu-title-content:hover { 
                 background-color: #f7ffff!important;
                 .sidebar-svg , 
                 a {
@@ -607,6 +676,7 @@
                
             }
             &.active {
+                
                 .sidebar-menu-icon {
                     opacity: 1;
                     visibility: visible ; 

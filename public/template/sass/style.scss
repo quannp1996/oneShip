@@ -32,7 +32,9 @@ $secondary: #02c8c6;
 .text-24 {
     font-size: 24px;
 }
-
+.text-30 {
+    font-size: 30px;
+}
 // line-height
 .lh-32 {
     line-height: 32px;
@@ -189,12 +191,35 @@ svg {
     position: relative;
     transition: all .3s;
     width: 100%;
-    &:hover , &:focus {
+    &:hover , &:focus, &:focus-visible {
         border-color: #02c8c6;
+        outline: none;
     }
     &.unvalid {
         background: #fff;
         border-color: #f86140;
+    }
+}
+.admin-input-adon  {
+    position: relative ;
+    display: flex;
+    align-items: center;
+    .admin-adon-input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .admin-input-group-addon {
+        border: 1px solid #cedceb;
+        border-radius: 4px;
+        color: #415066;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 6px 11px;
+        text-align: center;
+        transition: all .3s;
+        border-left: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
     }
 }
 .error {
