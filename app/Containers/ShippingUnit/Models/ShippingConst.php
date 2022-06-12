@@ -10,7 +10,7 @@ class ShippingConst extends Model
 {
 
     protected $tables = 'shippingconst';
-    protected $appends = ['id'];
+    public $appends = ['id'];
     protected $fillable = [
         'title', 'items', 'shippingUnitID', 'is_default'
     ];

@@ -33,10 +33,5 @@ class GHTKAPI  extends ShippingUnitAbstract
     {
         return 0;
     }
-    
-    public function caculateShipping(): int
-    {
-        return 0;
-    }
 }
 ?>

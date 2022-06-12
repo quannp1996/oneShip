@@ -96,7 +96,8 @@
     <script>
         var apiURL = {
             users: '{{ route('api_customers_list') }}',
-            shipping: '{{ route('api_shippingunit_get_all_shipping_units') }}'
+            shipping: '{{ route('api_shippingunit_get_all_shipping_units') }}',
+            caculate: '{{ route('api_shippingunit_caculate_fee') }}'
         };
     </script>
     {!! FunctionLib::addMedia('/js/provinces.js') !!}

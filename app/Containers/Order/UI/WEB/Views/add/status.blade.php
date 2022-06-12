@@ -44,9 +44,17 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Cài đặt vận chuyển
+                <i class="fa fa-money"></i>
+                Chi phí
             </div>
             <div class="card-body">
+                <div class="form-group">
+                    <label for="cod">Phí Vận chuyển:</label>
+                    <div class="input-group col-6 m-0 p-0">
+                        <input type="text" name="shipping_fee" v-model="shippingData.fee" class="form-control">
+                        <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="cod">Khoản tiền thu hộ của đơn hàng COD:</label>
                     <div class="input-group col-6 m-0 p-0">

@@ -44,11 +44,6 @@ class NinjaVanAPI extends ShippingUnitAbstract
     {
         return 0;
     }
-    
-    public function caculateShipping(): int
-    {
-        return 0;
-    }
 
     protected function login()
     {
