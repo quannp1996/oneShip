@@ -7,11 +7,9 @@ use App\Containers\ShippingUnit\Tasks\GetAllShippingUnitsTask;
 
 class GetAllShippingUnitsAction extends Action
 {
-    public function run(array $condition = [])
+    public function run(array $condition = [], array $withData = [])
     {
-        $shippingunits = app(GetAllShippingUnitsTask::class)->filter($condition)->run();
+        $shippingunits = app(GetAllShippingUnitsTask::class)->withData($withData)->filter($condition)->run();
         return $shippingunits;
     }
-
-
 }

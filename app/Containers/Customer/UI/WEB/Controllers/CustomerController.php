@@ -5,6 +5,9 @@ namespace App\Containers\Customer\UI\WEB\Controllers;
 use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\Facades\FunctionLib;
 use Apiato\Core\Foundation\FunctionLib as FoundationFunctionLib;
+use App\Containers\Customer\UI\WEB\Controllers\Features\TraitBase;
+use App\Containers\Customer\UI\WEB\Controllers\Features\TraitPrices;
+use App\Containers\Customer\UI\WEB\Controllers\Features\TraitStatus;
 use App\Containers\Customer\UI\WEB\Requests\CreateCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\DeleteCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\EditCustomerRequest;
@@ -14,6 +17,7 @@ use App\Containers\Customer\UI\WEB\Requests\UpdateCustomerRequest;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Ship\Parents\Controllers\AdminController;
 use App\Ship\Transporters\DataTransporter;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Controller
@@ -22,13 +26,12 @@ use App\Ship\Transporters\DataTransporter;
  */
 class CustomerController extends AdminController
 {
-  use ApiResTrait;
+  use ApiResTrait, TraitStatus, TraitBase, TraitPrices;
   public function __construct()
   {
     if (FoundationFunctionLib::isDontUseShareData(['edit', 'store', 'update', 'delete', 'create'])) {
       $this->dontUseShareData = true;
     }
-
     parent::__construct();
   }
 
@@ -39,20 +42,14 @@ class CustomerController extends AdminController
   {
     $this->breadcrumb[] = FunctionLib::addBreadcrumb('Khách hàng', route('admin.customers.index'));
     $this->breadcrumb[] = FunctionLib::addBreadcrumb('Danh sách');
-    \View::share('breadcrumb', $this->breadcrumb);
-
-    $transporter = new DataTransporter($request);
-
+    view()->share('breadcrumb', $this->breadcrumb);
     $customers = Apiato::call('Customer@GetAllCustomersAction', [
-      $transporter,
+      new DataTransporter($request),
       true,
       ['groups:id,title,display_name'],
-      ['id', 'email', 'phone', 'fullname', 'created_at']
     ]);
 
-    if ($request->ajax()) {
-      return $this->sendResponse($customers);
-    }
+    if ($request->ajax()) return $this->sendResponse($customers);
 
     $roles = Apiato::call('Authorization@GetAllRolesAction', [new DataTransporter([]), 0, true, ['customers']]);
     $groups = Apiato::call('Customer@GetAllCustomerGroupsAction', [
@@ -70,7 +67,7 @@ class CustomerController extends AdminController
   {
     $this->breadcrumb[] = FunctionLib::addBreadcrumb('Khách hàng', route('admin.customers.index'));
     $this->breadcrumb[] = FunctionLib::addBreadcrumb('Tạo khách hàng', route('admin.customers.create'));
-    \View::share('breadcrumb', $this->breadcrumb);
+    view()->share('breadcrumb', $this->breadcrumb);
 
     $roles = Apiato::call('Authorization@GetAllRolesAction', [new DataTransporter([]), 0, true, ['customers']]);
     $all_perms = Apiato::call('Authorization@GetAllPermToGroupAction', [['customers']]);
@@ -85,7 +82,7 @@ class CustomerController extends AdminController
 
   public function store(CreateCustomerRequest $request)
   {
-    \DB::beginTransaction();
+    DB::beginTransaction();
     try {
       $transporter = new DataTransporter($request);
       $customer = Apiato::call('Customer@StoreNewCustomerAction', [$transporter]);
@@ -105,7 +102,7 @@ class CustomerController extends AdminController
 
         $customer->load(['roles:id,display_name', 'groups:id,title']);
         $customer->toArray();
-        \DB::commit();
+        DB::commit();
         return redirect()->back()->with([
           'flash_level' => 'success',
           'flash_message' => sprintf('Khách hàng: %s đã được tạo', $customer->fullname),
@@ -114,7 +111,7 @@ class CustomerController extends AdminController
         ]);
       }
     } catch (\Exception $e) {
-      \DB::rollback();
+      DB::rollback();
       throw $e;
       $this->throwExceptionViaMess($e);
     }
@@ -144,7 +141,7 @@ class CustomerController extends AdminController
 
   public function update(UpdateCustomerRequest $request)
   {
-    \DB::beginTransaction();
+    DB::beginTransaction();
     try {
       $transporter = new DataTransporter($request);
 
@@ -163,7 +160,7 @@ class CustomerController extends AdminController
           $customerGroups = Apiato::call('Customer@SyncCustomerToGroupAction', [$customer, $transporter->customer_group_ids]);
         }
 
-        \DB::commit();
+        DB::commit();
         $customer->load(['roles:id,display_name', 'groups:id,title']);
         $customer = $customer->toArray();
         return redirect()->back()->with([
@@ -174,7 +171,7 @@ class CustomerController extends AdminController
         ]);
       }
     } catch (\Exception $e) {
-      \DB::rollback();
+      DB::rollback();
       throw $e;
       $this->throwExceptionViaMess($e);
     }
@@ -182,9 +179,8 @@ class CustomerController extends AdminController
 
   public function filter(FilterCustomerBySeachableRequest $request)
   {
-    $transporter = $request->toTransporter();
     $customers = Apiato::call('Customer@FilterCustomerBySeachableAction', [
-      $transporter,
+      $request->toTransporter(),
       [],
       [
         'id',
@@ -195,4 +191,5 @@ class CustomerController extends AdminController
     ]);
     return $this->sendResponse($customers);
   }
-} // End class
+} 
+// End class

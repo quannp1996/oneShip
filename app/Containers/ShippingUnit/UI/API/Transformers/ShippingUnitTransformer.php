@@ -32,6 +32,7 @@ class ShippingUnitTransformer extends Transformer
             'id' => $entity->id,
             'image' => $entity->getImageUrl(),
             'title' => $entity->title,
+            'consts' => $entity->relationLoaded('consts') ? $entity->consts : $this->null()->getData(),
             'created_at' => $entity->created_at,
             'updated_at' => $entity->updated_at,
         ];

@@ -16,7 +16,7 @@ class Controller extends ApiController
 {
     public function getAllShippingUnits(GetAllShippingUnitsRequest $request, GetAllShippingUnitsAction $getAllShippingUnitsAction)
     {
-        $shippingunits = $getAllShippingUnitsAction->run($request->all());
+        $shippingunits = $getAllShippingUnitsAction->run($request->all(), $request->get('with', []));
         return $this->transform($shippingunits, ShippingUnitTransformer::class);
     }
 }

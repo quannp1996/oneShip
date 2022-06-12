@@ -40,8 +40,7 @@ class ShowDetailCustomerRequest extends Request
      * @var  array
      */
     protected $urlParameters = [
-        'owner_id',
-        'safe_title'
+        'id',
     ];
 
     /**
@@ -49,10 +48,7 @@ class ShowDetailCustomerRequest extends Request
      */
     public function rules()
     {
-        return [
-            'owner_id' => 'required',
-            'safe_title' => 'required'
-        ];
+        return [];
     }
 
     /**

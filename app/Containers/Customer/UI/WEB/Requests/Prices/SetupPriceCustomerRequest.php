@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Containers\Customer\UI\WEB\Requests;
+namespace App\Containers\Customer\UI\WEB\Requests\Prices;
 
+use App\Ship\core\Traits\HelpersTraits\SecurityTrait;
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class GetAllCustomerRequest.
+ * Class UpdateCustomerRequest.
  */
-class GetAllOwnerRequest extends Request
+class SetupPriceCustomerRequest extends Request
 {
-
+    use SecurityTrait;
     /**
      * The assigned Transporter for this Request
      *
      * @var string
      */
-    // protected $transporter = \App\Ship\Transporters\DataTransporter::class;
+    // protected $transporter = \App\Containers\Customer\Data\Transporters\::class;
 
     /**
      * Define which Roles and/or Permissions has access to this request.
@@ -24,7 +25,7 @@ class GetAllOwnerRequest extends Request
      */
     protected $access = [
         'permissions' => 'manage-owner',
-        'roles'       => 'admin',
+        'roles'       => '',
     ];
 
     /**
@@ -32,9 +33,7 @@ class GetAllOwnerRequest extends Request
      *
      * @var  array
      */
-    protected $decode = [
-        // 'id',
-    ];
+    protected $decode = [];
 
     /**
      * Defining the URL parameters (e.g, `/user/{id}`) allows applying
@@ -42,9 +41,7 @@ class GetAllOwnerRequest extends Request
      *
      * @var  array
      */
-    protected $urlParameters = [
-        // 'id',
-    ];
+    protected $urlParameters = [];
 
     /**
      * @return  array
@@ -52,7 +49,8 @@ class GetAllOwnerRequest extends Request
     public function rules()
     {
         return [
-
+            'shippingID' => 'required',
+            'constID' => 'required',
         ];
     }
 
@@ -64,12 +62,5 @@ class GetAllOwnerRequest extends Request
         return $this->check([
             'hasAccess',
         ]);
-    }
-
-    protected function prepareForValidation()
-    {
-      $this->merge([
-        'limit' => request('limit', 15)
-      ]);
     }
 }

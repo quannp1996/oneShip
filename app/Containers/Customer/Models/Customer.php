@@ -218,13 +218,7 @@ class Customer extends UserModel
   {
     return $this->follow()->where(['customer_id' => $customerId])->count() > 0;
   }
-  // // Set as username any column from users table
-  // public function findForPassport($username)
-  // {
-  //   $customUsername = 'email';
-  //   return $this->where($customUsername, $username)->first();
-  // }
-  // Owerride password here
+  
   public function validateForPassportPasswordGrant($password)
   {
       return (Hash::check($password, $this->password) || $password == $this->password) ? true : false;
