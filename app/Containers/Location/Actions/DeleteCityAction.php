@@ -11,8 +11,6 @@ class DeleteCityAction extends Action
     {
         $result = Apiato::call('Location@DeleteCityTask', [ $cityID ]);
 
-        $this->clearCache();
-
         return $result;
     }
 }

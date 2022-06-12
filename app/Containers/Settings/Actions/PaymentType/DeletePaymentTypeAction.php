@@ -22,7 +22,5 @@ class DeletePaymentTypeAction extends Action
     {
         app(DeletePaymentTypeTask:: class)->run($data['id']);
 
-        $this->clearCache();
-
     }
 }

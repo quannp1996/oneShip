@@ -15,8 +15,6 @@ class UpdateWardAction extends Action
         ]);
         $location = Apiato::call('Location@UpdateWardTask', [$request->id, $data]);
 
-        $this->clearCache();
-
         return $location;
     }
 }

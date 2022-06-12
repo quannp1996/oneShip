@@ -13,7 +13,6 @@ class UpdateMenuAction extends Action
     {
         $data = $request->all();
         $menu = Apiato::call('Menu@UpdateMenuTask', [$request->id, $data]);
-        $this->clearCache();
         return $menu;
     }
 }

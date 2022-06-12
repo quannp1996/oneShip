@@ -21,8 +21,6 @@ class DisablePaymentTypeAction extends Action
     {
         $object = Apiato::call('Settings@PaymentType\DisablePaymentTypeTask', [$data['id']]);
 
-        $this->clearCache();
-
         return $object;
     }
 }

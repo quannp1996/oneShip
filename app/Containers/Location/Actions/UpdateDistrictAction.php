@@ -18,8 +18,6 @@ class UpdateDistrictAction extends Action
         
         $location = Apiato::call('Location@UpdateDistrictTask', [$request->id, $data]);
 
-        $this->clearCache();
-
         return $location;
     }
 }

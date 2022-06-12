@@ -22,7 +22,5 @@ class DeleteDeliveryTypeAction extends Action
     {
         app(DeleteDeliveryTypeTask:: class)->run($data['id']);
 
-        $this->clearCache();
-        
     }
 }

@@ -35,8 +35,6 @@ class UpdateDeliveryTypeAction extends Action
             );
         }
 
-        $this->clearCache();
-
         return $object;
     }
 }

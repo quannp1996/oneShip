@@ -13,8 +13,6 @@ class DeleteMenuAction extends Action
     {
         $result = Apiato::call('Menu@DeleteMenuTask', [$request->id]);
 
-        $this->clearCache();
-
         return $result;
     }
 }

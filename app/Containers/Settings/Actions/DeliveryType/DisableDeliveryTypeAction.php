@@ -21,8 +21,6 @@ class DisableDeliveryTypeAction extends Action
     {
         $object = Apiato::call('Settings@DeliveryType\DisableDeliveryTypeTask', [$data['id']]);
 
-        $this->clearCache();
-
         return $object;
     }
 }

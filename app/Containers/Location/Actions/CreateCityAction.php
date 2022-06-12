@@ -15,9 +15,6 @@ class CreateCityAction extends Action
             'code'
         ]);
         $location = Apiato::call('Location@CreateCityTask', [$data]);
-
-        $this->clearCache();
-
         return $location;
     }
 }

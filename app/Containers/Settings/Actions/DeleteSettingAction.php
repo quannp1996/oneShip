@@ -21,7 +21,5 @@ class DeleteSettingAction extends SettingsParentAction
         $setting = Apiato::call('Settings@FindSettingByIdTask', [$data->id]);
 
         Apiato::call('Settings@DeleteSettingTask', [$setting]);
-
-        $this->clearCache();
     }
 }

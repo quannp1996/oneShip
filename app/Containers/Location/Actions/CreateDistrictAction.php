@@ -16,8 +16,6 @@ class CreateDistrictAction extends Action
         ]);
         $location = Apiato::call('Location@CreateDistrictTask', [$data]);
 
-        $this->clearCache();
-
         return $location;
     }
 }

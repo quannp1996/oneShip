@@ -11,8 +11,6 @@ class DeleteDistrictAction extends Action
     {
         $result = Apiato::call('Location@DeleteDistrictTask', [$districtID]);
 
-        $this->clearCache();
-
         return $result;
     }
 }

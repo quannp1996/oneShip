@@ -16,8 +16,6 @@ class UpdateCityAction extends Action
         ]);
         $location = Apiato::call('Location@UpdateCityTask', [$request->id, $data]);
 
-        $this->clearCache();
-
         return $location;
     }
 }
