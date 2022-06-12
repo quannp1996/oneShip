@@ -45,6 +45,7 @@ class ExceptionsHandler extends CoreExceptionsHandler
      */
     public function render($request, Throwable $exception)
     {
+        
         $this->settings = Apiato::call('Settings@GetAllSettingsAction', ['Array', true]);
 
         if ($this->settings['website']['mobile_active']) {

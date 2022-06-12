@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-4">
-                <i class="fa fa-usd"></i>
+                <i class="fa fa-opencart"></i>
                 Danh sách bảng giá
                 <br><small class="text-danger">(Sẽ được thêm bảng giá sau khi lưu đơn vị vận chuyển)</small>
             </div>
