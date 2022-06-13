@@ -1,62 +1,51 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business;
 
+use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
+use Exception;
 
 abstract class ShippingUnitAbstract
 {
     public $shipping;
     public $devMode = false;
-
+    public $sandBoxUrl;
+    public $liveURL;
     
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
+        // $this->devMode = $this->shipping->isDevMode();
+        $this->devMode = false;
     } 
 
-    public function callApi()
-    {
-        $ch = curl_init();
-        
-        curl_setopt($ch, CURLOPT_URL, '');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, []);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-        ));
-
-        $result = curl_exec($ch);
-
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        if (curl_error($ch)) {
-            return json_encode([
-                'success' => false,
-                'message' => 'created payment link failed',
-                'url' => ''
-            ]);
-        }
-        if ($status != 200) {
-            curl_close($ch);
-            return json_encode([
-                'success' => false,
-                'message' => 'created payment link failed',
-                'url' => ''
-            ]);
-        }
-
-        curl_close($ch);
-
-        return $result;
-    }
-
-    abstract public function send();
+    abstract public function send(Order $order);
     abstract public function cancel();
     abstract public function hook();
-    abstract public function estimate();
+    abstract public function estimate(): float;
     abstract public function caculateShipping(): int;
+    
+    public function callApi(array $callData = [], string $url)
+    {
+        try{
+            
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_RETURNTRANSFER => 1,
+                CURLOPT_URL => $url,
+                CURLOPT_POST => true,
+                CURLOPT_HTTPHEADER => [
+                    'Content-Type: application/json',
+                ],
+                CURLOPT_POSTFIELDS => json_encode($callData)
+            ));
+            $resp = curl_exec($curl);
+            curl_close($curl);
+
+            
+            return json_decode($resp, true);
+        }catch(\Exception $e){
+        }
+    }
 }
 ?>

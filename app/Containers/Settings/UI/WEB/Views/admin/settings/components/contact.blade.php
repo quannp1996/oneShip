@@ -18,16 +18,6 @@
             </div>
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label for="fb_page_id">FB page ID for Messenger</label>
-                <input type="text" class="form-control{{ $errors->has('fb_page_id') ? ' is-invalid' : '' }}"
-                       id="fb_page_id" name="contact[fb_page_id]"
-                       value="{{ old('contact.fb_page_id', @$data['contact']['fb_page_id']) }}">
-            </div>
-        </div>
-    </div> --}}
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
