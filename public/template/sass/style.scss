@@ -58,7 +58,15 @@ $secondary: #02c8c6;
 .mb-50 {
     margin-bottom: 50px;
 }
-
+.mb-16 {
+    margin-bottom: 16px;
+}
+.mr-16 {
+    margin-right: 16px;
+}
+.mt-16 {
+    margin-top: 16px;
+}
 // col
 .col-20 {
     flex : 0 0 20%;
@@ -193,7 +201,11 @@ svg {
     width: 100%;
     &:hover , &:focus, &:focus-visible {
         border-color: #02c8c6;
+        color : #02c8c6; 
         outline: none;
+        svg {
+            color : #02c8c6; 
+        }
     }
     &.unvalid {
         background: #fff;
