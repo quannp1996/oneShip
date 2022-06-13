@@ -13,6 +13,7 @@
                 </div>
                 <div class="col-7">
                     @include('shippingunit::admin.components.security')
+                    @include('shippingunit::admin.components.services')
                 </div>
             </div>
             @if (!empty($data))
@@ -33,7 +34,8 @@
             </div>
         </form>
     </div>
-    @include('shippingunit::admin.components.template')
+    @include('shippingunit::admin.components.template.security')
+    @include('shippingunit::admin.components.template.service')
 @endsection
 @push('js_bot_all')
     <script>

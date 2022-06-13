@@ -73,6 +73,10 @@ class ShippingUnit extends Model
         return $this->hasMany(ShippingConst::class, 'shippingUnitID', 'id');
     }
 
+    public function services(){
+        return $this->hasMany(ShippingServices::class, 'shippingUnitID', 'id');
+    }
+
     public function jsonConst()
     {
         if(!$this->relationLoaded('consts')) return '{}';
