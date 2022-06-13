@@ -58,7 +58,7 @@
                             </defs>
                         </svg>
                     </span>
-                    <span class="user-name">{{ $user->fullname }}</span>
+                    <span class="user-name">{{ @$user->fullname }}</span>
                     <i class="arrow">
                         <svg class="" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd" clip-rule="evenodd"

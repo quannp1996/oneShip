@@ -13,7 +13,7 @@ namespace App\Containers\Location\UI\API\Requests\FrontEnd;
 
 use App\Ship\Parents\Requests\ApiRequest;
 
-class GetDistrictByProvinceIdRequest extends ApiRequest
+class GetLocationRequest extends ApiRequest
 {
 
     /**
@@ -40,7 +40,6 @@ class GetDistrictByProvinceIdRequest extends ApiRequest
      * @var  array
      */
     protected $urlParameters = [
-        // 'provinceId'
     ];
 
     /**
@@ -48,9 +47,7 @@ class GetDistrictByProvinceIdRequest extends ApiRequest
      */
     public function rules()
     {
-        return [
-            'provinceId' => ['required']
-        ];
+        return [];
     }
 
     /**

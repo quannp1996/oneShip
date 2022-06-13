@@ -102,35 +102,42 @@ class Controller extends ApiController
     }
 
     public function loginSocial(LoginSocialRequest $request, FindOneCustomerByCondiationAction $findOneCustomerByCondiationAction)
-    {   
-        $user = $findOneCustomerByCondiationAction->run([
-            'social_id' => $request->social_id,
-            'social_provider' => $request->social_provider
-        ]);
-        if(!$user){
-            $data = new DataTransporter([
+    {  
+        try{
+            $user = $findOneCustomerByCondiationAction->run([
                 'social_id' => $request->social_id,
-                'social_provider' => 'facebook',
-                'fullname' => $request->social_name,
-                'email' => sprintf('%sfacebook@gmail.com', $request->social_id),
-                'password' => StringLib::random(8),
-                'status' => 2
+                'social_provider' => $request->social_provider
             ]);
-            $user = app(StoreNewCustomerAction::class)->run($data);
+            if(!$user){
+                $data = new DataTransporter([
+                    'social_id' => $request->social_id,
+                    'social_provider' => 'facebook',
+                    'fullname' => $request->social_name,
+                    'email' => sprintf('%sfacebook@gmail.com', $request->social_id),
+                    'password' => StringLib::random(8),
+                    'status' => 2
+                ]);
+                $user = app(StoreNewCustomerAction::class)->run($data);
+            }
+    
+            if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
+            
+            $dataLogin = array_merge([
+                'username' => $user->email,
+                'password' => $user->password
+            ], [
+                'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
+                'client_password' => Config::get('authentication-container.clients.web.admin.secret')
+            ]);
+            $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
+            if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
+            auth('customer')->login($user, true);
+            return $this->sendResponse([
+                'success' => true,
+                'token' => $content
+            ]);
+        }catch(\Exception $e){
+            return $this->sendError('unauthorize', 404, $e->getMessage());
         }
-
-        if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-        
-        // $dataLogin = array_merge($request->all(), [
-        //     'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
-        //     'client_password' => Config::get('authentication-container.clients.web.admin.secret')
-        // ]);
-        // $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
-        
-        if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-        auth('customer')->login($user, true);
-        return $this->sendResponse([
-            'success' => true,
-        ]);
     }
 }

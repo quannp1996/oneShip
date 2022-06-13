@@ -10,7 +10,6 @@ Route::group(
             'htmloptimized',
             'Maintenance',
             'WebLocaleRedirect',
-            'auth:customer'
         ],
         'namespace' => 'Dashboard',
     ],

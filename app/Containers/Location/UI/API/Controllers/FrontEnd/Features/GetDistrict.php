@@ -12,17 +12,16 @@
 namespace App\Containers\Location\UI\API\Controllers\FrontEnd\Features;
 
 use App\Containers\Location\Actions\GetAllDistrictsAction;
-use App\Containers\Location\UI\API\Requests\FrontEnd\GetDistrictByProvinceIdRequest;
+use App\Containers\Location\UI\API\Requests\FrontEnd\GetLocationRequest;
 use App\Containers\Location\UI\API\Transformers\FrontEnd\DistrictListTransformer;
 
 trait GetDistrict
 {
-    public function getDistrictByProvinceId(GetDistrictByProvinceIdRequest $request, GetAllDistrictsAction $getAllDistrictsAction)
+    public function GetDistricts(GetLocationRequest $request, GetAllDistrictsAction $getAllDistrictsAction)
     {
-        $districts = $getAllDistrictsAction->run(false, 20,'name asc',[], [
+        $districts = $getAllDistrictsAction->run(false, 100000,'name asc',[], [
             'province_id' => $request->provinceId
         ]);
-
         return $this->transform($districts, DistrictListTransformer::class, [], [], 'districts');
     }
 }

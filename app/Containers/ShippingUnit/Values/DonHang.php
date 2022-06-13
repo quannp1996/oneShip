@@ -11,8 +11,8 @@ class DonHang extends Value
     const SAMEDISTRICT = 'tinh';
     const SAMEWARD = 'thanh';
 
-    public $weight;
-    public $pich_up_method;
+    public int $weight;
+    public string $pich_up_method;
     public Diachi $sender;
     public Diachi $receiver;
 

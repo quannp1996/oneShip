@@ -38,7 +38,6 @@ class CallOAuthServerTask extends Task
         $request = Request::create($authFullApiUrl, 'POST', $data, [], [], $headers);
 
         $response = App::handle($request);
-// dd($data,$authFullApiUrl,$response->getContent());
         // response content as Array
         $content = \GuzzleHttp\json_decode($response->getContent(), true);
 

@@ -12,12 +12,12 @@
 namespace App\Containers\Location\UI\API\Controllers\FrontEnd\Features;
 
 use App\Containers\Location\Actions\GetAllWardsAction;
-use App\Containers\Location\UI\API\Requests\FrontEnd\GetWardByDistrictIdRequest;
+use App\Containers\Location\UI\API\Requests\FrontEnd\GetLocationRequest;
 use App\Containers\Location\UI\API\Transformers\FrontEnd\WardListTransformer;
 
 trait GetWard
 {
-    public function getGetWardByDistrictId(GetWardByDistrictIdRequest $request, GetAllWardsAction $getAllWardsAction)
+    public function GetWards(GetLocationRequest $request, GetAllWardsAction $getAllWardsAction)
     {
         $wards = $getAllWardsAction->run(false,20,'name desc', [], [
             'district_id' =>  $request->districtId

@@ -21,5 +21,6 @@
     <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
     <script src="{{ asset('template/libs/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/js/vue_dev.js') }}"></script>
     @stack('js_bot_all')
 </html>

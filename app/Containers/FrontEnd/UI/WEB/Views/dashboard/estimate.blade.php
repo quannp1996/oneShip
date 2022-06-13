@@ -34,28 +34,15 @@
                                                 <button class=" dropdown-toggle" type="button" id="dropdownMenuButton"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <div class="dropdown-custom-input">
-                                                        <input type="hidden" class="" placeholder="" value=""
-                                                            id="">
-                                                        <span class="current-custom"> Ha Noi </span>
+                                                        <input type="hidden" class="" placeholder="" value="" id="">
+                                                        <span class="current-custom" v-text="sender.province && sender.province.name"></span>
                                                     </div>
                                                 </button>
                                                 <div class="dropdown-menu" aria-disabled="true" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
+                                                    <a class="dropdown-item" href="#" @click="choseProvince(province, sender)" v-for="province in provinces" v-text="province.name"></a>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -147,7 +134,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -163,7 +149,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -247,5 +232,13 @@
         </div>
     </div>
 @endsection
-@section('js_bot_all')
-@endsection
+@push('js_bot_all')
+<script>
+    var api = {
+        provinces: '{{ route('api_fr_location_get_provinces') }}',
+        districts: '{{ route('api_fr_location_get_districts') }}',
+        wards: '{{ route('api_fr_location_get_wards') }}',
+    }
+</script>
+{!! FunctionLib::addMedia('/js/pages/estimate.js') !!}
+@endpush
