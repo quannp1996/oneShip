@@ -47,7 +47,7 @@
                         <div class="dropdown-trigger-content">
                             <ul class="list-unstyled p-0 m-0">
                                 <li class="item">
-                                    <a href="javascript:;">
+                                    <a href="{{ route('web_orders_create') }}">
                                         Tạo đơn hàng
                                     </a>
                                 </li>

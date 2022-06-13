@@ -8,7 +8,13 @@ class Order extends NeedAuthController
     public function orders()
     {
         view()->share('user', auth('customer')->user());
-        return view('frontend::dashboard.orders');
+        return view('frontend::order.orders');
+    }
+
+    public function create()
+    {
+        view()->share('user', auth('customer')->user());
+        return view('frontend::order.create');
     }
 }
 ?>

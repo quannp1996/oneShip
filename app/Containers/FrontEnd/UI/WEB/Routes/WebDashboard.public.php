@@ -26,5 +26,9 @@ Route::group(
             'as' => 'web_orders_index',
             'uses' => 'Order@orders'
         ]);
+        $router->get('/order/create', [
+            'as' => 'web_orders_create',
+            'uses' => 'Order@create'
+        ]);
     }
 );
