@@ -20,7 +20,7 @@ class WardListTransformer extends Transformer
         return [
             'id' => $data->id,
             'name' => $data->name,
-
+            'code' => $data->code,
         ];
     }
 }

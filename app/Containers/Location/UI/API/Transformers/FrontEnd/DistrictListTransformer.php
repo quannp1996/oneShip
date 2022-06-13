@@ -20,6 +20,7 @@ class DistrictListTransformer extends Transformer
         return [
             'id' => $data->id,
             'name' => $data->name,
+            'code' => $data->code,
             'safe_title' => $data->safe_title,
             'type' => $data->type
         ];

@@ -20,7 +20,7 @@ trait GetDistrict
     public function GetDistricts(GetLocationRequest $request, GetAllDistrictsAction $getAllDistrictsAction)
     {
         $districts = $getAllDistrictsAction->run(false, 100000,'name asc',[], [
-            'province_id' => $request->provinceId
+            'province_id' => $request->province_id
         ]);
         return $this->transform($districts, DistrictListTransformer::class, [], [], 'districts');
     }

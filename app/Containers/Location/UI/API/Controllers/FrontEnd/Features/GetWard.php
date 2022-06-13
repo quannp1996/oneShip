@@ -19,8 +19,8 @@ trait GetWard
 {
     public function GetWards(GetLocationRequest $request, GetAllWardsAction $getAllWardsAction)
     {
-        $wards = $getAllWardsAction->run(false,20,'name desc', [], [
-            'district_id' =>  $request->districtId
+        $wards = $getAllWardsAction->run(false, 10000,'name desc', [], [
+            'district_id' =>  $request->district_id
         ]);
 
         return $this->transform($wards, WardListTransformer::class, [], [], 'wards');

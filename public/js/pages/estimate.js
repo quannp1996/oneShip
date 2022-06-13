@@ -21,6 +21,11 @@ const estimateVUE = new Vue({
         },
         package_weight: ''
     },
+    
+    components: {
+        dropdown: httpVueLoader(`${BASE_URL}/template/vue_components/dropdown.vue?v=${Math.random()}`),
+    },
+
     mounted() {
         $.get(this.api.provinces).then(json => {
             this.provinces = json.data.provinces;
@@ -28,18 +33,27 @@ const estimateVUE = new Vue({
     },
     methods: {
         choseProvince: async function(item, object){
-            object.province = item;
+            object.province = item.code;
             await $.get(this.api.districts, {
                 province_id: item.code
             }).then(json => {
-                console.log(json);
+                object.districts = json.data
             })
         },
-        choseDistrict: function(item, object){
-            object.district = item;
+        choseDistrict: async function(item, object){
+            object.district = item.code;
+            console.log(item);
+            await $.get(this.api.wards, {
+                district_id: item.code
+            }).then(json => {
+                object.wards = json.data
+            })
         },
         choseWard: function(item, object){
-            object.ward = item;
+            object.ward = item.code;
         },
+        caculateFee: async function(){
+            
+        }
     },
 })

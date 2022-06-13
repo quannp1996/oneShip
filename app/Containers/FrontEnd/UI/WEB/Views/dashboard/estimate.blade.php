@@ -24,57 +24,13 @@
                             <div class="admin-card-body">
                                 <div class="admin-card-row">
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="city" class="admin-form-item-required" title="city">
-                                                Tỉnh/ Thành phố
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="dropdown dropdown-custom">
-                                                <button class=" dropdown-toggle" type="button" id="dropdownMenuButton"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="dropdown-custom-input">
-                                                        <input type="hidden" class="" placeholder="" value="" id="">
-                                                        <span class="current-custom" v-text="sender.province && sender.province.name"></span>
-                                                    </div>
-                                                </button>
-                                                <div class="dropdown-menu" aria-disabled="true" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#" @click="choseProvince(province, sender)" v-for="province in provinces" v-text="province.name"></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <dropdown :name="'sender_city'" :object="sender" :lable="'Tỉnh/ Thành phố'" :first_text="'-- Chọn --'" :lists="provinces" :change="choseProvince"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="district" class="admin-form-item-required" title="district">
-                                                Quận/ Huyện
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="admin-form-item-control-input">
-                                                <div class="admin-form-item-control-input-content">
-                                                    <input placeholder="Vui lòng nhập quận/ Huyện" id="district"
-                                                        class="admin-form-input" type="text" value="" />
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        <dropdown :name="'sender_district'" :object="sender" :lable="'Quận/ Huyện'" :first_text="'-- Chọn --'" :lists="sender.districts" :change="choseDistrict"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="warp" class="admin-form-item-required" title="warp">
-                                                Thôn/ Xóm
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="admin-form-item-control-input">
-                                                <div class="admin-form-item-control-input-content">
-                                                    <input placeholder="Vui lòng nhập thôn/ Xóm" id="warp"
-                                                        class="admin-form-input" type="text" value="" />
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        <dropdown :name="'sender_ward'" :object="sender" :lable="'Thôn/ Xóm'" :first_text="'-- Chọn --'" :lists="sender.wards" :change="choseWard"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -98,73 +54,17 @@
                                 <div class="title">
                                     Địa chỉ người nhận
                                 </div>
-
                             </div>
                             <div class="admin-card-body">
                                 <div class="admin-card-row">
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="city" class="admin-form-item-required" title="city">
-                                                Tỉnh/ Thành phố
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="dropdown dropdown-custom">
-                                                <button class=" dropdown-toggle" type="button" id="dropdownMenuButton"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <div class="dropdown-custom-input">
-                                                        <input type="hidden" class="" placeholder="" value=""
-                                                            id="">
-                                                        <span class="current-custom"> Ha Noi </span>
-                                                    </div>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                    <a class="dropdown-item" href="#">Ho Chi Minh</a>
-                                                    <a class="dropdown-item" href="#">Da Nang</a>
-                                                    <a class="dropdown-item" href="#">Ha Tinh</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <dropdown :name="'receiver_city'" :object="receiver" :lable="'Tỉnh/ Thành phố'" :first_text="'-- Chọn --'" :lists="provinces" :change="choseProvince"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="district" class="admin-form-item-required" title="district">
-                                                Quận/ Huyện
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="admin-form-item-control-input">
-                                                <div class="admin-form-item-control-input-content">
-                                                    <input placeholder="Vui lòng nhập quận/ Huyện" id="district"
-                                                        class="admin-form-input" type="text" value="" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <dropdown :name="'receiver_district'" :object="receiver" :lable="'Quận/ Huyện'" :first_text="'-- Chọn --'" :lists="receiver.districts" :change="choseDistrict"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
-                                        <div class="admin-form-item-label">
-                                            <label for="warp" class="admin-form-item-required" title="warp">
-                                                Thôn/ Xóm
-                                            </label>
-                                        </div>
-                                        <div class="admin-form-item-control">
-                                            <div class="admin-form-item-control-input">
-                                                <div class="admin-form-item-control-input-content">
-                                                    <input placeholder="Vui lòng nhập thôn/ Xóm" id="warp"
-                                                        class="admin-form-input" type="text" value="" />
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        <dropdown :name="'receiver_ward'" :object="receiver" :lable="'Thôn/ Xóm'" :first_text="'-- Chọn --'" :lists="receiver.wards" :change="choseWard"></dropdown>
                                     </div>
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -180,7 +80,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +89,6 @@
                                 </div>
                             </div>
                             <div class="admin-card-body">
-
                                 <div class="admin-card-row">
                                     <div class="col-3 mb-3">
                                         <div class="admin-form-item-label">
@@ -202,16 +100,13 @@
                                             <div class="admin-form-item-control-input">
                                                 <div class="admin-form-item-control-input-content">
                                                     <span class="admin-input-adon ">
-                                                        <input placeholder="Vui lòng nhập" id="weight"
-                                                            class="admin-form-input admin-adon-input" type="text"
-                                                            value="" />
+                                                        <input placeholder="Vui lòng nhập" id="weight" v-model='package_weight'
+                                                            class="admin-form-input admin-adon-input" type="number"/>
                                                         <span class="admin-input-group-addon">Kg</span>
                                                     </span>
-
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
