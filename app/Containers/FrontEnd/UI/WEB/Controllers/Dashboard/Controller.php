@@ -9,7 +9,7 @@ class Controller extends NeedAuthController
     public function dashboard()
     {
         view()->share('user', auth('customer')->user());
-        return view('frontend::dashboard.index');
+        return view('frontend::dashboard.dashboard');
     }
 
 }

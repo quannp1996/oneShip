@@ -69,7 +69,7 @@
                                     </svg>
                                 </span>
                                 <span class="submenu-item">
-                                    <a href="javascript:;">Quản lý đơn hàng </a>
+                                    <a href="{{ route('web_orders_index') }}">Quản lý đơn hàng </a>
                                 </span>
                             </span>
                         </li>

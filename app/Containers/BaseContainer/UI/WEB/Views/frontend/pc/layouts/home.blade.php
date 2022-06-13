@@ -16,7 +16,15 @@
     </head>
     <body>
         {!! $settings['other']['script_body'] !!}
-        @yield('content')
+        <div class="admin-page">
+            @include('frontend::dashboard.components.sidebar')
+            <div class="admin-page-layout">
+                <!-- admin -header -->
+                @include('frontend::dashboard.components.headbar')
+                <!-- end admin header-->
+                @yield('content')
+            </div>
+        </div>
     </body>
     <script>
         var BASE_URL = '{{ url('/') }}';
