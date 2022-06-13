@@ -3,13 +3,13 @@ namespace App\Containers\FrontEnd\UI\WEB\Controllers\Dashboard;
 
 use App\Containers\BaseContainer\UI\WEB\Controllers\NeedAuthController;
 
-class Controller extends NeedAuthController
+class Estimate extends NeedAuthController
 {
 
-    public function dashboard()
+    public function estimate()
     {
         view()->share('user', auth('customer')->user());
-        return view('frontend::dashboard.index');
+        return view('frontend::dashboard.estimate');
     }
 
 }

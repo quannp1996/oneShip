@@ -19,5 +19,9 @@ Route::group(
             'as' => 'web_dashboard_index',
             'uses' => 'Controller@dashboard'
         ]);
+        $router->get('/ship/estimate', [
+            'as' => 'web_estimate_index',
+            'uses' => 'Estimate@estimate'
+        ]);
     }
 );

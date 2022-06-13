@@ -18,5 +18,8 @@
         {!! $settings['other']['script_body'] !!}
         @yield('content')
     </body>
+    <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
+    <script src="{{ asset('template/libs/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
     @stack('js_bot_all')
 </html>
