@@ -19,8 +19,8 @@ class Diachi extends Value
 
     public function __construct(array $diachi = [])
     {
-        $this->province = @$diachi['province'];
-        $this->district = @$diachi['district'];
-        $this->ward = @$diachi['ward'];
+        $this->province = $diachi['province'];
+        $this->district = $diachi['district'];
+        $this->ward = $diachi['ward'];
     }
 }   

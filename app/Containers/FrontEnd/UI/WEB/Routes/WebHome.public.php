@@ -17,9 +17,7 @@ Route::group(
     function ($router) {
         $router->get('/', [
             'as' => 'web_dashboard_index',
-            'uses' => function(){
-                dd('asdsa');
-            }
+            'uses' => 'Controller@dashboard'
         ]);
     }
 );

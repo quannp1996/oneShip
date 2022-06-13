@@ -24,7 +24,7 @@ abstract class ShippingUnitAbstract
     } 
 
     abstract public function send(Order $order);
-    abstract public function cancel();
+    abstract public function cancel(Order $order);
     abstract public function hook();
     abstract public function estimate(): float;
 
@@ -50,7 +50,7 @@ abstract class ShippingUnitAbstract
         })->first();
 
         if(empty($extactItem)) $extactItem = $quotation->items[count($quotation->items) - 1];
-
+        
         return $extactItem['gia'][$this->donhangBase->getCondition()][$this->donhangBase->isIn()][$this->donhangBase->pich_up_method];
     }
     

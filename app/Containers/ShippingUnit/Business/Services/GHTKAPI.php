@@ -21,7 +21,7 @@ class GHTKAPI  extends ShippingUnitAbstract
         dd('send GHTK');
     }
 
-    public function cancel()
+    public function cancel(Order $order)
     {
         dd('cancel GHTK');
     }

@@ -94,7 +94,6 @@ class ExceptionsHandler extends CoreExceptionsHandler
             }
         } elseif ($exception instanceof ClientException || $exception instanceof InvalidStateException) {
             if ($folder == 'frontend') {
-//                return response()->view('basecontainer::' . $folder . '.'.($this->isMobile ? config('basecontainer-container.mobile_alias') : config('basecontainer-container.desktop_alias')) . '.social_auth_fail', ['msg' => $exception->getMessage(), 'site_title' => 'Đăng nhập thất bại'], 400);
                 return redirect()->route('web.home.index')->with(['error_action' => 'Đăng nhập thất bại']);
             }else {
                 throw $exception;
@@ -105,7 +104,6 @@ class ExceptionsHandler extends CoreExceptionsHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        // return response()->json(['message' => $exception->getMessage()], 401);
         return $request->expectsJson()
                     ? response()->json(['message' => $exception->getMessage()], 401)
                     : redirect()->guest($exception->redirectTo() ?? 'login');

@@ -14,5 +14,10 @@ class Controller extends BaseFrontEndController
     {
         return view('frontend::auth.login');
     }
+
+    public function register()
+    {
+        return view('frontend::auth.register');
+    }
 }
 ?>

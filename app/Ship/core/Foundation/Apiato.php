@@ -219,11 +219,9 @@ class Apiato
     public function getLoginWebPageName()
     {
         $loginPage = Config::get('apiato.containers.login-page-url');
-
         if (is_null($loginPage)) {
             throw new WrongConfigurationsException();
         }
-
         return $loginPage;
     }
 
