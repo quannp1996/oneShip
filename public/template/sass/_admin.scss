@@ -307,9 +307,11 @@
         .admin-table-cell {
             background-color: #f5f8fc;
             border-color: #eef1f7;
-            color: #00112f;
-            padding: 0 12px;
         }
+    }
+    .admin-table-cell {
+        color: #00112f;
+        padding: 0 12px;
     }
     .variable-cell {
         display: flex;
@@ -332,6 +334,26 @@
         }
         &:hover {
             .variable-cell {
+                background: #f5f8fc;
+            }
+        }
+    }
+    .admin-table-row{
+        .admin-table-cell {
+            border-bottom: 1px solid #e6edf5;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 12px;
+            position: relative;
+            transition: background .3s;
+        }
+        &:last-child {
+            .admin-table-cell {
+                border-bottom: 0;
+            }
+        }
+        &:hover {
+            .admin-table-cell {
                 background: #f5f8fc;
             }
         }
@@ -372,7 +394,8 @@
     background-color: #fff;
     color: #415066;
     cursor: pointer;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     font-size: 14px;
     font-weight: 400;
     height: 36px;
@@ -389,9 +412,6 @@
         width: 20px;
         height: 20px;
         margin-right: 6px;
-        svg {
-            transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
     }
     &:hover {
         background: #fff;
