@@ -31,10 +31,10 @@
             </div>
             <div class="card-body">
                 <div class="list-group" v-if="shippings && shippings.length">
-                    <div v-for="shipping in shippings">
-                        <input type="radio" :value="shipping.id" v-model="shippingData.shipping_type" name="shipping" v-model="shippingData.shipping"
-                            value="Value1" :id="'Radio' + shipping.id" />
-                        <label class="list-group-item" :for="'Radio' + shipping.id">
+                    <div v-for="(shipping, index) in shippings">
+                        <input type="radio" :value="shipping.id" name="shipping" v-model="shippingData.shipping"
+                            value="Value1" checked :id="'Radio'+ index"/>
+                        <label class="list-group-item" :for="'Radio'+ index">
                             <img width="50px" :src="shipping.image" alt="">
                             @{{ shipping.title }}
                         </label>
@@ -44,23 +44,23 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Cài đặt vận chuyển
+                <i class="fa fa-money"></i>
+                Chi phí
             </div>
             <div class="card-body">
+                <div class="form-group">
+                    <label for="cod">Phí Vận chuyển:</label>
+                    <div class="input-group col-6 m-0 p-0">
+                        <input type="text" name="shipping_fee" v-model="shippingData.fee" class="form-control">
+                        <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="cod">Khoản tiền thu hộ của đơn hàng COD:</label>
                     <div class="input-group col-6 m-0 p-0">
                         <input type="text" name="shipping_cod" v-model="shippingData.cod" class="form-control">
                         <div class="input-group-append"><span id="basic-addon2" class="input-group-text">VNĐ</span>
                     </div>
-                </div>
-                <div class="form-group mt-2">
-                    <label for="shippingType">Hình thức lấy hàng: </label>
-                    <select name="shipping_type" id="shippingType" class="form-control">
-                        @foreach ($pickUp as $key => $item)
-                            <option value="{{ $key }}">{{ $item }}</option>
-                        @endforeach
-                    </select>
                 </div>
             </div>
         </div>

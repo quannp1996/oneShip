@@ -31,8 +31,6 @@ class CreatePaymentTypeAction extends Action
             $object = app(FindPaymentTypeByIdTask::class)->run($object->id);
         }
 
-        $this->clearCache();
-
         return $object;
     }
 }

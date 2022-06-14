@@ -16,7 +16,7 @@ use App\Containers\BaseContainer\Enums\BaseEnum;
 final class OrderStatus extends BaseEnum
 {
     /**
-     * Đơn hủy
+     * Đã hủy đơn
      */
     const CANCEL = -1;
     
@@ -25,44 +25,59 @@ final class OrderStatus extends BaseEnum
      */
     const NEW_ORDER = 1;
 
-      /**
-     * Đơn hàng mới
-     */
-    const UNPAID = 2;
     /**
-     * Đã tiếp nhận
+     * Bưu tá xác nhận đi lấy
      */
-    const ASSIGNED = 7;
-
-     /**
-     * Xuất hàng khỏi kho
+    const SHIPPING_CONFIRM_GET = 2;
+    /**
+     * Bưu tá đã lấy
      */
-    const EXPORTED = 27;
+    const SHIPPING_GOT = 7;
 
     /**
-     * Đang giao hàng
+     * Nhập kho
+     */
+    const IMPORT = 27;
+
+    /**
+     * Xuất kho đến
+     */
+    const EXPORT_TO = 37;
+
+    /**
+     * Đang vận chuyển
      */
     const ON_DELIVERY = 47;
 
     /**
-     * Đã giao hàng
+     * Đang giao
+     */
+    const ON_DELIVERING = 57;
+
+    /**
+     * Giao hàng thành công
      */
     const DELIVERED = 67;
 
     /**
-     * Đơn chờ hoàn tiền
+     * Giao hàng Không thành công
      */
-    const PENDING_REFUND = 87;
+    const NOT_DELIVERED = 77;
+
+    /**
+     * Chờ xử lí
+     */
+    const WAITING_PROCESS = 87;
     
     /**
-     * Đơn hoàn tiền
+     * Chuyển hoàn
      */
     const REFUND = 107;
     
     /**
-     * Đơn hoàn thành
+     * Đã hoàn
      */
-    const DONE = 999;
+    const REFUNDED = 999;
 
     /**
      * @deprecated
@@ -72,14 +87,17 @@ final class OrderStatus extends BaseEnum
     const PAID = 4;
 
     const TEXT = [
-        self::NEW_ORDER => 'Đơn hàng mới',
-        self::ASSIGNED => 'Đã tiếp nhận',
-        // self::UNPAID => 'Chưa thanh toán',
-        // self::EXPORTED => 'Xuất khỏi kho',
-        // self::ON_DELIVERY => 'Đang giao hàng',
-        // self::DELIVERED => 'Đã giao hàng',
-        // self::REFUND => 'Đã hoàn tiền',
-        // self::DONE => 'Đơn hoàn thành',
-        // self::CANCEL => 'Đơn hủy',
+        self::NEW_ORDER => 'Khách Hàng tạo đơn',
+        self::SHIPPING_CONFIRM_GET => 'Bưu tá xác nhận đi lấy',
+        self::SHIPPING_GOT => 'Bưu tá đã lấy',
+        self::IMPORT => 'Nhập kho',
+        self::EXPORT_TO => 'Xuất kho đến',
+        self::ON_DELIVERY => 'Đang vận chuyển',
+        self::ON_DELIVERING => 'Đang giao',
+        self::DELIVERED => 'Giao hàng thành công',
+        self::WAITING_PROCESS => 'Chờ xử lí',
+        self::REFUND => 'Chuyển hoàn',
+        self::REFUNDED => 'Đã hoàn',
+        self::CANCEL => 'Đã hủy đơn'
     ];
 }

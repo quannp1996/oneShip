@@ -13,7 +13,6 @@ class CreateMenuAction extends Action
     {
         $data = $request->all();
         $menu = Apiato::call('Menu@CreateMenuTask', [$data]);
-        $this->clearCache();
 
         return $menu;
     }

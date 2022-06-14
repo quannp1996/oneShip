@@ -20,7 +20,7 @@ class FindShippingUnitByIdTask extends Task
     public function run($id)
     {
         try {
-            return $this->repository->find($id);
+            return $this->repository->with(['consts'])->find($id);
         }
         catch (Exception $exception) {
             throw new NotFoundException();

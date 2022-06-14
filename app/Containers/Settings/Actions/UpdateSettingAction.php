@@ -45,8 +45,6 @@ class UpdateSettingAction extends SettingsParentAction
             }
         }
 
-        $this->clearCache();
-
         return true;
     }
 }

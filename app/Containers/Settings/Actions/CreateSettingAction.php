@@ -28,8 +28,6 @@ class CreateSettingAction extends SettingsParentAction
 
         $setting = Apiato::call('Settings@CreateSettingTask', [$data]);
 
-        $this->clearCache();
-
         return $setting;
     }
 }

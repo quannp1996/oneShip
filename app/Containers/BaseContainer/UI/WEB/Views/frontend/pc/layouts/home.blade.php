@@ -16,7 +16,23 @@
     </head>
     <body>
         {!! $settings['other']['script_body'] !!}
-        @yield('content')
+        <div class="admin-page">
+            @include('frontend::dashboard.components.sidebar')
+            <div class="admin-page-layout">
+                <!-- admin -header -->
+                @include('frontend::dashboard.components.headbar')
+                <!-- end admin header-->
+                @yield('content')
+            </div>
+        </div>
     </body>
+    <script>
+        var BASE_URL = '{{ url('/') }}';
+    </script>
+    <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
+    <script src="{{ asset('template/libs/bootstrap/popper.min.js') }}"></script>
+    <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/js/vue_dev.js') }}"></script>
+    <script src="{{ asset('template/js/httpvueloader.js') }}"></script>
     @stack('js_bot_all')
 </html>

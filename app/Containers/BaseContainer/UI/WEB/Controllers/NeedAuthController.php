@@ -11,10 +11,7 @@
 
 namespace App\Containers\BaseContainer\UI\WEB\Controllers;
 
-use Illuminate\Support\Facades\View;
-use App\Ship\Parents\Controllers\WebController;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
-use App\Containers\Settings\Actions\GetAllSettingsAction;
 
 
 class NeedAuthController extends BaseFrontEndController
@@ -26,6 +23,6 @@ class NeedAuthController extends BaseFrontEndController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth:customer');
+        // $this->middleware('auth:customer');
     }
 }

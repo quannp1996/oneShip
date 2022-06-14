@@ -9,9 +9,7 @@ use Illuminate\Support\Str;
 use App\Ship\Parents\Models\UserModel;
 use Illuminate\Notifications\Notifiable;
 use App\Containers\Comment\Models\Comment;
-use Apiato\Core\Foundation\Facades\ImageClient;
 use Apiato\Core\Foundation\Facades\ImageURL;
-use App\Ship\core\Traits\HelpersTraits\DateTrait;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Authorization\Traits\AuthenticationTrait;
 use Illuminate\Support\Facades\Hash;
@@ -218,13 +216,7 @@ class Customer extends UserModel
   {
     return $this->follow()->where(['customer_id' => $customerId])->count() > 0;
   }
-  // // Set as username any column from users table
-  // public function findForPassport($username)
-  // {
-  //   $customUsername = 'email';
-  //   return $this->where($customUsername, $username)->first();
-  // }
-  // Owerride password here
+  
   public function validateForPassportPasswordGrant($password)
   {
       return (Hash::check($password, $this->password) || $password == $this->password) ? true : false;

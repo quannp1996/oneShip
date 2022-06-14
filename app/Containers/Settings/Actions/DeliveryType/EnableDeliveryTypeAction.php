@@ -22,8 +22,6 @@ class EnableDeliveryTypeAction extends Action
     {
         $object = Apiato::call('Settings@DeliveryType\EnableDeliveryTypeTask', [$data['id']]);
 
-        $this->clearCache();
-
         return $object;
     }
 }

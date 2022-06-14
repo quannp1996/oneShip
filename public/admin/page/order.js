@@ -55,8 +55,14 @@ const orderApp = new Vue({
         },
         shippingData: {
             shipping: 0,
+            fee: 0,
             cod: 0,
             shipping_type: 0
+        }
+    },
+    watch: {
+        async 'shippingData.shipping' (newValue){
+            await this.caculateFee(newValue);
         }
     },
     mounted: async function(){
@@ -68,7 +74,7 @@ const orderApp = new Vue({
             $.get(this.api.users, {
                 keyword: this.filter.user
             }).then(json => {
-                this.users = json.data.users
+                this.users = json.data
             })
         },
 
@@ -137,6 +143,29 @@ const orderApp = new Vue({
 
             }).fail(json => {
 
+            })
+        },
+
+        caculateFee: async function(shippingID){
+            console.log(this.api.caculate);
+            $.get(this.api.caculate, {
+                userID: this.user.id,
+                shippingID: shippingID,
+                package: {
+                    weight: this.package.weight
+                },
+                sender: {
+                    province: this.sender.city,
+                    district: this.sender.district,
+                    ward: this.sender.ward,
+                },
+                receiver: {
+                    province: this.receiver.city,
+                    district: this.receiver.district,
+                    ward: this.receiver.ward,
+                }
+            }).then(json => {
+                this.shippingData.fee = json.data.fee
             })
         }
     }

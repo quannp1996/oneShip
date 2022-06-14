@@ -27,14 +27,12 @@ class GetAllPermToGroupAction extends Action
           'ordereByCreated',
           'filterByGuards'
         ], $criteria));
-
+        $arrGrouped = [];
         if(!empty($permissions) && !$permissions->isEmpty() ) {
-            $arrGrouped = [];
             foreach($permissions as $item) {
                 $arrGrouped[$item->containers][] = $item;
             }
         }
-
         return $arrGrouped;
     }
 

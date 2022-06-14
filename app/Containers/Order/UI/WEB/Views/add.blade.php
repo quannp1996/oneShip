@@ -27,7 +27,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5">
+                            <div :class="user ? 'col-5' : 'col-5 divDisable'">
                                 @include('order::add.status')
                             </div>
                         </div>
@@ -96,7 +96,8 @@
     <script>
         var apiURL = {
             users: '{{ route('api_customers_list') }}',
-            shipping: '{{ route('api_shippingunit_get_all_shipping_units') }}'
+            shipping: '{{ route('api_shippingunit_get_all_shipping_units') }}',
+            caculate: '{{ route('api_shippingunit_caculate_fee') }}'
         };
     </script>
     {!! FunctionLib::addMedia('/js/provinces.js') !!}

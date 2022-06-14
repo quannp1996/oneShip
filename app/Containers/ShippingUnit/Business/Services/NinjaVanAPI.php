@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\Cache;
 class NinjaVanAPI extends ShippingUnitAbstract
 {
     const TOKENKEY = 'ninjavan_token_key';
+
     public $sandBoxUrl = 'https://api-sandbox.ninjavan.co/vn';
+
     public $liveURL = 'https://api.ninjavan.co/vn';
+    
     protected $ninjavan_token_key;
 
     public function __construct(ShippingUnit $shippingUnit)
@@ -29,7 +32,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
         dd('send NinjaVan');
     }
 
-    public function cancel()
+    public function cancel(Order $order)
     {
         dd('cancel NinjaVan');
     }
@@ -41,11 +44,6 @@ class NinjaVanAPI extends ShippingUnitAbstract
     }
 
     public function estimate(): float
-    {
-        return 0;
-    }
-    
-    public function caculateShipping(): int
     {
         return 0;
     }

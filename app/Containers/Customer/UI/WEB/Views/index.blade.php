@@ -82,7 +82,6 @@
                             </tr>
                         @endif
                     </thead>
-
                     <tbody>
                         @forelse ($customers as $customer)
                             @include('customer::inc.item', ['item' => $customer])

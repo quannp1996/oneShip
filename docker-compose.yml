@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile
+        container_name: shipping
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/var/www/html
+        networks:
+            - laravel-shouts
+
+networks:
+    laravel-shouts:
+        driver: bridge

@@ -36,8 +36,6 @@ class UpdatePaymentTypeAction extends Action
 
         }
 
-        $this->clearCache();
-
         return $object;
     }
 }
