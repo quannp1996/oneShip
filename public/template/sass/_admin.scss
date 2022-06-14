@@ -312,14 +312,23 @@
     .admin-table-cell {
         color: #00112f;
         padding: 0 12px;
+        &.admin-table-cell-fix-left {
+            position: sticky!important;
+            z-index: 2
+        }
     }
     .variable-cell {
         display: flex;
         align-items: center;
         word-break: break-all;
+        &.variable-cell-fix-left{
+            position: sticky!important;
+            z-index: 2
+        }
     }
     .custom-row {
         .variable-cell {
+            background-color: #fff;
             border-bottom: 1px solid #e6edf5;
             box-sizing: border-box;
             flex-shrink: 0;

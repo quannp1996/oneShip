@@ -8993,12 +8993,23 @@ textarea {
   color: #00112f;
   padding: 0 12px;
 }
+.admin-table .admin-table-cell.admin-table-cell-fix-left {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  z-index: 2;
+}
 .admin-table .variable-cell {
   display: flex;
   align-items: center;
   word-break: break-all;
 }
+.admin-table .variable-cell.variable-cell-fix-left {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  z-index: 2;
+}
 .admin-table .custom-row .variable-cell {
+  background-color: #fff;
   border-bottom: 1px solid #e6edf5;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -9660,6 +9671,30 @@ textarea {
   color: #415066;
 }
 
+::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cedceb;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-moz-selection {
+  background: #02c8c6;
+  color: #fff;
+}
+
+::selection {
+  background: #02c8c6;
+  color: #fff;
+}
+
 .text-12 {
   font-size: 12px;
 }
@@ -9725,6 +9760,14 @@ textarea {
   min-height: auto !important;
 }
 
+.h-20 {
+  height: 20px;
+}
+
+.lh-20 {
+  line-height: 20px;
+}
+
 .color-00112f {
   color: #00112f;
 }
@@ -9741,9 +9784,50 @@ textarea {
   color: #fe9e0f;
 }
 
+.color-15bbb9 {
+  color: #15bbb9;
+}
+
+.color-748399 {
+  color: #748399;
+}
+
 .icon-svg {
   width: 20px;
   height: 20px;
+}
+.icon-svg svg {
+  width: 20px;
+  height: 20px;
+}
+.icon-svg.small {
+  width: 16px;
+  height: 16px;
+}
+.icon-svg.small svg {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: 3px;
+}
+.icon-svg.smm {
+  width: 14px;
+  height: 14px;
+}
+.icon-svg.smm svg {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  top: -1px;
+}
+
+.tips {
+  color: #748399;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-top: 2px;
+  text-transform: none;
 }
 
 svg {
