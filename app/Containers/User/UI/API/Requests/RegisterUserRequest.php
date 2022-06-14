@@ -7,7 +7,7 @@ use App\Ship\Parents\Requests\Request;
 /**
  * Class RegisterUserRequest.
  *
- * @author Ha Ly Manh  <lymanhha@gmail.com>
+ * @author Quan NP  <npquan1995@gmail.com>
  */
 class RegisterUserRequest extends Request
 {

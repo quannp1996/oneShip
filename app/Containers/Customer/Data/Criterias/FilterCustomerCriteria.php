@@ -16,15 +16,16 @@ class FilterCustomerCriteria extends Criteria
   }
 
   public function apply($model, PrettusRepositoryInterface $repository) {
+
     if ($this->transporter->id) {
       $model = $model->where('id', $this->transporter->id);
     }
 
     if ($this->transporter->keyword) {
       $model =  $model->where(function ($query) {
-        $query->where('email', 'REGEXP', $this->transporter->keyword)
-              ->orWhere('phone', 'REGEXP', $this->transporter->keyword)
-              ->orWhere('fullname', 'REGEXP', $this->transporter->keyword);
+        $query->where('email', 'LIKE', '%'.$this->transporter->keyword.'%')
+              ->orWhere('phone', 'LIKE', '%'.$this->transporter->keyword.'%')
+              ->orWhere('fullname', 'LIKE', '%'.$this->transporter->keyword.'%');
       });
     }
 

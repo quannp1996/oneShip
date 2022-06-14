@@ -31,6 +31,8 @@ class Customer extends UserModel
 
   protected $guard_name = 'customers';
 
+  protected $appends = ['id'];
+
   /**
    * The attributes that are mass assignable.
    *

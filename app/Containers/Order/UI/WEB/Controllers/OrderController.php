@@ -8,6 +8,7 @@ use Apiato\Core\Foundation\Facades\FunctionLib;
 use App\Containers\BaseContainer\Actions\CreateBreadcrumbAction;
 use App\Containers\Order\Actions\CreateOrderAction;
 use App\Containers\Order\Actions\GetAllOrdersAction;
+use App\Containers\Order\Enums\EnumShipPicking;
 use App\Containers\Order\Enums\OrderStatus;
 use App\Ship\Parents\Controllers\WebController;
 use App\Ship\Parents\Controllers\AdminController;
@@ -19,7 +20,9 @@ use App\Containers\Order\UI\WEB\Requests\UpdateOrderRequest;
 use App\Containers\Order\UI\WEB\Requests\GetAllOrdersRequest;
 use App\Containers\Order\UI\WEB\Requests\FindOrderByIdRequest;
 use App\Containers\Settings\Enums\PaymentStatus;
+use App\Containers\ShippingUnit\Business\ShippingFactory;
 use App\Containers\ShippingUnit\Business\ShippingUnitInterface;
+use App\Containers\ShippingUnit\Models\ShippingUnit;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -37,6 +40,7 @@ class OrderController extends AdminController
       $this->dontUseShareData = true;
     }
     view()->share('ordersType', OrderStatus::TEXT);
+    view()->share('pickUp', EnumShipPicking::LIST);
     parent::__construct();
   }
 
@@ -118,7 +122,7 @@ class OrderController extends AdminController
     $order = Apiato::call('Order@FindOrderByIdAction', [
       $request->id,
       [
-        'orderItems' => function($q) {
+        'orderItems' => function ($q) {
           $q->orderBy('id');
         },
         'user:id,name,email',
@@ -150,16 +154,21 @@ class OrderController extends AdminController
    *
    * @param StoreOrderRequest $request
    */
-  public function store(StoreOrderRequest $request)
+  public function store(StoreOrderRequest $request, CreateOrderAction $createOrderAction)
   {
-    dd($request->all());
-    $data = $request->sanitizeInput([
-      // add your request data here
-    ]);
-
-    $order = app(CreateOrderAction::class)->run($data);
-
-    // ..
+    try {
+      $data = $request->sanitizeInput([
+        'userID', 'sender', 'receiver', 'package', 'shipping', 'shipping_cod', 'shipping_type'
+      ]);
+      $order = $createOrderAction->setData($data)->setItems($data['package']['items'])->run();
+      return $this->sendResponse([
+        'order' => $order
+      ]);
+    } catch (\Exception $e) {
+      return $this->sendResponse([
+        'order' => $order
+      ]);
+    }
   }
 
   /**

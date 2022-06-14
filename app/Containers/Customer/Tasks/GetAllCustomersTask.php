@@ -18,7 +18,7 @@ class GetAllCustomersTask extends Task
         $this->repository = $repository;
     }
 
-    public function run(int $limit=15, $hasPagination = true)
+    public function run($limit = 15, $hasPagination = true)
     {
         if($hasPagination == false){
           return $this->repository->scopeQuery(function ($query) {

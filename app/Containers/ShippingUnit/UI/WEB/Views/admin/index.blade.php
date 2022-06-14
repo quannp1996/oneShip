@@ -88,8 +88,12 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin_shipping_unit_edit', ['id' => $shipping->id]) }}">
+                                    <a href="{{ route('admin_shipping_unit_edit', ['id' => $shipping->id]) }}" class="btn btn-link">
                                         <i class="fa fa-pencil-square-o"></i>
+                                    </a>
+                                    &nbsp;
+                                    <a href="javascript:;" onclick="admin.delete_this(this);" data-href="{{ route('admin_shipping_unit_delete', ['id' => $shipping->id]) }}" class="btn btn-link">
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>

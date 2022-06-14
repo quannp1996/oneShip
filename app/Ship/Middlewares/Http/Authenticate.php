@@ -19,6 +19,7 @@ class Authenticate extends LaravelAuthenticate
             return parent::authenticate($request, $guards);
         }
         catch (Exception $exception) {
+            
             throw new AuthenticationException();
         }
     }

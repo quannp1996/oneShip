@@ -1,6 +1,7 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business\Services;
 
+use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 
@@ -15,9 +16,9 @@ class GHTKAPI  extends ShippingUnitAbstract
         $this->shipping = $shippingUnit;
     }
 
-    public function send()
+    public function send(Order $order)
     {
-        return $this->callApi();
+        dd('send GHTK');
     }
 
     public function cancel()
@@ -28,10 +29,14 @@ class GHTKAPI  extends ShippingUnitAbstract
         dd('hook GHTK');
     }
 
-    public function estimate()
+    public function estimate(): float
     {
-        dd('estimate GHTK');
+        return 0;
     }
     
+    public function caculateShipping(): int
+    {
+        return 0;
+    }
 }
 ?>

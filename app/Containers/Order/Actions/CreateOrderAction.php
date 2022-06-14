@@ -11,17 +11,15 @@ use App\Containers\Bizfly\Actions\Loyalty\SubPointLoyaltyAction;
 
 class CreateOrderAction extends Action
 {
-    protected $items = [],$data;
+    protected $items = [], $data = [];
+
     public function run(): Order
     {
-        return DB::transaction(function () {
-
-            $order = app(CreateOrderTask::class)->setData($this->data)->run();
+        $order = app(CreateOrderTask::class)->setData($this->data)->run();
             
-            app(CreateOrderItemsTask::class)->setOrderId($order->id)->setItems($this->items)->run();
+        app(CreateOrderItemsTask::class)->setOrderId($order->id)->setItems($this->items)->run();
 
-            return $order;
-        });
+        return $order;
     }
 
     public function setItems(array $items): self

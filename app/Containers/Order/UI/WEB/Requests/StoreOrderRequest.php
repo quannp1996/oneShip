@@ -54,7 +54,7 @@ class StoreOrderRequest extends Request
     public function rules()
     {
         return [
-            
+           'customer_id' => ['required'],
         ];
     }
 

@@ -39,7 +39,7 @@ return [
             'admin/js/init/submit-setup.js',
             'admin/js/customize.js',
             'admin/js/iframe.js',
-            config('app.env') == 'local' ? 'admin/js/vue_dev.js' : 'admin/js/vue.js',
+            config('app.env') == 'local' ? 'admin/js/vue_dev.js' : 'admin/js/vue_dev.js',
         ],
         'media' => [
             'admin/node_modules/font-awesome/css/font-awesome.min.css',

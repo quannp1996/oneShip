@@ -96,8 +96,6 @@ class HttpKernel extends LaravelHttpKernel
     'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
     'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
     'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-    // 'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-    // 'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
     'authenticated' => \App\Ship\Middlewares\Http\RedirectIfAuthenticated::class,
     'cors' => CorsMiddleware::class,
     'Maintenance' => Maintenance::class,

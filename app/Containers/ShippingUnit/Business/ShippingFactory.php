@@ -11,9 +11,9 @@ class ShippingFactory
 
     protected function __construct(){}
 
-    static function getInstance(string $type, ShippingUnit $shippingUnit): ShippingUnitAbstract
+    static function getInstance(ShippingUnit $shippingUnit): ShippingUnitAbstract
     {
-        switch($type){
+        switch($shippingUnit->type){
             case EnumShipping::GHTK:
             default:
                 return new GHTKAPI($shippingUnit);

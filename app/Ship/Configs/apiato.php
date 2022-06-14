@@ -15,7 +15,7 @@ return [
         | The Login Page URL
         |--------------------------------------------------------------------------
         */
-        'login-page-url' => 'login',
+        'login-page-url' => 'dang-nhap',
     ],
 
     // Chỗ này config có dùng segment ngôn ngữ hay ko

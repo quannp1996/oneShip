@@ -48,7 +48,6 @@ class WebAuthentication extends Middleware
             return redirect(Apiato::getLoginWebPageName())
                 ->with('errorMessage', 'Credentials Incorrect.');
         }
-
         return $next($request);
     }
 }

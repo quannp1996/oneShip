@@ -74,12 +74,12 @@ final class OrderStatus extends BaseEnum
     const TEXT = [
         self::NEW_ORDER => 'Đơn hàng mới',
         self::ASSIGNED => 'Đã tiếp nhận',
-        self::UNPAID => 'Chưa thanh toán',
-        self::EXPORTED => 'Xuất khỏi kho',
-        self::ON_DELIVERY => 'Đang giao hàng',
-        self::DELIVERED => 'Đã giao hàng',
-        self::REFUND => 'Đã hoàn tiền',
-        self::DONE => 'Đơn hoàn thành',
-        self::CANCEL => 'Đơn hủy',
+        // self::UNPAID => 'Chưa thanh toán',
+        // self::EXPORTED => 'Xuất khỏi kho',
+        // self::ON_DELIVERY => 'Đang giao hàng',
+        // self::DELIVERED => 'Đã giao hàng',
+        // self::REFUND => 'Đã hoàn tiền',
+        // self::DONE => 'Đơn hoàn thành',
+        // self::CANCEL => 'Đơn hủy',
     ];
 }

@@ -3,9 +3,8 @@
 namespace App\Containers\Customer\Actions;
 
 use App\Ship\Parents\Actions\Action;
-use App\Ship\Parents\Requests\Request;
-use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Transporters\DataTransporter;
+use Apiato\Core\Foundation\Facades\Apiato;
 
 class GetAllCustomersAction extends Action
 {
@@ -17,7 +16,6 @@ class GetAllCustomersAction extends Action
         ['customerFilter' => [$transporter]],
         ['with' => [$withData]]
       ]);
-
       return $customers;
     }
 }
