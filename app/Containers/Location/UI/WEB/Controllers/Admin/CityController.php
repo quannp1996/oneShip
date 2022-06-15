@@ -19,7 +19,7 @@ use App\Containers\Location\Models\City;
  *
  * @package App\Containers\Location\UI\WEB\Controllers
  */
-class CityController extends AdminController
+class CityController extends LocationController
 {
     /**
      * Show all entities

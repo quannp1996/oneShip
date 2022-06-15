@@ -9,7 +9,7 @@ class GetAllCitiesAction extends Action
 {
     public function run(bool $hasPagination = true, int $limit = 20, string $orderBy = 'id desc', array $withData = [], array $condition = [])
     {
-        return $this->remember(function () use ($hasPagination,$limit,$orderBy, $withData, $condition) {
+        // return $this->remember(function () use ($hasPagination,$limit,$orderBy, $withData, $condition) {
             $cities = Apiato::call('Location@GetAllCitiesTask', [$hasPagination,$limit,$orderBy], [
                 [
                     'filterLocation' => [$condition]
@@ -19,6 +19,6 @@ class GetAllCitiesAction extends Action
                 ]
             ]);
             return $cities;
-        });
+        // }, 'list_city');
     }
 }

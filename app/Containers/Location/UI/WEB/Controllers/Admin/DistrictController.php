@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @package App\Containers\Location\UI\WEB\Controllers
  */
-class DistrictController extends AdminController
+class DistrictController extends LocationController
 {
     use ApiResTrait;
 

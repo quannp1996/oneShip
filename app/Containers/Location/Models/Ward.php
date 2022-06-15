@@ -2,9 +2,7 @@
 
 namespace App\Containers\Location\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
-
-class Ward extends Model
+class Ward extends Location
 {
     protected $table = '_geovnward';
 

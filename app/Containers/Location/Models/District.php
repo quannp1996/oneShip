@@ -2,9 +2,7 @@
 
 namespace App\Containers\Location\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model;
-
-class District extends Model
+class District extends Location
 {
     protected $table = '_geovndistrict';
 

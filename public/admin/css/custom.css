@@ -74,5 +74,9 @@
   }
 
   .modal .modal-biglg{
-    min-width: 1700px;
+    width: calc(100% - 50px);
+    max-width: unset;
   }
+  select.form-control option:checked {
+    background : #39f ; 
+}

@@ -30,10 +30,6 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-search"></i> Tìm
                             kiếm</button>
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addCityForm">
-                            <i class="fa fa-plus"></i>
-                            {{ __('location::admin.city.city_addButton_lable') }}
-                        </button>
                     </div>
                 </div>
             </form>
@@ -46,7 +42,6 @@
                         <thead>
                             <tr>
                                 <th style="width: 40px" class="text-center">
-                                    {{-- <input type="checkbox" id="checkAll" value="" name="checkAll"/> --}}
                                 </th>
                                 <th>
                                     {{ __('location::admin.city.city_name') }}
@@ -62,7 +57,6 @@
                         @forelse (@$cities ?? [] as $city)
                             <tr>
                                 <td>
-                                    {{-- <input type="checkbox" id="item_check_{{ $item->id }}" value="{{ $item->id }}" name="itemCheck[]"/> --}}
                                     {{ $city->id }}
                                 </td>
                                 <td>
@@ -115,11 +109,28 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="code">Vùng Miền</label>
-                                                                <select name="vungmien" id="vungmien" class="form-control rounded-0">
-                                                                    <option value="1" {{ $city->vungmien == 1 ? 'selected' : '' }}>Miền Bắc</option>
-                                                                    <option value="2" {{ $city->vungmien == 2 ? 'selected' : '' }}>Miền Trung</option>
-                                                                    <option value="3" {{ $city->vungmien == 3 ? 'selected' : '' }}>Miền Nam</option>
+                                                                <select name="vungmien" id="vungmien"
+                                                                    class="form-control rounded-0">
+                                                                    <option value="1"
+                                                                        {{ $city->vungmien == 1 ? 'selected' : '' }}>Miền
+                                                                        Bắc</option>
+                                                                    <option value="2"
+                                                                        {{ $city->vungmien == 2 ? 'selected' : '' }}>Miền
+                                                                        Trung</option>
+                                                                    <option value="3"
+                                                                        {{ $city->vungmien == 3 ? 'selected' : '' }}>Miền
+                                                                        Nam</option>
                                                                 </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="code">Không hỗ trợ Đơn vị vận chuyển</label>
+                                                                <div>
+                                                                    <select name="disabled[]" id="disabled" multiple class="form-control">
+                                                                        @foreach ($allShippings as $item)
+                                                                            <option value="{{ $item->id }}" {{ is_array($city->disabled) && in_array($item->_id, $city->disabled) ? 'selected' : '' }}>{{ $item->title }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -150,37 +161,6 @@
                         {!! $cities->appends($search_data->toArray())->links('basecontainer::admin.inc.paginator') !!}
                     </div>
                 @endif
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="addCityForm" tabindex="-1" role="dialog" aria-labelledby="addCityFormTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('location::admin.city.add_lable') }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('location.city_add') }}" method="POST">
-                    <div class="modal-body">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">{{ __('location::admin.city.city_name') }}</label>
-                            <input type="text" class="form-control rounded-0" id="name" autocomplete="false" name="name"
-                                placeholder="{{ __('location::admin.city.city_placeholder') }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="code">Vùng Miền</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary rounded-0"
-                            data-dismiss="modal">{{ __('Đóng') }}</button>
-                        <button type="submit" class="btn btn-success rounded-0">{{ __('Lưu') }}</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

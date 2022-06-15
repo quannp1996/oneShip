@@ -4,14 +4,15 @@ namespace App\Containers\Location\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class City extends Model
+class City extends Location
 {
     protected $table = '_geovnprovince';
 
     protected $fillable = [
         'name',
         'code',
-        'vungmien'
+        'vungmien',
+        'disabled'
     ];
 
     protected $attributes = [

@@ -19,7 +19,7 @@ use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
  *
  * @package App\Containers\Location\UI\WEB\Controllers
  */
-class WardController extends AdminController
+class WardController extends LocationController
 {
     use ApiResTrait;
 
