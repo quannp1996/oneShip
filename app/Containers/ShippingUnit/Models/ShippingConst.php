@@ -12,7 +12,7 @@ class ShippingConst extends Model
     protected $tables = 'shippingconst';
     public $appends = ['id'];
     protected $fillable = [
-        'title', 'items', 'shippingUnitID', 'is_default'
+        'title', 'items', 'shippingUnitID', 'is_default', 'overweight'
     ];
 
     protected $attributes = [

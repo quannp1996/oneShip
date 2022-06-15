@@ -1,6 +1,6 @@
 
 const baseItem = {
-    weight: 0,
+    weight: '',
     gia: {
         vungmien: {
             in: {
@@ -37,6 +37,7 @@ const baseItem = {
 const baseConst = {
     title: '',
     items: [],
+    overweight: JSON.parse(JSON.stringify(baseItem)),
     shippingUnitID: window.shippingUnit.id,
     is_default: 0,
 }
@@ -61,18 +62,26 @@ const orderApp = new Vue({
 
         openEditModal: function (priceList) {
             this.is_adding = false;
-            this.current_const = priceList;
+            this.current_const = {
+                ... baseConst,
+                ... priceList
+            };
             $('#addShippingCostModal').modal('show');
         },
 
         addItem: function () {
             let newConst = JSON.parse(JSON.stringify(baseItem));
-            var maxWeight = typeof this.current_const.items[this.current_const.items.length - 1] != 'undefined'
-                ? this.current_const.items[this.current_const.items.length - 1].weight
-                : 0
-            newConst.weight = +maxWeight + 1;
             this.current_const.items.push(newConst);
         },
+
+        deleteItem: function(index) {
+            this.current_const.items.splice(index, 1);
+        },
+
+        setDefault: function(item) {
+
+        },
+
         deleteConst: function (item) {
             Swal.fire({
                 title: 'Bạn có chắc chắn ?',
@@ -83,7 +92,6 @@ const orderApp = new Vue({
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.post('/shipping_unit/shipping_const/delete/' + item.id).then(json => {
-                        console.log(json);
                         if (json.data.success) {
                             this.shipping_const = this.shipping_const.filter(shipping => {
                                 return shipping.id != item.id
@@ -93,6 +101,7 @@ const orderApp = new Vue({
                 }
             })
         },
+
         saveShippingConst: function () {
             $.post(this.is_adding ? this.apiURL.shipping_const : `/shipping_unit/shipping_const/update/${this.current_const.id}`, {
                 ... this.current_const,
@@ -107,6 +116,14 @@ const orderApp = new Vue({
             }).fail(json => {
 
             })
+        },
+
+        setDefault: function( id ){
+            $.post(`/shipping_unit/shipping_const/set_default/${id}`).then(json => {
+                console.log(json);
+            }).fail(json => {
+
+            });
         }
     }
 })

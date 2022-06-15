@@ -27,7 +27,7 @@
                 <tr v-for="item in shipping_const">
                     <td v-text="item.title"></td>
                     <td>
-                        <a href="javascript:;" :class="item.is_default == 1 ? 'text-success' : 'text-danger'">
+                        <a href="javascript:;" @click="setDefault(item.id)" :class="item.is_default == 1 ? 'text-success' : 'text-danger'">
                             <i :class="item.is_default == 1 ? 'fa fa-check-circle' : 'fa fa-times-circle'"></i>
                         </a>
                     </td>
@@ -93,23 +93,17 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
-                                <td class="text-center">Mang ra BC</td>
-                                <td class="text-center">Lấy tận nơi</td>
+                                @for ($i = 0; $i < 6; $i++)
+                                    <td class="text-center">Mang ra BC</td>
+                                    <td class="text-center">Lấy tận nơi</td>
+                                @endfor
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in current_const.items" v-if="current_const.items.length > 0">
-                                <td class="text-center" v-text="item.weight"></td>
+                            <tr v-for="(item, index) in current_const.items" :key="index" v-if="current_const.items.length > 0">
+                                <td class="text-center">
+                                    <input type="text" v-model="item.weight" class="form-control" placeholder="1-3">
+                                </td>
                                 <!-- Vùng Miền -->
                                 <td class="text-center">
                                     <input type="text" v-model="item.gia.vungmien.in.mangra" class="form-control">
@@ -151,10 +145,59 @@
                                 </td>
                                 <!--  End -->
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="button" @click="deleteItem(index)" class="btn btn-danger">
                                         <i class="fa fa-trash"> </i>
                                         Xóa
                                     </button>
+                                </td>
+                            </tr>
+                            <tr v-if="current_const.items.length > 0" style="antiquewhite">
+                                <td class="text-center">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">+</span>
+                                        </div>
+                                        <input type="text" v-model="current_const.overweight.weight" class="form-control" placeholder="2">
+                                    </div>
+                                </td>
+                                <!-- Vùng Miền -->
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.vungmien.in.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.vungmien.in.layhang" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.vungmien.out.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.vungmien.out.layhang" class="form-control">
+                                </td>
+                                <!-- Nội Tỉnh / Liên Tỉnh -->
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.tinh.in.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.tinh.in.layhang" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.tinh.out.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.tinh.out.layhang" class="form-control">
+                                </td>
+                                <!-- Nội Thành / Ngoại Thành -->
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.thanh.in.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.thanh.in.layhang" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.thanh.out.mangra" class="form-control">
+                                </td>
+                                <td class="text-center">
+                                    <input type="text" v-model="current_const.overweight.gia.thanh.out.layhang" class="form-control">
                                 </td>
                             </tr>
                             <tr v-if="current_const.items == 0">

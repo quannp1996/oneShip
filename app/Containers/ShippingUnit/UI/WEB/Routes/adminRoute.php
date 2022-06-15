@@ -53,8 +53,13 @@ Route::group(
         ]);
 
         $router->post('/shipping_const/update/{id}', [
-        'as' => 'admin_shipping_const_update',
-        'uses' => 'Controller@updateShippingConst'
+            'as' => 'admin_shipping_const_update',
+            'uses' => 'Controller@updateShippingConst'
+        ]);
+
+        $router->post('/shipping_const/set_default/{id}', [
+            'as' => 'admin_shipping_const_set_default',
+            'uses' => 'Controller@setDefault'
         ]);
     }
 )
