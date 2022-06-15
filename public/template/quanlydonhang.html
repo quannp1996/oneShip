@@ -186,7 +186,7 @@
                         <div class="title text-24 lh-32">
                             Quản lý đơn hàng
                         </div>
-                        <div class="position-relative">
+                        <div class="d-flex align-items-center position-relative">
                             <div class="btn-themes nocolor-btn mr-2">
                                 <div class="d-flex align-items-center">
                                     <span class="icon-svg">
@@ -797,10 +797,10 @@
     $(document).ready(function(){
         $('.js-customdropdown-holder').on('click', function(e){
             e.stopPropagation();
-            $(this).find('.js-customdropdown-parent').slideToggle();
+            $(this).find('.js-customdropdown-parent').slideToggle(200);
         })
         $('.js-customdropdown-item').on('click', function(e){
-            e.preventDefault();
+            e.stopPropagation();
             let text = $(this).text();
             $(this).parents('.js-customdropdown-holder').find('.js-customdropdown-value').text(text);
         })
