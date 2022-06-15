@@ -2,17 +2,15 @@
 
 namespace App\Containers\ShippingUnit\Models;
 
-use Apiato\Core\Foundation\ImageURL;
-use App\Containers\ShippingUnit\Enums\EnumShipping;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class ShippingServices extends Model
 {
 
-    protected $tables = 'shippingconst';
+    protected $tables = 'shipping_services';
     public $appends = ['id'];
     protected $fillable = [
-        'title', 'is_percent', 'value', 'sort_order'
+        'name', 'price', 'shippingID', 'mode'
     ];
 
     protected $attributes = [

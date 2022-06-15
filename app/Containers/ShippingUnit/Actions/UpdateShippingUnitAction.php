@@ -4,6 +4,7 @@ namespace App\Containers\ShippingUnit\Actions;
 
 use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\ShippingUnit\Tasks\InsertShippingServiceTask;
 
 class UpdateShippingUnitAction extends Action
 {
@@ -14,7 +15,17 @@ class UpdateShippingUnitAction extends Action
                 'dev_mode', 'status', 'title', 'type', 'security', 'image'
             ]);
         }, ARRAY_FILTER_USE_KEY);
-        $shippingunit = Apiato::call('ShippingUnit@UpdateShippingUnitTask', [$shippingData['id'], $data]);
-        return $shippingunit;
+        $services = $shippingData['services'] ?? [];
+        $services = array_filter($services, function($item) {
+            return $item['name'] != '' && $item['price'] != '';
+        });
+        $shippingUnit = Apiato::call('ShippingUnit@UpdateShippingUnitTask', [$shippingData['id'], $data]);
+        if(!empty($services)){
+            foreach($services AS &$service){
+                $service['shippingID'] = $shippingUnit->id;
+            }
+            app(InsertShippingServiceTask::class)->run($services, $shippingUnit->id);
+        }
+        return $shippingUnit;
     }
 }
