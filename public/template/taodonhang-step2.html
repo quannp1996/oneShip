@@ -414,13 +414,16 @@
                                                                     
                                                                 </div>
                                                                 <div class="pricesuggest">                                                            
-                                                                    <div class="pricesuggest-dropdown js-customdropdown-holder">
-                                                                        <span class="admin-select-selection-item js-customdropdown-value">VND</span>
-                                                                        <div class="pricesuggest-dropdown-menu js-customdropdown-parent">
-                                                                          <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">VND</a>
-                                                                          <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">USD</a>
-                                                                          <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">CHN</a>
-                                                                        </div>
+                                                                    <div class="pricesuggest-dropdown js-customdropdown-holder coupon-actions" onclick="javascript:showInfoCoupon(this);">
+                                                                        <a href="javascript:;" class="color-00112f" >
+                                                                            <span class="admin-select-selection-item js-customdropdown-value">VND</span>
+                                                                        </a>
+                                                                    </div>
+                                                                      
+                                                                    <div class="pricesuggest-dropdown-menu dropdown-coupon-actions js-coupon-infos">
+                                                                        <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">VND</a>
+                                                                        <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">USD</a>
+                                                                        <a class="pricesuggest-item js-customdropdown-item" href="javascript:;">CHN</a>
                                                                     </div>
                                                                 </div>
                                                             </span>
@@ -529,24 +532,21 @@
 <script src="libs/bootstrap/popper.min.js"></script>
 <script src="libs/bootstrap/bootstrap.min.js"></script>
 <script>
+     function showInfoCoupon(holder){
+        
+
+        
+
+        if( $(holder).closest('td').find('.js-coupon-infos').hasClass('opened') == true ) {
+          $('.js-coupon-infos').removeClass('opened');
+        } else {
+          $('.js-coupon-infos').removeClass('opened');
+          $(holder).closest('td').find('.js-coupon-infos').addClass('opened');
+        }
+
+      }
     $(document).ready(function(){
-        $('.js-customdropdown-holder').on('click', function(e){
-            e.stopPropagation();
-            $(this).find('.js-customdropdown-parent').slideToggle(200);
-        })
-        $('.js-customdropdown-item').on('click', function(e){
-            e.stopPropagation();
-            let text = $(this).text();
-            $(this).parents('.js-customdropdown-holder').find('.js-customdropdown-value').text(text);
-        })
-
-
-        $(document).mousedown(function (n) {
-            n.stopPropagation();
-            if (!$(n.target).parents().hasClass("js-customdropdown-holder")) {
-                $('.js-customdropdown-parent').slideUp();
-            }
-        });
+      
     })
 </script>
 </html>
