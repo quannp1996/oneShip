@@ -235,9 +235,6 @@
             margin-right: 12px;
             box-shadow: 0 2px 0 rgba(0,0,0,.04);
         }
-        &.cancel {
-            
-        }
     }
 }
 .admin-card {
@@ -995,6 +992,7 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+    z-index: 1050;
     .title {
         color: #748399;
         font-size: 12px;
@@ -1004,7 +1002,11 @@
     label {
         padding: 10px 12px;
     }
+    &.sortby-status-dropdown-menu-small {
+        width: 200px;
+    }
 }
+
 .search-input {
     width: 360px;
     display: flex;
@@ -1215,5 +1217,79 @@
     }
     .admin-form-input {
         padding-left: 40px;
+    }
+}
+
+.filter-dropdown {
+    height: 36px;
+    padding: 0 11px;
+    background-color: #fff;
+    border: 1px solid #cedceb;
+    border-radius: 4px;
+    position: relative;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    display: flex;
+    align-items: center;
+    min-height: 36px;
+    cursor: pointer;
+    .filter-dropdown-menu {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 3px 6px -4px rgba(0,0,0,0.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);
+        color: #415066;
+        font-size: 14px;
+        left: 0;
+        margin: 0;
+        outline: none;
+        overflow: hidden;
+        padding: 8px 0;
+        position: absolute;
+        top: 40px; 
+        z-index: 1050;
+        display: none;
+        min-width: 200px;
+        .filter-item-dropdown {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 20px;
+            min-height: 36px;
+            padding: 8px;
+            position: relative;
+            color: #415066;
+            &:hover , &.current {
+                background-color: #fff;
+                color: #15bbb9;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+.sorted-value-tag {
+    background-color: rgb(226, 240, 255);
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: none;
+    border-radius: 4px;
+    color: #474f5e;
+    font-size: 14px;
+    padding: 3px 8px;
+    .icon-svg {
+        width: 10px;
+        height: 10px;
+        svg {
+            width: 10px;
+            height: 10px;
+        }
+    }
+}
+.sorted-value-box {
+    .btn-themes.btn-themes-small{
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 26px;
     }
 }
