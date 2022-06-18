@@ -120,17 +120,14 @@
                                                                     placeholder="{{ __('location::admin.district.name_placeholder') }}">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label
-                                                                    for="code">{{ __('location::admin.district.city_label') }}</label>
-                                                                <select class="form-control rounded-0" name="province_id">
+                                                                <label for="vung">{{ __('Vùng Miền') }}</label>
+                                                                <select class="form-control rounded-0" name="vung">
                                                                     <option value="">
-                                                                        {{ __('location::admin.district.first_option') }}
+                                                                        {{ __('-- Chọn --') }}
                                                                     </option>
-                                                                    @foreach ($cities as $city)
-                                                                        <option value="{{ $city->code }}"
-                                                                            {{ $city->code == $district->province_id ? 'selected' : '' }}>
-                                                                            {{ $city->name }}</option>
-                                                                    @endforeach
+                                                                    <option value="vung_1" {{ $district->vung == 'vung_1' ? 'selected' : '' }}>Vùng 1</option>
+                                                                    <option value="vung_2" {{ $district->vung == 'vung_2' ? 'selected' : '' }}>Vùng 2</option>
+                                                                    <option value="vung_3" {{ $district->vung == 'vung_3' ? 'selected' : '' }}>Vùng 3</option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">

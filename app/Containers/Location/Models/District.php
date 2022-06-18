@@ -10,7 +10,7 @@ class District extends Location
         'name',
         'code',
         'noithanh',
-        'province_id',
+        'vung',
     ];
 
     protected $attributes = [

@@ -54,7 +54,6 @@ class UpdateDistrictRequest extends Request
         return [
             'id' => 'required',
             'name' => 'required',
-            'province_id' => 'required',
         ];
     }
 

@@ -12,7 +12,7 @@ class CreateShippingConstAction extends Action
     {
         $data = array_filter($shippingConstData, function($item){
             return in_array($item, [
-                'title', 'items', 'shippingUnitID', 'is_default'
+                'dev_mode', 'status', 'title', 'type', 'security', 'image', 'vung'
             ]);
         }, ARRAY_FILTER_USE_KEY);
         $shippingConst = app(CreateShippingConstTask::class)->run($data);

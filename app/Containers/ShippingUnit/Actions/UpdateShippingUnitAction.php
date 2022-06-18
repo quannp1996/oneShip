@@ -12,7 +12,7 @@ class UpdateShippingUnitAction extends Action
     {
         $data = array_filter($shippingData, function($item){
             return in_array($item, [
-                'dev_mode', 'status', 'title', 'type', 'security', 'image'
+                'dev_mode', 'status', 'title', 'type', 'security', 'image', 'vung'
             ]);
         }, ARRAY_FILTER_USE_KEY);
         $services = $shippingData['services'] ?? [];

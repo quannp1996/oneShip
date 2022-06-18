@@ -9,7 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class ShippingUnit extends Model
 {
     protected $fillable = [
-        'dev_mode', 'status', 'title', 'type', 'security', 'image'
+        'dev_mode', 'status', 'title', 'type', 'security', 'image', 'vung'
     ];
 
     protected $attributes = [

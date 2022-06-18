@@ -10,6 +10,7 @@
             <div class="row">
                 <div class="col-5">
                     @include('shippingunit::admin.components.base')
+                    @include('shippingunit::admin.components.vung')
                 </div>
                 <div class="col-7">
                     @include('shippingunit::admin.components.security')

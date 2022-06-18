@@ -12,7 +12,7 @@ class UpdateDistrictAction extends Action
     {
         $data = $request->sanitizeInput([
             'name',
-            'province_id',
+            'vung',
             'noithanh'
         ]);
         
