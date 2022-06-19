@@ -19,6 +19,23 @@ $secondary: #02c8c6;
     color: #415066;
 }
 
+
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #cedceb;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::selection {
+    background: #02c8c6;
+    color: #fff;
+}
 // text- size
 .text-12 {
     font-size: 12px;
@@ -76,20 +93,69 @@ $secondary: #02c8c6;
 .mh-auto {
     min-height: auto !important;
 }
+.h-20 {
+    height: 20px;
+}
+.lh-20  {
+    line-height: 20px;
+}
 //color
 .color-00112f {
     color : #00112f ;
 }
+
+.color-415066 {
+    color : #415066 ;
+}
+
 .color-f86140{
     color: rgb(248, 97, 64);
 }
 .color-fe9e0f{
     color: #fe9e0f;
 }
+.color-15bbb9 {
+    color : #15bbb9 ;
+}
+.color-748399 {
+    color : #748399 ;
+}
 // svg
 .icon-svg {
     width: 20px;
     height: 20px;
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+    &.small {
+        width: 16px;
+        height: 16px;
+        svg {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            top: 3px;
+        }
+    }
+    &.smm {
+        width: 14px;
+        height: 14px;
+        svg {
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: -1px ; 
+        }
+    }
+}
+.tips {
+    color: #748399;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    margin-top: 2px;
+    text-transform: none;
 }
 svg {
     color: rgb(0, 17, 47);
