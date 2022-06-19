@@ -65,7 +65,7 @@ return [
             'js/lodash.min.js',
             'js/core.js',
             'template/js/main.js',
-            'js/global.js',
+            // 'js/global.js',
         ],
         'media' => [],
         'override' => [

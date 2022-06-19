@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            @foreach ($ordersType as $key => $item)
+            {{-- @foreach ($ordersType as $key => $item)
                 <div class="col-4">
                     <div class="form-check">
                         <input class="form-check-input" v-model="status" value="{{ $key }}" type="radio"
@@ -15,7 +15,7 @@
                         </label>
                     </div>
                 </div>
-            @endforeach
+            @endforeach --}}
         </div>
     </div>
 </div>

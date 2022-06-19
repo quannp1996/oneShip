@@ -24,7 +24,7 @@ class DonHang extends Value
     public function __construct(array $package = [])
     {
         $this->weight = (int) $package['package']['weight'];
-        $this->pich_up_method = @$package['pick_up_method'] && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
+        $this->pich_up_method = !empty($package['pick_up_method']) && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
                                 ? $package['pick_up_method'] 
                                 : EnumPickUpMethod::MANGRA;
         $this->sender = new Diachi($package['sender']);
@@ -57,5 +57,10 @@ class DonHang extends Value
     public function isIn()
     {
         return 'in';
+    }
+
+    public function getServicesNotActive(): array
+    {
+        return array_merge($this->sender->province->disabled ?? [], $this->receiver->province->disabled ?? []);
     }
 }   

@@ -42,7 +42,6 @@ const estimateVUE = new Vue({
         },
         choseDistrict: async function(item, object){
             object.district = item.code;
-            console.log(item);
             await $.get(this.api.wards, {
                 district_id: item.code
             }).then(json => {

@@ -34,21 +34,31 @@ abstract class ShippingUnitAbstract
         if(!empty($pricesCustomer[$this->shipping->id])){
             $constID = $pricesCustomer[$this->shipping->id]['constID'];
         }
+        $servicesNotActive = $this->donhangBase->getServicesNotActive();
+        if(in_array($this->shipping->id, $servicesNotActive)) throw new Exception('Địa điểm không hỗ trợ đơn vị vận chuyển'. $this->shipping->title);
         /**
          * Lấy Bảng giá được gán cho người dùng
          */
         $quotation = $this->shipping->consts->filter(function($item) use($constID){
             return $item->id == $constID;
         })->first();
-
+        if(empty($quotation)){
+            $quotation = $this->shipping->consts->filter(function($item) use($constID){
+                return $item->is_default == 1;
+            })->first();
+        }
         $quotationCollect = collect($quotation->items);
         /**
          * Lấy đúng khung giá theo cân nặng
          */
         $extactItem = $quotationCollect->filter(function($item){
-            return $item['weight'] == $this->donhangBase->weight;
+            $rangeWeight = explode('-', $item['weight']);
+            return $rangeWeight[0] <= (float) $this->donhangBase->weight 
+                && $this->donhangBase->weight <= (float) $rangeWeight[1];   
         })->first();
 
+        dd($extactItem);
+        
         if(empty($extactItem)) $extactItem = $quotation->items[count($quotation->items) - 1];
         
         return $extactItem['gia'][$this->donhangBase->getCondition()][$this->donhangBase->isIn()][$this->donhangBase->pich_up_method];

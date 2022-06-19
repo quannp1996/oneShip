@@ -102,9 +102,6 @@ const orderApp = new Vue({
         changeCity: function(object = 'sender')
         {
             this.wards[object] = [];
-            console.log(window.districts.filter(item => {
-                return item.province_id == this[object].city;
-            }));
             this.districts[object] = window.districts.filter(item => {
                 return item.province_id == this[object].city;
             });

@@ -24,6 +24,11 @@ Route::group(
             'as' => 'location.import.ward',
             'uses' => 'ImportController@importWard'
         ]);
+
+        $router->get('/export/js', [
+            'as' => 'location.export_js.ward',
+            'uses' => 'ImportController@exportJS'
+        ]);
     }
 );
 ?>

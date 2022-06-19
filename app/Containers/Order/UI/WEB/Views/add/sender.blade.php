@@ -38,7 +38,7 @@
                         <label for="sendCity required">Tỉnh/ Thành phố</label>
                         <select class="form-control select2customer" @change="changeCity('sender')" v-model="sender.city" name="sender[city]" id="sendCity">
                             <option value="0">-- Chọn ---</option>
-                            <option :value="city.id" v-for="city in cities" v-text="city.name"></option>
+                            <option :value="city.code" v-for="city in cities" v-text="city.name"></option>
                         </select>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                         <label for="sendDistrict required">Quận/ Huyện</label>
                         <select class="form-control select2customer" @change="changeDistrict('sender')" v-model="sender.district" name="sender[district]" id="sendDistrict">
                             <option value="0">-- Chọn ---</option>
-                            <option :value="district.id" v-for="district in districts.sender" v-text="district.name"></option>
+                            <option :value="district.code" v-for="district in districts.sender" v-text="district.name"></option>
                         </select>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                         <label for="sendWard required">Thôn/ Xóm</label>
                         <select class="form-control select2customer" v-model="sender.ward" name="sender[ward]" id="sendWard">
                             <option value="0">-- Chọn ---</option>
-                            <option :value="ward.id" v-for="ward in wards.sender" v-text="ward.name"></option>
+                            <option :value="ward.code" v-for="ward in wards.sender" v-text="ward.name"></option>
                         </select>
                     </div>
                 </div>

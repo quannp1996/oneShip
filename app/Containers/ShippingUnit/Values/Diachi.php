@@ -2,13 +2,17 @@
 
 namespace App\Containers\ShippingUnit\Values;
 
+use App\Containers\Location\Actions\GetAllCitiesWithCacheAction;
+use App\Containers\Location\Actions\GetAllDistrictsWithCacheAction;
+use App\Containers\Location\Models\City;
+use App\Containers\Location\Models\District;
 use App\Ship\Parents\Values\Value;
 
 class Diachi extends Value
 {
-    public $province;
+    public City $province;
 
-    public $district;
+    public District $district;
 
     public $ward;
 
@@ -19,8 +23,14 @@ class Diachi extends Value
 
     public function __construct(array $diachi = [])
     {
-        $this->province = $diachi['province'];
-        $this->district = $diachi['district'];
+        $allCities = app(GetAllCitiesWithCacheAction::class)->run();
+        $allDistricts = app(GetAllDistrictsWithCacheAction::class)->run();
+        $this->province = $allCities->filter(function($item) use($diachi){
+            return $item->code == $diachi['province'];
+        })->first();
+        $this->district = $allDistricts->filter(function($item) use($diachi){
+            return $item->code == $diachi['district'];
+        })->first();
         $this->ward = $diachi['ward'];
     }
 }   
