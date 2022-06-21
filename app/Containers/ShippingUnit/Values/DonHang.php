@@ -7,14 +7,17 @@ use App\Ship\Parents\Values\Value;
 
 class DonHang extends Value
 {
-    const SAMEPROVINCE = 'vungmien';
-    const SAMEDISTRICT = 'tinh';
-    const SAMEWARD = 'thanh';
+    const CONSTREGION = 'vungmien';
+    const CONSTPROVINCE = 'tinh';
+    const CONSTDISTRICT = 'thanh';
 
+    public string $in = 'in';
     public int $weight;
-    public string $pich_up_method;
+    public array $services;
     public Diachi $sender;
     public Diachi $receiver;
+    public string $pich_up_method;
+    public string $condition = self::CONSTPROVINCE;
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.
@@ -24,16 +27,17 @@ class DonHang extends Value
     public function __construct(array $package = [])
     {
         $this->weight = (int) $package['package']['weight'];
-        $this->pich_up_method = !empty($package['pick_up_method']) && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
-                                ? $package['pick_up_method'] 
-                                : EnumPickUpMethod::MANGRA;
-        $this->sender = new Diachi($package['sender']);
-        $this->receiver = new Diachi($package['receiver']);
+        $this->pich_up_method   = !empty($package['pick_up_method']) && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
+                                    ? $package['pick_up_method'] 
+                                    : EnumPickUpMethod::MANGRA;
+        $this->sender           = new Diachi($package['sender']);
+        $this->receiver         = new Diachi($package['receiver']);
+        $this->services         = @$package['services'] ?? [];
     }
 
     public function sameProvince(): bool
     {
-        return $this->sender->province == $this->receiver->province;
+        return $this->sender->province->code == $this->receiver->province->code;
     }
 
     public function sameDistrict(): bool
@@ -46,17 +50,24 @@ class DonHang extends Value
         return $this->sender->ward == $this->receiver->ward;
     }
 
-    public function getCondition(): string
+    public function sameRegion(): bool
     {
-        if($this->sameWard()) return self::SAMEWARD;
-        if($this->sameDistrict()) return self::SAMEDISTRICT;
-        if($this->sameProvince()) return self::SAMEPROVINCE;
-        return self::SAMEPROVINCE;
+        return $this->sender->province->vung;
     }
 
-    public function isIn()
+    public function getCondition(): void
     {
-        return 'in';
+        if($this->sameProvince()){
+            $this->condition = 'thanh';
+            if($this->sameDistrict()){
+                $this->in = $this->sender->district->noithanh && $this->receiver->district->noithanh ? 'in' : 'out';
+            }else{
+
+            }
+        }else{
+            $this->condition = self::CONSTREGION;
+            $this->in = $this->sender->province->vung === $this->sender->province->vung ? 'in' : 'out';
+        }
     }
 
     public function getServicesNotActive(): array

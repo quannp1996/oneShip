@@ -57,11 +57,29 @@ abstract class ShippingUnitAbstract
                 && $this->donhangBase->weight <= (float) $rangeWeight[1];   
         })->first();
 
-        dd($extactItem);
-        
         if(empty($extactItem)) $extactItem = $quotation->items[count($quotation->items) - 1];
-        
-        return $extactItem['gia'][$this->donhangBase->getCondition()][$this->donhangBase->isIn()][$this->donhangBase->pich_up_method];
+        $this->donhangBase->getCondition();
+        $baseConst = $extactItem['gia'][$this->donhangBase->condition][$this->donhangBase->in][$this->donhangBase->pich_up_method];
+
+        /**
+         * Cộng thêm giá dịch vụ
+         * 1. Giá cộng thẳng
+         * 2. Giá theo giá trị đơn hàng
+        */
+
+        $services = $this->shipping->services->keyBy('_id')->toArray();
+
+        foreach($this->donhangBase->services AS $item){
+            $baseConst += $services[$item]['price'];
+        }
+
+        dd($baseConst);
+        /**
+         *  Cộng giá vùng miền
+         *  1. Cả 2 nơi đều cùng 1 vùng
+         *  2. 2 Nơi ở 2 vùng khác nhau
+        */ 
+        return $baseConst;
     }
     
     public function callApi(array $callData = [], string $url)
