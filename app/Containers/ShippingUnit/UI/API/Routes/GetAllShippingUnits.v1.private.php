@@ -29,3 +29,8 @@ $router->get('/shipping/caculate_fee', [
   'as' => 'api_shippingunit_caculate_fee',
   'uses'  => 'Controller@caculateFee',
 ]);
+
+$router->get('/shipping/caculate_fees', [
+  'as' => 'api_shippingunit_caculate_fees',
+  'uses'  => 'Controller@caculateFees',
+]);

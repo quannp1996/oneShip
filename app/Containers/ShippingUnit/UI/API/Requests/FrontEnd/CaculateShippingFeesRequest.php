@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Containers\ShippingUnit\UI\API\Requests;
+namespace App\Containers\ShippingUnit\UI\API\Requests\FrontEnd;
 
 use App\Ship\Parents\Requests\Request;
 
 /**
- * Class AdminCaculateShippingFeeRequest.
+ * Class CaculateShippingFeesRequest.
  */
-class AdminCaculateShippingFeeRequest extends Request
+class CaculateShippingFeesRequest extends Request
 {
 
     /**

@@ -9,12 +9,13 @@ use Exception;
 
 abstract class ShippingUnitAbstract
 {
-    public $shipping;
-    public $devMode = false;
-    public $sandBoxUrl;
-    public $liveURL;
-    public $customer;
-    public DonHang $donhangBase;
+    public bool $devMode = false;
+    public $sandBoxUrl = '';
+    public $liveURL = '';
+
+    protected Customer $customer;
+    protected DonHang $donhangBase;
+    public ShippingUnit $shipping;
 
     public function __construct(ShippingUnit $shippingUnit)
     {
@@ -66,19 +67,29 @@ abstract class ShippingUnitAbstract
          * 1. Giá cộng thẳng
          * 2. Giá theo giá trị đơn hàng
         */
-
         $services = $this->shipping->services->keyBy('_id')->toArray();
 
         foreach($this->donhangBase->services AS $item){
-            $baseConst += $services[$item]['price'];
+            if( (int) $item['mode'] == 1){
+                $baseConst += $services[$item]['price'];
+            }else{
+                $baseConst += ($this->donhangBase->total * $services[$item]['price']) / 100;
+            }
         }
 
-        dd($baseConst);
         /**
          *  Cộng giá vùng miền
          *  1. Cả 2 nơi đều cùng 1 vùng
          *  2. 2 Nơi ở 2 vùng khác nhau
         */ 
+        if($this->donhangBase->sender->district->vung && !empty($this->shipping->vung[$this->donhangBase->sender->district->vung])){
+            $baseConst += $this->shipping->vung[$this->donhangBase->sender->district->vung];
+        }
+
+        if($this->donhangBase->receiver->district->vung && !empty($this->shipping->vung[$this->donhangBase->receiver->district->vung])){
+            $baseConst += $this->shipping->vung[$this->donhangBase->receiver->district->vung];
+        }
+
         return $baseConst;
     }
     

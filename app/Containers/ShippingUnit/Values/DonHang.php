@@ -11,14 +11,14 @@ class DonHang extends Value
     const CONSTPROVINCE = 'tinh';
     const CONSTDISTRICT = 'thanh';
 
+    public float  $weight;
+    public float  $total = 0;
+    public array  $services;
     public string $in = 'in';
-    public int $weight;
-    public array $services;
-    public Diachi $sender;
-    public Diachi $receiver;
     public string $pich_up_method;
     public string $condition = self::CONSTPROVINCE;
-
+    public Diachi $sender;
+    public Diachi $receiver;
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
@@ -26,13 +26,14 @@ class DonHang extends Value
 
     public function __construct(array $package = [])
     {
-        $this->weight = (int) $package['package']['weight'];
-        $this->pich_up_method   = !empty($package['pick_up_method']) && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
+        $this->weight           = (float) $package['package']['weight'];
+        $this->pich_up_method   =   !empty($package['pick_up_method']) && in_array($package['pick_up_method'], EnumPickUpMethod::LIST) 
                                     ? $package['pick_up_method'] 
                                     : EnumPickUpMethod::MANGRA;
         $this->sender           = new Diachi($package['sender']);
         $this->receiver         = new Diachi($package['receiver']);
-        $this->services         = @$package['services'] ?? [];
+        $this->services         = !empty($package['services']) ? $package['services'] : [];
+        $this->total            = !empty($package['total']) ? (float) $package['total'] : 0;
     }
 
     public function sameProvince(): bool

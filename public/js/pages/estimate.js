@@ -19,7 +19,9 @@ const estimateVUE = new Vue({
             districts: [],
             wards: [],
         },
-        package_weight: ''
+        package: {
+            weight: 0
+        }
     },
     
     components: {
@@ -48,9 +50,11 @@ const estimateVUE = new Vue({
                 object.wards = json.data
             })
         },
+
         choseWard: function(item, object){
             object.ward = item.code;
         },
+
         caculateFee: async function(){
             
         }

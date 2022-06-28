@@ -44,7 +44,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -124,15 +123,17 @@
                     </button>
                 </div>
             </div>
+            @include('frontend::dashboard.components.list_shippings')
         </div>
     </div>
 @endsection
 @push('js_bot_all')
     <script>
         var api = {
+            wards: '{{ route('api_fr_location_get_wards') }}',
             provinces: '{{ route('api_fr_location_get_provinces') }}',
             districts: '{{ route('api_fr_location_get_districts') }}',
-            wards: '{{ route('api_fr_location_get_wards') }}',
+            estimate: '{{ route('api_shippingunit_caculate_fees') }}'
         }
     </script>
     {!! FunctionLib::addMedia('/js/pages/estimate.js') !!}

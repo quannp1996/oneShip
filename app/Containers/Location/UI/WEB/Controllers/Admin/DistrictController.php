@@ -36,7 +36,7 @@ class DistrictController extends LocationController
     public function listDistrict(GetAllLocationsRequest $request)
     {
         Apiato::call('BaseContainer@CreateBreadcrumbAction', ['list', $this->title]);
-        $districts = Apiato::call('Location@GetAllDistrictsAction', [true, 20,'id desc',['city']]);
+        $districts = Apiato::call('Location@GetAllDistrictsAction', [true, 20, 'id desc', ['city'], $request->all()]);
         $cities = Apiato::call('Location@GetAllCitiesAction', [false]);
         return view('location::Admin.district', [
             'districts' => $districts,
