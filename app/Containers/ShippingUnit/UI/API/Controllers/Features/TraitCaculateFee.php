@@ -38,18 +38,17 @@ trait TraitCaculateFee{
 
     public function caculateFees(CaculateShippingFeesRequest $request)
     {
-
+        
         /**
          * Láy thông tin người đặt hàng
          */
-
         $customer = app(FindCustomerByIdAction::class)->run($request->userID);
         /**
          * Lấy thông tin của Đơn vị vận chuyển được chọn
          */
 
         $shippingUnits = app(GetAllShippingUnitsAction::class)->run();
-
+        
         // /**
         //  * Khởi tạo Shipping API
         //  */

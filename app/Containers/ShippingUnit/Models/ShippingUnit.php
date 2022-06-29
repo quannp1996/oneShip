@@ -8,9 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class ShippingUnit extends Model
 {
-    protected $fillable = [
-        'dev_mode', 'status', 'title', 'type', 'security', 'image', 'vung'
-    ];
+    protected $fillable = [];
 
     protected $attributes = [
 
@@ -28,6 +26,12 @@ class ShippingUnit extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->fillable = EnumShipping::FILLFIELD;
+    }
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.

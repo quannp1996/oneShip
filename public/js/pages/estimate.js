@@ -55,8 +55,8 @@ const estimateVUE = new Vue({
             object.ward = item.code;
         },
 
-        caculateFee: async function(){
-            
+        caculateFees: async function(){
+            $.post()
         }
     },
 })

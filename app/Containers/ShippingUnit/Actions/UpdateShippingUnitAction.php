@@ -4,6 +4,7 @@ namespace App\Containers\ShippingUnit\Actions;
 
 use App\Ship\Parents\Actions\Action;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\ShippingUnit\Enums\EnumShipping;
 use App\Containers\ShippingUnit\Tasks\InsertShippingServiceTask;
 
 class UpdateShippingUnitAction extends Action
@@ -11,9 +12,7 @@ class UpdateShippingUnitAction extends Action
     public function run(array $shippingData = [])
     {
         $data = array_filter($shippingData, function($item){
-            return in_array($item, [
-                'dev_mode', 'status', 'title', 'type', 'security', 'image', 'vung'
-            ]);
+            return in_array($item, EnumShipping::FILLFIELD);
         }, ARRAY_FILTER_USE_KEY);
         $services = $shippingData['services'] ?? [];
         $services = array_filter($services, function($item) {

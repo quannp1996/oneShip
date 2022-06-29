@@ -36,6 +36,11 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="time">Thời gian giao hàng</label>
+            <input type="text" name="time" value="{{ @$data->time }}" class="form-control" id="time"
+                placeholder="Tiêu đề">
+        </div>
+        <div class="form-group">
             <label for="image">Ảnh</label>
             <input type="file" name="image" id="image" class="form-control">
             @if (@$data->image)

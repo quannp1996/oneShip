@@ -1,4 +1,4 @@
-@extends('basecontainer::frontend.pc.layouts.home')
+@extends('basecontainer::frontend.pc.layouts.un_author')
 
 @section('content')
     <div class="login-page">
@@ -125,6 +125,8 @@
                                 social_name: response.name,
                                 social_provider: 'facebook'
                             })
+                        }).then(json => {
+                            console.log(json);
                         })
                     });
                 } else {

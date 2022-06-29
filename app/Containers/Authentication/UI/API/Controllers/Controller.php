@@ -102,7 +102,7 @@ class Controller extends ApiController
     }
 
     public function loginSocial(LoginSocialRequest $request, FindOneCustomerByCondiationAction $findOneCustomerByCondiationAction)
-    {  
+    {
         try{
             $user = $findOneCustomerByCondiationAction->run([
                 'social_id' => $request->social_id,
@@ -119,7 +119,7 @@ class Controller extends ApiController
                 ]);
                 $user = app(StoreNewCustomerAction::class)->run($data);
             }
-    
+
             if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
             
             $dataLogin = array_merge([
