@@ -63,7 +63,7 @@ return [
         ],
 
         'api-customer' => [
-            'driver' => 'passport',
+            'driver' => 'jwt',
             'provider' => 'customers',
             'hash' => false,
         ],

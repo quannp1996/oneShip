@@ -121,21 +121,23 @@ class Controller extends ApiController
             }
 
             if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
+
+            // $dataLogin = array_merge([
+            //     'username' => $user->email,
+            //     'password' => $user->password
+            // ], [
+            //     'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
+            //     'client_password' => Config::get('authentication-container.clients.web.admin.secret')
+            // ]);
+
+            // $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
+
             
-            $dataLogin = array_merge([
-                'username' => $user->email,
-                'password' => $user->password
-            ], [
-                'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
-                'client_password' => Config::get('authentication-container.clients.web.admin.secret')
-            ]);
-            $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
-            if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-            auth('customer')->login($user, true);
-            return $this->sendResponse([
-                'success' => true,
-                'token' => $content
-            ]);
+            dd(auth('customer')->login($user, true));
+            // return $this->sendResponse([
+            //     'success' => true,
+            //     'token' => $content
+            // ]);
         }catch(\Exception $e){
             return $this->sendError('unauthorize', 404, $e->getMessage());
         }

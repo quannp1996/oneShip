@@ -41,9 +41,7 @@ class AuthController extends WebController
                 return FunctionLib::ajaxRespondV2(true, 'success', ['token' => $content, 'url' => $redirectURL]);
             }
         } catch (Exception $e) {
-            throw $e;
             return FunctionLib::ajaxRespondV2(false, $e instanceof LoginFailedException ? 'Thông tin đăng nhập không chính xác' : $e->getMessage(), ['url' => route('get_admin_dashboard_page')], Response::HTTP_UNAUTHORIZED);
-            // return redirect('login')->with('status', $e instanceof LoginFailedException ? 'Thông tin đăng nhập không chính xác' : $e->getMessage());
         }
 
         // return is_array($result) ? redirect('login')->with($result) : redirect()->route('get_admin_dashboard_page')->withCookie($content['refresh_cookie'])->withCookie($content['access_token_cookie']);

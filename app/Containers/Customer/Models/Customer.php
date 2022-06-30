@@ -10,13 +10,15 @@ use App\Ship\Parents\Models\UserModel;
 use Illuminate\Notifications\Notifiable;
 use App\Containers\Comment\Models\Comment;
 use Apiato\Core\Foundation\Facades\ImageURL;
+use Apiato\Core\Traits\JWTTrait;
 use App\Containers\Authorization\Traits\AuthorizationTrait;
 use App\Containers\Authorization\Traits\AuthenticationTrait;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Customer extends UserModel
+class Customer extends UserModel implements JWTSubject
 {
-
+  use JWTTrait;
   use AuthorizationTrait;
   use AuthenticationTrait;
   use Notifiable;
