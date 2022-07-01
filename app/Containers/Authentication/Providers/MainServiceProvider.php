@@ -3,7 +3,6 @@
 namespace App\Containers\Authentication\Providers;
 
 use App\Ship\Parents\Providers\MainProvider;
-use Laravel\Passport\PassportServiceProvider;
 
 /**
  * Class MainServiceProvider.
@@ -21,7 +20,6 @@ class MainServiceProvider extends MainProvider
      * @var array
      */
     public $serviceProviders = [
-        PassportServiceProvider::class,
         AuthProvider::class,
         MiddlewareServiceProvider::class,
         EventServiceProvider::class

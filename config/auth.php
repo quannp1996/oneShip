@@ -57,14 +57,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
-
-        'api-customer' => [
             'driver' => 'jwt',
-            'provider' => 'customers',
+            'provider' => 'users',
             'hash' => false,
         ],
     ],
