@@ -18,8 +18,9 @@ class GetAllShippingUnitsTask extends Task
         $this->repository = $repository;
     }
 
-    public function run()
+    public function run(bool $hasPagination = true)
     {
+        if(!$hasPagination) return $this->repository->get();
         return $this->repository->paginate();
     }
 

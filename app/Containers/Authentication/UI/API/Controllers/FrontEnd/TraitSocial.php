@@ -38,10 +38,11 @@ trait TraitSocial
                 $user = app(StoreNewCustomerAction::class)->run($data);
             }
             if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-            $token = auth('api')->login($user);
+            auth('customer')->login($user);
+            // $token = auth('api')->login($user);
             return $this->sendResponse([
                 'success' => true,
-                'token' => $token
+                // 'token' => $token
             ]);
         }catch(\Exception $e){
             return $this->sendError('unauthorize', 404, $e->getMessage());

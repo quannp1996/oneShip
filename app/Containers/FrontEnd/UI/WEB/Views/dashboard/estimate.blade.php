@@ -133,7 +133,7 @@
             wards: '{{ route('api_fr_location_get_wards') }}',
             provinces: '{{ route('api_fr_location_get_provinces') }}',
             districts: '{{ route('api_fr_location_get_districts') }}',
-            estimate: '{{ route('api_shippingunit_caculate_fees') }}'
+            estimate: '{{ route('web_caculate_fees') }}'
         }
     </script>
     {!! FunctionLib::addMedia('/js/pages/estimate.js') !!}

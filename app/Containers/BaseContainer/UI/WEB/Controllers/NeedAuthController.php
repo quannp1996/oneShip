@@ -11,6 +11,7 @@
 
 namespace App\Containers\BaseContainer\UI\WEB\Controllers;
 
+use App\Containers\Customer\Models\Customer;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 
 
@@ -19,10 +20,9 @@ class NeedAuthController extends BaseFrontEndController
     use ApiResTrait;
 
     protected $settings = [];
-
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth:api');
+        $this->middleware('auth:customer');
     }
 }

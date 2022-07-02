@@ -45,12 +45,10 @@ class CaculateShippingFeesRequest extends Request
     public function rules()
     {
         return [
-            'userID' => ['required'],
-            'shippingID' => ['required'],
             'package.weight' => ['required'],
+            'sender.ward' => ['required'],
             'sender.province' => ['required'],
             'sender.district' => ['required'],
-            'sender.ward' => ['required'],
             'receiver.province' => ['required'],
             'receiver.district' => ['required'],
             'receiver.ward' => ['required']

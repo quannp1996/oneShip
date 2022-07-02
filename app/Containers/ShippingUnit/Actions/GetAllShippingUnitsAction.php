@@ -7,9 +7,18 @@ use App\Containers\ShippingUnit\Tasks\GetAllShippingUnitsTask;
 
 class GetAllShippingUnitsAction extends Action
 {
+    protected bool $hasPagination = true;
+
     public function run(array $condition = [], array $withData = [])
     {
-        $shippingunits = app(GetAllShippingUnitsTask::class)->withData($withData)->filter($condition)->run();
-        return $shippingunits;
+        return app(GetAllShippingUnitsTask::class)
+                ->withData($withData)
+                ->filter($condition)
+                ->run($this->hasPagination);
+    }
+    public function setPagination(bool $hasPagination = false):self
+    {
+        $this->hasPagination = $hasPagination;
+        return $this;
     }
 }

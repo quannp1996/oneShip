@@ -21,7 +21,8 @@ const estimateVUE = new Vue({
         },
         package: {
             weight: 0
-        }
+        },
+        shippings: []
     },
     
     components: {
@@ -57,11 +58,12 @@ const estimateVUE = new Vue({
 
         caculateFees: async function(){
             $.post(this.api.estimate, {
+                _token: ENV.token,
                 sender: this.sender,
                 receiver: this.receiver,
                 package: this.package
             }).then(json => {
-                console.log(json);
+                this.shippings = json.data.shippings
             })
         }
     },

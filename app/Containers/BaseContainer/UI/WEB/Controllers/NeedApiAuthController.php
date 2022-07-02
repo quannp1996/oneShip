@@ -5,21 +5,24 @@
  * @ Author: QuanNP - npquan1995@gmai.com
  * @ Create Time: 2021-07-07 10:28:53
  * @ Modified by: QuanNP - npquan1995@gmai.com
- * @ Modified time: 2021-08-05 12:07:29
+ * @ Modified time: 2021-10-24 20:39:07
  * @ Description: Happy Coding!
  */
 
 namespace App\Containers\BaseContainer\UI\WEB\Controllers;
 
-use App\Containers\Settings\Actions\GetAllSettingsAction;
-use App\Ship\Parents\Controllers\WebController;
+use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 
-class BaseAjaxController extends WebController
+
+class NeedApiAuthController extends BaseFrontEndController
 {
+    use ApiResTrait;
+
     protected $settings = [];
 
     public function __construct()
     {
-        $this->settings = app(GetAllSettingsAction::class)->run('Array', true);
+        parent::__construct();
+        $this->middleware('auth:api');
     }
 }
