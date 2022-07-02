@@ -14,11 +14,13 @@
   "message": "Token revoked successfully."
 }
  */
-$router->any('logout', [
-    'as' => 'api_authentication_logout_customer',
-    'uses'  => 'Controller@logoutCustomer',
-    'middleware' => [
-        'auth:api-customer',
-    ],
+$router->post('/social/login', [
+    'as' => 'api_authentication_login',
+    'uses'  => 'Controller@loginSocial',
 ]);
 
+
+$router->post('/register/post', [
+  'as' => 'api_authentication_register_post',
+  'uses'  => 'Controller@register',
+]);

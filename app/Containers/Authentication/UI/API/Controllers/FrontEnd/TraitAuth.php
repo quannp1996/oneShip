@@ -16,13 +16,14 @@ use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\FunctionLib;
 use App\Containers\Authentication\Exceptions\LoginFailedException;
 use App\Containers\Authentication\UI\API\Requests\FrontEnd\LoginRequest;
+use App\Containers\Authentication\UI\API\Requests\FrontEnd\RegisterRequest;
 use App\Ship\Parents\Controllers\WebController;
 use App\Ship\Transporters\DataTransporter;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 
-class AuthController extends WebController
+trait TraitAuth
 {
     public function login(LoginRequest $request)
     {
@@ -43,7 +44,10 @@ class AuthController extends WebController
         } catch (Exception $e) {
             return FunctionLib::ajaxRespondV2(false, $e instanceof LoginFailedException ? 'Thông tin đăng nhập không chính xác' : $e->getMessage(), ['url' => route('get_admin_dashboard_page')], Response::HTTP_UNAUTHORIZED);
         }
+    }
 
-        // return is_array($result) ? redirect('login')->with($result) : redirect()->route('get_admin_dashboard_page')->withCookie($content['refresh_cookie'])->withCookie($content['access_token_cookie']);
+    public function register(RegisterRequest $request)
+    {
+        dd($request->all());
     }
 }

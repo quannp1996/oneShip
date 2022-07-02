@@ -2,31 +2,28 @@
 
 namespace App\Containers\Authentication\UI\API\Controllers;
 
-use Apiato\Core\Foundation\Facades\Apiato;
-use Apiato\Core\Foundation\StringLib;
-use App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter;
-use App\Containers\Authentication\Data\Transporters\ProxyRefreshTransporter;
-use App\Containers\Authentication\UI\API\Requests\LoginRequest;
-use App\Containers\Authentication\UI\API\Requests\LoginSocialRequest;
-use App\Containers\Authentication\UI\API\Requests\LogoutCustomerRequest;
-use App\Containers\Authentication\UI\API\Requests\LogoutRequest;
-use App\Containers\Authentication\UI\API\Requests\RefreshRequest;
-use App\Containers\Customer\Actions\FindOneCustomerByCondiationAction;
-use App\Containers\Customer\Actions\StoreNewCustomerAction;
-use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
-use App\Ship\Parents\Controllers\ApiController;
-use App\Ship\Transporters\DataTransporter;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
+use Apiato\Core\Foundation\Facades\Apiato;
+use App\Ship\Transporters\DataTransporter;
+use App\Containers\Authentication\UI\API\Requests\LoginRequest;
+use App\Containers\Authentication\UI\API\Requests\LogoutRequest;
+use App\Containers\Authentication\UI\API\Requests\RefreshRequest;
+use App\Containers\Authentication\UI\API\Requests\LogoutCustomerRequest;
+use App\Containers\Authentication\UI\API\Controllers\FrontEnd\TraitSocial;
+use App\Containers\BaseContainer\UI\WEB\Controllers\BaseApiFrontController;
+use App\Containers\Authentication\Data\Transporters\ProxyRefreshTransporter;
+use App\Containers\Authentication\UI\API\Controllers\FrontEnd\TraitAuth;
 
 /**
  * Class Controller
  *
  * @author  Mahmoud Zalt  <mahmoud@zalt.me>
  */
-class Controller extends ApiController
+class Controller extends BaseApiFrontController
 {
+    use TraitSocial, TraitAuth;
+
     /**
      * @param \App\Containers\Authentication\UI\API\Requests\LogoutRequest $request
      *
@@ -100,39 +97,5 @@ class Controller extends ApiController
         $result = Apiato::call('Authentication@ProxyApiRefreshAction', [$dataTransporter]);
 
         return $this->json($result['response-content'])->withCookie($result['refresh-cookie']);
-    }
-
-    public function loginSocial(LoginSocialRequest $request, FindOneCustomerByCondiationAction $findOneCustomerByCondiationAction)
-    {
-        try{
-            $user = $findOneCustomerByCondiationAction->run([
-                'social_id' => $request->social_id,
-                'social_provider' => $request->social_provider
-            ]);
-
-            if(!$user){
-                $data = new DataTransporter([
-                    'social_id' => $request->social_id,
-                    'social_provider' => 'facebook',
-                    'fullname' => $request->social_name,
-                    'email' => sprintf('%sfacebook@gmail.com', $request->social_id),
-                    'password' => StringLib::random(8),
-                    'status' => 2
-                ]);
-                $user = app(StoreNewCustomerAction::class)->run($data);
-            }
-
-            if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
-
-            $token = auth('api')->login($user, true);
-            
-            return $this->sendResponse([
-                'success' => true,
-                'access_token' => $token
-            ]);
-
-        }catch(\Exception $e){
-            return $this->sendError('unauthorize', 404, $e->getMessage());
-        }
     }
 }

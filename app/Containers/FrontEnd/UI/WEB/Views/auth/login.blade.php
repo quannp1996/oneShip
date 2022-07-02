@@ -9,12 +9,11 @@
         <div class="right">
             <div class="language">
                 <div class="dropdown">
-                    <button class="lang-active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="lang-active dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span role="img" class="anticon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
-                                class="">
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M7.28379 4.22348C7.1908 3.99849 6.97109 3.85199 6.72764 3.85266C6.4842 3.85333 6.26529 4.00103 6.17353 4.22652L4.92446 7.29622L4.31173 8.73695C4.18204 9.04189 4.32411 9.39423 4.62905 9.52391C4.93399 9.6536 5.28633 9.51153 5.41601 9.20659L5.87527 8.12671H7.60806L8.08534 9.21311C8.21863 9.51649 8.57262 9.65438 8.876 9.5211C9.17939 9.38781 9.31728 9.03382 9.18399 8.73044L8.5518 7.29143L7.28379 4.22348ZM7.1026 6.92671H6.37035L6.73362 6.03396L7.1026 6.92671Z"
                                     fill="#415066"></path>
@@ -112,18 +111,16 @@
         function facebookLogin() {
             FB.login(response => {
                 if (response.authResponse) {
-                    FB.api('/me', function(response){
+                    FB.api('/me', function(res) {
                         $.post('{{ route('api_authentication_login') }}', {
                             _token: '{{ csrf_token() }}',
-                            social_id: response.id,
-                            social_name: response.name,
+                            social_id: res.id,
+                            social_name: res.name,
                             social_provider: 'facebook'
                         }).then(json => {
-                            if(json.data.access_token){
-                                localStorage.setItem('access_token', json.data.access_token);
-                            }
-                            window.location.href = '{{ route('web_dashboard_index') }}';
-                        });
+                            localStorage.setItem('access_token', json.data.token);
+                            location.reload();
+                        })
                     })
                 } else {
                     console.log('User cancelled login or did not fully authorize.');

@@ -23,6 +23,6 @@ class NeedAuthController extends BaseFrontEndController
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('auth:customer');
+        $this->middleware('auth:api');
     }
 }

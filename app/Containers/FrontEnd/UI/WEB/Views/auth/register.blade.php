@@ -1,7 +1,7 @@
-@extends('basecontainer::frontend.pc.layouts.home')
+@extends('basecontainer::frontend.pc.layouts.un_author')
 
 @section('content')
-    <div class="register-page">
+    <div class="register-page" id="registerVUE">
         <div class="left">
             <img src="{{ asset('template/images/register-bg.jpg') }}" alt="" class="img-fluid left-bg">
             <div class="left-title">
@@ -12,12 +12,11 @@
         <div class="right">
             <div class="language">
                 <div class="dropdown">
-                    <button class="lang-active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <button class="lang-active dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span role="img" class="anticon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
-                                class="">
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M7.28379 4.22348C7.1908 3.99849 6.97109 3.85199 6.72764 3.85266C6.4842 3.85333 6.26529 4.00103 6.17353 4.22652L4.92446 7.29622L4.31173 8.73695C4.18204 9.04189 4.32411 9.39423 4.62905 9.52391C4.93399 9.6536 5.28633 9.51153 5.41601 9.20659L5.87527 8.12671H7.60806L8.08534 9.21311C8.21863 9.51649 8.57262 9.65438 8.876 9.5211C9.17939 9.38781 9.31728 9.03382 9.18399 8.73044L8.5518 7.29143L7.28379 4.22348ZM7.1026 6.92671H6.37035L6.73362 6.03396L7.1026 6.92671Z"
                                     fill="#415066"></path>
@@ -38,13 +37,12 @@
                     </div>
                 </div>
             </div>
-
             <div class="register-box">
-                <form action="">
+                <form action="{{ route('api_authentication_register_post') }}" method="POST" id="register_form" @submit.prevent="sendRequest()">
                     <div class="title">
                         Đăng ký
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <div class="dropdown dropdown-country">
                             <button class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -62,17 +60,16 @@
                                 <a class="dropdown-item" href="#">Chinese</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <div class="custom-form-input">
-                            <input type="text" class="input-text" placeholder="Email" value="" id="">
+                            <input type="text" class="input-text" v-model="form.email" placeholder="Email" value="" id="">
                             <small class="label-helper">
                                 Email
                             </small>
                         </div>
                     </div>
-
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <div class="custom-form-input custom-form-code">
                             <input type="text" class="input-text input-disabled" disabled placeholder="Mã xác nhận" value=""
                                 id="">
@@ -83,10 +80,10 @@
                                 Gửi
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <div class="custom-form-input custom-form-password">
-                            <input type="text" class="input-text" placeholder="Mật khẩu" value="" id="">
+                            <input type="text" class="input-text" v-model="form.password" placeholder="Mật khẩu" value="" id="">
                             <small class="label-helper">
                                 Mật khẩu
                             </small>
@@ -99,7 +96,7 @@
                     <div class="form-group">
                         <label class="checkbox-custom">
                             <span class="checkbox-custom-input">
-                                <input type="checkbox" class="d-none" value="" />
+                                <input type="checkbox" v-model="form.accpect" class="d-none" value="" />
                                 <span class="checkbox-custom-icon"></span>
                             </span>
                             <span class="checkbox-custom-name">Tôi đồng ý với </span>
@@ -108,12 +105,13 @@
                         <a class="link text-theme" href="javascript:;" data-toggle="modal"
                             data-target="#modalDieuKien">《Điều kiện》</a>
                         &
-                        <a class="link text-theme" href="javascript:;" data-toggle="modal" data-target="#modalChinhsach">《
+                        <a class="link text-theme" href="javascript:;" data-toggle="modal"
+                            data-target="#modalChinhsach">《
                             Chính sách quyền riêng tư》</a>
                     </div>
                     <div class="form-group">
-                        <button disabled="" color="primary" type="submit"
-                            class="btn btn-theme login-btn btn-disabled"><span>Đăng ký</span></button>
+                        <button color="primary" type="submit"
+                            class="btn btn-theme login-btn"><span>Đăng ký</span></button>
                     </div>
                 </form>
                 <!-- Modal -->
@@ -275,7 +273,13 @@
     </div>
 @endsection
 @push('js_bot_all')
+    <script>
+        const api = {
+            register: '{{ route('api_authentication_register_post') }}'
+        }
+    </script>
     <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
     <script src="{{ asset('template/libs/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/pages/register.js') }}"></script>
 @endpush
