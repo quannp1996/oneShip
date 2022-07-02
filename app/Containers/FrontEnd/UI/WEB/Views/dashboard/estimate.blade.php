@@ -101,7 +101,7 @@
                                     <div class="admin-form-item-control-input">
                                         <div class="admin-form-item-control-input-content">
                                             <span class="admin-input-adon ">
-                                                <input placeholder="Vui lòng nhập" id="weight" v-model='package_weight'
+                                                <input placeholder="Vui lòng nhập" id="package_weight" v-model='package.weight'
                                                     class="admin-form-input admin-adon-input" type="number" />
                                                 <span class="admin-input-group-addon">Kg</span>
                                             </span>
@@ -118,7 +118,7 @@
                     <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">
                         Hủy
                     </button>
-                    <button class="btn-themes color-btn" type="submit">
+                    <button class="btn-themes color-btn" type="button" @click="caculateFees()">
                         Ước tính phí vận chuyển
                     </button>
                 </div>

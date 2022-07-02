@@ -112,23 +112,19 @@
         function facebookLogin() {
             FB.login(response => {
                 if (response.authResponse) {
-                    FB.api('/me', async (response) => {
-                        await fetch('{{ route('api_authentication_login') }}', {
-                            method: 'POST',
-                            credentials: 'same-origin',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                _token: '{{ csrf_token() }}',
-                                social_id: response.id,
-                                social_name: response.name,
-                                social_provider: 'facebook'
-                            })
+                    FB.api('/me', function(response){
+                        $.post('{{ route('api_authentication_login') }}', {
+                            _token: '{{ csrf_token() }}',
+                            social_id: response.id,
+                            social_name: response.name,
+                            social_provider: 'facebook'
                         }).then(json => {
-                            console.log(json);
-                        })
-                    });
+                            if(json.data.access_token){
+                                localStorage.setItem('access_token', json.data.access_token);
+                            }
+                            window.location.href = '{{ route('web_dashboard_index') }}';
+                        });
+                    })
                 } else {
                     console.log('User cancelled login or did not fully authorize.');
                 }

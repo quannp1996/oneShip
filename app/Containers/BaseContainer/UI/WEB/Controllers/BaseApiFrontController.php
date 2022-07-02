@@ -31,7 +31,7 @@ class BaseApiFrontController extends ApiController
 
         $this->settings = app(GetAllSettingsAction::class)->run('Array', true);
 
-        $this->user = auth()->guard(config('auth.guard_for.api-customer'))->user();
+        $this->user = auth('api-customer')->user();
         
         $this->isMobile = FunctionLib::isMobile($this->settings);
     }

@@ -36,17 +36,16 @@ trait TraitCaculateFee{
         ]);
     }
 
-    public function caculateFees(CaculateShippingFeesRequest $request)
+    public function caculateFees()
     {
         
         /**
          * Láy thông tin người đặt hàng
          */
-        $customer = app(FindCustomerByIdAction::class)->run($request->userID);
+        dd(auth('api')->user());
         /**
          * Lấy thông tin của Đơn vị vận chuyển được chọn
          */
-
         $shippingUnits = app(GetAllShippingUnitsAction::class)->run();
         
         // /**

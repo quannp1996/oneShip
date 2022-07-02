@@ -56,7 +56,13 @@ const estimateVUE = new Vue({
         },
 
         caculateFees: async function(){
-            $.post()
+            $.post(this.api.estimate, {
+                sender: this.sender,
+                receiver: this.receiver,
+                package: this.package
+            }).then(json => {
+                console.log(json);
+            })
         }
     },
 })

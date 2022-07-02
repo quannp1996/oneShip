@@ -16,6 +16,7 @@ use App\Containers\Customer\Actions\StoreNewCustomerAction;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Ship\Parents\Controllers\ApiController;
 use App\Ship\Transporters\DataTransporter;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
 
@@ -108,6 +109,7 @@ class Controller extends ApiController
                 'social_id' => $request->social_id,
                 'social_provider' => $request->social_provider
             ]);
+
             if(!$user){
                 $data = new DataTransporter([
                     'social_id' => $request->social_id,
@@ -122,22 +124,13 @@ class Controller extends ApiController
 
             if($user->status != 2) return $this->sendError('unauthorzie', '404', 'Tài khoản không được kích hoạt');
 
-            // $dataLogin = array_merge([
-            //     'username' => $user->email,
-            //     'password' => $user->password
-            // ], [
-            //     'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
-            //     'client_password' => Config::get('authentication-container.clients.web.admin.secret')
-            // ]);
-
-            // $content = Apiato::call('Authentication@ProxyApiLoginAction', [$dataLogin]);
-
+            $token = auth('api')->login($user, true);
             
-            dd(auth('customer')->login($user, true));
-            // return $this->sendResponse([
-            //     'success' => true,
-            //     'token' => $content
-            // ]);
+            return $this->sendResponse([
+                'success' => true,
+                'access_token' => $token
+            ]);
+
         }catch(\Exception $e){
             return $this->sendError('unauthorize', 404, $e->getMessage());
         }

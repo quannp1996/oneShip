@@ -34,5 +34,6 @@
     <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ asset('admin/js/vue_dev.js') }}"></script>
     <script src="{{ asset('template/js/httpvueloader.js') }}"></script>
+    <script src="{{ asset('template/js/setup.js') }}"></script>
     @stack('js_bot_all')
 </html>
