@@ -3,10 +3,12 @@
 $router->group([
   'prefix' => 'orders',
   'domain' => config('app.admin_url'),
+  'namespace' => 'Admin',
   'middleware' => [
     'auth:admin',
   ],
 ], function () use ($router) {
+  
   $router->get('/', [
     'as' => 'admin.orders.index',
     'uses'  => 'OrderController@index',
