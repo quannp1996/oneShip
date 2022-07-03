@@ -18,8 +18,7 @@
                         <div class="d-flex align-items-center">
                             <span class="icon-svg">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
-                                    class="">
+                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="">
                                     <path
                                         d="M7.57656 9.47171C7.68909 9.58424 7.8417 9.64745 8.00083 9.64745C8.15996 9.64745 8.31257 9.58424 8.42509 9.47171L10.7108 7.186C10.9451 6.95169 10.9451 6.57179 10.7108 6.33747C10.4765 6.10316 10.0966 6.10316 9.86228 6.33747L8.60083 7.59892V2.28555C8.60083 1.95418 8.3322 1.68555 8.00083 1.68555C7.66946 1.68555 7.40083 1.95418 7.40083 2.28555L7.40083 7.59892L6.13938 6.33747C5.90506 6.10316 5.52517 6.10316 5.29085 6.33747C5.05654 6.57179 5.05654 6.95169 5.29085 7.186L7.57656 9.47171Z">
                                     </path>
@@ -109,7 +108,8 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="sender" role="tabpanel" aria-labelledby="sender-tab">
+                        <div class="tab-pane fade show active" id="sender" role="tabpanel"
+                            aria-labelledby="sender-tab">
 
                             <div class="admin-card-row justify-content-between">
                                 <div class="col-8">
@@ -118,7 +118,8 @@
                                             <span class="search-box-wrap">
                                                 <div class="keysuggest">
                                                     <div class="keysuggest-dropdown js-customdropdown-holder">
-                                                        <span class="admin-select-selection-item js-customdropdown-value">Từ
+                                                        <span
+                                                            class="admin-select-selection-item js-customdropdown-value">Từ
                                                             khóa</span>
                                                         <div class="keysuggest-dropdown-menu js-customdropdown-parent">
                                                             <a class="keysuggest-item js-customdropdown-item"
@@ -136,9 +137,10 @@
                                                             placeholder="Tìm kiếm mã đơn hàng/thông tin đơn hàng/sản phẩm/thông tin người nhận/ghi chú"
                                                             class="admin-form-input" type="text" value="" />
                                                         <span class="icon-svg">
-                                                            <span role="img" tabindex="-1" class="anticon searchBtn-fXszSa">
-                                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                            <span role="img" tabindex="-1"
+                                                                class="anticon searchBtn-fXszSa">
+                                                                <svg width="20" height="20" viewBox="0 0 20 20"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                                                         d="M9.28525 4.32178C6.54355 4.32178 4.32097 6.54436 4.32097 9.28606C4.32097 12.0278 6.54355 14.2503 9.28525 14.2503C10.6218 14.2503 11.835 13.7222 12.7274 12.8632C12.7467 12.8383 12.7678 12.8143 12.7906 12.7914C12.8135 12.7686 12.8375 12.7475 12.8624 12.7282C13.7214 11.8358 14.2495 10.6226 14.2495 9.28606C14.2495 6.54436 12.027 4.32178 9.28525 4.32178ZM14.3558 13.296C15.2285 12.194 15.7495 10.8009 15.7495 9.28606C15.7495 5.71594 12.8554 2.82178 9.28525 2.82178C5.71513 2.82178 2.82097 5.71594 2.82097 9.28606C2.82097 12.8562 5.71513 15.7503 9.28525 15.7503C10.8001 15.7503 12.1932 15.2293 13.2952 14.3566L15.8978 16.9592C16.1907 17.2521 16.6655 17.2521 16.9584 16.9592C17.2513 16.6664 17.2513 16.1915 16.9584 15.8986L14.3558 13.296Z"
                                                                         fill="#415066"></path>
@@ -184,8 +186,8 @@
                                                         <a class="" href="javascript:;">
                                                             <span class="admin-select-selection-item admin-form-input">
                                                                 Trạng thái đơn hàng
-                                                                <span role="img" class="icon-svg"><svg
-                                                                        class="" aria-hidden="true">
+                                                                <span role="img" class="icon-svg"><svg class=""
+                                                                        aria-hidden="true">
                                                                         <use xlink:href="#icon-Filter"></use>
                                                                     </svg></span>
                                                             </span>
@@ -197,9 +199,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-1">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-1">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-1">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã tạo
@@ -208,9 +209,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-2">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-2">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-2">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn tất
@@ -219,9 +219,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-3">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-3">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-3">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Bị hủy
@@ -230,9 +229,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-4">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-4">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-4">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Hủy </span>
@@ -245,9 +243,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-5">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-5">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-5">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã thanh
@@ -256,9 +253,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-6">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-6">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-6">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Chưa thanh
@@ -267,9 +263,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-7">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-7">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-7">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn lại
@@ -284,9 +279,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-8">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-8">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-8">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đợi giao
@@ -295,9 +289,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-9">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-9">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-9">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Vận chuyển
@@ -306,9 +299,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-10">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-10">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-10">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Hoàn thành
@@ -317,9 +309,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-11">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-11">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-11">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn lại
@@ -341,8 +332,8 @@
                                                         <a class="" href="javascript:;">
                                                             <span class="admin-select-selection-item admin-form-input">
                                                                 Trạng thái vận chuyển
-                                                                <span role="img" class="icon-svg"><svg
-                                                                        class="" aria-hidden="true">
+                                                                <span role="img" class="icon-svg"><svg class=""
+                                                                        aria-hidden="true">
                                                                         <use xlink:href="#icon-Filter"></use>
                                                                     </svg></span>
                                                             </span>
@@ -354,9 +345,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-1">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-1">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-1">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã tạo
@@ -365,9 +355,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-2">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-2">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-2">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn tất
@@ -376,9 +365,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-3">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-3">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-3">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Bị hủy
@@ -387,9 +375,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-4">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-4">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-4">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Hủy </span>
@@ -402,9 +389,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-5">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-5">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-5">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã thanh
@@ -413,9 +399,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-6">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-6">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-6">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Chưa thanh
@@ -424,9 +409,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-7">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-7">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-7">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn lại
@@ -441,9 +425,8 @@
                                                                     <div class="d-flex flex-column">
                                                                         <label class="checkbox-custom" for="id-8">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-8">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-8">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đợi giao
@@ -452,9 +435,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-9">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-9">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-9">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Vận chuyển
@@ -463,9 +445,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-10">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-10">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-10">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Hoàn thành
@@ -474,9 +455,8 @@
                                                                         </label>
                                                                         <label class="checkbox-custom" for="id-11">
                                                                             <span class="checkbox-custom-input">
-                                                                                <input type="checkbox"
-                                                                                    class="d-none" value=""
-                                                                                    id="id-11">
+                                                                                <input type="checkbox" class="d-none"
+                                                                                    value="" id="id-11">
                                                                                 <span class="checkbox-custom-icon"></span>
                                                                             </span>
                                                                             <span class="checkbox-custom-name">Đã hoàn lại
@@ -510,15 +490,17 @@
                                                 Lọc
                                             </span>
                                         </a>
-                                        <a href="javascript:;" class="\">
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-16">
+                                        <a href="javascript:;"
+                                            class="\">
                                             <span class="admin-form-input">
-                                                Chỉnh sửa tiêu đề
+                                            Chỉnh sửa tiêu đề
                                             </span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="tab-pane fade" id="receiver" role="tabpanel" aria-labelledby="receiver-tab">
 

@@ -5,7 +5,7 @@
 	</div>
 	<div class="admin-form-item-control">
 		<div class="dropdown dropdown-custom">
-			<button class=" dropdown-toggle" type="button" :id="bindDropdown"
+			<button class="dropdown-toggle unvalid" type="button" :id="bindDropdown"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<div class="dropdown-custom-input" v-text='selectedText'></div>
 			</button>

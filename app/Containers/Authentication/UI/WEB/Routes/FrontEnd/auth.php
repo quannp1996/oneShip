@@ -1,9 +1,6 @@
 <?php
-$router->get('/', [
-    'as'   => 'get_admin_home_page',
-    'uses'       => '\App\Containers\DashBoard\UI\WEB\Controllers\Admin\Controller@viewDashboardPage',
-    'domain' => config('app.admin_url'),
-    'middleware' => [
-        'auth:admin'
-    ],
+$router->POST('/social_login', [
+    'as'   => 'web_social_login',
+    'uses'       => 'FrontEnd\Controller@loginSocial',
+    'domain' => config('app.url'),
 ]);

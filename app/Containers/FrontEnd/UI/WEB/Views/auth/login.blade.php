@@ -112,7 +112,7 @@
             FB.login(response => {
                 if (response.authResponse) {
                     FB.api('/me', function(res) {
-                        $.post('{{ route('api_authentication_login') }}', {
+                        $.post('{{ route('web_social_login') }}', {
                             _token: '{{ csrf_token() }}',
                             social_id: res.id,
                             social_name: res.name,
