@@ -1,6 +1,6 @@
 @extends('basecontainer::frontend.pc.layouts.home')
 @section('content')
-    <div class="admin-main-layout">
+    <div class="admin-main-layout" id="orderAPP">
         <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
             <symbol id="icon-Filter" viewBox="0 0 1024 1024">
                 <path
@@ -110,7 +110,6 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="sender" role="tabpanel" aria-labelledby="sender-tab">
-
                             <div class="admin-card-row justify-content-between">
                                 <div class="col-8">
                                     <div class="admin-card-row mt-16">
@@ -518,10 +517,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="tab-pane fade" id="receiver" role="tabpanel" aria-labelledby="receiver-tab">
-
 
                         </div>
                     </div>
@@ -530,3 +527,11 @@
         </div>
     </div>
 @endsection
+@push('js_bot_all')
+    <script>
+        var api = {
+            fetch: {!! route() !!}
+        }
+    </script>
+    <script src="{{ asset('js/pages/orders.js') }}?v={{ $settings['other']['version'] }}"></script>
+@endpush

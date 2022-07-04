@@ -22,7 +22,7 @@ Route::group(
             'as' => 'web_estimate_index',
             'uses' => 'Estimate@estimate'
         ]);
-        $router->get('/order', [
+        $router->get('/orders', [
             'as' => 'web_orders_index',
             'uses' => 'Order@orders'
         ]);
