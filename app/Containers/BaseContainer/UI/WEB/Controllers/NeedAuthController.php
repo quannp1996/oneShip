@@ -11,7 +11,6 @@
 
 namespace App\Containers\BaseContainer\UI\WEB\Controllers;
 
-use App\Containers\Customer\Models\Customer;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 
 

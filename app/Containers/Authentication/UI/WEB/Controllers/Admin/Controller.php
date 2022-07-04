@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Containers\Authentication\UI\WEB\Controllers;
+namespace App\Containers\Authentication\UI\WEB\Controllers\Admin;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\FunctionLib;
 use Illuminate\Support\Str;
-use App\Containers\Authentication\Data\Transporters\ProxyApiLoginTransporter;
 use App\Containers\Authentication\Exceptions\LoginFailedException;
 use App\Containers\Authentication\Models\PasswordReset;
 use App\Containers\Authentication\UI\WEB\Requests\Admin\LoginRequest;
 use App\Containers\Authentication\UI\WEB\Requests\Admin\LogoutRequest;
 use App\Containers\Authentication\UI\WEB\Requests\Admin\ResetPasswordFormRequest;
 use App\Containers\Authentication\UI\WEB\Requests\Admin\SendLinkResetRequest;
-use App\Containers\Authentication\UI\WEB\Requests\ViewDashboardRequest;
-use App\Containers\FrontEnd\UI\WEB\Requests\Auth\SubmitPasswordUpdateRequest;
 use App\Containers\Authentication\Events\Admin\Events\ForgotPasswordEvent;
 use App\Containers\User\Models\User;
 use App\Ship\Parents\Controllers\WebController;
@@ -21,8 +18,6 @@ use App\Ship\Transporters\DataTransporter;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class Controller
@@ -61,24 +56,9 @@ class Controller extends WebController
             $result = Apiato::call('Authentication@WebAdminLoginAction', [new DataTransporter($request)]);
             $redirectURL = !empty($request->previous_url) ? $request->previous_url : route('get_admin_dashboard_page');
             return FunctionLib::ajaxRespondV2(true, 'success', ['url' => $redirectURL]);
-            // if (!is_array($result)) {
-            //     $redirectURL = !empty($request->previous_url) ? $request->previous_url : route('get_admin_dashboard_page');
-            //     $datalogin =  array_merge($request->all(), [
-            //         'client_id'       => Config::get('authentication-container.clients.web.admin.id'),
-            //         'client_password' => Config::get('authentication-container.clients.web.admin.secret')
-            //     ]);
-            //     $content = Apiato::call('Authentication@ProxyApiLoginAction', [$datalogin]);
-            //     if ($content) {
-            //         Apiato::call('Authentication@UpdateLoginTimeAction', [new DataTransporter($request), $request->ip()]);
-            //     }
-            //     return FunctionLib::ajaxRespondV2(true, 'success', ['token' => $content, 'url' => $redirectURL]);
-            // }
         } catch (Exception $e) {
             return FunctionLib::ajaxRespondV2(false, $e instanceof LoginFailedException ? 'Thông tin đăng nhập không chính xác' : $e->getMessage(), ['url' => route('get_admin_dashboard_page')], Response::HTTP_UNAUTHORIZED);
-            // return redirect('login')->with('status', $e instanceof LoginFailedException ? 'Thông tin đăng nhập không chính xác' : $e->getMessage());
         }
-
-        // return is_array($result) ? redirect('login')->with($result) : redirect()->route('get_admin_dashboard_page')->withCookie($content['refresh_cookie'])->withCookie($content['access_token_cookie']);
     }
 
     /**
@@ -88,7 +68,8 @@ class Controller extends WebController
     {
         try {
             $token = Str::random(config('authentication-container.token_reset.length'));
-            $passwordReset = PasswordReset::updateOrCreate([ 'email' => $request->email2 ],
+            $passwordReset = PasswordReset::updateOrCreate(
+                ['email' => $request->email2],
                 [
                     'token' => $token,
                 ]
@@ -105,13 +86,14 @@ class Controller extends WebController
     /**
      * @param \App\Containers\Authentication\UI\WEB\Requests\Admin\SendLinkResetRequest $request
      */
-    public function resetPasswordForm(ResetPasswordFormRequest $request){
-        try{
+    public function resetPasswordForm(ResetPasswordFormRequest $request)
+    {
+        try {
             $passwordReset = PasswordReset::where([
                 'token' => decrypt($request->token),
                 'email' => $request->email,
             ])->first();
-            if(!$passwordReset) abort(404);
+            if (!$passwordReset) abort(404);
             if (Carbon::parse($passwordReset->updated_at)->addSeconds(config('authentication-container.token_reset.time'))->isPast()) {
                 $passwordReset->delete();
                 abort(404);
@@ -119,10 +101,9 @@ class Controller extends WebController
             return view('authentication::admin.reset', [
                 'request' => $request
             ]);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             abort(404);
         }
-
     }
 
     /**

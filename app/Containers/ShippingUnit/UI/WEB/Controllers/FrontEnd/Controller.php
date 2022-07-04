@@ -37,7 +37,8 @@ class Controller extends NeedAuthController
             return $this->sendResponse([
                 'shippings' => $allShippings->map(function($item, $index) {
                     return [
-                        'id' => $index + 1, 
+                        'id' => $item->id, 
+                        'id2' => $index + 1, 
                         'title' => $item->title,
                         'time_pickup' => $item->time,
                         'fee' => $item->fee,
