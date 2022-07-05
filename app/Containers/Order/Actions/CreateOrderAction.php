@@ -2,12 +2,10 @@
 
 namespace App\Containers\Order\Actions;
 
-use App\Containers\Order\Models\Order;
-use App\Containers\Order\Tasks\CreateOrderItemsTask;
 use App\Ship\Parents\Actions\Action;
+use App\Containers\Order\Models\Order;
 use App\Containers\Order\Tasks\CreateOrderTask;
-use Illuminate\Support\Facades\DB;
-use App\Containers\Bizfly\Actions\Loyalty\SubPointLoyaltyAction;
+use App\Containers\Order\Tasks\CreateOrderItemsTask;
 
 class CreateOrderAction extends Action
 {
@@ -16,9 +14,6 @@ class CreateOrderAction extends Action
     public function run(): Order
     {
         $order = app(CreateOrderTask::class)->setData($this->data)->run();
-            
-        app(CreateOrderItemsTask::class)->setOrderId($order->id)->setItems($this->items)->run();
-
         return $order;
     }
 
@@ -32,5 +27,10 @@ class CreateOrderAction extends Action
     {
         $this->data = $data;
         return $this;
+    }
+
+    public function setCustomer($id)
+    {
+
     }
 }

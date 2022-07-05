@@ -3,8 +3,8 @@
 namespace App\Containers\ShippingUnit\Models;
 
 use Apiato\Core\Foundation\ImageURL;
-use App\Containers\ShippingUnit\Enums\EnumShipping;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Containers\ShippingUnit\Enums\EnumShipping;
 
 class ShippingUnit extends Model
 {

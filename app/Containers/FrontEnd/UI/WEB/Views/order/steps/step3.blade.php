@@ -116,7 +116,7 @@
                                 <td class="admin-table-cell" style="text-align: right;"><span
                                         class="color-415066">VND</span> @{{ item.fee }}</td>
                                 <td class="admin-table-cell">
-                                    <button type="button" @click="pickShipping(item)" class="btn-themes nocolor-btn" >
+                                    <button type="button" @click="pickShipping(item)" class="btn-themes nocolor-btn">
                                         <span v-if="selectedShipping == item.id">
                                             <i class="fa fa-check"></i>
                                         </span>
@@ -128,6 +128,54 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="admin-card">
+            <div class="admin-card-body p-0">
+                <div class="admin-card-head py-3">
+                    <div class="title">
+                        Cài đặt vận chuyển
+                    </div>
+                </div>
+                <div class="admin-card-body" v-if="shipping.selectedShipping">
+                    <div class="admin-card-row">
+                        <div class="col-5 mb-5">
+                            <div class="admin-form-item-label">
+                                <label for="sender_city" title="sender_city" class="admin-form-item-required">
+                                    Khoản tiền thu hộ của đơn hàng COD
+                                </label>
+                                <span class="price-box-wrap">
+                                    <div class="priceinput">
+                                        <span class="price-input">
+                                            <input placeholder="" v-model="shipping.cod" type="text" class="admin-form-input">
+                                        </span>
+                                    </div>
+                                    <div class="pricesuggest">
+                                        VND
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-card-row"
+                        v-if="shipping.selectedShipping.services && shipping.selectedShipping.services.length">
+                        <div class="col-5 mb-5">
+                            <div class="admin-form-item-label">
+                                <label for="sender_city" title="sender_city" class="admin-form-item-required">
+                                    Dịch vụ
+                                </label>
+                                <span class="price-box-wrap" v-for="item in shipping.selectedShipping.services">
+                                    <div class="form-check">
+                                        <input class="form-check-input" v-model="shipping.services" type="checkbox"
+                                            :value="item.id" :id="'flexCheckDefault' + item.id">
+                                        <label class="form-check-label" :for="'flexCheckDefault' + item.id"
+                                            v-text="item.name"></label>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

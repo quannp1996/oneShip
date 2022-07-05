@@ -59,17 +59,7 @@ class CreateOrderTask extends Task
 
     private function mapData(array $data)
     {
-        $mapData = [
-            'customer_id' => isset($data['customer_id']) ? $data['customer_id'] : 0,
-            'sender' => !empty($data['sender']) ? json_encode($data['sender']) : json_encode([]),
-            'receiver' => !empty($data['receiver']) ? json_encode($data['receiver']) : json_encode([]),
-            'package_weight' => !empty($data['package']['weight']) ? $data['package']['weight'] : 0,
-            'package_refcode' => !empty($data['package']['ref_code']) ? $data['package']['ref_code'] : 0,
-            'package_note' => !empty($data['package']['note']) ? $data['package']['note'] : '',
-            'created_at' => Carbon::now(),
-        ];
-
-        return $mapData;
+        return $data;
     }
 
     private function makeCodeOrder($payment_type = 0, $id = 0, $number_of_characters = 10)

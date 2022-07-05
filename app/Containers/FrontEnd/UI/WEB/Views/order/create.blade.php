@@ -25,7 +25,7 @@
             estimate: '{{ route('web_caculate_fees') }}',
             cancel: '{{ route('web_orders_index') }}',
             estimate: '{{ route('web_caculate_fees') }}',
-            storeOrder: '',
+            storeOrder: '{{ route('ajax.orders.store') }}',
         }
     </script>
     <script src="{{ asset('js/pages/create_order.js') }}"></script>

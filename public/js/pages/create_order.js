@@ -6,12 +6,12 @@ const createOrderVUE = new Vue({
         steps: ['step1', 'step2', 'step3', 'step4'],
         currentStep: 0,
         sender: {
-            fullname: '',
-            phone: '',
-            email: '',
-            address1: '',
-            zipcode: '',
-            address2: '',
+            fullname: 'Nguyễn Phú Quân',
+            phone: '0961013224',
+            email: 'np@gmail.com',
+            address1: 'Hà Nội',
+            zipcode: '1232',
+            address2: 'Hà Nội 2',
             province: null,
             district: null,
             ward: null,
@@ -20,12 +20,12 @@ const createOrderVUE = new Vue({
             wards: [],
         },
         receiver: {
-            fullname: '',
-            phone: '',
-            email: '',
-            address1: '',
-            zipcode: '',
-            address2: '',
+            fullname: 'Nguyễn Loan',
+            phone: '0961013224',
+            email: 'nm@gmail.com',
+            address1: 'Hà Nội',
+            zipcode: '10000',
+            address2: 'Hà Nội',
             province: null,
             district: null,
             ward: null,
@@ -50,6 +50,7 @@ const createOrderVUE = new Vue({
         shipping: {
             selectedShipping: null,
             cod: '',
+            services: [],
             picking_type: '',
         },
         listSender: [],
@@ -100,14 +101,13 @@ const createOrderVUE = new Vue({
         },
 
         gotoStep: function(step){
-            console.log(step);
             switch(step){
                 case 'step2': 
                     return this.gotoStep2();
                 case 'step3': 
                     return this.gotoStep3();
                 case 'step4':
-
+                    return this.gotoStep4();
             }
         },
 
@@ -130,7 +130,20 @@ const createOrderVUE = new Vue({
         },
 
         gotoStep4: async function(){
+            $.post(this.api.storeOrder, {
+                _token: ENV.token,
+                sender: this.sender,
+                receiver: this.receiver,
+                package: this.package,
+                shipping: {
+                    cod: this.shipping.cod,
+                    services: this.shipping.services,
+                    picking_type: '',
+                    shippingID: this.selectedShipping
+                }
+            }).then(json => {
 
+            })
         },
 
         cancel: function(){

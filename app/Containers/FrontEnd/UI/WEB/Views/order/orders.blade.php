@@ -513,7 +513,7 @@
 @push('js_bot_all')
     <script>
         var api = {
-            fetch: {!! route() !!}
+            fetch: '{{ route('ajax.orders.index') }}'
         }
     </script>
     <script src="{{ asset('js/pages/orders.js') }}?v={{ $settings['other']['version'] }}"></script>

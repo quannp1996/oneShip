@@ -11,6 +11,12 @@
 
 namespace App\Containers\Order\UI\API\Transformers\FrontEnd;
 
+use App\Containers\Order\Models\Order;
+
 class OrderListCustomerTransformer extends BaseOrderTransfomer
 {
+    public function transform($order)
+    {
+        
+    }
 }

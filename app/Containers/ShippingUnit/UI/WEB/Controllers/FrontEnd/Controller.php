@@ -9,6 +9,7 @@ use App\Containers\ShippingUnit\UI\API\Requests\FrontEnd\CaculateShippingFeesReq
 use App\Containers\ShippingUnit\UI\WEB\Transformers\ShippingFeesTransformer;
 use App\Containers\ShippingUnit\Values\DonHang;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
+use Exception;
 
 /**
  * Class Controller
@@ -32,21 +33,27 @@ class Controller extends NeedAuthController
                     'receiver' => $request->sender,
                     'package' => $request->package
                 ]));
-                $item->fee = $shippingFee->caculateShipping();
+                try{
+                    $item->fee = $shippingFee->caculateShipping();
+                }catch(Exception $e){
+                    unset($item);
+                }
             });
             return $this->sendResponse([
                 'shippings' => $allShippings->map(function($item, $index) {
-                    return [
-                        'id' => $item->id, 
-                        'id2' => $index + 1, 
-                        'title' => $item->title,
-                        'time_pickup' => $item->time,
-                        'fee' => $item->fee,
-                        'image' => $item->getImageUrl()
-                    ];
+                    if(empty($item->skip)){
+                        return [
+                            'id' => $item->id, 
+                            'id2' => $index + 1, 
+                            'title' => $item->title,
+                            'time_pickup' => $item->time,
+                            'fee' => $item->fee,
+                            'services' => $item->services,
+                            'image' => $item->getImageUrl()
+                        ];
+                    }
                 })
             ], 'Thông tin phí');
-            return $this->transform($allShippings, new ShippingFeesTransformer());
         }catch(\Exception $e){
             $this->sendError('FORBIDDEN', 403, $e->getMessage());
         }

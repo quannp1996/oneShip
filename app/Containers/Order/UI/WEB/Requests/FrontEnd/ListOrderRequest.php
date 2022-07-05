@@ -7,7 +7,7 @@ use App\Ship\Parents\Requests\Request;
 /**
  * Class AcceptOrderRequest.
  */
-class StoreOrderRequest extends Request
+class ListOrderRequest extends Request
 {
 
     /**
@@ -48,20 +48,7 @@ class StoreOrderRequest extends Request
     public function rules()
     {
         return [
-            'sender.fullname' => ['required'],
-            'sender.phone' => ['required'],
-            'sender.province' => ['required'],
-            'sender.district' => ['required'],
-            'sender.ward' => ['required'],
-            'sender.address1' => ['required'],
-            'receiver.fullname' => ['required'],
-            'receiver.phone' => ['required'],
-            'receiver.province' => ['required'],
-            'receiver.district' => ['required'],
-            'receiver.ward' => ['required'],
-            'receiver.address1' => ['required'],
-            'package.weight' => ['required'],
-            'shipping.cod' => ['required', 'min:0']
+            
         ];
     }
 
