@@ -35,7 +35,7 @@ class CreateOrderTask extends Task
 
             $object = $this->repository->create($data);
 
-            $code = $this->makeCodeOrder(@$data['payment_type'], $object->id);
+            $code = $this->makeCodeOrder(0, $object->id);
 
             $data = [
                 'code' => $code,
@@ -57,8 +57,9 @@ class CreateOrderTask extends Task
         return $this;
     }
 
-    private function mapData(array $data)
+    private function mapData(array &$data)
     {
+        $data['status'] = OrderStatus::NEW_ORDER;
         return $data;
     }
 

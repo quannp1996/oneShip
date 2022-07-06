@@ -25,7 +25,8 @@ class Controller extends NeedAuthController
         $orders = $getAllOrdersAction->run([
             'customerID' => auth('customer')->id(),
         ], ['shipping']);
-        $this->transform($orders, new OrderListCustomerTransformer());
+        dd($orders);
+        return $this->transform($orders, new OrderListCustomerTransformer());
     }
 
     public function apiStore(StoreOrderRequest $request, CreateOrderAction $createOrderAction)
@@ -55,7 +56,7 @@ class Controller extends NeedAuthController
             'receiver_ward' => $request->receiver['ward'],
             'receiver_zip' => $request->receiver['zip'],
             'cod' => $request->shipping['cod'],
-            'shippingID' => $request->shipping['shippingID'],
+            'shippingUnitID' => $request->shipping['shippingID'],
             'services' => json_encode($request->shipping['services']),
             'packages' => json_encode($request->package)
         ])->run();

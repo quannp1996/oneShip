@@ -2,17 +2,17 @@
 @section('content')
     <div class="admin-main-layout" id="createOrderVue">
         <div class="admin-main-container xl">
-            @include('frontend::order.sections.header')
+            @include('frontend::order.sections.create.header')
             <div v-if="currentStep === 0">
-                @include('frontend::order.steps.step1')
+                @include('frontend::order.sections.create.steps.step1')
             </div>
             <div v-if="currentStep === 1">
-                @include('frontend::order.steps.step2')
+                @include('frontend::order.sections.create.steps.step2')
             </div>
             <div v-if="currentStep === 2">
-                @include('frontend::order.steps.step3')
+                @include('frontend::order.sections.create.steps.step3')
             </div>
-            @include('frontend::order.sections.footer')
+            @include('frontend::order.sections.create.footer')
         </div>
     </div>
 @endsection

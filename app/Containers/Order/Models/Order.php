@@ -103,6 +103,6 @@ class Order extends Model
 
   public function shipping()
   {
-      return $this->hasOne(ShippingUnit::class, 'id', 'shippingID');
+      return $this->hasOne(ShippingUnit::class, 'id', 'shippingUnitID');
   }
 } // End class

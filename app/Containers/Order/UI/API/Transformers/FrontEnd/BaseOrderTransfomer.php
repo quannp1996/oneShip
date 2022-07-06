@@ -17,6 +17,9 @@ use App\Ship\Parents\Transformers\Transformer;
 
 class BaseOrderTransfomer extends Transformer
 {
+    protected array $defaultIncludes = [
+        'items'
+    ];
     
     public function transform($order)
     {
@@ -48,5 +51,11 @@ class BaseOrderTransfomer extends Transformer
         $data['link'] = routeFrontEndFromOthers('web_detail_profile_order',['token_tracking' => $order->token_tracking]);
 
         return $data;
+    }
+
+    public function includeItems($order)
+    {
+        $items = $order->orderItems;
+        return (!empty($items) && !$items->IsEmpty()) ? $this->collection($items, new OrderItemTransfomer, 'items') : $this->null();
     }
 }
