@@ -9,10 +9,9 @@ use App\Ship\Parents\Models\Model;
 
 class CustomerAddressBook extends Model
 {
-    protected $table = 'customer_address_book';
+    protected $table = 'customer_address';
 
     protected $fillable = [
-        'customer_id', 'name', 'phone', 'address', 'province_id', 'district_id', 'ward_id', 'is_default','is_on_working_time'
     ];
 
     protected $attributes = [];
@@ -29,7 +28,7 @@ class CustomerAddressBook extends Model
     /**
      * A resource key to be used by the the JSON API Serializer responses.
      */
-    protected $resourceKey = 'customer_address_book';
+    protected $resourceKey = 'customer_address';
 
     public function province()
     {

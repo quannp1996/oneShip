@@ -10,6 +10,5 @@ class Address extends NeedAuthController
         view()->share('user', auth('customer')->user());
         return view('frontend::address.list');
     }
-    
 }
 ?>
