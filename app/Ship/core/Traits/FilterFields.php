@@ -11,7 +11,8 @@ use Carbon\Carbon;
 
 trait FilterFields
 {
-    public function filter(array $condition = []){
+    public function filter(array $condition = []): self
+    {
         if(!empty($this->equalFields)){
             foreach ($this->equalFields as $key) {
                 if (!empty($condition[$key])) {
