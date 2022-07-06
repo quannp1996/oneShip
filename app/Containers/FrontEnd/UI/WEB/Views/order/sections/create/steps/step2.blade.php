@@ -256,7 +256,7 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="" id="aa" class="admin-form-input admin-adon-input"
+                                <input v-model="reference_code" placeholder="" id="aa" class="admin-form-input admin-adon-input"
                                     type="text" value="" />
                             </div>
                         </div>
@@ -271,8 +271,11 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập" id="weight"
-                                    class="admin-form-input admin-adon-input" type="text" value="" />
+                                <textarea 
+                                    v-model="note"
+                                    class="admin-form-input admin-adon-input"
+                                    placeholder="Vui lòng nhập" 
+                                    name="note" id="note" cols="30" rows="5"></textarea>
                             </div>
                         </div>
                     </div>

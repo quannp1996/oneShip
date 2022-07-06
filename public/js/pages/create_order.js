@@ -5,6 +5,8 @@ const createOrderVUE = new Vue({
         provinces: [],
         steps: ['step1', 'step2', 'step3', 'step4'],
         currentStep: 0,
+        note: '',
+        reference_code: '',
         sender: {
             fullname: 'Nguyễn Phú Quân',
             phone: '0961013224',
@@ -135,6 +137,8 @@ const createOrderVUE = new Vue({
                 sender: this.sender,
                 receiver: this.receiver,
                 package: this.package,
+                note: this.note,
+                reference_code: this.reference_code,
                 shipping: {
                     cod: this.shipping.cod,
                     services: this.shipping.services,

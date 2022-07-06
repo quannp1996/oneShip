@@ -31,8 +31,6 @@ class Order extends Model
 
   protected $table = 'orders';
 
-  protected $appends = ['total_price_currency', 'fee_ship_currency'];
-
   protected $guarded = [];
 
   protected $attributes = [];
@@ -103,6 +101,6 @@ class Order extends Model
 
   public function shipping()
   {
-      return $this->hasOne(ShippingUnit::class, 'id', 'shippingUnitID');
+      return $this->hasOne(ShippingUnit::class, '_id', 'shippingUnitID');
   }
 } // End class

@@ -136,7 +136,7 @@
                                     </svg>
                                 </span>
                                 <span class="submenu-item">
-                                    <a href="javascript:;">Danh sách địa chỉ </a>
+                                    <a href="{{ route('web_orders_address') }}">Danh sách địa chỉ </a>
                                 </span>
                             </span>
                         </li>

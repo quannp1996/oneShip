@@ -11,14 +11,20 @@
 
 namespace App\Containers\Order\UI\API\Transformers\FrontEnd;
 
-class OrderListCustomerTransformer extends BaseOrderTransfomer
+use App\Containers\Order\Models\Order;
+use App\Ship\Parents\Transformers\Transformer;
+
+class OrderListCustomerTransformer extends Transformer
 {
-    public function transform($order)
+    public function transform(Order $order)
     {
         return [
             'id' => $order->id,
             'code' => $order->code,
-            'shipping' => $order->shipping
+            'shipping_title' => $order->relationLoaded('shipping') ? $order->shipping->title : '',
+            'shipping_image' => $order->relationLoaded('shipping') ? $order->shipping->getImageUrl() : '',
+            'created_at' => $order->created_at->format('d/m/Y H:i:s'),
+            'note' => $order->note
         ];
     }
 }

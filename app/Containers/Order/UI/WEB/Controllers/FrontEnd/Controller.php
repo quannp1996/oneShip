@@ -22,11 +22,16 @@ class Controller extends NeedAuthController
     
     public function apiList(ListOrderRequest $request, GetAllOrdersAction $getAllOrdersAction)
     {
-        $orders = $getAllOrdersAction->run([
-            'customerID' => auth('customer')->id(),
-        ], ['shipping']);
-        dd($orders);
-        return $this->transform($orders, new OrderListCustomerTransformer());
+        try{
+            $orders = $getAllOrdersAction->run(array_merge(
+                $request->only([]), [
+                    'customerID' => auth('customer')->id(),
+                ]
+            ), ['shipping']);
+            return $this->transform($orders, new OrderListCustomerTransformer());
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 
     public function apiStore(StoreOrderRequest $request, CreateOrderAction $createOrderAction)
@@ -55,10 +60,13 @@ class Controller extends NeedAuthController
             'receiver_district' => $request->receiver['district'],
             'receiver_ward' => $request->receiver['ward'],
             'receiver_zip' => $request->receiver['zip'],
+            // Base Data
             'cod' => $request->shipping['cod'],
             'shippingUnitID' => $request->shipping['shippingID'],
             'services' => json_encode($request->shipping['services']),
-            'packages' => json_encode($request->package)
+            'packages' => json_encode($request->package),
+            'note' => $request->note,
+            'reference_code' => $request->reference_code
         ])->run();
         
         return $this->sendResponse([
