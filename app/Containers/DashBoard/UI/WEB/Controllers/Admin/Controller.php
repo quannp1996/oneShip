@@ -6,12 +6,8 @@ use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\FunctionLib;
 use App\Containers\DashBoard\UI\WEB\Requests\Admin\ViewDashboardRequest;
 use App\Containers\DashBoard\UI\WEB\Requests\GetTopProductStatisticRequest;
-use App\Containers\SocialAuth\UI\API\Requests\ApiAuthenticateRequest;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Ship\Parents\Controllers\AdminController;
-use App\Ship\Transporters\DataTransporter;
-use Exception;
-use Illuminate\Support\Facades\Cookie;
 
 /**
  * Class Controller
@@ -43,18 +39,8 @@ class Controller extends AdminController
    */
   public function viewDashboardPage(ViewDashboardRequest $request)
   {
-    // dd(\Auth::guard('admin')->user());
-    // dd(\Route::getRoutes());
-    // dd(Cookie::get('xxxx'));
-    // $content = session()->get('access-token');
-    // Cookie::set('refreshToken', $content['refresh_cookie']->getValue());
-    // // dd(cookie(
-    // //     'refreshToken'
-    // // ),);
-
-    // dd(Cookie::get('refreshToken'));
     $this->breadcrumb[] = FunctionLib::addBreadcrumb('Bảng điều khiển', route('get_admin_dashboard_page'));
-    \View::share('breadcrumb', $this->breadcrumb);
+    view()->share('breadcrumb', $this->breadcrumb);
     return view('dashboard::admin.dashboard');
   }
 

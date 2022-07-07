@@ -25,7 +25,6 @@ use Illuminate\Config\Repository as ConfigRepository;
 
 abstract class Task extends AbstractTask
 {
-    use FilterFields;
     public $currentLang, $skipPagin = false;
     protected $externalWith = [];
     protected $mustHaveDesc;

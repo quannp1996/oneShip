@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\Customer\UI\WEB\Controllers;
+namespace App\Containers\Customer\UI\WEB\Controllers\Admin;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\Facades\FunctionLib;

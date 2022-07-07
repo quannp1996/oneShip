@@ -21,7 +21,7 @@ final class OrderStatus extends BaseEnum
     const CANCEL = -1;
     
     /**
-     * Đơn hàng mới
+     * Đơn hàng mới 
      */
     const NEW_ORDER = 1;
 

@@ -78,13 +78,7 @@ class CityController extends LocationController
     public function getCityAjax(GetAllLocationsRequest $request)
     {
         $cities = Apiato::call('Location@GetAllCitiesAction', [false,20,'name desc', [], ['city']]);
-        if($cities)
-        return FunctionLib::ajaxRespond(true, 'Hoàn thành', $cities);
-            else
+        if($cities) return FunctionLib::ajaxRespond(true, 'Hoàn thành', $cities);
         return FunctionLib::ajaxRespond(false, 'ko tồn tại');
-    }
-
-    public function exportToJsonFile( $request) {
-
     }
 }

@@ -13,6 +13,7 @@ namespace App\Containers\Customer\Enums;
 
 use App\Containers\BaseContainer\Enums\BaseEnum;
 
-final class CustomerAddressBookStatus extends BaseEnum
+final class EnumAddressBook extends BaseEnum
 {
+    const CAN_FILL = ['fullname', 'phone', 'email', 'province_id', 'district_id', 'ward_id', 'village', 'zipcode', 'address1', 'address2', 'type', 'is_default', 'customerID'];
 }

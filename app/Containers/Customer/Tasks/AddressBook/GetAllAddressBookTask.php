@@ -20,8 +20,8 @@ class GetAllAddressBookTask extends Task
 
     public function run(bool $hasPagination = true, int $limit = 10)
     {
-       if($hasPagination) return $this->repository->paginate($limit);
-       if(!empty($limit)) return $this->repository->get();
-       return $this->repository->take($limit)->get();
+        if ($hasPagination) return $this->repository->paginate($limit);
+        if (!empty($limit)) return $this->repository->get();
+        return $this->repository->take($limit)->get();
     }
 }

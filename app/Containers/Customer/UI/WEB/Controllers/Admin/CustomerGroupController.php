@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Containers\Customer\UI\WEB\Controllers;
+namespace App\Containers\Customer\UI\WEB\Controllers\Admin;
 
-use App\Ship\Parents\Controllers\WebController;
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Ship\Transporters\DataTransporter;
+use App\Ship\Parents\Controllers\AdminController;
+use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 use App\Containers\Customer\UI\WEB\Requests\DeleteCustomerGroupRequest;
 use App\Containers\Customer\UI\WEB\Requests\EditCustomerGroupRequest;
 use App\Containers\Customer\UI\WEB\Requests\GetAllCustomerGroupRequest;
 use App\Containers\Customer\UI\WEB\Requests\StoreCustomerGroupRequest;
 use App\Containers\Customer\UI\WEB\Requests\UpdateCustomerGroupRequest;
-use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
-use App\Ship\Parents\Controllers\AdminController;
-use App\Ship\Transporters\DataTransporter;
 
 /**
  * Class CustomerGroupController
@@ -28,7 +27,6 @@ class CustomerGroupController extends AdminController
       if (in_array($method, ['create', 'create'])) {
         $this->dontUseShareData = true;
       }
-
       parent::__construct();
     }
 
@@ -49,18 +47,6 @@ class CustomerGroupController extends AdminController
           'customerGroups' => $customerGroups,
           'input' => $request->all()
         ]);
-    }
-
-    /**
-     * Show one entity
-     *
-     * @param FindCustomerByIdRequest $request
-     */
-    public function show(FindCustomerByIdRequest $request)
-    {
-        $customer = Apiato::call('Customer@FindCustomerByIdAction', [$request]);
-
-        // ..
     }
 
     /**

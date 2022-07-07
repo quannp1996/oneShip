@@ -2,6 +2,7 @@
 $router->group([
     'prefix' => 'customers',
     'domain' => config('admin_url'),
+    'namespace' => 'Admin',
     'middleware' => [
         'auth:admin'
     ]

@@ -1,5 +1,5 @@
 <?php 
-namespace App\Containers\Customer\UI\WEB\Controllers\Features;
+namespace App\Containers\Customer\UI\WEB\Controllers\Admin\Features;
 
 use App\Containers\Customer\Actions\FindCustomerByIdAction;
 use App\Containers\Customer\UI\WEB\Requests\Prices\SetupPriceCustomerRequest;

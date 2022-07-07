@@ -88,7 +88,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="sidebar-menu-item ">
+            {{-- <li class="sidebar-menu-item ">
                 <span class="sidebar-menu-title-content">
                     <span role="img" class="sidebar-menu-icon">
                         <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,8 +100,8 @@
                         <a href="javascript:;">Trung tâm theo dõi </a>
                     </span>
                 </span>
-            </li>
-            <li class="sidebar-menu-item ">
+            </li> --}}
+            {{-- <li class="sidebar-menu-item ">
                 <span class="sidebar-menu-title-content">
                     <span role="img" class="sidebar-menu-icon">
                         <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +113,7 @@
                         <a href="javascript:;"> Tài khoản </a>
                     </span>
                 </span>
-            </li>
+            </li> --}}
             <li class="sidebar-menu-item has-sub">
                 <span class="sidebar-menu-title-content" data-toggle-sidebar="true">
                     <span role="img" class="sidebar-menu-icon">
@@ -191,7 +191,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="sidebar-menu-item ">
+            {{-- <li class="sidebar-menu-item ">
                 <span class="sidebar-menu-title-content">
                     <span role="img" class="sidebar-menu-icon">
                         <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -203,8 +203,8 @@
                         <a href="javascript:;"> Công cụ </a>
                     </span>
                 </span>
-            </li>
-            <li class="sidebar-menu-item ">
+            </li> --}}
+            {{-- <li class="sidebar-menu-item ">
                 <span class="sidebar-menu-title-content">
                     <span role="img" class="sidebar-menu-icon">
                         <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +216,7 @@
                         <a href="javascript:;"> TRUNG TÂM TRỢ GIÚP </a>
                     </span>
                 </span>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>
