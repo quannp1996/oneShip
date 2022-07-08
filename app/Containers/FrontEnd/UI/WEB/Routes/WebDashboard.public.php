@@ -11,6 +11,7 @@ Route::group(
             'Maintenance',
             'WebLocaleRedirect',
         ],
+        'domain' => config('app.url'),
         'namespace' => 'Dashboard',
     ],
     function ($router) {

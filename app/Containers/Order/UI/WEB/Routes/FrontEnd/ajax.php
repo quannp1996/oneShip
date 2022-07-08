@@ -5,6 +5,7 @@ $router->group([
     'domain' => config('app.url'),
     'namespace' => 'FrontEnd'
 ], function () use ($router) {
+
     $router->get('/lists', [
         'as' => 'ajax.orders.index',
         'uses'  => 'Controller@apiList',
@@ -14,4 +15,5 @@ $router->group([
         'as' => 'ajax.orders.store',
         'uses'  => 'Controller@apiStore',
     ]);
+    
 });
