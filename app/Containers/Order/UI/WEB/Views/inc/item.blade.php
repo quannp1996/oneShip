@@ -47,7 +47,6 @@
                 <p class="mb-1"><i class="fa fa-exchange" aria-hidden="true"></i> Point: -
                     {{ \FunctionLib::priceFormat($order->point_value * $order->point_rate) }}
             @endif
-            {{-- <p class="mb-1"><i class="fa fa-money" aria-hidden="true"></i> Tổng tiền: {{ $order->total_price_currency }} --}}
         </p>
     </td>
     <td>
@@ -85,8 +84,8 @@
             {{ $order->getOrderStatusText() }}
         </p>
         @if ($order->user)
-            <p class="mb-1">Người xử lý: <b
-                    class="text-danger">{{ $order->user->name ?? $order->user->email }}</b></p>
+            <p class="mb-1">Người xử lý: <b class="text-danger">{{ $order->user->name ?? $order->user->email }}</b>
+            </p>
         @endif
     </td>
     <td class="py-0 text-center">
