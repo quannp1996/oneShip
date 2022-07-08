@@ -17,6 +17,7 @@ use App\Containers\Order\Events\FrontEnd\Events\OrderSuccessEvent;
 use App\Containers\Order\Events\Admin\Events\RollbackProductStockEvent;
 use App\Containers\Order\Events\Admin\Events\SubtractionProductStockEvent;
 use App\Containers\Order\Events\Admin\Events\OrderResendMailEvent;
+use App\Containers\Order\Events\Admin\Events\SendOrderToShippingEvent;
 use App\Containers\Order\Events\Admin\Events\UpdateCustomerRefRevenueEvent;
 use App\Containers\Order\Events\Admin\Handlers\IncreaseProductPurchaseCountHanlder;
 use App\Containers\Order\Events\FrontEnd\Handlers\OrderSendMailSuccessHandler;
@@ -27,6 +28,7 @@ use App\Containers\Order\Events\FrontEnd\Handlers\OrderCancelPushNotiEventHandle
 use App\Containers\Order\Events\FrontEnd\Handlers\OrderSendMailCancelHandler;
 use App\Containers\Order\Events\Admin\Handlers\OrderResendMailHandler;
 use App\Containers\Order\Events\Admin\Handlers\OrderResendPushNotiEventHandler;
+use App\Containers\Order\Events\Admin\Handlers\SendOrderToShippingEventHandler;
 use App\Containers\Order\Events\Admin\Handlers\UpdatePurchasedFlashsaleQuantityHandler;
 use App\Containers\Order\Events\FrontEnd\Handlers\DecreaseCouponCountHandler;
 use App\Containers\Order\Events\Admin\Handlers\UpdateCustomerRefRevenueHandler;
@@ -66,6 +68,9 @@ class EventServiceProvider extends ServiceProvider
             OrderCancelPushNotiEventHandler::class,
             OrderSendMailCancelHandler::class
         ],
+        SendOrderToShippingEvent::class => [
+            SendOrderToShippingEventHandler::class
+        ]
     ];
 
     public function boot() {

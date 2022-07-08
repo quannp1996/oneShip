@@ -51,89 +51,95 @@ $router->group([
   ]);
 
   // Route for process order
-  $router->group(['prefix' => 'process'], function () use ($router) {
-    $router->any('/accept/{id}', [
-      'as' => 'admin.orders.process.accept',
-      'uses' => 'OrderProcessController@acceptOrder',
+  // $router->group(['prefix' => 'process'], function () use ($router) {
+  //   $router->any('/accept/{id}', [
+  //     'as' => 'admin.orders.process.accept',
+  //     'uses' => 'OrderProcessController@acceptOrder',
 
-    ]);
+  //   ]);
 
-    // Tiếp nhận lại đơn hàng
-    $router->any('/accept-again/{id}', [
-      'as' => 'admin.orders.process.accept-again',
-      'uses' => 'OrderProcessController@acceptOrdergain',
+  //   // Tiếp nhận lại đơn hàng
+  //   $router->any('/accept-again/{id}', [
+  //     'as' => 'admin.orders.process.accept-again',
+  //     'uses' => 'OrderProcessController@acceptOrdergain',
 
-    ]);
+  //   ]);
 
-    // Đánh dấu là đơn hàng đã được xuất khỏi kho
-    $router->any('/export/{id}', [
-      'as' => 'admin.orders.process.export',
-      'uses' => 'OrderProcessController@exportOrder',
-    ]);
+  //   // Đánh dấu là đơn hàng đã được xuất khỏi kho
+  //   $router->any('/export/{id}', [
+  //     'as' => 'admin.orders.process.export',
+  //     'uses' => 'OrderProcessController@exportOrder',
+  //   ]);
 
-    // Đánh dấu là đơn hàng đang được giao
-    $router->any('/delivering/{id}', [
-      'as' => 'admin.orders.process.delivering',
-      'uses' => 'OrderProcessController@deliveringOrder',
-    ]);
+  //   // Đánh dấu là đơn hàng đang được giao
+  //   $router->any('/delivering/{id}', [
+  //     'as' => 'admin.orders.process.delivering',
+  //     'uses' => 'OrderProcessController@deliveringOrder',
+  //   ]);
 
-    // Đánh dấu là đơn hàng đã được giao thành công
-    $router->any('/deliveried/{id}', [
-      'as' => 'admin.orders.process.deliveried',
-      'uses' => 'OrderProcessController@deliveriedOrder',
-    ]);
+  //   // Đánh dấu là đơn hàng đã được giao thành công
+  //   $router->any('/deliveried/{id}', [
+  //     'as' => 'admin.orders.process.deliveried',
+  //     'uses' => 'OrderProcessController@deliveriedOrder',
+  //   ]);
 
-    $router->any('/un-accept/{id}', [
-      'as' => 'admin.orders.process.un-accept',
-      'uses' => 'OrderProcessController@unAcceptOrder',
-    ]);
+  //   $router->any('/un-accept/{id}', [
+  //     'as' => 'admin.orders.process.un-accept',
+  //     'uses' => 'OrderProcessController@unAcceptOrder',
+  //   ]);
 
-    $router->any('/waiting-paid/{id}', [
-      'as' => 'admin.orders.process.waiting-paid',
-      'uses' => 'OrderProcessController@markWaitingPaymentOrder',
-    ]);
+  //   $router->any('/waiting-paid/{id}', [
+  //     'as' => 'admin.orders.process.waiting-paid',
+  //     'uses' => 'OrderProcessController@markWaitingPaymentOrder',
+  //   ]);
 
-    $router->any('/confirm-paid/{id}', [
-      'as' => 'admin.orders.process.confirm-paid',
-      'uses' => 'OrderProcessController@markPaidOrder',
-    ]);
+  //   $router->any('/confirm-paid/{id}', [
+  //     'as' => 'admin.orders.process.confirm-paid',
+  //     'uses' => 'OrderProcessController@markPaidOrder',
+  //   ]);
 
-    $router->any('/finish/{id}', [
-      'as' => 'admin.orders.process.finish',
-      'uses' => 'OrderProcessController@markFinishOrder',
-    ]);
+  //   $router->any('/finish/{id}', [
+  //     'as' => 'admin.orders.process.finish',
+  //     'uses' => 'OrderProcessController@markFinishOrder',
+  //   ]);
 
-    $router->any('/refund/{id}', [
-      'as' => 'admin.orders.process.refund',
-      'uses' => 'OrderProcessController@markRefundOrder',
-    ]);
+  //   $router->any('/refund/{id}', [
+  //     'as' => 'admin.orders.process.refund',
+  //     'uses' => 'OrderProcessController@markRefundOrder',
+  //   ]);
 
-    $router->any('/cancel/{id}', [
-      'as' => 'admin.orders.process.cancel',
-      'uses' => 'OrderProcessController@markCancelOrder',
-    ]);
+  //   $router->any('/cancel/{id}', [
+  //     'as' => 'admin.orders.process.cancel',
+  //     'uses' => 'OrderProcessController@markCancelOrder',
+  //   ]);
 
-    $router->post('/resend-mail/{id}', [
-      'as' => 'admin.orders.process.resend-mail',
-      'uses' => 'OrderProcessController@resendOrderMail',
-    ]);
-  });
+  //   $router->post('/resend-mail/{id}', [
+  //     'as' => 'admin.orders.process.resend-mail',
+  //     'uses' => 'OrderProcessController@resendOrderMail',
+  //   ]);
+  // });
 
-  // Route for note order
-  $router->group(['prefix' => 'note'], function () use ($router) {
-    $router->get('/list/{orderId}', [
-      'as' => 'admin.orders.note.index',
-      'uses' => 'OrderNoteController@index',
-    ]);
+  // // Route for note order
+  // $router->group(['prefix' => 'note'], function () use ($router) {
+  //   $router->get('/list/{orderId}', [
+  //     'as' => 'admin.orders.note.index',
+  //     'uses' => 'OrderNoteController@index',
+  //   ]);
 
-    $router->get('/create/{orderId}', [
-      'as' => 'admin.orders.note.create',
-      'uses' => 'OrderNoteController@create',
-    ]);
+  //   $router->get('/create/{orderId}', [
+  //     'as' => 'admin.orders.note.create',
+  //     'uses' => 'OrderNoteController@create',
+  //   ]);
 
-    $router->post('/store/{orderId}', [
-      'as' => 'admin.orders.note.store',
-      'uses' => 'OrderNoteController@store',
-    ]);
-  });
+  //   $router->post('/store/{orderId}', [
+  //     'as' => 'admin.orders.note.store',
+  //     'uses' => 'OrderNoteController@store',
+  //   ]);
+  // });
+
+  // Push Order to Shipping
+  $router->post('/shipping/push/{id}', [
+    'as' => 'admin.orders.shipping.push',
+    'uses' => 'ShippingOrderController@push'
+  ]);
 });
