@@ -101,12 +101,11 @@ abstract class ShippingUnitAbstract
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_URL => $url,
                 CURLOPT_POST => true,
-                CURLOPT_HTTPHEADER => [],
+                CURLOPT_HTTPHEADER => $headerData,
                 CURLOPT_POSTFIELDS => json_encode($callData)
             ));
             $resp = curl_exec($curl);
             curl_close($curl);
-            dump($resp);
             return json_decode($resp, true);
         }catch(\Exception $e){
             dd($e->getMessage());

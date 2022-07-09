@@ -32,14 +32,14 @@ class NinjaVanAPI extends ShippingUnitAbstract
     {
         $url = $this->liveURL.'/'.$this->version.'/orders';
         $packages = json_decode($this->order->packages, true);
-        $this->callApi([
+        $result = $this->callApi([
+            'Authorization: Bearer '.$this->ninjavan_token_key,
             'Content-Type: application/json',
-            'Authorization: bearer '.$this->ninjavan_token_key
         ], [
             'service_type' => 'Parcel',
             'service_level' => 'Standard',
             'reference' => [
-                'merchant_order_number' => $this->order->code
+                'merchant_order_number' => $this->order->id
             ],
             'from' => [
                 'name' => $this->order->sender_name, 
@@ -75,6 +75,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
                 }, $packages['list'])
             ]    
         ], $url);
+        dd($result);
     }
 
     public function cancel()

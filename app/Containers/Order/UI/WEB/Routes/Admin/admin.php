@@ -138,7 +138,7 @@ $router->group([
   // });
 
   // Push Order to Shipping
-  $router->get('/shipping/push/{id}', [
+  $router->any('/shipping/push/{id}', [
     'as' => 'admin.orders.shipping.push',
     'uses' => 'ShippingOrderController@push'
   ]);
