@@ -16,6 +16,6 @@ use App\Containers\Customer\Models\Customer;
 trait OrderCustomerTrait
 {
     public function customer() {
-        return $this->hasOne(Customer::class,'id','customer_id');
+        return $this->hasOne(Customer::class,'_id','customerID');
     }
 }

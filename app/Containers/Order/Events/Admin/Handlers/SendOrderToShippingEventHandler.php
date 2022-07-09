@@ -11,7 +11,11 @@
 
 namespace App\Containers\Order\Events\Admin\Handlers;
 
+use App\Containers\ShippingUnit\Helpers\CovertOrder;
+use App\Containers\ShippingUnit\Business\ShippingFactory;
 use App\Containers\BaseContainer\Events\Handlers\BaseFrontEventHandler;
+
+use Exception;
 
 class SendOrderToShippingEventHandler extends BaseFrontEventHandler
 {
@@ -23,7 +27,15 @@ class SendOrderToShippingEventHandler extends BaseFrontEventHandler
     public function handle($event)
     {
         try{
-            
+            $order = $event->order;
+            $shippingUnit = $order->shipping;
+            if(empty($shippingUnit)  || empty($order->customer))
+            {
+                throw new Exception('Đơn hàng lỗi, không thể đẩy sang đơn vị vận chuyển');
+            }
+            $shippingObject = ShippingFactory::getInstance($shippingUnit);
+            $shippingObject->setCustomer($order->customer)->setOrder($order)->setDonhang(CovertOrder::covertOrderToDonHang($order));
+            $shippingObject->send();
         }catch(\Exception $e) {
             throw $e;
         }

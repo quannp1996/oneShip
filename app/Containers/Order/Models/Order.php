@@ -15,7 +15,6 @@ use App\Containers\Order\Traits\OrderPaymentTrait;
 use App\Containers\Order\Traits\OrderCustomerTrait;
 use App\Containers\Order\Traits\OrderDeliveryTrait;
 use App\Containers\Order\Traits\OrderLocationTrait;
-use App\Containers\Customer\Models\CustomerRefRevenue;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 
 class Order extends Model

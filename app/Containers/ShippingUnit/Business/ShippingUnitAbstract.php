@@ -9,23 +9,24 @@ use Exception;
 
 abstract class ShippingUnitAbstract
 {
-    public bool $devMode = false;
-    public $sandBoxUrl = '';
-    public $liveURL = '';
+    protected bool $devMode = false;
+    protected $sandBoxUrl = '';
+    protected $liveURL = '';
 
+    protected Order $order;
     protected Customer $customer;
     protected DonHang $donhangBase;
     public ShippingUnit $shipping;
 
     public function __construct(ShippingUnit $shippingUnit)
     {
-        $this->shipping = $shippingUnit;
         // $this->devMode = $this->shipping->isDevMode();
+        $this->shipping = $shippingUnit;
         $this->devMode = false;
     } 
 
-    abstract public function send(Order $order);
-    abstract public function cancel(Order $order);
+    abstract public function send();
+    abstract public function cancel();
     abstract public function hook();
     abstract public function estimate(): float;
 
@@ -89,30 +90,26 @@ abstract class ShippingUnitAbstract
         if($this->donhangBase->receiver->district->vung && !empty($this->shipping->vung[$this->donhangBase->receiver->district->vung])){
             $baseConst += $this->shipping->vung[$this->donhangBase->receiver->district->vung];
         }
-
         return $baseConst;
     }
     
-    public function callApi(array $callData = [], string $url)
+    public function callApi(array $headerData = ['Content-Type: application/json'], array $callData = [], string $url)
     {
         try{
-            
             $curl = curl_init();
             curl_setopt_array($curl, array(
                 CURLOPT_RETURNTRANSFER => 1,
                 CURLOPT_URL => $url,
                 CURLOPT_POST => true,
-                CURLOPT_HTTPHEADER => [
-                    'Content-Type: application/json',
-                ],
+                CURLOPT_HTTPHEADER => [],
                 CURLOPT_POSTFIELDS => json_encode($callData)
             ));
             $resp = curl_exec($curl);
             curl_close($curl);
-
-            
+            dump($resp);
             return json_decode($resp, true);
         }catch(\Exception $e){
+            dd($e->getMessage());
         }
     }
 
@@ -125,6 +122,12 @@ abstract class ShippingUnitAbstract
     public function setDonhang(DonHang $donhang): self
     {
         $this->donhangBase = $donhang;
+        return $this;
+    }
+
+    public function setOrder(Order $order): self
+    {
+        $this->order = $order;
         return $this;
     }
 }

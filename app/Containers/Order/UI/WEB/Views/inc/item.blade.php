@@ -12,7 +12,7 @@
             EID:
             <a href="javascript:void(0)" class="font-italic"
                 onclick="return loadIframe(this, '{{ route('admin.orders.show', ['id' => $order->id]) }}')">
-                #{{ $order->eshop_order_id }}
+                #{{ $order->reference_code }}
             </a>
         </p>
         <p class="mb-1">Mã đơn: <em><b>{{ $order->code }}</b></em></p>
@@ -96,25 +96,29 @@
                 Chọn
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div class="dropdown-item">
-                    <a class="text-primary" href="javascript:void(0)"
-                        onclick="return loadIframe(this, '{{ route('admin.orders.show', ['id' => $order->id]) }}')">
-                        Xử lý đơn hàng
-                    </a>
-                </div>
-
+                @if (empty($order->send_to_shipping))
+                    <div class="dropdown-item">
+                        <a class="text-primary" href="javascript:void(0)"
+                            data-href="{{ route('admin.orders.shipping.push', [
+                                'id' => $order->id
+                            ]) }}"
+                            onclick="return admin.sendRequest(this)">
+                            Gửi Đơn
+                        </a>
+                    </div>  
+                @endif
                 <div class="dropdown-item">
                     <a class="text-primary" href="javascript:void(0)"
                         onclick="return loadIframe(this, '{{ route('admin.orders.logs', ['id' => $order->id]) }}')">
                         Lịch sử xử lý đơn hàng
                     </a>
                 </div>
-                <div class="dropdown-item">
+                {{-- <div class="dropdown-item">
                     <a class="text-primary" href="javascript:void(0)"
                         onclick="return loadIframe(this, '{{ route('admin.orders.note.index', ['orderId' => $order->id]) }}')">
                         Ghi chú
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </td>

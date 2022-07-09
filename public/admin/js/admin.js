@@ -377,6 +377,39 @@ const admin = {
             }
         });
     },
+    sendRequest: function (el, method = 'POST', payload = {}) {
+        Swal.fire({
+            title: 'Bạn đã chắc chắn?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: $(el).attr('data-href'),
+                    data: {
+                        ... payload,
+                        _token: ENV.token
+                    },
+                    type: method,
+                    success: function (data) {
+                        Swal.fire({
+                            title: 'Thông báo',
+                            text: 'Bản ghi đã được xử lí',
+                            confirmButtonText: 'Ok', confirmButtonColor: '#7971ea',
+                        }).then(function () {
+
+                        });
+                        setInterval(function () {
+                            window.location.reload();
+                        }, 1500);
+                    }
+                });
+            } else {
+            }
+        });
+    },
     updateStatus: function (el, id, status, id_alias_field = '') {
         $.ajax({
             url: $(el).attr('data-route'),

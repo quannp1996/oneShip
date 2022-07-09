@@ -16,12 +16,12 @@ class GHTKAPI  extends ShippingUnitAbstract
         $this->shipping = $shippingUnit;
     }
 
-    public function send(Order $order)
+    public function send()
     {
         dd('send GHTK');
     }
 
-    public function cancel(Order $order)
+    public function cancel()
     {
         dd('cancel GHTK');
     }

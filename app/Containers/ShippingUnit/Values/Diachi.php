@@ -11,10 +11,11 @@ use App\Ship\Parents\Values\Value;
 class Diachi extends Value
 {
     public City $province;
-
     public District $district;
-
-    public $ward;
+    public string $ward;
+    public string $zipcode;
+    public string $address1;
+    public string $address2;
 
     /**
      * A resource key to be used by the the JSON API Serializer responses.
