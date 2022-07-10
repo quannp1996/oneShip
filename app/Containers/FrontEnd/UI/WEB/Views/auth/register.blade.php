@@ -38,7 +38,8 @@
                 </div>
             </div>
             <div class="register-box">
-                <form action="{{ route('api_authentication_register_post') }}" method="POST" id="register_form" @submit.prevent="sendRequest()">
+                <form action="{{ route('web_regiser_post') }}" method="POST" id="register_form"
+                    @submit.prevent="sendRegister()">
                     <div class="title">
                         Đăng ký
                     </div>
@@ -63,7 +64,8 @@
                     </div> --}}
                     <div class="form-group">
                         <div class="custom-form-input">
-                            <input type="text" class="input-text" v-model="form.email" placeholder="Email" value="" id="">
+                            <input type="text" class="input-text" v-model="form.email" placeholder="Email" value=""
+                                id="">
                             <small class="label-helper">
                                 Email
                             </small>
@@ -83,7 +85,8 @@
                     </div> --}}
                     <div class="form-group">
                         <div class="custom-form-input custom-form-password">
-                            <input type="text" class="input-text" v-model="form.password" placeholder="Mật khẩu" value="" id="">
+                            <input type="password" class="input-text" v-model="form.password" placeholder="Mật khẩu"
+                                value="" id="">
                             <small class="label-helper">
                                 Mật khẩu
                             </small>
@@ -105,13 +108,11 @@
                         <a class="link text-theme" href="javascript:;" data-toggle="modal"
                             data-target="#modalDieuKien">《Điều kiện》</a>
                         &
-                        <a class="link text-theme" href="javascript:;" data-toggle="modal"
-                            data-target="#modalChinhsach">《
+                        <a class="link text-theme" href="javascript:;" data-toggle="modal" data-target="#modalChinhsach">《
                             Chính sách quyền riêng tư》</a>
                     </div>
                     <div class="form-group">
-                        <button color="primary" type="submit"
-                            class="btn btn-theme login-btn"><span>Đăng ký</span></button>
+                        <button color="primary" type="submit" class="btn btn-theme login-btn"><span>Đăng ký</span></button>
                     </div>
                 </form>
                 <!-- Modal -->
@@ -275,7 +276,7 @@
 @push('js_bot_all')
     <script>
         const api = {
-            register: '{{ route('api_authentication_register_post') }}'
+            register: '{{ route('web_regiser_post') }}'
         }
     </script>
     <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>

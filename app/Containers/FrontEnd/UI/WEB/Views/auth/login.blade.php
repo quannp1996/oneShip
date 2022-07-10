@@ -35,13 +35,14 @@
                 </div>
             </div>
             <div class="login-box">
-                <form action="">
+                <form action="{{ route('web_customer_login_post') }}" method="POST">
+                    @csrf
                     <div class="title">
                         Đăng nhập
                     </div>
                     <div class="form-group">
                         <div class="custom-form-input">
-                            <input type="text" class="input-text" placeholder="Email" value="" id="">
+                            <input type="text" name="username" class="input-text" placeholder="Email" value="np@gmail.com">
                             <small class="label-helper">
                                 Email
                             </small>
@@ -49,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-form-input custom-form-password">
-                            <input type="text" class="input-text" placeholder="Mật khẩu" value="" id="">
+                            <input type="password" name="password" class="input-text" placeholder="Mật khẩu">
                             <small class="label-helper">
                                 Mật khẩu
                             </small>
@@ -64,7 +65,7 @@
                         </a>
                     </div>
                     <div class="form-group">
-                        <button disabled="" color="primary" type="submit"
+                        <button color="primary" type="submit"
                             class="btn btn-theme login-btn btn-disabled"><span>Đăng nhập</span></button>
                     </div>
                 </form>

@@ -20,16 +20,12 @@ class WebLoginTask extends Task
     public function run(string $username, string $password, $remember = false) : Authenticatable
     {
         $fieldName = filter_var( $username, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-
-        if (!$user = Auth::guard('customer')->attempt([
+        $user = auth('customer')->attempt([
             $fieldName => $username,
-            'status' => 2,
             'password' => $password
-        ],$remember)){
-            throw new LoginFailedException();
-        }
-
-        return Auth::guard('customer')->user();
+        ], $remember);
+        if(!$user) throw new LoginFailedException();
+        return auth('customer')->user();
     }
 
 }

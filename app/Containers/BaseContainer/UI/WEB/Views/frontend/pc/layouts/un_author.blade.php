@@ -23,6 +23,14 @@
         </div>
     </body>
     <script>
+        var ENV = {
+            version: '{{ env('APP_VER', 0) }}',
+            token: '{{ csrf_token() }}',
+        };
+        var COOKIE_ID = '{{ env('APP_NAME', '') }}';
+        var DOMAIN_COOKIE_REG_VALUE = 1;
+        var DOMAIN_COOKIE_STRING = '{{ config('session.domain') }}';
+        var API_URL = '{{ env('API_URL', '') }}/v1/{{ $currentLang }}';
         var BASE_URL = '{{ url('/') }}';
     </script>
     <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>

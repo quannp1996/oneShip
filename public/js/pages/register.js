@@ -9,7 +9,8 @@ const registerVUE = new Vue({
         },
         errors: {
             email: '',
-            password: ''
+            password: '',
+            accpect: ''
         }
     },
 
@@ -17,11 +18,16 @@ const registerVUE = new Vue({
     },
 
     methods: {
-        sendRequest: async function(){
+        sendRegister: async function(){
+            console.log(this.form.accpect);
+            if (!this.form.accpect) return this.errors.accpect = 'Bạn phải chấp nhận với các điều khoản';
             $.post(this.api.register, {
+                _token: ENV.token,
                 email: this.form.email,
                 password: this.form.password
             }).then(json => {
+                if (json.code == 200) return location.href = '/login';
+            }).fail(json => {
                 console.log(json);
             })
         }

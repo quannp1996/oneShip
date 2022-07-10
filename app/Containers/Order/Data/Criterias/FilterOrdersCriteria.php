@@ -31,6 +31,8 @@ class FilterOrdersCriteria extends Criteria
 
     $model = $this->detectSyncId($model);
 
+    $model = $this->detectCustomerId($model);
+
     $model = $this->detectPayment($model);
 
     $model = $this->detectDate($model);
@@ -153,6 +155,15 @@ class FilterOrdersCriteria extends Criteria
           $query->whereNull('eshop_order_id');
         });
       }
+    }
+    return $model;
+  }
+
+  private function detectCustomerId($model){
+    if (isset($this->filters['customerID']) && !empty($this->filters['customerID'])) {
+      $model = $model->where(function ($query) {
+        $query->where('customerID', $this->filters['customerID']);
+      });
     }
     return $model;
   }
