@@ -18,12 +18,30 @@
 </template>
 <script>
   module.exports = {
-    props: ['lable', 'change', 'name', 'object'],
+    props: ['lable', 'change', 'name', 'object', 'selected'],
     data() {
 		return {
 			selectedText: '',
 			bindDropdown: Math.random(),
 			provinces: window.provinces,
+		}
+	},
+	watch: {
+		selected: function(){
+			var selectedProvince = this.provinces.filter(item => {
+				return item.code == this.selected;
+			})
+			if (selectedProvince && selectedProvince.length) {
+				this.selectedText = selectedProvince[0].name;
+			}
+		}
+	},
+	
+	mounted() {
+		if(typeof this.selected){
+			var selectedProvince = this.provinces.filter(item => {
+				return item.code == this.selected;
+			})
 		}
 	},
     methods: {

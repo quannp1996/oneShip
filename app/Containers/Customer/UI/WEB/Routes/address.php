@@ -14,6 +14,11 @@ $router->group([
     ]);
     $r->delete('/delete/{id}', [
         'as' => 'web_customer_address_delete',
-        'uses' => 'CustomerAddress@storeAddress'
+        'uses' => 'CustomerAddress@deleteAddress'
+    ]);
+
+    $r->post('/update/{id}', [
+        'as' => 'web_customer_address_update',
+        'uses' => 'CustomerAddress@deleteAddress'
     ]);
 });

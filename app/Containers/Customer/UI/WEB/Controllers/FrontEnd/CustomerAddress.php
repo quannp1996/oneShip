@@ -3,12 +3,15 @@
 namespace App\Containers\Customer\UI\WEB\Controllers\FrontEnd;
 
 use Apiato\Core\Traits\ResponseTrait;
-use App\Containers\BaseContainer\UI\WEB\Controllers\NeedAuthController;
-use App\Containers\Customer\Actions\AddressBook\CreateCustomerAddressBookAction;
-use App\Containers\Customer\Actions\AddressBook\GetAllAddressBookAction;
 use App\Containers\Customer\Enums\EnumAddressBook;
-use App\Containers\Customer\UI\API\Transformers\FrontEnd\CustomersAddressTransfomer;
+use App\Containers\BaseContainer\UI\WEB\Controllers\NeedAuthController;
+use App\Containers\Customer\Actions\AddressBook\GetAllAddressBookAction;
 use App\Containers\Customer\UI\WEB\Requests\Address\StoreAddressCustomerRequest;
+use App\Containers\Customer\Actions\AddressBook\CreateCustomerAddressBookAction;
+use App\Containers\Customer\Actions\AddressBook\DeleteCustomerAddressBookAction;
+use App\Containers\Customer\UI\WEB\Requests\Address\DeleteAddressCustomerRequest;
+use App\Containers\Customer\UI\API\Transformers\FrontEnd\CustomersAddressTransfomer;
+use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 
 /**
  * Class CustomerAddress
@@ -17,7 +20,7 @@ use App\Containers\Customer\UI\WEB\Requests\Address\StoreAddressCustomerRequest;
  */
 class CustomerAddress extends NeedAuthController
 {
-  use ResponseTrait;
+  use ResponseTrait, ApiResTrait;
   protected $fieldCan = [];
   public function listAddress(GetAllAddressBookAction $getAllAddressBookAction)
   {
@@ -34,5 +37,18 @@ class CustomerAddress extends NeedAuthController
     ]));
     $address->with(['province', 'district', 'ward']);
     return $this->transform($address, new CustomersAddressTransfomer());
+  }
+
+  public function deleteAddress(DeleteAddressCustomerRequest $request, DeleteCustomerAddressBookAction $deleteCustomerAddressBookAction)
+  {
+    try {
+      $delete = $deleteCustomerAddressBookAction->run($request->id);
+      return $this->sendResponse([
+        'success' => true,
+        'address' => $delete
+      ], 'Xóa địa chỉ thành công');
+    } catch (\Exception $e) {
+      return $this->sendError('', 404, 'Xóa địa chỉ không thành công');
+    }
   }
 }

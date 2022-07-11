@@ -4,7 +4,20 @@ const addressAPP = new Vue({
         api: apiURL,
         listSender: [],
         listReceiver: [],
-        deletedID: '',
+        deletedid: '',
+        editForm: {
+            fullname: '',
+            phone: '',
+            email: '',
+            province_id: '',
+            district_id: '',
+            ward_id: '',
+            village: '',
+            zipcode: '',
+            address1: '',
+            address2: '',
+            is_default: false,
+        },
         senderForm: {
             fullname: '',
             phone: '',
@@ -67,26 +80,56 @@ const addressAPP = new Vue({
                 _token: ENV.token
             }).then(json => {
                 this.listSender.push(json.data);
+                $('#modalNguoiGui').modal('hide');
             });
         },
 
         storeReceiver: async function(){
             $.post(this.api.push, {
-                ...this.senderForm,
+                ...this.receiverForm,
                 type: 2,
                 _token: ENV.token
             }).then(json => {
                 this.listReceiver.push(json.data);
+                $('#modalNguoiNhan').modal('hide');
             });
         },
 
         openDeletePopup: function(itemID){
-            this.deletedID = '12312312321';
+            this.deletedid = itemID;
             $('#delete-item-1').modal('show');
         },
 
-        delete: async function(){
+        openUpdatePopup: function(item){
+            this.editForm = {... item};
+            $('#edit-item-1').modal('show');
+        },
 
+        updateAddress: async function(){
+            
+        },
+
+        deleteAddress: async function(){
+            $.ajax({
+                url: '/customers/address/delete/' + this.deletedid,
+                data: {
+                    _token: ENV.token
+                },
+                type: 'DELETE',
+                success: json => {
+                    this.listSender = this.listSender.filter(item => {
+                        return item.id != this.deletedid;
+                    });
+                    this.listReceiver = this.listReceiver.filter( item => {
+                        return item.id != this.deletedid;
+                    })
+                },
+                error: json => {
+
+                }
+            }).always(json => {
+                $('#delete-item-1').modal('hide');
+            })
         }
     }
 })

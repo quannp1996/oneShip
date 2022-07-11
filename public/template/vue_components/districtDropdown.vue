@@ -18,7 +18,7 @@
 </template>
 <script>
   module.exports = {
-    props: ['city_code', 'lable', 'change', 'name', 'object'],
+    props: ['city_code', 'lable', 'change', 'name', 'object', 'selected'],
     data() {
 		return {
 			lists: [],
@@ -31,6 +31,15 @@
 			this.lists = window.districts.filter(item => {
 				return item.province_id == this.city_code;
 			})
+		},
+
+		selected: function(){
+			var selectedDistrict = window.districts.filter(item => {
+				return item.code == this.selected;
+			})
+			if (selectedDistrict && selectedDistrict.length) {
+				this.selectedText = selectedDistrict[0].name;
+			}
 		}
 	},
 
