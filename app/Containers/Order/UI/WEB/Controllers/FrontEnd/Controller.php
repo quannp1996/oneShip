@@ -19,18 +19,18 @@ use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 class Controller extends NeedAuthController
 {
     use ApiResTrait, ResponseTrait;
-    
+    protected $filterField = [];
     public function apiList(ListOrderRequest $request, GetAllOrdersAction $getAllOrdersAction)
     {
         try{
             $orders = $getAllOrdersAction->run(array_merge(
-                $request->only([]), [
+                $request->only($this->filterField), [
                     'customerID' => auth('customer')->id(),
                 ]
             ), ['shipping']);
             return $this->transform($orders, new OrderListCustomerTransformer());
         }catch(\Exception $e){
-            dd($e->getMessage());
+            return $this->sendError('error', 403, $e->getMessage());
         }
     }
 

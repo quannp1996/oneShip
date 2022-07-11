@@ -24,6 +24,7 @@ class OrderListCustomerTransformer extends Transformer
             'shipping_title' => $order->relationLoaded('shipping') ? $order->shipping->title : '',
             'shipping_image' => $order->relationLoaded('shipping') ? $order->shipping->getImageUrl() : '',
             'created_at' => $order->created_at->format('d/m/Y H:i:s'),
+            'statusText' => $order->getOrderStatusText(),
             'note' => $order->note
         ];
     }

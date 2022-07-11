@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-custom-form">
-                <form action="#" @submit.prevent="store(1)">
+                <form action="#" @submit.prevent="storeReceiver()">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6 mb-3">

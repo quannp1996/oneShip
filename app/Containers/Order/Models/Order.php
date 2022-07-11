@@ -19,7 +19,8 @@ use App\Containers\ShippingUnit\Models\ShippingUnit;
 
 class Order extends Model
 {
-  use SoftDeletes,
+  use
+    SoftDeletes,
     PriceTrait,
     OrderPaymentTrait,
     OrderDeliveryTrait,
@@ -100,6 +101,6 @@ class Order extends Model
 
   public function shipping()
   {
-      return $this->hasOne(ShippingUnit::class, '_id', 'shippingUnitID');
+    return $this->hasOne(ShippingUnit::class, '_id', 'shippingUnitID');
   }
 } // End class
