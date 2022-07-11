@@ -190,16 +190,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-12 mb-3">
-                                    <div class="custom-radio-input">
-                                        <input type="radio" id="type1" value="1" name="form_check"
-                                            checked="">
-                                        <label for="type1">
-                                            <span class="icon-radio mr-2"></span>
-                                            Đặt làm địa chỉ giao hàng mặc định
-                                        </label>
-                                    </div>
-                                </div> --}}
                                 <div class="col-12 mb-2">
                                     <div class="modal-custom-actions d-flex align-items-center justify-content-end">
                                         <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">

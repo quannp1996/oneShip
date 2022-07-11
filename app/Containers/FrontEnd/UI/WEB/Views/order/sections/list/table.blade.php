@@ -96,7 +96,7 @@
                     <div class="variable-cell" style="width: 150px;">
                         <div>
                             <p class="d-block mb-0 w-100 color-748399">-</p>
-                            <p class="d-block mb-0 w-100 color-748399">Đã thanh toán</p>
+                            <p class="d-block mb-0 w-100 color-748399" v-text="item.statusText"></p>
                             <p class="d-block mb-0 w-100 color-748399">-</p>
                         </div>
                     </div>
