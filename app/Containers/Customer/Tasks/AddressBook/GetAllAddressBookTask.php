@@ -16,6 +16,7 @@ class GetAllAddressBookTask extends Task
     public function __construct(CustomerAddressBookRepository $repository)
     {
         $this->repository = $repository;
+        $this->equalFields = ['customerID'];
     }
 
     public function run(bool $hasPagination = true, int $limit = 10)

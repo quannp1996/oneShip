@@ -60,5 +60,8 @@ class CustomerAddressBook extends Model
         self::creating(function($model) {
             $model->type = (int) $model->type;
         });
+        self::deleting(function ($model){
+            dd($model);
+        });
     }
 }

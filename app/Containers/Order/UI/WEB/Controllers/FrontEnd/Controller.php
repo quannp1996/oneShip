@@ -63,8 +63,8 @@ class Controller extends NeedAuthController
             // Base Data
             'cod' => $request->shipping['cod'],
             'shippingUnitID' => $request->shipping['shippingID'],
-            'services' => json_encode($request->shipping['services']),
-            'packages' => json_encode($request->package),
+            'services' => json_encode(@$request->shipping['services'] ?? []),
+            'packages' => json_encode(@$request->package ?? []  ),
             'note' => $request->note,
             'reference_code' => $request->reference_code
         ])->run();

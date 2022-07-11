@@ -57,17 +57,7 @@ class ShippingUnit extends Model
         if($this->image) return ImageURL::getImageUrl($this->image, 'shipping', '');
         return null;
     }
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        self::creating(function($model) {
-            $model->status = (int) $model->status;
-            $model->dev_mode = (int) $model->dev_mode;
-        });
-    }
-
+    
     public function isDevMode(): bool
     {
         return (int) !!$this->dev_mode;
@@ -85,5 +75,15 @@ class ShippingUnit extends Model
     {
         if(!$this->relationLoaded('consts')) return '{}';
         return json_encode($this->consts->toArray());
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($model) {
+            $model->status = (int) $model->status;
+            $model->dev_mode = (int) $model->dev_mode;
+        });
     }
 }

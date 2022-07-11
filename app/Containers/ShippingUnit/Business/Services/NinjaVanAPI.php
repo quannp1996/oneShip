@@ -94,7 +94,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
         return 0;
     }
 
-    protected function login()
+    private function login()
     {
         if(!$this->ninjavan_token_key){
             $result = $this->callApi(['Content-Type: application/json'], array_merge(

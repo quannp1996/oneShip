@@ -4,7 +4,7 @@
             <img src="{{ asset('template/images/logo-color.svg') }}" alt="" class="img-fluid">
         </a>
         <div class="header-right">
-            <div class="header-noti header-right-item">
+            {{-- <div class="header-noti header-right-item">
                 <span class="header-noti-icon">
                     <svg class="" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -36,7 +36,7 @@
                 <span class="currency-value">
                     VND : 0
                 </span>
-            </div>
+            </div> --}}
             <div class="header-user header-right-item">
                 <a class="header-user-info" href="javascript:;" data-toggle-user="">
                     <span class="ava-img">
@@ -68,6 +68,7 @@
                     </i>
                 </a>
                 <div class="header-user-dropdown">
+                    
                 </div>
             </div>
         </div>

@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="admin-main-layout">
-        <div class="admin-alert">
-            <span class="text">Thời gian dùng thử OneClub Plus của bạn sẽ hết hạn sau 24 ngày, sau đó sẽ
-                chuyển sang Gói OneClub (miễn phí).</span>
-            <button type="button" class="agree"><span>Gói đăng ký</span></button>
-            <button type="button" class="cancel"><span>Không cần nhắc lại</span></button>
-        </div>
         <div class="admin-main-container">
             <div class="admin-card">
                 <div class="admin-card-body">
