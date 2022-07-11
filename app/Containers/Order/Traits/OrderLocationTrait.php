@@ -17,32 +17,32 @@ use App\Containers\Location\Models\District;
 
 trait OrderLocationTrait
 {
-    public function sender_province()
+    public function senderProvince()
     {
         return $this->hasOne(City::class, 'code', 'sender_province');
     }
 
-    public function sender_district()
+    public function senderDistrict()
     {
         return $this->hasOne(District::class, 'code', 'sender_district');
     }
 
-    public function sender_ward()
+    public function senderWard()
     {
         return $this->hasOne(Ward::class, 'code', 'sender_ward');
     }
 
-    public function receiver_province()
+    public function receiverProvince()
     {
         return $this->hasOne(City::class, 'code', 'receiver_province');
     }
 
-    public function receiver_district()
+    public function receiverDistrict()
     {
         return $this->hasOne(District::class, 'code', 'receiver_district');
     }
 
-    public function receiver_ward()
+    public function receiverWard()
     {
         return $this->hasOne(Ward::class, 'code', 'receiver_ward');
     }

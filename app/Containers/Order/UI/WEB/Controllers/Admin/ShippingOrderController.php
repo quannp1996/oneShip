@@ -17,7 +17,9 @@ class ShippingOrderController extends AdminController
   public function push(PushOrderToShippingRequest $request, FindOrderByIdAction $findOrderByIdAction)
   {
     try{
-      $order = $findOrderByIdAction->run($request->id, ['shipping', 'customer', ]);
+      $order = $findOrderByIdAction->run($request->id, 
+        ['shipping', 'customer', 'senderProvince', 'senderDistrict', 'senderWard', 'receiverProvince', 'receiverDistrict', 'receiverWard']
+      );
       SendOrderToShippingEvent::dispatch($order);
     }catch(\Exception $e){
       dd($e->getMessage());

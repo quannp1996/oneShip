@@ -93,7 +93,7 @@ abstract class ShippingUnitAbstract
         return $baseConst;
     }
     
-    public function callApi(array $headerData = ['Content-Type: application/json'], array $callData = [], string $url)
+    public function callApi(array $headerData = ['Content-Type: application/json'], $callData, string $url)
     {
         try{
             $curl = curl_init();
@@ -102,7 +102,7 @@ abstract class ShippingUnitAbstract
                 CURLOPT_URL => $url,
                 CURLOPT_POST => true,
                 CURLOPT_HTTPHEADER => $headerData,
-                CURLOPT_POSTFIELDS => json_encode($callData)
+                CURLOPT_POSTFIELDS => $callData
             ));
             $resp = curl_exec($curl);
             curl_close($curl);
