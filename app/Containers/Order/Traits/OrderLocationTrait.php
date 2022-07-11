@@ -11,32 +11,49 @@
 
 namespace App\Containers\Order\Traits;
 
+use App\Containers\Location\Models\Ward;
 use App\Containers\Location\Models\City;
 use App\Containers\Location\Models\District;
-use App\Containers\Location\Models\Ward;
 
 trait OrderLocationTrait
 {
-    public function province()
+    public function sender_province()
     {
-        return $this->hasOne(City::class, 'id', 'province_id');
+        return $this->hasOne(City::class, 'code', 'sender_province');
     }
 
-    public function district()
+    public function sender_district()
     {
-        return $this->hasOne(District::class, 'id', 'district_id');
+        return $this->hasOne(District::class, 'code', 'sender_district');
     }
 
-    public function ward()
+    public function sender_ward()
     {
-        return $this->hasOne(Ward::class, 'id', 'ward_id');
+        return $this->hasOne(Ward::class, 'code', 'sender_ward');
     }
 
-    public function stringAddress()
+    public function receiver_province()
     {
-        $string = !empty($this->ward) ? ', ' . $this->ward->name : '';
-        $string .= !empty($this->district) ? ', ' . $this->district->name : '';
-        $string .= !empty($this->province) ? ', ' . $this->province->name : '';
-        return $this->address . $string;
+        return $this->hasOne(City::class, 'code', 'receiver_province');
+    }
+
+    public function receiver_district()
+    {
+        return $this->hasOne(District::class, 'code', 'receiver_district');
+    }
+
+    public function receiver_ward()
+    {
+        return $this->hasOne(Ward::class, 'code', 'receiver_ward');
+    }
+
+    public function senderAddress()
+    {
+
+    }
+
+    public function receiverAddress()
+    {
+        
     }
 }
