@@ -5,6 +5,7 @@ const ordersApp = new Vue({
         pagination: null,
         orders: [],
         titles: [],
+        limit: 1,
         filters: {
             status: [],
             keyword: '',
@@ -12,14 +13,21 @@ const ordersApp = new Vue({
             time: '',
         }
     },
+    components: {
+        pagination: httpVueLoader(`${BASE_URL}/template/vue_components/pagination.vue?v=${Math.random()}`),
+    },
     async mounted() {
         this.getOrders();
     },
     methods: {
-        getOrders: async function(){
-            $.get(this.api.fetch, {}).then(json => {
-                this.orders = json.data
+        getOrders: async function(page){
+            $.get(this.api.fetch, {
+                limit: this.limit,
+                page: page
+            }).then(json => {
+                this.orders = json.data,
+                this.pagination = json.meta.pagination
             })
-        }
+        },
     },
 })
