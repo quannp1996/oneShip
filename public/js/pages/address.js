@@ -69,10 +69,6 @@ const addressAPP = new Vue({
             })
         },
 
-        update: async function(){
-
-        },
-
         storeSender: async function(){
             $.post(this.api.push, {
                 ...this.senderForm,
@@ -106,7 +102,7 @@ const addressAPP = new Vue({
         },
 
         updateAddress: async function(){
-            
+            console.log(12312312);
         },
 
         deleteAddress: async function(){

@@ -9,8 +9,10 @@ use App\Containers\Customer\Actions\AddressBook\GetAllAddressBookAction;
 use App\Containers\Customer\UI\WEB\Requests\Address\StoreAddressCustomerRequest;
 use App\Containers\Customer\Actions\AddressBook\CreateCustomerAddressBookAction;
 use App\Containers\Customer\Actions\AddressBook\DeleteCustomerAddressBookAction;
+use App\Containers\Customer\Actions\AddressBook\UpdateCustomerAddressBookAction;
 use App\Containers\Customer\UI\WEB\Requests\Address\DeleteAddressCustomerRequest;
 use App\Containers\Customer\UI\API\Transformers\FrontEnd\CustomersAddressTransfomer;
+use App\Containers\Customer\UI\WEB\Requests\Address\UpdateAddressCustomerRequest;
 use App\Ship\core\Traits\HelpersTraits\ApiResTrait;
 
 /**
@@ -50,5 +52,10 @@ class CustomerAddress extends NeedAuthController
     } catch (\Exception $e) {
       return $this->sendError('', 404, 'Xóa địa chỉ không thành công');
     }
+  }
+
+  public function updateAddress(UpdateAddressCustomerRequest $request, UpdateCustomerAddressBookAction $updateCustomerAddressBookAction)
+  {
+    $address = $updateCustomerAddressBookAction->run($request->all());
   }
 }
