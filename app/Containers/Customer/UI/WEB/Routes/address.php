@@ -19,6 +19,6 @@ $router->group([
 
     $r->post('/update/{id}', [
         'as' => 'web_customer_address_update',
-        'uses' => 'CustomerAddress@deleteAddress'
+        'uses' => 'CustomerAddress@updateAddress'
     ]);
 });

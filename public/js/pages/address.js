@@ -102,7 +102,31 @@ const addressAPP = new Vue({
         },
 
         updateAddress: async function(){
-            console.log(12312312);
+            $.post(`/customers/address/update/${this.editForm.id}`, {
+                ... this.editForm,
+                _token: ENV.token
+            }).then(json => {
+                if(json.data.type == 1){
+                    this.listSender = this.listSender.map(item => {
+                        if(item.id == json.data.address.id){
+                            return {
+                                ... json.data.address
+                            };
+                        }
+                        return item;
+                    });
+                }else{
+                    this.listReceiver = this.listReceiver.map(item => {
+                        if(item.id == json.data.address.id){
+                            item = {
+                                ... json.data.address
+                            }
+                        }
+                        return item;
+                    })
+                }
+                $('#edit-item-1').modal('hide');
+            })
         },
 
         deleteAddress: async function(){

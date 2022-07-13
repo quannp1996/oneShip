@@ -2,6 +2,7 @@
 
 namespace App\Containers\Customer\UI\WEB\Requests\Address;
 
+use App\Containers\Customer\UI\WEB\Rules\CanEditAddressRule;
 use App\Ship\core\Traits\HelpersTraits\SecurityTrait;
 use App\Ship\Parents\Requests\Request;
 
@@ -48,7 +49,7 @@ class UpdateAddressCustomerRequest extends Request
     public function rules()
     {
         return [
-            'id' => ['required']
+            'id' => ['required', new CanEditAddressRule(auth('customer')->id())]
         ];
     }
 

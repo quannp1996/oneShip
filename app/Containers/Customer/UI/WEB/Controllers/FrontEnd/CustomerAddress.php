@@ -56,6 +56,26 @@ class CustomerAddress extends NeedAuthController
 
   public function updateAddress(UpdateAddressCustomerRequest $request, UpdateCustomerAddressBookAction $updateCustomerAddressBookAction)
   {
-    $address = $updateCustomerAddressBookAction->run($request->all());
+    $address = $updateCustomerAddressBookAction->run($request->id, $request->only(EnumAddressBook::CAN_FILL));
+    $address->load(['province', 'district', 'ward']);
+    return $this->sendResponse([
+      'address' => [
+          'id' => $address->id,
+          'fullname' => $address->fullname,
+          'type' => $address->type,
+          'phone' => $address->phone,
+          'email' => $address->email,
+          'province_id' => $address->province_id,
+          'district_id' => $address->district_id,
+          'ward_id' => $address->ward_id,
+          'village' => $address->village,
+          'zipcode' => $address->zipcode,
+          'address1' => $address->address1,
+          'address2' => $address->address2,
+          'is_default' => $address->is_default,
+          'addressText' => $address->generateAddress()
+      ],
+      'type' => $address->type
+    ]);
   }
 }
