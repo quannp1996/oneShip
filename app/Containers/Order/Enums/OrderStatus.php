@@ -26,9 +26,14 @@ final class OrderStatus extends BaseEnum
     const NEW_ORDER = 1;
 
     /**
+     * Đơn hàng chuyển sang đơn vị vận chuyển
+     */
+    const ORDER_SENT = 3;
+
+    /**
      * Bưu tá xác nhận đi lấy
      */
-    const SHIPPING_CONFIRM_GET = 2;
+    const SHIPPING_CONFIRM_GET = 5;
     /**
      * Bưu tá đã lấy
      */
@@ -88,6 +93,7 @@ final class OrderStatus extends BaseEnum
 
     const TEXT = [
         self::NEW_ORDER => 'Khách Hàng tạo đơn',
+        self::ORDER_SENT => 'Đơn Hàng sang đơn vị vận chuyển',
         self::SHIPPING_CONFIRM_GET => 'Bưu tá xác nhận đi lấy',
         self::SHIPPING_GOT => 'Bưu tá đã lấy',
         self::IMPORT => 'Nhập kho',

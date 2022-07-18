@@ -12,7 +12,7 @@
                 <h1>{{ $site_title }}</h1>
             </div>
             @include('basecontainer::admin.inc.alert-errors-top-index')
-            @include('order::inc.forms.filter-form',['search_data' => $search_data])
+            @include('order::inc.forms.filter-form', ['search_data' => $search_data])
         </div>
     </div>
     <div class="row">
@@ -51,11 +51,11 @@
                     <thead>
                         <tr>
                             <th>Mã đơn</th>
-                            <th>Khách hàng</th>
-                            <th>Chi phí</th>
-                            <th>Thành tiền</th>
+                            <th>Người gửi</th>
+                            <th>Người nhận</th>
+                            <th>COD</th>
                             <th class="text-center">Ngày đặt</th>
-                            <th class="text-center">Thanh toán</th>
+                            <th class="text-center">Đơn vị vận chuyển</th>
                             <th class="text-center">Tiến trình xử lý đơn</th>
                             <th class="text-center p-0">Thao tác</th>
                         </tr>
@@ -76,7 +76,6 @@
                             </tr>
                         @endif
                     </thead>
-
                     <tbody>
                         @if ($orders->count())
                             @foreach ($orders as $order)
@@ -89,7 +88,6 @@
                         @endif
                     </tbody>
                 </table>
-
                 <div class="m-3">
                     <div class="pull-right">Tổng cộng: {{ $orders->total() }} bản ghi /
                         {{ $orders->lastPage() }}

@@ -62,7 +62,6 @@ abstract class ShippingUnitAbstract
         if(empty($extactItem)) $extactItem = $quotation->items[count($quotation->items) - 1];
         $this->donhangBase->getCondition();
         $baseConst = $extactItem['gia'][$this->donhangBase->condition][$this->donhangBase->in][$this->donhangBase->pich_up_method];
-
         /**
          * Cộng thêm giá dịch vụ
          * 1. Giá cộng thẳng

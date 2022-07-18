@@ -14,7 +14,7 @@ namespace App\Containers\Order\Events\Admin\Handlers;
 use App\Containers\ShippingUnit\Helpers\CovertOrder;
 use App\Containers\ShippingUnit\Business\ShippingFactory;
 use App\Containers\BaseContainer\Events\Handlers\BaseFrontEventHandler;
-
+use App\Containers\Order\Enums\OrderStatus;
 use Exception;
 
 class SendOrderToShippingEventHandler extends BaseFrontEventHandler
@@ -35,7 +35,9 @@ class SendOrderToShippingEventHandler extends BaseFrontEventHandler
             }
             $shippingObject = ShippingFactory::getInstance($shippingUnit);
             $shippingObject->setCustomer($order->customer)->setOrder($order)->setDonhang(CovertOrder::covertOrderToDonHang($order));
-            $shippingObject->send();
+            $response = $shippingObject->send();
+            if(!$response['success']) throw new  Exception($response['message']);
+            $order->update(['status' => OrderStatus::ORDER_SENT]);
         }catch(\Exception $e) {
             throw $e;
         }

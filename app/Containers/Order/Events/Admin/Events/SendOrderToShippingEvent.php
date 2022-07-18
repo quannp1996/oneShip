@@ -6,17 +6,22 @@ use App\Ship\Parents\Events\Event;
 use Illuminate\Queue\SerializesModels;
 use App\Containers\Order\Models\Order;
 use Apiato\Core\Abstracts\Events\Interfaces\ShouldHandleNow;
+use App\Containers\Order\Actions\FindOrderByIdAction;
 
 class SendOrderToShippingEvent extends Event implements ShouldHandleNow
 {
     use SerializesModels;
 
     public $customerRefRevenue_id;
-    public $order;
+    public Order $order;
 
-    public function __construct(Order $order)
+    public function __construct($orderID)
     {
-        $this->order = $order;
+
+        $this->order = app(FindOrderByIdAction::class)->run(
+            $orderID,
+            ['shipping', 'customer', 'senderProvince', 'senderDistrict', 'senderWard', 'receiverProvince', 'receiverDistrict', 'receiverWard']
+        );
     }
 
     public function handle()

@@ -29,8 +29,16 @@ class Controller extends NeedAuthController
                 $shippingFee = ShippingFactory::getInstance($item);
                 $shippingFee->setCustomer($user);
                 $shippingFee->setDonhang(new DonHang([
-                    'sender' => $request->sender,
-                    'receiver' => $request->sender,
+                    'sender' => [
+                        'province' => $request->sender['province_id'],
+                        'district' => $request->sender['district_id'],
+                        'ward' => $request->sender['ward_id'],
+                    ],
+                    'receiver' => [
+                        'province' => $request->receiver['province_id'],
+                        'district' => $request->receiver['district_id'],
+                        'ward' => $request->receiver['ward_id'],
+                    ],
                     'package' => $request->package
                 ]));
                 try{
@@ -55,7 +63,7 @@ class Controller extends NeedAuthController
                 })
             ], 'Thông tin phí');
         }catch(\Exception $e){
-            $this->sendError('FORBIDDEN', 403, $e->getMessage());
+            return $this->sendError('FORBIDDEN', 403, $e->getMessage());
         }
     }
 }

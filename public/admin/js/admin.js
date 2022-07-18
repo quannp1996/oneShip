@@ -393,8 +393,10 @@ const admin = {
                         _token: ENV.token
                     },
                     type: method,
-                    success: function (data) {
+                    success: function (json) {
+                        console.log(json);
                         Swal.fire({
+                            icon: 'success',
                             title: 'Thông báo',
                             text: 'Bản ghi đã được xử lí',
                             confirmButtonText: 'Ok', confirmButtonColor: '#7971ea',
@@ -404,6 +406,13 @@ const admin = {
                         setInterval(function () {
                             window.location.reload();
                         }, 1500);
+                    },
+                    error: json => {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Thông báo',
+                            text: json.responseJSON.message,
+                        })
                     }
                 });
             } else {

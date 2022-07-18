@@ -47,7 +47,6 @@ class CreateOrderTask extends Task
             return $object;
         } catch (Exception $e) {
             throw $e;
-            // throw new CreateResourceFailedException();
         }
     }
 

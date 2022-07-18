@@ -24,7 +24,7 @@ class GHTKAPI  extends ShippingUnitAbstract
             "Token: 827Fd0cfaA18d531F189A406c1e58F7A636eA5E1",
             "Content-Length: " . strlen($this->covertOrder()),
         ], $order, "https://services.ghtklab.com/services/shipment/order");
-        dd(html_entity_decode(json_decode($response, true)['message']));
+        return $response;
     }
 
     public function cancel()
@@ -49,7 +49,7 @@ class GHTKAPI  extends ShippingUnitAbstract
                 return [
                     'name' => $item['productName'],
                     'quantity' => $item['quanlity'],
-                    'product_code'
+                    'product_code' => $item['productCode']
                 ];
             }, $packages['list']),
             'order' => [
@@ -70,7 +70,7 @@ class GHTKAPI  extends ShippingUnitAbstract
                 'hamlet' => 'Khác',
                 'tel' => $this->order->receiver_phone,
                 'note' => $this->order->note,
-                'value' => 0,
+                'value' => array_sum(array_column($packages['list'], 'price')),
                 'pick_option' => 'cod',
                 'total_weight' => $packages['weight']
             ]

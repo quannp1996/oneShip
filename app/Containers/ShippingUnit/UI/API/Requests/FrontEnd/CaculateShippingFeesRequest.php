@@ -46,12 +46,12 @@ class CaculateShippingFeesRequest extends Request
     {
         return [
             'package.weight' => ['required'],
-            'sender.ward' => ['required'],
-            'sender.province' => ['required'],
-            'sender.district' => ['required'],
-            'receiver.province' => ['required'],
-            'receiver.district' => ['required'],
-            'receiver.ward' => ['required']
+            'sender.ward_id' => ['required'],
+            'sender.province_id' => ['required'],
+            'sender.district_id' => ['required'],
+            'receiver.province_id' => ['required'],
+            'receiver.district_id' => ['required'],
+            'receiver.ward_id' => ['required']
         ];
     }
 

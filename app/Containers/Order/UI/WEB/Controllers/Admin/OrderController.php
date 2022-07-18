@@ -49,36 +49,12 @@ class OrderController extends AdminController
     $orders = app(GetAllOrdersAction::class)->skipCache()->run(
       $filters,
       [
-        'user:id,name,email',
+        'shipping',
         'logs' => function ($query) {
           $query->where('action_key', 'email_admin')->select('id', 'order_id');
         },
-        'paymentType.desc:payment_type_id,name',
-        'deliveryType.desc:delivery_type_id,name',
-        'orderItems'
       ],
-      [
-        'id',
-        'customer_id',
-        'fullname',
-        'email',
-        'phone',
-        'code',
-        'total_price',
-        'fee_shipping',
-        'created_at',
-        'status',
-        'user_id',
-        'payment_status',
-        'payment_type',
-        'delivery_type',
-        'coupon_code',
-        'coupon_value',
-        'eshop_order_id',
-        'eshop_shipping_id',
-        'point_value',
-        'point_rate'
-      ],
+      [],
       20,
       $request->page ?? 1
     );
