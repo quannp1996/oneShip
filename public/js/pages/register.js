@@ -15,6 +15,7 @@ const registerVUE = new Vue({
     },
 
     mounted: function(){
+        
     },
 
     methods: {

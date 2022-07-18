@@ -8,7 +8,6 @@
                 aria-controls="multiCollapseExample1">
                 Địa chỉ người gửi
                 <div class="d-flex align-items-center">
-
                     <span role="img" aria-label="right" class="icon-svg smm color-748399">
                         <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="1em" height="1em"
                             fill="currentColor" aria-hidden="true" style="">
@@ -48,11 +47,10 @@
                                 <input placeholder="Vui lòng nhập từ khóa để tìm kiếm" class="admin-form-input"
                                     type="text" value="" />
                             </span>
-
                             <div class="search-addrs-result my-3">
                                 <div class="custom-radio-input mb-3" v-for="item in listSender">
-                                    <input type="radio" id="type1" name="form_check">
-                                    <label for="type1">
+                                    <input type="radio" :id="'type_' + item.id" @click="selectAddress(item)" name="form_check" >
+                                    <label :for="'type_' + item.id">
                                         <span class="icon-radio mr-2"></span>
                                         <span>
                                             <div>
@@ -63,18 +61,17 @@
                                                 <span class="address" v-text="item.addressText"></span>
                                             </div>
                                         </span>
-
                                     </label>
                                 </div>
                             </div>
-                            <div class="modal-custom-actions d-flex align-items-center justify-content-end">
+                            {{-- <div class="modal-custom-actions d-flex align-items-center justify-content-end">
                                 <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">
                                     Hủy
                                 </button>
                                 <button class="btn-themes color-btn" type="submit">
                                     Xác nhận
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -133,21 +130,17 @@
                 </div>
                 <div class="col-3"></div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'sender_city'" :object="sender" :lable="'Tỉnh/ Thành phố'"
-                        :first_text="'-- Chọn --'" :lists="provinces" :change="choseProvince">
-                    </dropdown>
+                    <citiesdropdown :lable="'Tỉnh/ Thành phố'" :name="'sender_city'" :object="sender" :selected="sender.province_id"></citiesdropdown>
                     <p class="error" v-if="error.sender.province" v-text="error.sender.province"></p>
                 </div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'sender_district'" :object="sender" :lable="'Quận/ Huyện'"
-                        :first_text="'-- Chọn --'" :lists="sender.districts" :change="choseDistrict">
-                    </dropdown>
+                    <districtdropdown :lable="'Quận/ Huyện'" :name="'sender_district'"
+                                    :city_code="sender.province_id" :object="sender" :selected="sender.district_id"></districtdropdown>
                     <p class="error" v-if="error.sender.district" v-text="error.sender.district"></p>
                 </div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'sender_ward'" :object="sender" :lable="'Thôn/ Xóm'"
-                        :first_text="'-- Chọn --'" :lists="sender.wards" :change="choseWard">
-                    </dropdown>
+                    <warddropdown :lable="'Xã/ Phường'" :name="'sender_ward'"
+                                    :district_code="sender.district_id" :object="sender" :selected="sender.ward_id"></warddropdown>
                     <p class="error" v-if="error.sender.ward" v-text="error.sender.ward"></p>
                 </div>
                 <div class="col-3 mb-3">
@@ -159,7 +152,7 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập mã zip code" id="zipcode"
+                                <input placeholder="Vui lòng nhập mã zip code" id="zipcode" v-model="sender.zipcode"
                                     class="admin-form-input" type="text" value="" />
                             </div>
                         </div>
@@ -191,7 +184,7 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " id="addr2" class="admin-form-input"
+                                <input placeholder="Vui lòng nhập " id="addr2" v-model="sender.address2" class="admin-form-input"
                                     type="text" value="" />
                             </div>
                         </div>
@@ -253,8 +246,8 @@
 
                             <div class="search-addrs-result my-3">
                                 <div class="custom-radio-input mb-3" v-for="item in listReceiver">
-                                    <input type="radio" id="type1" name="form_check">
-                                    <label for="type1">
+                                    <input type="radio" :id="'type_' + item.id" name="form_check" @click="selectAddress(item)">
+                                    <label :for="'type_' + item.id">
                                         <span class="icon-radio mr-2"></span>
                                         <span>
                                             <div>
@@ -265,18 +258,17 @@
                                                 <span class="address" v-text="item.addressText"></span>
                                             </div>
                                         </span>
-
                                     </label>
                                 </div>
                             </div>
-                            <div class="modal-custom-actions d-flex align-items-center justify-content-end">
+                            {{-- <div class="modal-custom-actions d-flex align-items-center justify-content-end">
                                 <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">
                                     Hủy
                                 </button>
                                 <button class="btn-themes color-btn" type="submit">
                                     Xác nhận
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -335,20 +327,17 @@
                 </div>
                 <div class="col-3"></div>
                 <div class="col-3 mb-3">
-                    <citiesdropdown :lable="'Tỉnh/ Thành phố'" :name="'receiver_city'" :selected="receiver.province"
-                        :object="receiver">
-                    </citiesdropdown>
+                    <citiesdropdown :lable="'Tỉnh/ Thành phố'" :name="'receiver_city'" :object="receiver" :selected="receiver.province_id"></citiesdropdown>
                     <p class="error" v-if="error.receiver.province" v-text="error.receiver.province"></p>
                 </div>
                 <div class="col-3 mb-3">
-                    <districtdropdown :lable="'Quận/ Huyện'" :name="'receiver_district'" :selected="receiver.district"
-                        :city_code="receiver.province_id" :object="receiver"></districtdropdown>
+                    <districtdropdown :lable="'Quận/ Huyện'" :name="'receiver_district'"
+                                    :city_code="receiver.province_id" :object="receiver" :selected="receiver.district_id"></districtdropdown>
                     <p class="error" v-if="error.receiver.district" v-text="error.receiver.district"></p>
                 </div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'receiver_ward'" :object="receiver" :lable="'Thôn/ Xóm'"
-                        :first_text="'-- Chọn --'" :lists="receiver.wards" :change="choseWard">
-                    </dropdown>
+                    <warddropdown :lable="'Xã/ Phường'" :name="'receiver_ward'"
+                                    :district_code="receiver.district_id" :object="receiver" :selected="receiver.ward_id"></warddropdown>
                     <p class="error" v-if="error.receiver.ward" v-text="error.receiver.ward"></p>
                 </div>
                 <div class="col-3 mb-3">

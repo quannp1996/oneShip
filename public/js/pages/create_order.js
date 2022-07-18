@@ -14,12 +14,10 @@ const createOrderVUE = new Vue({
             address1: '',
             zipcode: '',
             address2: '',
-            province: null,
-            district: null,
-            ward: null,
+            province_id: null,
+            district_id: null,
+            ward_id: null,
             zip: 0,
-            districts: [],
-            wards: [],
         },
         receiver: {
             fullname: '',
@@ -28,9 +26,9 @@ const createOrderVUE = new Vue({
             address1: '',
             zipcode: '',
             address2: '',
-            province: null,
-            district: null,
-            ward: null,
+            province_id: null,
+            district_id: null,
+            ward_id: null,
             zip: 0,
             districts: [],
             wards: [],
@@ -201,6 +199,20 @@ const createOrderVUE = new Vue({
         pickShipping: function(item){
             this.selectedShipping = item.id;
             this.shipping.selectedShipping = item;
-        }
+        },
+
+        selectAddress: function(item){
+            if(item.type == 1){
+                this.sender = {
+                    ... item
+                }
+                $('#modalSenderAddrs').modal('hide');
+            }else{
+                this.receiver = {
+                    ... item
+                }
+                $('#modalReceiverAddrs').modal('hide');
+            }
+        }   
     },
 })
