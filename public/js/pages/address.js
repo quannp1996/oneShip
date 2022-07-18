@@ -145,7 +145,7 @@ const addressAPP = new Vue({
                     })
                 },
                 error: json => {
-
+                    
                 }
             }).always(json => {
                 $('#delete-item-1').modal('hide');

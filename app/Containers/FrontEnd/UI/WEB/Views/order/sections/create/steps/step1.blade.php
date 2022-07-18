@@ -20,11 +20,11 @@
                 </div>
             </button>
             <a href="javascript:;" class="btn-themes btn-themes-small nocolor-btn mr-2 text-12 absolute-link"
-                data-toggle="modal" data-target="#modalSavedAddrs">
+                data-toggle="modal" data-target="#modalSenderAddrs">
                 Sử dụng danh sách địa chỉ
             </a>
             <!-- Modal Nguoi Nhan-->
-            <div class="modal fade" id="modalSavedAddrs" tabindex="-1" role="dialog" aria-labelledby=""
+            <div class="modal fade" id="modalSenderAddrs" tabindex="-1" role="dialog" aria-labelledby=""
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg " role="document">
                     <div class="modal-content">
@@ -50,44 +50,23 @@
                             </span>
 
                             <div class="search-addrs-result my-3">
-                                <div class="custom-radio-input mb-3">
-                                    <input type="radio" id="type1" value="1" name="form_check">
+                                <div class="custom-radio-input mb-3" v-for="item in listSender">
+                                    <input type="radio" id="type1" name="form_check">
                                     <label for="type1">
                                         <span class="icon-radio mr-2"></span>
                                         <span>
                                             <div>
-                                                <span class="name">duong</span>
-                                                <span class="phone">0346407405</span>
-                                                <span class="countryCode">(VN)</span>
+                                                <span class="name" v-text="item.fullname"></span>
+                                                <span class="phone" v-text="item.phone"></span>
                                             </div>
                                             <div class="addressContent">
-                                                <span class="address">62 phan văn trị đống đa Thu Do Ha
-                                                    Noi</span>
-                                            </div>
-                                        </span>
-
-                                    </label>
-                                </div>
-                                <div class="custom-radio-input mb-3">
-                                    <input type="radio" id="type12" value="12" name="form_check">
-                                    <label for="type12">
-                                        <span class="icon-radio mr-2"></span>
-                                        <span>
-                                            <div>
-                                                <span class="name">duong 2</span>
-                                                <span class="phone">0346407405</span>
-                                                <span class="countryCode">(VN)</span>
-                                            </div>
-                                            <div class="addressContent">
-                                                <span class="address">62 phan văn trị đống đa Thu Do Ha
-                                                    Noi</span>
+                                                <span class="address" v-text="item.addressText"></span>
                                             </div>
                                         </span>
 
                                     </label>
                                 </div>
                             </div>
-
                             <div class="modal-custom-actions d-flex align-items-center justify-content-end">
                                 <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">
                                     Hủy
@@ -112,8 +91,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " name="sender[fullname]" v-model="sender.fullname" id="fullname" class="admin-form-input"
-                                    type="text" :class="error.sender.fullname ? 'unvalid' : '' "/>
+                                <input placeholder="Vui lòng nhập " name="sender[fullname]" v-model="sender.fullname"
+                                    id="fullname" class="admin-form-input" type="text"
+                                    :class="error.sender.fullname ? 'unvalid' : ''" />
                             </div>
                         </div>
                         <p class="error" v-if="error.sender.fullname" v-text="error.sender.fullname"></p>
@@ -128,8 +108,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập" v-model="sender.phone" id="phone" name="sender[phone]" class="admin-form-input"
-                                    type="text" value="" :class="error.sender.phone ? 'unvalid' : ''" />
+                                <input placeholder="Vui lòng nhập" v-model="sender.phone" id="phone"
+                                    name="sender[phone]" class="admin-form-input" type="text" value=""
+                                    :class="error.sender.phone ? 'unvalid' : ''" />
                             </div>
                             <p class="error" v-if="error.sender.phone" v-text="error.sender.phone"></p>
                         </div>
@@ -144,8 +125,8 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " v-model="sender.email" name="sender[email]" id="sender_email" class="admin-form-input"
-                                    type="text" value="" />
+                                <input placeholder="Vui lòng nhập " v-model="sender.email" name="sender[email]"
+                                    id="sender_email" class="admin-form-input" type="text" value="" />
                             </div>
                         </div>
                     </div>
@@ -194,7 +175,8 @@
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
                                 <input placeholder="Vui lòng nhập " id="addr1" class="admin-form-input"
-                                    type="text" v-model="sender.address1" :class="error.sender.address1 ? 'unvalid' : ''"/>
+                                    type="text" v-model="sender.address1"
+                                    :class="error.sender.address1 ? 'unvalid' : ''" />
                             </div>
                         </div>
                         <p class="error" v-if="error.sender.address1" v-text="error.sender.address1"></p>
@@ -239,9 +221,66 @@
                 </div>
             </button>
             <a href="javascript:;" class="btn-themes btn-themes-small nocolor-btn mr-2 text-12 absolute-link"
-                data-toggle="modal" data-target="#modalSavedAddrs">
+                data-toggle="modal" data-target="#modalReceiverAddrs">
                 Sử dụng danh sách địa chỉ
             </a>
+            <!-- Modal Nguoi Nhan-->
+            <div class="modal fade" id="modalReceiverAddrs" tabindex="-1" role="dialog" aria-labelledby=""
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg " role="document">
+                    <div class="modal-content">
+                        <div class="modal-custom-header">
+                            <div class="title">
+                                Chọn địa chỉ từ Sổ địa chỉ
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-custom-form">
+                            <span class="admin-input-search">
+                                <span class="icon-svg">
+                                    <svg class="color-748399" focusable="false" viewBox="0 0 24 24"
+                                        aria-hidden="true">
+                                        <path
+                                            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <input placeholder="Vui lòng nhập từ khóa để tìm kiếm" class="admin-form-input"
+                                    type="text" value="" />
+                            </span>
+
+                            <div class="search-addrs-result my-3">
+                                <div class="custom-radio-input mb-3" v-for="item in listReceiver">
+                                    <input type="radio" id="type1" name="form_check">
+                                    <label for="type1">
+                                        <span class="icon-radio mr-2"></span>
+                                        <span>
+                                            <div>
+                                                <span class="name" v-text="item.fullname"></span>
+                                                <span class="phone" v-text="item.phone"></span>
+                                            </div>
+                                            <div class="addressContent">
+                                                <span class="address" v-text="item.addressText"></span>
+                                            </div>
+                                        </span>
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-custom-actions d-flex align-items-center justify-content-end">
+                                <button class="btn-themes nocolor-btn mr-2" data-dismiss="modal" type="button">
+                                    Hủy
+                                </button>
+                                <button class="btn-themes color-btn" type="submit">
+                                    Xác nhận
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="admin-card-body collapse multi-collapse show" id="multiCollapseExample2">
             <div class="admin-card-row">
@@ -254,8 +293,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " v-model="receiver.fullname" name="receiver[fullname]" id="receiver_fullname" class="admin-form-input"
-                                    type="text" :class="error.receiver.fullname ? 'unvalid' : ''"/>
+                                <input placeholder="Vui lòng nhập " v-model="receiver.fullname"
+                                    name="receiver[fullname]" id="receiver_fullname" class="admin-form-input"
+                                    type="text" :class="error.receiver.fullname ? 'unvalid' : ''" />
                             </div>
                             <p class="error" v-if="error.receiver.fullname" v-text="error.receiver.fullname"></p>
                         </div>
@@ -270,8 +310,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " v-model="receiver.phone" name="receiver[phone]" id="receiver_phone" class="admin-form-input"
-                                    type="text" :class="error.receiver.phone ? 'unvalid' : ''"/>
+                                <input placeholder="Vui lòng nhập " v-model="receiver.phone" name="receiver[phone]"
+                                    id="receiver_phone" class="admin-form-input" type="text"
+                                    :class="error.receiver.phone ? 'unvalid' : ''" />
                             </div>
                             <p class="error" v-if="error.receiver.phone" v-text="error.receiver.phone"></p>
                         </div>
@@ -286,23 +327,22 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " v-model="receiver.email" id="receiver_email" class="admin-form-input"
-                                    type="text" />
+                                <input placeholder="Vui lòng nhập " v-model="receiver.email" id="receiver_email"
+                                    class="admin-form-input" type="text" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-3"></div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'receiver_city'" :object="receiver" :lable="'Tỉnh/ Thành phố'"
-                        :first_text="'-- Chọn --'" :lists="provinces" :change="choseProvince">
-                    </dropdown>
+                    <citiesdropdown :lable="'Tỉnh/ Thành phố'" :name="'receiver_city'" :selected="receiver.province"
+                        :object="receiver">
+                    </citiesdropdown>
                     <p class="error" v-if="error.receiver.province" v-text="error.receiver.province"></p>
                 </div>
                 <div class="col-3 mb-3">
-                    <dropdown :name="'receiver_district'" :object="receiver" :lable="'Quận/ Huyện'"
-                        :first_text="'-- Chọn --'" :lists="receiver.districts" :change="choseDistrict">
-                    </dropdown>
+                    <districtdropdown :lable="'Quận/ Huyện'" :name="'receiver_district'" :selected="receiver.district"
+                        :city_code="receiver.province_id" :object="receiver"></districtdropdown>
                     <p class="error" v-if="error.receiver.district" v-text="error.receiver.district"></p>
                 </div>
                 <div class="col-3 mb-3">
@@ -320,8 +360,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập mã zip code" v-model="receiver.zipcode" name="receiver[zipcode]" id="receiver_zipcode"
-                                    class="admin-form-input" type="text" />
+                                <input placeholder="Vui lòng nhập mã zip code" v-model="receiver.zipcode"
+                                    name="receiver[zipcode]" id="receiver_zipcode" class="admin-form-input"
+                                    type="text" />
                             </div>
                         </div>
                     </div>
@@ -335,8 +376,9 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " id="addr1" v-model="receiver.address1" class="admin-form-input"
-                                    type="text" :class="error.receiver.ward ? 'unvalid' : ''"/>
+                                <input placeholder="Vui lòng nhập " id="addr1" v-model="receiver.address1"
+                                    class="admin-form-input" type="text"
+                                    :class="error.receiver.ward ? 'unvalid' : ''" />
                             </div>
                             <p class="error" v-if="error.receiver.ward" v-text="error.receiver.ward"></p>
                         </div>
@@ -351,8 +393,8 @@
                     <div class="admin-form-item-control">
                         <div class="admin-form-item-control-input">
                             <div class="admin-form-item-control-input-content">
-                                <input placeholder="Vui lòng nhập " id="addr2" v-model="receiver.address2" class="admin-form-input"
-                                    type="text" />
+                                <input placeholder="Vui lòng nhập " id="addr2" v-model="receiver.address2"
+                                    class="admin-form-input" type="text" />
                             </div>
                         </div>
                     </div>

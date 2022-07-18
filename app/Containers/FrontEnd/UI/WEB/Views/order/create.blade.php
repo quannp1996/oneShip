@@ -19,6 +19,7 @@
 @push('js_bot_all')
     <script>
         var api = {
+            fetchAddress: '{{ route('web_customer_address_list') }}',
             wards: '{{ route('api_fr_location_get_wards') }}',
             provinces: '{{ route('api_fr_location_get_provinces') }}',
             districts: '{{ route('api_fr_location_get_districts') }}',
@@ -29,4 +30,7 @@
         }
     </script>
     <script src="{{ asset('js/pages/create_order.js') }}"></script>
+    <script src="{{ asset('js/locations/provinces.js') }}"></script>
+    <script src="{{ asset('js/locations/districts.js') }}"></script>
+    <script src="{{ asset('js/locations/wards.js') }}"></script>
 @endpush

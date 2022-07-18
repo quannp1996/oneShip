@@ -8,12 +8,12 @@ const createOrderVUE = new Vue({
         note: '',
         reference_code: '',
         sender: {
-            fullname: 'Nguyễn Phú Quân',
-            phone: '0961013224',
-            email: 'np@gmail.com',
-            address1: 'Hà Nội',
-            zipcode: '1232',
-            address2: 'Hà Nội 2',
+            fullname: '',
+            phone: '',
+            email: '',
+            address1: '',
+            zipcode: '',
+            address2: '',
             province: null,
             district: null,
             ward: null,
@@ -22,12 +22,12 @@ const createOrderVUE = new Vue({
             wards: [],
         },
         receiver: {
-            fullname: 'Nguyễn Loan',
-            phone: '0961013224',
-            email: 'nm@gmail.com',
-            address1: 'Hà Nội',
-            zipcode: '10000',
-            address2: 'Hà Nội',
+            fullname: '',
+            phone: '',
+            email: '',
+            address1: '',
+            zipcode: '',
+            address2: '',
             province: null,
             district: null,
             ward: null,
@@ -71,11 +71,22 @@ const createOrderVUE = new Vue({
 
     components: {
         dropdown: httpVueLoader(`${BASE_URL}/template/vue_components/dropdown.vue?v=${Math.random()}`),
+        citiesdropdown: httpVueLoader(`${BASE_URL}/template/vue_components/citiesDropdown.vue?v=${Math.random()}`),
+        districtdropdown: httpVueLoader(`${BASE_URL}/template/vue_components/districtDropdown.vue?v=${Math.random()}`),
+        warddropdown: httpVueLoader(`${BASE_URL}/template/vue_components/wardDropdown.vue?v=${Math.random()}`),
     },
 
     mounted() {
         $.get(this.api.provinces).then(json => {
             this.provinces = json.data.provinces;
+        })
+        $.get(this.api.fetchAddress).then(json => {
+            this.listSender = json.data.filter(item => {
+                return item.type == 1;
+            });
+            this.listReceiver = json.data.filter(item => {
+                return item.type == 2;
+            })
         })
     },
     methods: {
