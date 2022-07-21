@@ -48,12 +48,20 @@ trait OrderLocationTrait
     }
 
     public function senderAddress()
-    {
-
+    {   
+        $location = [];
+        if($this->relationLoaded('senderProvince')) $location[] = $this->senderProvince->name;
+        if($this->relationLoaded('senderDistrict')) $location[] = $this->senderProvince->name;
+        if($this->relationLoaded('senderWard')) $location[] = $this->senderProvince->name;
+        return $this->sender_address1.' - '. implode(',', $location);
     }
 
     public function receiverAddress()
     {
-        
+        $location = [];
+        if($this->relationLoaded('receiverProvince')) $location[] = $this->senderProvince->name;
+        if($this->relationLoaded('receiverDistrict')) $location[] = $this->senderProvince->name;
+        if($this->relationLoaded('receiverWard')) $location[] = $this->senderProvince->name;
+        return $this->receiver_address1.' - '. implode(',', $location);
     }
 }

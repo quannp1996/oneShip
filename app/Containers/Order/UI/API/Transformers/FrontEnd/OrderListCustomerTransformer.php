@@ -21,10 +21,14 @@ class OrderListCustomerTransformer extends Transformer
         return [
             'id' => $order->id,
             'code' => $order->code,
+            'sender_name' => $order->sender_fullname,
+            'receiver_name' => $order->receiver_fullname,
             'shipping_title' => $order->relationLoaded('shipping') ? $order->shipping->title : '',
             'shipping_image' => $order->relationLoaded('shipping') ? $order->shipping->getImageUrl() : '',
             'created_at' => $order->created_at->format('d/m/Y H:i:s'),
             'statusText' => $order->getOrderStatusText(),
+            'senderAddress' => $order->senderAddress(),
+            'receiverAddress' => $order->receiverAddress(),
             'note' => $order->note
         ];
     }

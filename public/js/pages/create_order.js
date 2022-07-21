@@ -155,7 +155,9 @@ const createOrderVUE = new Vue({
                     shippingID: this.selectedShipping
                 }
             }).then(json => {
-
+                Swal.fire({
+                    
+                })
             })
         },
 

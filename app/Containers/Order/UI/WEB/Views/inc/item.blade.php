@@ -37,7 +37,9 @@
     </td>
     <td class="text-center py-0">{{ $order->created_at }}</td>
     <td class="py-0 mb-1">
-        <p class="mb-1 text-primary"></p>
+        <p class="mb-1 text-primary">
+            {{ $order->shipping->title }}
+        </p>
     </td>
     <td class="py-0 mb-1">
         <p class="mb-1">

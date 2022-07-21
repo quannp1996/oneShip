@@ -27,7 +27,10 @@ class Controller extends NeedAuthController
                 $request->only($this->filterField), [
                     'customerID' => auth('customer')->id(),
                 ]
-            ), ['shipping']);
+            ), ['shipping', 'senderProvince', 'senderDistrict', 'senderWard', 'receiverProvince', 'receiverWard', 'receiverDistrict'],
+            ['*'],
+            $request->get('limit', 10)
+        );
             return $this->transform($orders, new OrderListCustomerTransformer());
         }catch(\Exception $e){
             return $this->sendError('error', 403, $e->getMessage());

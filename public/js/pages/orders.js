@@ -5,7 +5,7 @@ const ordersApp = new Vue({
         pagination: null,
         orders: [],
         titles: [],
-        limit: 1,
+        limit: 15,
         filters: {
             status: [],
             keyword: '',

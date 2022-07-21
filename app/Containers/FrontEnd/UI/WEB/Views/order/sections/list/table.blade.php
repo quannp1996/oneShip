@@ -5,14 +5,13 @@
                 <colgroup>
                     {{-- <col style="width: 44px;" /> --}}
                     <col style="width: 200px;" />
-                    <col style="width: 200px;" />
+                    {{-- <col style="width: 200px;" /> --}}
                     <col style="width: 150px;" />
                     <col style="width: 230px;" />
                     <col style="width: 300px;" />
                     <col style="width: 160px;" />
                     <col style="width: 180px;" />
                     <col style="width: 280px;" />
-                    <col style="width: 155px;" />
                     <col style="width: 120px;" />
                     <col style="width: 80px;" />
                 </colgroup>
@@ -28,10 +27,10 @@
                         </th> --}}
                         <th class="admin-table-cell admin-table-cell-fix-left admin-table-cell-fix-left-last"
                             style="position: sticky">Mã đơn hàng</th>
-                        <th class="admin-table-cell">
+                        {{-- <th class="admin-table-cell">
                             <div>Người bán</div>
                             <span class="tips">Kiểu tích hợp</span>
-                        </th>
+                        </th> --}}
                         <th class="admin-table-cell">Trạng thái đơn hàng</th>
                         <th class="admin-table-cell">Khu vực gửi hàng</th>
                         <th class="admin-table-cell">Người nhận</th>
@@ -41,7 +40,6 @@
                             <div>Hãng vận chuyển<span class="tips">(Dịch vụ)</span></div>
                             <div class="tips">Mã vận đơn trên</div>
                         </th>
-                        <th class="admin-table-cell">Trạng thái vận chuyển OneShip</th>
                         <th class="admin-table-cell">Thời gian tạo</th>
                         <th class="admin-table-cell" style="text-align: right;">Ghi chú đơn
                             hàng</th>
@@ -77,7 +75,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="variable-cell" style="width: 200px;">
+                    {{-- <div class="variable-cell" style="width: 200px;">
                         <div>
                             <div class="d-flex align-items-center flex-wrap">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
@@ -92,7 +90,7 @@
                                 <p class="mb-0">Tạo thủ công</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="variable-cell" style="width: 150px;">
                         <div>
                             <p class="d-block mb-0 w-100 color-748399">-</p>
@@ -102,19 +100,14 @@
                     </div>
                     <div class="variable-cell" style="width: 230px;">
                         <div>
-                            <p class="d-block mb-0 w-100 color-748399 text-12">
-                                VN-đống đa-Thu Do Ha Noi
-                            </p>
+                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.sender_name"></p>
+                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.senderAddress"></p>
                         </div>
                     </div>
                     <div class="variable-cell" style="width: 300px;">
                         <div>
-                            <p class="d-block mb-0 w-100 text-14 text-black">
-                                name
-                            </p>
-                            <p class="d-block mb-0 w-100 color-748399 text-12">
-                                VN-Tỉnh Bến Tre-Huyện Mỏ Cày Nam
-                            </p>
+                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.receiver_name"></p>
+                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.receiverAddress"></p>
                         </div>
                     </div>
                     <div class="variable-cell" style="width: 160px;">
@@ -136,9 +129,6 @@
                             <img class="img-fluid mr-2" :src="item.shipping_image" width="50" />
                             <div v-text="item.shipping_title"></div>
                         </div>
-                    </div>
-                    <div class="variable-cell" style="width: 155px;">
-                        <span class="admin-tag admin-tag-waiting">Đợi xử lý</span>
                     </div>
                     <div class="variable-cell" style="width: 120px;">
                         <span class="color-748399" v-text="item.created_at"></span>

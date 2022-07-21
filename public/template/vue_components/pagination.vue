@@ -12,8 +12,8 @@
 			</span>
 		</a>
 	</li>
-	<li :title="item" class="item-paging" :class="pagination.current_page == item ? 'active' : ''" tabindex="0" v-for="item in pagination.total_pages">
-		<a rel="nofollow" @click="switchPage(item)" v-text="item">1</a>
+	<li :title="item" class="item-paging" :class="pagination.current_page == item ? 'active' : ''" :tabindex="item" v-for="item in pagination.total_pages">
+		<a href="javascript:;" @click="switchPage(item)" v-text="item"></a>
 	</li>
 	<li class="paging-next disabled">
 		<a href="javascript:;" @click="switchPage(pagination.current_page + 1)">
@@ -34,7 +34,7 @@
     props: ['pagination', 'switch_page'],
     methods: {
 		switchPage: function(page){
-			if(typeof switch_page != "undefined"){
+			if(typeof this.switch_page != "undefined"){
 				this.switch_page.call(this, page);
 			}
 		}
