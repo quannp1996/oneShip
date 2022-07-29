@@ -64,7 +64,7 @@ const createOrderVUE = new Vue({
     },
 
     watch: {
-        
+
     },
 
     components: {
@@ -89,7 +89,7 @@ const createOrderVUE = new Vue({
     },
     methods: {
 
-        choseProvince: async function(item, object){
+        choseProvince: async function (item, object) {
             object.province = item.code;
             await $.get(this.api.districts, {
                 province_id: item.code
@@ -98,7 +98,7 @@ const createOrderVUE = new Vue({
             })
         },
 
-        choseDistrict: async function(item, object){
+        choseDistrict: async function (item, object) {
             object.district = item.code;
             await $.get(this.api.wards, {
                 district_id: item.code
@@ -107,27 +107,27 @@ const createOrderVUE = new Vue({
             })
         },
 
-        choseWard: function(item, object){
+        choseWard: function (item, object) {
             object.ward = item.code;
         },
 
-        gotoStep: function(step){
-            switch(step){
-                case 'step2': 
+        gotoStep: function (step) {
+            switch (step) {
+                case 'step2':
                     return this.gotoStep2();
-                case 'step3': 
+                case 'step3':
                     return this.gotoStep3();
                 case 'step4':
                     return this.gotoStep4();
             }
         },
 
-        gotoStep2: function(){
-            if(!this.validateFormStep1()) return false;
+        gotoStep2: function () {
+            if (!this.validateFormStep1()) return false;
             this.currentStep = 1;
         },
 
-        gotoStep3: function(){
+        gotoStep3: function () {
             // if(!this.validateFormStep1()) return false;
             $.post(this.api.estimate, {
                 _token: ENV.token,
@@ -140,7 +140,7 @@ const createOrderVUE = new Vue({
             })
         },
 
-        gotoStep4: async function(){
+        gotoStep4: async function () {
             $.post(this.api.storeOrder, {
                 _token: ENV.token,
                 sender: this.sender,
@@ -155,17 +155,22 @@ const createOrderVUE = new Vue({
                     shippingID: this.selectedShipping
                 }
             }).then(json => {
+                console.log(json);
                 Swal.fire({
-                    
-                })
+                    icon: 'success',
+                    title: 'Thành công',
+                    text: json.message,
+                }).then(_ => {
+                    window.location.href = '/orders';
+                });
             })
         },
 
-        cancel: function(){
+        cancel: function () {
             window.location.href = this.api.cancel
         },
 
-        validateFormStep1: function(){
+        validateFormStep1: function () {
             const required = ['fullname', 'phone', 'address1', 'province', 'district', 'ward'];
             this.error = {
                 sender: {},
@@ -173,23 +178,23 @@ const createOrderVUE = new Vue({
             }
             let pass = true;
             Object.keys(this.sender).forEach(item => {
-                if(required.includes(item) && (this.sender[item] == '' || this.sender[item] == null)){
+                if (required.includes(item) && (this.sender[item] == '' || this.sender[item] == null)) {
                     this.error.sender[item] = 'Bắt buộc';
                     pass = false;
                 }
             });
-            this.error.sender = {... this.error.sender};
+            this.error.sender = { ... this.error.sender };
             Object.keys(this.receiver).forEach(item => {
-                if(required.includes(item) && (this.receiver[item] == '' || this.receiver[item] == null)){
+                if (required.includes(item) && (this.receiver[item] == '' || this.receiver[item] == null)) {
                     this.error.receiver[item] = 'Bắt buộc';
                     pass = false;
                 }
             });
-            this.error.receiver = {... this.error.receiver};
+            this.error.receiver = { ... this.error.receiver };
             return pass;
         },
 
-        addPackage: function(){
+        addPackage: function () {
             this.package.list.push({
                 productCode: '',
                 productName: '',
@@ -198,23 +203,23 @@ const createOrderVUE = new Vue({
             })
         },
 
-        pickShipping: function(item){
+        pickShipping: function (item) {
             this.selectedShipping = item.id;
             this.shipping.selectedShipping = item;
         },
 
-        selectAddress: function(item){
-            if(item.type == 1){
+        selectAddress: function (item) {
+            if (item.type == 1) {
                 this.sender = {
-                    ... item
+                    ...item
                 }
                 $('#modalSenderAddrs').modal('hide');
-            }else{
+            } else {
                 this.receiver = {
-                    ... item
+                    ...item
                 }
                 $('#modalReceiverAddrs').modal('hide');
             }
-        }   
+        }
     },
 })

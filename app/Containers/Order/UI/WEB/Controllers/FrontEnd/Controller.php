@@ -72,6 +72,6 @@ class Controller extends NeedAuthController
         
         return $this->sendResponse([
             'order' => $order
-        ]); 
+        ], 'Tạo đơn hàng thành công'); 
     }
 }

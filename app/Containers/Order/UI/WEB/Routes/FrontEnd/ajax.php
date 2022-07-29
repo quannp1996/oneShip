@@ -12,7 +12,7 @@ $router->group([
     ]);
 
     $router->post('/store', [
-        'as' => 'ajax.orders.store',
+        'as' => 'ajax_orders_store',
         'uses'  => 'Controller@apiStore',
     ]);
     

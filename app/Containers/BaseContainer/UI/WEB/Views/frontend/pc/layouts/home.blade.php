@@ -37,9 +37,9 @@
 </script>
 <script type="text/javascript">
     var ENV = {
-            version: '{{ env('APP_VER', 0) }}',
-            token: '{{ csrf_token() }}',
-        };
+        version: '{{ env('APP_VER', 0) }}',
+        token: '{{ csrf_token() }}',
+    };
     var COOKIE_ID = '{{ env('APP_NAME', '') }}';
     var DOMAIN_COOKIE_REG_VALUE = 1;
     var DOMAIN_COOKIE_STRING = '{{ config('session.domain') }}';
@@ -52,6 +52,7 @@
 <script src="{{ asset('admin/js/vue_dev.js') }}"></script>
 <script src="{{ asset('template/js/httpvueloader.js') }}"></script>
 <script src="{{ asset('template/js/setup.js') }}"></script>
+<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 @stack('js_bot_all')
 
 </html>

@@ -8,7 +8,7 @@ trait TraitBase{
     
     public function show(ShowDetailCustomerRequest $request, FindCustomerByIdAction $findCustomerByIdAction)
     {
-        $customer = $findCustomerByIdAction->run($request->id);
+        $customer = $findCustomerByIdAction->run($request->id, ['orders']);
         return view('customer::show', [
             'customer' => $customer
         ]);

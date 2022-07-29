@@ -5,9 +5,9 @@ namespace App\Containers\Customer\UI\WEB\Controllers\Admin;
 use Apiato\Core\Foundation\Facades\Apiato;
 use Apiato\Core\Foundation\Facades\FunctionLib;
 use Apiato\Core\Foundation\FunctionLib as FoundationFunctionLib;
-use App\Containers\Customer\UI\WEB\Controllers\Features\TraitBase;
-use App\Containers\Customer\UI\WEB\Controllers\Features\TraitPrices;
-use App\Containers\Customer\UI\WEB\Controllers\Features\TraitStatus;
+use App\Containers\Customer\UI\WEB\Controllers\Admin\Features\TraitBase;
+use App\Containers\Customer\UI\WEB\Controllers\Admin\Features\TraitPrices;
+use App\Containers\Customer\UI\WEB\Controllers\Admin\Features\TraitStatus;
 use App\Containers\Customer\UI\WEB\Requests\CreateCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\DeleteCustomerRequest;
 use App\Containers\Customer\UI\WEB\Requests\EditCustomerRequest;
@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\DB;
  */
 class CustomerController extends AdminController
 {
-  use ApiResTrait, TraitStatus, TraitBase, TraitPrices;
+  use TraitBase, TraitPrices, TraitStatus;
   public function __construct()
   {
     if (FoundationFunctionLib::isDontUseShareData(['edit', 'store', 'update', 'delete', 'create'])) {
