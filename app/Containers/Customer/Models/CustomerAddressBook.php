@@ -2,10 +2,12 @@
 
 namespace App\Containers\Customer\Models;
 
+use App\Containers\BaseContainer\Enums\EnumAddressText;
 use App\Ship\Parents\Models\Model;
 use App\Containers\Location\Models\City;
 use App\Containers\Location\Models\Ward;
 use App\Containers\Location\Models\District;
+use Exception;
 
 class CustomerAddressBook extends Model
 {
@@ -61,7 +63,10 @@ class CustomerAddressBook extends Model
             $model->type = (int) $model->type;
         });
         self::deleting(function ($model){
-            dd($model);
+            if($model->customerId != auth('customer')->id()) throw new Exception(EnumAddressText::ENUM_PERMISION_DELETE);
+        });
+        self::updating(function($model){
+            if($model->customerId != auth('customer')->id()) throw new Exception(EnumAddressText::ENUM_PERMISION_UPDATE);
         });
     }
 }

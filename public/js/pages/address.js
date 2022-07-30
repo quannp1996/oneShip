@@ -126,6 +126,12 @@ const addressAPP = new Vue({
                     })
                 }
                 $('#edit-item-1').modal('hide');
+            }).fail(json => {
+                Swal.fire({
+                    type:'warning',
+                    title: 'Cảnh báo',
+                    text: json.responseJSON.message
+                })
             })
         },
 
@@ -145,7 +151,11 @@ const addressAPP = new Vue({
                     })
                 },
                 error: json => {
-                    
+                    Swal.fire({
+                        type:'warning',
+                        title: 'Cảnh báo',
+                        text: json.responseJSON.message
+                    })
                 }
             }).always(json => {
                 $('#delete-item-1').modal('hide');

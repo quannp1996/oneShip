@@ -3,6 +3,7 @@
 namespace App\Containers\Customer\UI\WEB\Controllers\FrontEnd;
 
 use Apiato\Core\Traits\ResponseTrait;
+use App\Containers\BaseContainer\Enums\EnumAddressText;
 use App\Containers\Customer\Enums\EnumAddressBook;
 use App\Containers\BaseContainer\UI\WEB\Controllers\NeedAuthController;
 use App\Containers\Customer\Actions\AddressBook\GetAllAddressBookAction;
@@ -48,9 +49,9 @@ class CustomerAddress extends NeedAuthController
       return $this->sendResponse([
         'success' => true,
         'address' => $delete
-      ], 'Xóa địa chỉ thành công');
+      ], EnumAddressText::ENUM_SUCCESS_ADDRESS);
     } catch (\Exception $e) {
-      return $this->sendError('', 404, 'Xóa địa chỉ không thành công');
+      return $this->sendError('', 404, $e->getMessage());
     }
   }
 

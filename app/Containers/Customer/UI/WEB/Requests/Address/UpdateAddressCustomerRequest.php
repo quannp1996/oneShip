@@ -49,7 +49,7 @@ class UpdateAddressCustomerRequest extends Request
     public function rules()
     {
         return [
-            'id' => ['required', new CanEditAddressRule(auth('customer')->id())]
+            'id' => ['required']
         ];
     }
 
