@@ -18,18 +18,24 @@
         <p class="mb-1">Mã đơn: <em><b>{{ $order->code }}</b></em></p>
     </td>
     <td class="py-1">
-        <p class="mb-1"><i class="fa fa-user"></i> &nbsp;{{ ucwords($order->fullname) }}</p>
-
-        @if (!empty($order->email))
-            <p class="mb-1"><b>@</b> <a href="mailto:{{ $order->email }}">{{ $order->email }}</a></p>
+        <p class="mb-1"><i class="fa fa-user"></i> &nbsp;{{ ucwords($order->sender_fullname) }}</p>
+        @if (!empty($order->sender_email))
+            <p class="mb-1"><b>@</b> <a href="mailto:{{ $order->email }}">{{ $order->sender_email }}</a></p>
         @endif
 
-        @if (!empty($order->phone))
-            <p class="mb-1"><i class="fa fa-mobile"></i> &nbsp;&nbsp;{{ $order['phone'] }}</p>
+        @if (!empty($order->sender_phone))
+            <p class="mb-1"><i class="fa fa-mobile"></i> &nbsp;&nbsp;{{ $order->sender_phone }}</p>
         @endif
     </td>
     <td class="py-0">
+        <p class="mb-1"><i class="fa fa-user"></i> &nbsp;{{ ucwords($order->receiver_fullname) }}</p>
+        @if (!empty($order->receiver_email))
+            <p class="mb-1"><b>@</b> <a href="mailto:{{ $order->email }}">{{ $order->receiver_email }}</a></p>
+        @endif
 
+        @if (!empty($order->receiver_phone))
+            <p class="mb-1"><i class="fa fa-mobile"></i> &nbsp;&nbsp;{{ $order->receiver_phone }}</p>
+        @endif
     </td>
     <td>
         <b class="mb-1 text-warning"><i class="fa fa-money" aria-hidden="true"></i>
@@ -45,10 +51,6 @@
         <p class="mb-1">
             {{ $order->getOrderStatusText() }}
         </p>
-        {{-- @if ($order->user)
-            <p class="mb-1">Người xử lý: <b class="text-danger">{{ $order->user->name ?? $order->user->email }}</b>
-            </p>
-        @endif --}}
     </td>
     <td class="py-0 text-center">
         <div class="dropdown">

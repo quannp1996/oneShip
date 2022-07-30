@@ -94,20 +94,20 @@
                     <div class="variable-cell" style="width: 150px;">
                         <div>
                             <p class="d-block mb-0 w-100 color-748399">-</p>
-                            <p class="d-block mb-0 w-100 color-748399" v-text="item.statusText"></p>
+                            <p class="d-block mb-0 w-100 color-748399" v-text="item.statusText" style="word-break: break-word;"></p>
                             <p class="d-block mb-0 w-100 color-748399">-</p>
                         </div>
                     </div>
                     <div class="variable-cell" style="width: 230px;">
                         <div>
-                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.sender_name"></p>
-                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.senderAddress"></p>
+                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.sender_name" style="word-break: break-word;"></p>
+                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.senderAddress" style="word-break: break-word;"></p>
                         </div>
                     </div>
                     <div class="variable-cell" style="width: 300px;">
                         <div>
-                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.receiver_name"></p>
-                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.receiverAddress"></p>
+                            <p class="d-block mb-0 w-100 text-14 text-black" v-text="item.receiver_name" style="word-break: break-word;"></p>
+                            <p class="d-block mb-0 w-100 color-748399 text-12" v-text="item.receiverAddress" style="word-break: break-word;"></p>
                         </div>
                     </div>
                     <div class="variable-cell" style="width: 160px;">

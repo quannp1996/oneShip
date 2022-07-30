@@ -140,7 +140,7 @@
                                 </span>
                             </span>
                         </li>
-                        <li class="sidebar-menu-item ">
+                        {{-- <li class="sidebar-menu-item ">
                             <span class="sidebar-menu-title-content">
                                 <span role="img" class="sidebar-menu-icon">
                                     <svg width="4" height="20" viewBox="0 0 4 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,7 +172,7 @@
                                     </svg>
                                 </span>
                                 <span class="submenu-item">
-                                    <a href="javascript:;">Cài đặt khá<!--  --> </a>
+                                    <a href="javascript:;">Cài đặt khác<!--  --> </a>
                                 </span>
                             </span>
                         </li>
@@ -187,7 +187,7 @@
                                     <a href="javascript:;"> Công cụ </a>
                                 </span>
                             </span>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>

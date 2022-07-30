@@ -17,6 +17,6 @@
     </div>
     <div class="form-group">
         <label for="address"><strong>Tổng số tiền COD: </strong></label>
-        <span id="address">0</span>
+        <span id="address">{{ \FunctionLib::priceFormat($customer->orders->sum('cod')) }} &nbsp; <i class="fa fa-money"></i></span>
     </div>
 </div>
