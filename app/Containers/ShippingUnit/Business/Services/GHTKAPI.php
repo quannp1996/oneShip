@@ -8,12 +8,13 @@ use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 class GHTKAPI  extends ShippingUnitAbstract
 {
     protected $api = 'https://services.giaohangtietkiem.vn';
-    protected $devApi = ' https://services.ghtklab.com';
+    protected $devApi = 'https://services.ghtklab.com';
     protected $token = null;
 
     public function __construct(ShippingUnit $shippingUnit)
     {
         $this->shipping = $shippingUnit;
+        $this->url = $this->shipping->dev_mode ? $this->devApi : $this->api;
     }
 
     public function send()
@@ -23,7 +24,7 @@ class GHTKAPI  extends ShippingUnitAbstract
             "Content-Type: application/json",
             "Token: 827Fd0cfaA18d531F189A406c1e58F7A636eA5E1",
             "Content-Length: " . strlen($this->covertOrder()),
-        ], $order, "https://services.ghtklab.com/services/shipment/order");
+        ], $order, sprintf('%s/services/shipment/order', $this->url));
         return $response;
     }
 

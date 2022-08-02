@@ -17,6 +17,8 @@
         href="https://fonts.googleapis.com/css?family=Open Sans:bold,regular|Montserrat:bold,regular&amp;display=swap"
         as="style" onload="this.onload = null; this.rel = 'stylesheet';">
     <link rel="stylesheet" href="{{ asset('template/css/style.css') }}">
+    @stack('css_bot_all')
+    <script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
     @yield('seo')
 </head>
 
@@ -46,7 +48,6 @@
     var API_URL = '{{ env('API_URL', '') }}/v1/{{ $currentLang }}';
     var BASE_URL = '{{ url('/') }}';
 </script>
-<script src="{{ asset('template/js/jquery-3.4.1.js') }}"></script>
 <script src="{{ asset('template/libs/bootstrap/popper.min.js') }}"></script>
 <script src="{{ asset('template/libs/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ asset('admin/js/vue_dev.js') }}"></script>

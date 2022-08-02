@@ -44,7 +44,6 @@ $def['site_title'] = "Quản trị";
     <div class="c-wrapper c-fixed-components">
       @yield('content')
     </div>
-
     @include('customer::inc.modal-iframe-edit')
 <script type="text/javascript">
     var ENV = {

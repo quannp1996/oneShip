@@ -72,7 +72,7 @@
                 @endif
                 <div class="dropdown-item">
                     <a class="text-primary" href="javascript:void(0)"
-                        onclick="return loadIframe(this, '{{ route('admin.orders.logs', ['id' => $order->id]) }}')">
+                        onclick="loadIframe(this, '{{ route('admin.orders.logs', ['id' => $order->id]) }}')">
                         Lịch sử xử lý đơn hàng
                     </a>
                 </div>
