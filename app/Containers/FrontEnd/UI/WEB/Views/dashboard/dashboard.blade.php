@@ -23,7 +23,6 @@
                         Hãy liên hệ với OneShip qua tin nhắn tại góc trái màn hình, nếu bạn có thắc mắc hoặc cần hỗ
                         trợ nhé!
                     </div>
-
                 </div>
             </div>
             <div class="admin-card">
@@ -154,7 +153,7 @@
                     </div>
                 </div>
             </div>
-            <div class="admin-card">
+            {{-- <div class="admin-card">
                 <div class="admin-card-body p-0">
                     <div class="admin-card-head">
                         <div class="admin-card-head-wrapper">
@@ -250,7 +249,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
+@push('js_bot_all')
+    <script>
+        
+    </script>
+@endpush

@@ -11,13 +11,13 @@
 
 namespace App\Containers\Order\Actions\Getters;
 
-use App\Containers\Order\Tasks\Getters\GetCouponUsedOnOrderTask;
 use App\Ship\Parents\Actions\Action;
+use App\Containers\Order\Tasks\Getters\CountOrderByStatusTask;
 
-class GetCouponUsedOnOrderAction extends Action
+class CountOrderByStatusAction extends Action
 {
-    public function run(int $customerId,string $couponCode)
+    public function run(array $status = [])
     {
-        return app(GetCouponUsedOnOrderTask::class)->customerId($customerId)->couponCode($couponCode)->run();
+        return app(CountOrderByStatusTask::class)->run($status);
     }
 }

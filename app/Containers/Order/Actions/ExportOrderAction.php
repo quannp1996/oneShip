@@ -7,7 +7,7 @@ use App\Ship\Parents\Actions\Action;
 
 class ExportOrderAction extends Action
 {
-  protected $status = OrderStatus::EXPORTED;
+  protected $status = OrderStatus::ORDER_SENT;
 
   public function run(array $data)
   {
