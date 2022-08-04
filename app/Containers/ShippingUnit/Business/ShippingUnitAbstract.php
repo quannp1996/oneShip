@@ -26,8 +26,8 @@ abstract class ShippingUnitAbstract
     } 
 
     abstract public function send();
-    abstract public function cancel();
-    abstract public function hook();
+    abstract static public function cancel();
+    abstract static public function hook(Order $order);
     abstract public function estimate(): float;
 
     public function caculateShipping(): int

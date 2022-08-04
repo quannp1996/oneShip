@@ -12,6 +12,7 @@
 namespace App\Containers\Order\Tasks;
 
 use App\Containers\Order\Data\Repositories\OrderRepository;
+use App\Containers\Order\Models\Order;
 use App\Ship\Parents\Tasks\Task;
 use Exception;
 
@@ -24,7 +25,7 @@ class FindOrderByCodeTask extends Task
         $this->repository = $repository;
     }
 
-    public function run(string $token)
+    public function run(string $token): Order
     {
         try {
             return $this->repository->where('code', $token)->first();

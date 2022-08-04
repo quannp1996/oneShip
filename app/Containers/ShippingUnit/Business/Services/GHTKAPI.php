@@ -2,11 +2,13 @@
 
 namespace App\Containers\ShippingUnit\Business\Services;
 
+use App\Containers\Order\Models\Order;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
 
 class GHTKAPI  extends ShippingUnitAbstract
 {
+    const IP_ADDRESS = '';
     protected $api = 'https://services.giaohangtietkiem.vn';
     protected $devApi = 'https://services.ghtklab.com';
     protected $token = null;
@@ -28,11 +30,12 @@ class GHTKAPI  extends ShippingUnitAbstract
         return $response;
     }
 
-    public function cancel()
+    public static function cancel()
     {
         dd('cancel GHTK');
     }
-    public function hook()
+
+    public  static function hook(Order $order)
     {
         dd('hook GHTK');
     }

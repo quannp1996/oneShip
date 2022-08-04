@@ -12,6 +12,7 @@
 namespace App\Containers\Order\Actions;
 
 use App\Containers\Localization\Models\Language;
+use App\Containers\Order\Models\Order;
 use App\Containers\Order\Tasks\FindOrderByCodeTask;
 use App\Ship\Parents\Actions\Action;
 
@@ -19,7 +20,7 @@ class FindOrderByCodeAction extends Action
 {
   protected $externalWith = [];
 
-  public function run(string $code, array $with = [], array $column = ['*'])
+  public function run(string $code, array $with = [], array $column = ['*']): Order
   {
     $order = app(FindOrderByCodeTask::class)->externalWith($this->externalWith)->with($with)->selectFields($column)->run($code);
 

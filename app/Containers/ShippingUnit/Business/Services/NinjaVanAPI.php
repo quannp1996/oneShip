@@ -1,6 +1,7 @@
 <?php 
 namespace App\Containers\ShippingUnit\Business\Services;
 
+use App\Containers\Order\Models\Order;
 use Illuminate\Support\Facades\Cache;
 use App\Containers\ShippingUnit\Models\ShippingUnit;
 use App\Containers\ShippingUnit\Business\ShippingUnitAbstract;
@@ -78,15 +79,14 @@ class NinjaVanAPI extends ShippingUnitAbstract
         return $result;
     }
 
-    public function cancel()
+    public static function cancel()
     {
         dd('cancel NinjaVan');
     }
     
-    public function hook()
+    public static function hook(Order $order)
     {
-
-        dd('hook NinjaVan');
+        
     }
 
     public function estimate(): float
