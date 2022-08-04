@@ -15,7 +15,7 @@ class ExportOrderView implements FromView
 
     public function view(): View
     {
-        $orders = app(GetAllOrdersAction::class)->run($this->condition, ['shipping']);
+        $orders = app(GetAllOrdersAction::class)->run($this->condition, ['shipping', 'senderProvince', 'senderDistrict', 'senderWard', 'receiverProvince', 'receiverWard', 'receiverDistrict']);
         return view('order::export.index', [
             'orders' => $orders
         ]);
