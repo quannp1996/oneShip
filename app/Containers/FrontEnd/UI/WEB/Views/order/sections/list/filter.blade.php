@@ -375,7 +375,7 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <div class="d-flex justify-content-end mt-16">
+                        <div class="d-flex justify-content-start mt-16">
                             {{-- <a href="javascript:;" class="mb-16 mr-16">
                                 <span class="admin-form-input">
                                     Quản lý thẻ tùy chỉnh

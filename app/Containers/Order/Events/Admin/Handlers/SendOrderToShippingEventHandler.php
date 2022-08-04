@@ -14,7 +14,9 @@ namespace App\Containers\Order\Events\Admin\Handlers;
 use App\Containers\ShippingUnit\Helpers\CovertOrder;
 use App\Containers\ShippingUnit\Business\ShippingFactory;
 use App\Containers\BaseContainer\Events\Handlers\BaseFrontEventHandler;
+use App\Containers\Order\Enums\EnumOrderLog;
 use App\Containers\Order\Enums\OrderStatus;
+use App\Containers\Order\Tasks\CreateOrderLogTask;
 use Exception;
 
 class SendOrderToShippingEventHandler extends BaseFrontEventHandler
@@ -38,7 +40,19 @@ class SendOrderToShippingEventHandler extends BaseFrontEventHandler
             $response = $shippingObject->send();
             if(!$response['success']) throw new  Exception($response['message']);
             $order->update(['status' => OrderStatus::ORDER_SENT]);
+            app(CreateOrderLogTask::class)->run([
+                'order_id' => $order->id,
+                'action_key' => EnumOrderLog::SHIPPING_SENT_KEY,
+                'ip' => request()->ip(),
+                'note' => EnumOrderLog::SHIPPING_SENT
+            ]);
         }catch(\Exception $e) {
+            app(CreateOrderLogTask::class)->run([
+                'order_id' => $event->order->id,
+                'action_key' => EnumOrderLog::SHIPPING_SENT_ERROR_KEY,
+                'ip' => request()->ip(),
+                'note' => EnumOrderLog::SHIPPING_ERROR_SENT.' - '. $e->getMessage()
+            ]);
             throw $e;
         }
     }

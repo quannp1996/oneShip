@@ -36,7 +36,7 @@
                         <div class="d-flex align-items-center">
                             <span class="icon-svg">
                                 <svg class="" focusable="false" viewBox="0 0 24 24" aria-hidden="true"
-                                    style="    color: rgb(255, 255, 255);stroke: transparent;fill: currentColor;">
+                                    style="color: rgb(255, 255, 255);stroke: transparent;fill: currentColor;">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M11.9993 4.24219C12.4964 4.24219 12.8993 4.64513 12.8993 5.14219V11.0993H18.8565C19.3535 11.0993 19.7565 11.5023 19.7565 11.9993C19.7565 12.4964 19.3535 12.8993 18.8565 12.8993H12.8993V18.8565C12.8993 19.3535 12.4964 19.7565 11.9993 19.7565C11.5023 19.7565 11.0993 19.3535 11.0993 18.8565V12.8993H5.14219C4.64513 12.8993 4.24219 12.4964 4.24219 11.9993C4.24219 11.5023 4.64513 11.0993 5.14219 11.0993H11.0993V5.14219C11.0993 4.64513 11.5023 4.24219 11.9993 4.24219Z">
                                     </path>
@@ -68,7 +68,12 @@
     <!-- chinh sua tieu de -->
     {{-- @include('frontend::order.sections.list.edit_header') --}}
 @endsection
+@push('css_bot_all')
+    <link rel="stylesheet" href="{{ asset('template/libs/daterangepicker/daterangepicker.css') }}">
+@endpush
 @push('js_bot_all')
+    <script src="{{ asset('template/libs/daterangepicker/moment.min.js') }}"></script>
+    <script src="{{ asset('template/libs/daterangepicker/daterangepicker.min.js') }}"></script>
     <script>
         var api = {
             fetch: '{{ route('ajax.orders.index') }}'
@@ -89,6 +94,7 @@
         function closeEditBars() {
             $('#fixed-edit-bars').removeClass('opened');
         }
+        
         $(document).ready(function() {
             $('.js-customdropdown-holder').on('click', function(e) {
                 e.stopPropagation();

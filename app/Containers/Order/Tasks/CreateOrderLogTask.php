@@ -2,10 +2,9 @@
 
 namespace App\Containers\Order\Tasks;
 
-use App\Containers\Order\Data\Repositories\OrderLogRepository;
-use App\Ship\Exceptions\CreateResourceFailedException;
-use App\Ship\Parents\Tasks\Task;
 use Exception;
+use App\Ship\Parents\Tasks\Task;
+use App\Containers\Order\Data\Repositories\OrderLogRepository;
 
 class CreateOrderLogTask extends Task
 {

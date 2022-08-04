@@ -75,7 +75,7 @@ class NinjaVanAPI extends ShippingUnitAbstract
                 }, $packages['list'])
             ]    
         ], $url);
-        dd($result);
+        return $result;
     }
 
     public function cancel()

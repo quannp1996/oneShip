@@ -46,7 +46,8 @@
                                     d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z"
                                     fill="#EDF1F6"></path>
                                 <circle cx="12" cy="23" r="10" fill="#CFD9E4"></circle>
-                                <circle cx="12" cy="10" r="6" fill="#CFD9E4" stroke="#EDF1F6" stroke-width="2">
+                                <circle cx="12" cy="10" r="6" fill="#CFD9E4" stroke="#EDF1F6"
+                                    stroke-width="2">
                                 </circle>
                             </g>
                             <defs>
@@ -66,11 +67,57 @@
                                 fill="#00112F"></path>
                         </svg>
                     </i>
+                    <div class="sortby-status-dropdown-menu js-sortby-content">
+                        <div class="d-flex ">
+                            <div class="">
+                                <div class="title">Trạng thái đơn hàng</div>
+                                <div class="d-flex flex-column">
+                                    <label class="checkbox-custom" for="id-1">
+                                        <span class="checkbox-custom-input">
+                                            <input type="checkbox" class="d-none" value="" id="id-1">
+                                            <span class="checkbox-custom-icon"></span>
+                                        </span>
+                                        <span class="checkbox-custom-name">Đã tạo
+                                        </span>
+
+                                    </label>
+                                    <label class="checkbox-custom" for="id-2">
+                                        <span class="checkbox-custom-input">
+                                            <input type="checkbox" class="d-none" value="" id="id-2">
+                                            <span class="checkbox-custom-icon"></span>
+                                        </span>
+                                        <span class="checkbox-custom-name">Đã hoàn tất
+                                        </span>
+
+                                    </label>
+                                    <label class="checkbox-custom" for="id-3">
+                                        <span class="checkbox-custom-input">
+                                            <input type="checkbox" class="d-none" value="" id="id-3">
+                                            <span class="checkbox-custom-icon"></span>
+                                        </span>
+                                        <span class="checkbox-custom-name">Bị hủy
+                                        </span>
+
+                                    </label>
+                                    <label class="checkbox-custom" for="id-4">
+                                        <span class="checkbox-custom-input">
+                                            <input type="checkbox" class="d-none" value="" id="id-4">
+                                            <span class="checkbox-custom-icon"></span>
+                                        </span>
+                                        <span class="checkbox-custom-name">Hủy </span>
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </a>
                 <div class="header-user-dropdown">
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </header>
+@push('js_bot_all')
+@endpush
