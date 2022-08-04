@@ -31,5 +31,9 @@ Route::group(
             'as' => 'web_orders_create',
             'uses' => 'Order@create'
         ]);
+        $router->any('/order/export', [
+            'as' => 'web_orders_export',
+            'uses' => 'Order@export'
+        ]);
     }
 );
