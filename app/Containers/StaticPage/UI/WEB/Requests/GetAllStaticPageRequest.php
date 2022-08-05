@@ -17,7 +17,7 @@ class GetAllStaticPageRequest extends Request
      */
     protected $access = [
         'roles' => 'admin',
-        'permissions' => '',
+        'permissions' => 'manage-static-page',
     ];
 
     /**

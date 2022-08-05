@@ -33,9 +33,13 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#general"><i class="fa fa-empire"></i> Chung</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#data"><i class="fa fa-info-circle"></i> Thông tin bổ sung</a>
+                            </li>
                         </ul>
                         <div class="tab-content p-0">
                             @include('staticpage::admin.edit_tabs.general')
+                            @include('staticpage::admin.edit_tabs.data')
                         </div>
                     </div>
                 </div>

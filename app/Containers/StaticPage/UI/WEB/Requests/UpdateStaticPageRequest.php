@@ -18,7 +18,7 @@ class UpdateStaticPageRequest extends Request
      */
     protected $access = [
         'roles'       => 'admin',
-        'permissions' => '',
+        'permissions' => 'manage-static-page',
     ];
 
     /**
@@ -43,7 +43,9 @@ class UpdateStaticPageRequest extends Request
      */
     public function rules()
     {
-        return [];
+        return [
+            'id'           => 'required|exists:static_page,_id',
+        ];
     }
 
     /**

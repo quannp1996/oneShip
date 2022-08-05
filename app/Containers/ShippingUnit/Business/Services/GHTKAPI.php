@@ -37,7 +37,7 @@ class GHTKAPI  extends ShippingUnitAbstract
 
     public  static function hook(Order $order)
     {
-        dd('hook GHTK');
+        
     }
 
     public function estimate(): float

@@ -13,6 +13,7 @@ namespace App\Containers\StaticPage\Models;
 use Apiato\Core\Foundation\Facades\ImageURL;
 use Apiato\Core\Foundation\StringLib;
 use App\Containers\Banner\Enums\BannerStatus;
+use App\Containers\BaseContainer\Enums\BaseEnum;
 use App\Ship\core\Traits\HelpersTraits\LangTrait;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -95,24 +96,12 @@ class StaticPage extends Model
     /*scope*/
     public function scopeAvailable($query, array $positions = [])
     {
-        return $query->where('status', BannerStatus::ACTIVE)
-            ->where(function ($query) use ($positions) {
-                foreach ($positions as $position) {
-                    $query->orWhereRaw("LOCATE('{$position}', position) > 0");
-                }
-            });
-    }
-
-    public function buildItems(bool $json = false){
-        if($this->relationLoaded('desc')){
-            if(!$json) return json_decode($this->desc->item);
-            $items = json_decode($this->desc->item);
-            foreach($items AS &$item){
-                $item->image = asset('upload/staticpage/' . $item->item_image);
+        return $query->where('status', BaseEnum::ACTIVE)
+        ->where(function ($query) use ($positions) {
+            foreach ($positions as $position) {
+                $query->orWhereRaw("LOCATE('{$position}', position) > 0");
             }
-            return json_encode($items);
-        }
-        return [];
+        });
     }
 
     public function scopeActiveLang($query, int $language_id = 1)
@@ -120,9 +109,5 @@ class StaticPage extends Model
         return $query->whereHas('language', function ($q) use ($language_id) {
             $q->where('language_id', $language_id);
         });
-    }
-
-    public function splitDesc($desc){
-        return StringLib::splitStringByTag('p', $desc);
     }
 }

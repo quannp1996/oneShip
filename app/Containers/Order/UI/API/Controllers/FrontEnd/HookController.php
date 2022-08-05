@@ -28,7 +28,9 @@ class HookController extends BaseApiFrontController
         try{
             $order = $findOrderByCodeAction->run($request->partner_id, ['shipping']);
             if($order->isEmpty()) return $this->sendError('Not Found', 404, 'Đơn hàng không tồn tại');
+            // Call Hook to update status order
             GHTKAPI::hook($order);
+            
             return $this->sendResponse([], 'Đơn hàng đã được cập nhật', 200);
         }catch(Exception $e){
             return $this->sendError('Not Found', 303, 'Có lỗi trong quá trình xử lí '. $e->getMessage());

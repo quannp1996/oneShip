@@ -18,7 +18,7 @@ class DeleteStaticPageRequest extends Request
      */
     protected $access = [
         'roles'       => 'admin',
-        'permissions' => 'static-page-delete',
+        'permissions' => 'manage-static-page',
     ];
 
     /**
@@ -44,7 +44,7 @@ class DeleteStaticPageRequest extends Request
     public function rules()
     {
         return [
-            'id'           => 'required|exists:static_page,id',
+            'id'           => 'required|exists:static_page,_id',
         ];
     }
 

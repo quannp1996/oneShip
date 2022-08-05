@@ -85,6 +85,7 @@ return [
             'max' => ['with' => 845, 'height' => 845], //for validate
             'size' => [
                 'original' => ['width' => 0, 'height' => 0],
+                'logo' => ['width' => 0, 'height' => 0],
                 'medium_seo' => ['width' => 250, 'height' => 0],
                 'seo' => ['width' => 800, 'height' => 800],
                 'social' => ['width' => 800, 'height' => 0],

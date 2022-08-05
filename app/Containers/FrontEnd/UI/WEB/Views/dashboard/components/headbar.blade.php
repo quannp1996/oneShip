@@ -1,7 +1,7 @@
 <header>
     <div class="admin-header-wrap">
         <a href="javascript:;" class="logo">
-            <img src="{{ asset('template/images/logo-color.svg') }}" alt="" class="img-fluid">
+            <img style="width: 100px; height: 30px;" src="{{ ImageUrl::getImageUrl($settings['website']['logo'], 'setting', 'original') }}" alt="" class="img-fluid">
         </a>
         <div class="header-right">
             {{-- <div class="header-noti header-right-item">

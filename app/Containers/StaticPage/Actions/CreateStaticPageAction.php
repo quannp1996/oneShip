@@ -4,8 +4,11 @@ namespace App\Containers\StaticPage\Actions;
 
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\StaticPage\Models\StaticPage;
+use App\Containers\StaticPage\Tasks\CreateStaticPageTask;
+use App\Containers\StaticPage\Tasks\SaveStaticPageDescTask;
 use App\Ship\Parents\Actions\Action;
 use App\Ship\Parents\Requests\Request;
+use Exception;
 
 /**
  * Class CreateBannerAction.
@@ -19,24 +22,12 @@ class CreateStaticPageAction extends Action
      */
     public function run($data,Request $request)
     {
-        $object = Apiato::call(
-            'StaticPage@CreateStaticPageTask',
-            [
-                $data
-            ]
-        );
-        if ($object) {
-            $ok = Apiato::call('StaticPage@SaveStaticPageDescTask', [
-                $data,
-                [],
-                $object->id,
-                $request
-            ]);
-            if($ok){
-                
-            }
+        try{
+            $object = app(CreateStaticPageTask::class)->run($data);
+            if ($object) app(SaveStaticPageDescTask::class)->run($data, [], $object->id, $request);
+            return $object;
+        }catch(Exception $e){
+            return $e;
         }
-
-        return $object;
     }
 }
