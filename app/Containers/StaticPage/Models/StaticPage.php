@@ -74,10 +74,8 @@ class StaticPage extends Model
     {
         if(!empty($this->desc->name) && !empty($this->id))
         {
-            if(!empty($this->desc->link)){
-                return $this->desc->link ;
-            }
-             return route('web.page.detail', ['slug' => Str::slug($this->desc->name), 'id' => $this->id]);
+            if(!empty($this->desc->link)) return $this->desc->link ;
+            return route('web_staticpage_detail', ['id' => $this->id]);
         }
     }
 

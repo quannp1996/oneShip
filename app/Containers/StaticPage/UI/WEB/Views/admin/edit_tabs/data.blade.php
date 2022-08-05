@@ -1,5 +1,13 @@
 <div class="tab-pane" id="data">
     <div class="tabbable">
+
+        <div class="row form-group align-items-center">
+            <label class="col-sm-2 control-label text-right mb-0" for="status">Đường dẫn: </label>
+            <div class="col-sm-6">
+                <a href="{{ config('app.url').route('web_staticpage_detail', ['id' => $data['id']], false) }}" target="_blank"> {{ config('app.url').route('web_staticpage_detail', ['id' => $data['id']], false) }} </a>
+            </div>
+        </div>
+        
         <div class="row form-group align-items-center">
             <label class="col-sm-2 control-label text-right mb-0" for="status">Trạng thái <span
                     class="d-block small text-danger">(Hiển thị hay không)</span></label>

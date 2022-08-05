@@ -15,11 +15,12 @@ class FindStaticPageByIDAction extends Action
     /**
      * @return mixed
      */
-    public function run($id)
+    public function run($id, array $external_data = ['with_relationship' => ['all_desc']])
     {
         $data = Apiato::call('StaticPage@FindStaticPageByIDTask', [
             $id,
             Apiato::call('Localization@GetDefaultLanguageTask'),
+            $external_data
         ]);
 
         if ($data) {
